@@ -1,0 +1,88 @@
+[
+  {
+    "line": 2,
+    "elements": [
+      {
+        "start_timestamp": "2020-08-19T05:39:24.242Z",
+        "line": 5,
+        "name": "Login into the app",
+        "description": "",
+        "id": "login--logout-the-app;login-into-the-app",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 26115000000,
+              "status": "passed"
+            },
+            "line": 6,
+            "name": "I open the app",
+            "match": {
+              "location": "clinang.stepDefs.LoginStepDefs.openTheApp()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 2879000000,
+              "status": "passed"
+            },
+            "line": 7,
+            "name": "I login to the app",
+            "match": {
+              "location": "clinang.stepDefs.LoginStepDefs.login()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 4268000000,
+              "status": "passed"
+            },
+            "line": 8,
+            "name": "close the browser",
+            "match": {
+              "location": "clinang.stepDefs.LoginStepDefs.close()"
+            },
+            "keyword": "Then "
+          }
+        ],
+        "tags": [
+          {
+            "name": "@sanitytest"
+          },
+          {
+            "name": "@loginfun"
+          },
+          {
+            "name": "@alogin"
+          }
+        ]
+      }
+    ],
+    "name": "Login, logout the app",
+    "description": "",
+    "id": "login--logout-the-app",
+    "keyword": "Feature",
+    "uri": "file:src/test/resources/clinang_Feature/alogin.feature",
+    "tags": [
+      {
+        "name": "@sanitytest",
+        "type": "Tag",
+        "location": {
+          "line": 1,
+          "column": 1
+        }
+      },
+      {
+        "name": "@loginfun",
+        "type": "Tag",
+        "location": {
+          "line": 1,
+          "column": 13
+        }
+      }
+    ]
+  }
+]

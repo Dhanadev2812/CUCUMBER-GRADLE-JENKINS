@@ -1,0 +1,30 @@
+
+Setup :
+
+Install cucumber and gradle
+create gradle project (File-new-other)
+open build.gradle : ClinaNG\build.gradle
+copy : dependencies,configurations,task cucumber()
+paste it into the newly created project->build.gradle
+inside the build.gradle -> right click ->gradle->refresh gradle project
+check the project and external dependencies folder if the jar files are added or not
+--------------------------------------------------------------------------------------------------
+note :
+change the glue name (build.gradle-task cucumber ->args) if you changed the step def folder name
+same for to change report directory
+---------------------------------------------------------------------------------------------------
+Run gradle : 
+
+open cmd
+move to the project file
+run-single tag : gradle cucumber -Dcucumber.options="--tags @alogin"
+
+for multiple tags :
+gradle cucumber -Dtags=@sanitytest,@loginfun
+---------------------------------------------------------------------------------------------
+Find report output :
+
+Right click on project name
+Click refresh
+Now it display html/json report file inside the target/cucumber/cucumber-html-reports
+
