@@ -41,7 +41,7 @@ $(document).ready(function() {
 
 
 
-<title>Cucumber Reports  - Tag: @sanitytest</title>
+<title>Cucumber Reports  - Tag: @register-existingdetails</title>
 
 </head>
 <body>
@@ -126,20 +126,20 @@ $(document).ready(function() {
 
         <tbody>
         <tr>
-          <td class="tagname">@sanitytest</td>
-          <td      class="passed"    >2</td>
+          <td class="tagname">@register-existingdetails</td>
+          <td      class="passed"    >4</td>
+          <td      class="failed"    >1</td>
           <td >0</td>
           <td >0</td>
           <td >0</td>
-          <td >0</td>
-          <td class="total">2</td>
+          <td class="total">5</td>
 
-          <td  class="passed"    >1</td>
           <td >0</td>
+          <td  class="failed"    >1</td>
           <td class="total">1</td>
 
-          <td class="duration" data-value="30535000000">30.535</td>
-          <td class="passed">Passed</td>
+          <td class="duration" data-value="5422000000">5.422</td>
+          <td class="failed">Failed</td>
         </tr>
         </tbody>
 
@@ -171,26 +171,25 @@ $(document).ready(function() {
 <div class="element">
     <div class="indention">
       <b>Feature:</b>
-      <a href="report-feature_3737155091.html">Login, logout the app</a>
+      <a href="report-feature_2_1081576196.html">Feature to done patient registration</a>
     </div>
 
 
 <div class="tags indention">
     <b>Tags:</b>
-       <a href="report-tag_3323571871.html">@sanitytest</a>
-       <a href="report-tag_162314677.html">@loginfun</a>
-       <a href="report-tag_1698354151.html">@alogin</a>
+       <a href="report-tag_3227696231.html">@patientregister</a>
+       <a href="report-tag_3612099436.html">@register-existingdetails</a>
 </div>
 
 
-  <span class="lead-duration duration">30.535</span>
+  <span class="lead-duration duration">5.422</span>
 
 
-  <span data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#element-1">
+  <span data-toggle="collapse" class=" collapsable-control" data-target="#element-1">
 
-<div class="brief passed">
+<div class="brief failed">
   <span class="keyword indention">Scenario</span>
-  <span class="name">Login into the app</span>
+  <span class="name">Register with existing details</span>
 
 
      <i class="chevron fa fa-fw"></i>
@@ -199,16 +198,16 @@ $(document).ready(function() {
   </span>
   <div class="description indention"></div>
 
-  <div id="element-1" class="collapse collapsable-details ">
+  <div id="element-1" class="collapse collapsable-details  in ">
 
 
 
 
 
 <div class="steps inner-level">
-  <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#steps-2">
+  <div data-toggle="collapse" class=" collapsable-control" data-target="#steps-2">
 
-<div class="brief passed">
+<div class="brief failed">
   <span class="keyword indention">Steps</span>
   <span class="name"></span>
 
@@ -218,7 +217,7 @@ $(document).ready(function() {
 
   </div>
 
-  <div id="steps-2" class="inner-level collapse collapsable-details ">
+  <div id="steps-2" class="inner-level collapse collapsable-details  in ">
       <div class="step">
 
 
@@ -226,7 +225,7 @@ $(document).ready(function() {
   <span class="keyword indention">Given</span>
   <span class="name">I open the app</span>
 
-  <span class="lead-duration duration">21.858</span>
+  <span class="lead-duration duration">0.988</span>
 
 </div>
 
@@ -251,9 +250,9 @@ $(document).ready(function() {
 
 <div class="brief step-name-When passed">
   <span class="keyword indention">When</span>
-  <span class="name">I login to the app</span>
+  <span class="name">Click on registration link</span>
 
-  <span class="lead-duration duration">8.677</span>
+  <span class="lead-duration duration">0.153</span>
 
 </div>
 
@@ -261,6 +260,118 @@ $(document).ready(function() {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+      <div class="step">
+
+
+<div class="brief step-name-Then passed">
+  <span class="keyword indention">Then</span>
+  <span class="name">Enter firstname,lastname,email and password</span>
+
+  <span class="lead-duration duration">0.918</span>
+
+</div>
+
+
+
+
+
+
+
+          <table class="step-arguments">
+              <tr>
+                  <td>firstname</td>
+                  <td>lastname</td>
+                  <td>email</td>
+                  <td>password</td>
+              </tr>
+              <tr>
+                  <td>Arun</td>
+                  <td>Kumar</td>
+                  <td>arun211@gmail.com</td>
+                  <td>Password12#</td>
+              </tr>
+          </table>
+
+
+
+
+
+
+
+
+
+      </div>
+      <div class="step">
+
+
+<div class="brief step-name-And passed">
+  <span class="keyword indention">And</span>
+  <span class="name">Click on register button</span>
+
+  <span class="lead-duration duration">0.198</span>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+      <div class="step">
+
+
+<div class="brief step-name-Then failed">
+  <span class="keyword indention">Then</span>
+  <span class="name">Check the validation message for existing details</span>
+
+  <span class="lead-duration duration">3.165</span>
+
+</div>
+
+
+
+
+
+
+  <div class="inner-level">
+    <div class="message indention">
+      <div data-toggle="collapse" class=" collapsable-control" data-target="#msg-3">
+          <a>java.lang.AssertionError</a>
+      </div>
+      <div id="msg-3" class="collapse collapsable-details  in ">
+        <pre>java.lang.AssertionError
+	at org.junit.Assert.fail(Assert.java:87)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at org.junit.Assert.assertTrue(Assert.java:53)
+	at clinang.stepDefs.Patient_RegistrationStepDefs.checkFailedprocess_existing(Patient_RegistrationStepDefs.java:36)
+	at &#10045;.Check the validation message for existing details(file:///D:/Testing%20workspace/ClinaNG/src/test/resources/clinang_Feature/patient_registration.feature:22)
+</pre>
+      </div>
+    </div>
+  </div>
 
 
 

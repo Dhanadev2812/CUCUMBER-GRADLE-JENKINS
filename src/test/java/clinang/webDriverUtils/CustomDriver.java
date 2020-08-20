@@ -60,12 +60,24 @@ public class CustomDriver extends WebDriverImplemented {
 		return element;
 	}
 
+	
 	public WebElement waitForElementPresent(By by) {
 		WebDriverWait wait = new WebDriverWait(InitiateDriver.driver, 30);
 		WebElement element = wait.until(presenceOfElementLocated(by));
 		return element;
 	}
-
+	protected Function<WebDriver, WebElement> elementToBeClickable(final By locator) {
+		return new Function<WebDriver, WebElement>() {
+			public WebElement apply(WebDriver driver) {
+				return driver.findElement(locator);
+			}
+		};
+	}
+	public WebElement waitForElementClick(By by) {
+		WebDriverWait wait = new WebDriverWait(InitiateDriver.driver, 30);
+		WebElement element = wait.until(elementToBeClickable(by));
+		return element;
+	}
 	public boolean isElementDisplayed(WebElement element) {
 		return element.isDisplayed();
 	}
@@ -146,5 +158,6 @@ public class CustomDriver extends WebDriverImplemented {
 	public void refreshPage() {
 		InitiateDriver.driver.navigate().refresh();
 	}
+	
 
 }
