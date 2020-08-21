@@ -1,5 +1,5 @@
 @loginfunction
-Feature: Login, logout the app
+Feature: Feature to done login process
 
   @login_valid
   Scenario: Login with valid credentials

@@ -3,6 +3,7 @@ package clinang.webDriverUtils;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -29,7 +30,7 @@ public class CustomDriver extends WebDriverImplemented {
 
 	public WebElement findElement(By by) {
 
-		WebDriverWait wait = new WebDriverWait(InitiateDriver.driver, 50);
+		WebDriverWait wait = new WebDriverWait(InitiateDriver.driver, 80);
 		WebElement element = wait.until(presenceOfElementLocated(by));
 		return element;
 	}
@@ -159,5 +160,10 @@ public class CustomDriver extends WebDriverImplemented {
 		InitiateDriver.driver.navigate().refresh();
 	}
 	
+	public void scrollTofindElement(WebElement element) {
+        JavascriptExecutor js = (JavascriptExecutor)InitiateDriver.driver;
+        js.executeScript("arguments[0].scrollIntoView(true);",element);
+		
+	}
 
 }

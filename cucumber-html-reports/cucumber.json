@@ -3,17 +3,17 @@
     "line": 2,
     "elements": [
       {
-        "start_timestamp": "2020-08-20T13:35:47.628Z",
+        "start_timestamp": "2020-08-21T13:41:16.430Z",
         "line": 5,
-        "name": "Login with valid credentials",
+        "name": "Update profile with valid details",
         "description": "",
-        "id": "login--logout-the-app;login-with-valid-credentials",
+        "id": "feature-to-done-dashboard-functionaity;update-profile-with-valid-details",
         "type": "scenario",
         "keyword": "Scenario",
         "steps": [
           {
             "result": {
-              "duration": 20088000000,
+              "duration": 44064000000,
               "status": "passed"
             },
             "line": 6,
@@ -25,7 +25,7 @@
           },
           {
             "result": {
-              "duration": 4178000000,
+              "duration": 1511000000,
               "status": "passed"
             },
             "line": 7,
@@ -53,7 +53,7 @@
           },
           {
             "result": {
-              "duration": 214000000,
+              "duration": 415000000,
               "status": "passed"
             },
             "line": 10,
@@ -65,7 +65,7 @@
           },
           {
             "result": {
-              "duration": 18057000000,
+              "duration": 4070000000,
               "status": "passed"
             },
             "line": 11,
@@ -77,35 +77,101 @@
           },
           {
             "result": {
-              "duration": 6778000000,
+              "duration": 691000000,
               "status": "passed"
             },
             "line": 12,
-            "name": "click on logout button",
+            "name": "Click on edit profile option",
             "match": {
-              "location": "clinang.stepDefs.Patient_DashboardStepDefs.clickonLogout()"
+              "location": "clinang.stepDefs.Patient_DashboardStepDefs.click_editProfile()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 11666000000,
+              "status": "passed"
+            },
+            "line": 13,
+            "name": "Enter mobile_number,address,street,city,state,country and pincode",
+            "match": {
+              "location": "clinang.stepDefs.Patient_DashboardStepDefs.enter_profiledetails(io.cucumber.datatable.DataTable)"
+            },
+            "rows": [
+              {
+                "cells": [
+                  "mobile_number",
+                  "address",
+                  "street",
+                  "city",
+                  "state",
+                  "country",
+                  "pincode"
+                ]
+              },
+              {
+                "cells": [
+                  "0909090909",
+                  "190,Crown city appartment",
+                  "Aruthnar street",
+                  "Chennai",
+                  "Tamilnadu",
+                  "USA",
+                  "666777"
+                ]
+              }
+            ],
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 198000000,
+              "status": "passed"
+            },
+            "line": 16,
+            "name": "Click on \"save\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "save",
+                  "offset": 10
+                }
+              ],
+              "location": "clinang.stepDefs.Patient_DashboardStepDefs.click_option(java.lang.String)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 452000000,
+              "status": "passed"
+            },
+            "line": 17,
+            "name": "check the data stored on DB",
+            "match": {
+              "location": "clinang.stepDefs.Patient_DashboardStepDefs.checkData_DB()"
             },
             "keyword": "Then "
           }
         ],
         "tags": [
           {
-            "name": "@loginfunction"
+            "name": "@Patientdashboard"
           },
           {
-            "name": "@login_valid"
+            "name": "@Editprofile-valid"
           }
         ]
       }
     ],
-    "name": "Login, logout the app",
+    "name": "Feature to done dashboard functionaity",
     "description": "",
-    "id": "login--logout-the-app",
+    "id": "feature-to-done-dashboard-functionaity",
     "keyword": "Feature",
-    "uri": "file:src/test/resources/clinang_Feature/Patient_alogin.feature",
+    "uri": "file:src/test/resources/clinang_Feature/patient_dashboard.feature",
     "tags": [
       {
-        "name": "@loginfunction",
+        "name": "@Patientdashboard",
         "type": "Tag",
         "location": {
           "line": 1,

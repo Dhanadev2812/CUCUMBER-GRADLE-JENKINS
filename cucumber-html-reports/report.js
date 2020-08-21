@@ -1,24 +1,24 @@
-$(document).ready(function() {var formatter = new CucumberHTML.DOMFormatter($('.cucumber-report'));formatter.uri("file:src/test/resources/clinang_Feature/Patient_alogin.feature");
+$(document).ready(function() {var formatter = new CucumberHTML.DOMFormatter($('.cucumber-report'));formatter.uri("file:src/test/resources/clinang_Feature/patient_dashboard.feature");
 formatter.feature({
-  "name": "Login, logout the app",
+  "name": "Feature to done dashboard functionaity",
   "description": "",
   "keyword": "Feature",
   "tags": [
     {
-      "name": "@loginfunction"
+      "name": "@Patientdashboard"
     }
   ]
 });
 formatter.scenario({
-  "name": "Login with valid credentials",
+  "name": "Update profile with valid details",
   "description": "",
   "keyword": "Scenario",
   "tags": [
     {
-      "name": "@loginfunction"
+      "name": "@Patientdashboard"
     },
     {
-      "name": "@login_valid"
+      "name": "@Editprofile-valid"
     }
   ]
 });
@@ -67,11 +67,45 @@ formatter.result({
   "status": "passed"
 });
 formatter.step({
-  "name": "click on logout button",
+  "name": "Click on edit profile option",
+  "keyword": "And "
+});
+formatter.match({
+  "location": "clinang.stepDefs.Patient_DashboardStepDefs.click_editProfile()"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "Enter mobile_number,address,street,city,state,country and pincode",
+  "rows": [
+    {},
+    {}
+  ],
+  "keyword": "And "
+});
+formatter.match({
+  "location": "clinang.stepDefs.Patient_DashboardStepDefs.enter_profiledetails(io.cucumber.datatable.DataTable)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "Click on \"save\"",
   "keyword": "Then "
 });
 formatter.match({
-  "location": "clinang.stepDefs.Patient_DashboardStepDefs.clickonLogout()"
+  "location": "clinang.stepDefs.Patient_DashboardStepDefs.click_option(java.lang.String)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "check the data stored on DB",
+  "keyword": "Then "
+});
+formatter.match({
+  "location": "clinang.stepDefs.Patient_DashboardStepDefs.checkData_DB()"
 });
 formatter.result({
   "status": "passed"

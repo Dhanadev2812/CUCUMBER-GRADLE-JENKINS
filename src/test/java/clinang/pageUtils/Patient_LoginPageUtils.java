@@ -24,6 +24,7 @@ public class Patient_LoginPageUtils extends CustomDriver {
 	private WebElement cliniccode() {
 		return findElement(By.xpath("//input[@formcontrolname='clinicid']"));
 	}
+	
 	public void passLoginDetails(DataTable inputs) {
 		List<Map<String, String>> registration_input = inputs.asMaps(String.class, String.class);
 		  for (Map<String, String> data : registration_input) {
@@ -34,14 +35,18 @@ public class Patient_LoginPageUtils extends CustomDriver {
 	}
 	
 	private WebElement logInButton() {
-		return findElement(By.cssSelector("[class='form-subbtn mat-raised-button'][type='submit']"));
+		return findElement(By.xpath("//button[@class='form-subbtn mat-raised-button' and @type='submit']"));
 	}
 
 	public void clickLogInButton() {
 		logInButton().click();
 	}
+	
+	public WebElement wait_myProfileview() {
+		return waitForElementDisplayed(By.xpath("//div[@class='col-lg-12 col-md-12 col-sm-12 col-xs-12']"));
+	}
+	
 	public String get_currenturl() throws InterruptedException {
-		Thread.sleep(9000);
 		return getCurrentUrl();
 	}
 	
@@ -54,8 +59,9 @@ public class Patient_LoginPageUtils extends CustomDriver {
 	}
 	
 	private WebElement alertMessage_email() {
-		return findElement(By.xpath("//*[@formcontrolname='email']//ancestor::div[2]"));
+		return findElement(By.xpath("//form[@class='ng-invalid ng-dirty ng-touched']"));
 	}
+	
 	public String get_emailAlert() {
 		return alertMessage_email().getText();
 	}

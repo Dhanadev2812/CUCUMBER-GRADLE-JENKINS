@@ -31,18 +31,17 @@ public class Patient_LoginStepDefs {
 	public void clickLogin() {
 		loginPage.clickLogInButton();
 	}
-	@Then("^Check i am logged in$")
-	public void check_i_am_logged_in() throws InterruptedException {	
-		System.out.println(loginPage.get_currenturl());
-		assertTrue(loginPage.get_currenturl().equals("https://latlontech.com/portal/dashboard"));
-		
-	}
-	@Then("^Check validation message for invalid email$")
-	public void checkValidation_invalidEmail() {
-		System.out.println(loginPage.get_emailAlert());
-		assertTrue(loginPage.get_emailAlert().contains("First Name should be in alphabets"));
-	}	
 	
+	@Then("^Check i am logged in$")
+	public void check_i_am_logged_in() throws InterruptedException {		
+		loginPage.wait_myProfileview();		
+		assertTrue(loginPage.get_currenturl().equals("https://latlontech.com/portal/dashboard"));		
+	}
+	
+	@Then("^Check validation message for invalid email$")
+	public void checkValidation_invalidEmail() {		
+		assertTrue(loginPage.get_emailAlert().contains("Enter a valid Email"));
+	}	
 	
 	@Then("^close the browser$")
 	public void close() {
