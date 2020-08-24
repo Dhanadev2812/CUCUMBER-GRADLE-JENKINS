@@ -10,7 +10,7 @@ formatter.feature({
   ]
 });
 formatter.scenario({
-  "name": "Update profile with valid details",
+  "name": "Update profile with invalid details",
   "description": "",
   "keyword": "Scenario",
   "tags": [
@@ -18,7 +18,7 @@ formatter.scenario({
       "name": "@Patientdashboard"
     },
     {
-      "name": "@Editprofile-valid"
+      "name": "@Editprofile-Invaliddata"
     }
   ]
 });
@@ -77,35 +77,45 @@ formatter.result({
   "status": "passed"
 });
 formatter.step({
-  "name": "Enter mobile_number,address,street,city,state,country and pincode",
+  "name": "Enter invalid mobile number",
   "rows": [
     {},
     {}
   ],
-  "keyword": "And "
+  "keyword": "Then "
 });
 formatter.match({
-  "location": "clinang.stepDefs.Patient_DashboardStepDefs.enter_profiledetails(io.cucumber.datatable.DataTable)"
+  "location": "clinang.stepDefs.Patient_DashboardStepDefs.invalid_mobileNum(io.cucumber.datatable.DataTable)"
 });
 formatter.result({
   "status": "passed"
 });
 formatter.step({
-  "name": "Click on \"save\"",
+  "name": "Check the validation message for invalid deta",
+  "keyword": "Then "
+});
+formatter.match({
+  "location": "clinang.stepDefs.Patient_DashboardStepDefs.alert_invalidMobnum()"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "Check the save button is disabled or not",
+  "keyword": "Then "
+});
+formatter.match({
+  "location": "clinang.stepDefs.Patient_DashboardStepDefs.check_saveDisable()"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "Click on \"cancel\"",
   "keyword": "Then "
 });
 formatter.match({
   "location": "clinang.stepDefs.Patient_DashboardStepDefs.click_option(java.lang.String)"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "check the data stored on DB",
-  "keyword": "Then "
-});
-formatter.match({
-  "location": "clinang.stepDefs.Patient_DashboardStepDefs.checkData_DB()"
 });
 formatter.result({
   "status": "passed"

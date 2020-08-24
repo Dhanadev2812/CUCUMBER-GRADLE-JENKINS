@@ -11,7 +11,7 @@ import io.cucumber.junit.CucumberOptions;
 @CucumberOptions(plugin = { "pretty","html: cucumber-html-reports","json: cucumber-html-reports/cucumber.json" },
 features= {"src/test/resources/clinang_Feature/patient_dashboard.feature"},
 glue="clinang.stepDefs",
-tags = {"@Editprofile-valid"},
+tags = {"@Editprofile-Invaliddata"},
 monochrome = true,
 strict=true)
 public class LoginRunner {

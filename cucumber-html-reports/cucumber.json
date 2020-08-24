@@ -3,20 +3,20 @@
     "line": 2,
     "elements": [
       {
-        "start_timestamp": "2020-08-21T13:41:16.430Z",
-        "line": 5,
-        "name": "Update profile with valid details",
+        "start_timestamp": "2020-08-24T15:02:15.648Z",
+        "line": 36,
+        "name": "Update profile with invalid details",
         "description": "",
-        "id": "feature-to-done-dashboard-functionaity;update-profile-with-valid-details",
+        "id": "feature-to-done-dashboard-functionaity;update-profile-with-invalid-details",
         "type": "scenario",
         "keyword": "Scenario",
         "steps": [
           {
             "result": {
-              "duration": 44064000000,
+              "duration": 21029000000,
               "status": "passed"
             },
-            "line": 6,
+            "line": 37,
             "name": "I open the app",
             "match": {
               "location": "clinang.stepDefs.Patient_LoginStepDefs.openTheApp()"
@@ -25,10 +25,10 @@
           },
           {
             "result": {
-              "duration": 1511000000,
+              "duration": 14495000000,
               "status": "passed"
             },
-            "line": 7,
+            "line": 38,
             "name": "Enter the email,password and clinic code",
             "match": {
               "location": "clinang.stepDefs.Patient_LoginStepDefs.login(io.cucumber.datatable.DataTable)"
@@ -53,10 +53,10 @@
           },
           {
             "result": {
-              "duration": 415000000,
+              "duration": 414000000,
               "status": "passed"
             },
-            "line": 10,
+            "line": 41,
             "name": "click on login button",
             "match": {
               "location": "clinang.stepDefs.Patient_LoginStepDefs.clickLogin()"
@@ -65,10 +65,10 @@
           },
           {
             "result": {
-              "duration": 4070000000,
+              "duration": 4927000000,
               "status": "passed"
             },
-            "line": 11,
+            "line": 42,
             "name": "Check i am logged in",
             "match": {
               "location": "clinang.stepDefs.Patient_LoginStepDefs.check_i_am_logged_in()"
@@ -77,10 +77,10 @@
           },
           {
             "result": {
-              "duration": 691000000,
+              "duration": 354000000,
               "status": "passed"
             },
-            "line": 12,
+            "line": 43,
             "name": "Click on edit profile option",
             "match": {
               "location": "clinang.stepDefs.Patient_DashboardStepDefs.click_editProfile()"
@@ -89,13 +89,13 @@
           },
           {
             "result": {
-              "duration": 11666000000,
+              "duration": 10907000000,
               "status": "passed"
             },
-            "line": 13,
-            "name": "Enter mobile_number,address,street,city,state,country and pincode",
+            "line": 44,
+            "name": "Enter invalid mobile number",
             "match": {
-              "location": "clinang.stepDefs.Patient_DashboardStepDefs.enter_profiledetails(io.cucumber.datatable.DataTable)"
+              "location": "clinang.stepDefs.Patient_DashboardStepDefs.invalid_mobileNum(io.cucumber.datatable.DataTable)"
             },
             "rows": [
               {
@@ -111,7 +111,7 @@
               },
               {
                 "cells": [
-                  "0909090909",
+                  "678",
                   "190,Crown city appartment",
                   "Aruthnar street",
                   "Chennai",
@@ -121,35 +121,47 @@
                 ]
               }
             ],
-            "keyword": "And "
+            "keyword": "Then "
           },
           {
             "result": {
-              "duration": 198000000,
+              "duration": 758000000,
               "status": "passed"
             },
-            "line": 16,
-            "name": "Click on \"save\"",
+            "line": 47,
+            "name": "Check the validation message for invalid deta",
             "match": {
-              "arguments": [
-                {
-                  "val": "save",
-                  "offset": 10
-                }
-              ],
-              "location": "clinang.stepDefs.Patient_DashboardStepDefs.click_option(java.lang.String)"
+              "location": "clinang.stepDefs.Patient_DashboardStepDefs.alert_invalidMobnum()"
             },
             "keyword": "Then "
           },
           {
             "result": {
-              "duration": 452000000,
+              "duration": 40000000,
               "status": "passed"
             },
-            "line": 17,
-            "name": "check the data stored on DB",
+            "line": 48,
+            "name": "Check the save button is disabled or not",
             "match": {
-              "location": "clinang.stepDefs.Patient_DashboardStepDefs.checkData_DB()"
+              "location": "clinang.stepDefs.Patient_DashboardStepDefs.check_saveDisable()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 208000000,
+              "status": "passed"
+            },
+            "line": 49,
+            "name": "Click on \"cancel\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "cancel",
+                  "offset": 10
+                }
+              ],
+              "location": "clinang.stepDefs.Patient_DashboardStepDefs.click_option(java.lang.String)"
             },
             "keyword": "Then "
           }
@@ -159,7 +171,7 @@
             "name": "@Patientdashboard"
           },
           {
-            "name": "@Editprofile-valid"
+            "name": "@Editprofile-Invaliddata"
           }
         ]
       }

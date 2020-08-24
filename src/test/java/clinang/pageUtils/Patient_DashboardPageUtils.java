@@ -58,6 +58,7 @@ public class Patient_DashboardPageUtils extends CustomDriver{
 	private WebElement cancelledAppointment() {
 		return findElement(By.xpath("//h3[@class='can-appointment']"));
 	}
+	
 	public void clickCancelledappointment() {		
 		cancelledAppointment().click();
 	}
@@ -66,13 +67,14 @@ public class Patient_DashboardPageUtils extends CustomDriver{
 		upcomingAppointment().getText();
 		System.out.println(cancelledAppointment().getText());
 	}
+	
 	private WebElement editProfile() {
 		return findElement(By.xpath("//button[@class='mat-raised-button']"));
 	} 
 	
 	public void clickEditProfile() {		
 		editProfile().click();
-	}
+	}	
 	
 	private WebElement mobileNumberField() {
 		return findElement(By.xpath("//input[@formcontrolname='phone']"));
@@ -129,7 +131,20 @@ public class Patient_DashboardPageUtils extends CustomDriver{
 		pincodeField().clear();
 	}
 	
-	public void passProfiledetails(DataTable inputs) throws InterruptedException  {
+	private WebElement profile_img() {
+		return findElement(By.xpath("//*[@id='imageUpload']"));	
+	}
+	
+	 public void scrollToupdateImg() {
+		 scrollTofindElement(profile_img());		
+	 }	
+	 	
+	public void upload_profileImg(String img_path) throws InterruptedException {	
+		Thread.sleep(2000);
+		profile_img().sendKeys(img_path);
+	}
+
+	public String passProfiledetails(DataTable inputs) throws InterruptedException  {
 		List<Map<String, String>> profileUpdate_input = inputs.asMaps(String.class, String.class);
 		  for (Map<String, String> data : profileUpdate_input) {
 			  Thread.sleep(8000);
@@ -147,11 +162,43 @@ public class Patient_DashboardPageUtils extends CustomDriver{
 			  pincodeField().sendKeys(data.get("pincode"));
 			  click_countryField().click();				  
 			  select_countryField(data.get("country")).click();		
-			  
-		  }	 
-		 
-		 	}
-	 private WebElement clickSave() {
+			  System.out.println(String.valueOf(profileUpdate_input));
+		  } 
+		
+		return String.valueOf(profileUpdate_input);
+		  }	 	
+	
+	public void updateProfile_nullValue() throws InterruptedException {
+		Thread.sleep(3000);
+		mobileNumberField().click();
+		mobileNumberField().clear();
+		Thread.sleep(1000);
+		addressField().click();
+		addressField().clear();
+		Thread.sleep(1000);
+		streetField().click();
+		streetField().clear();
+		Thread.sleep(1000);
+		cityField().click();
+		cityField().clear();
+		Thread.sleep(1000);
+		stateField().click();
+		stateField().clear();
+		Thread.sleep(1000);
+		pincodeField().click();
+		pincodeField().clear();	
+	}
+	
+	public WebElement profileEditform() {
+		return findElement(By.xpath("//mat-card[@class='section-space mat-card']"));
+	}
+	
+	public String gettext_profileEditform() {
+		System.out.println(profileEditform().getText());
+		return(profileEditform().getText());
+	}
+	
+	 public WebElement clickSave() {
 		 return findElement(By.xpath("//button[@class='reschedule-button mat-raised-button']"));
 	 }
 	 
@@ -168,6 +215,14 @@ public class Patient_DashboardPageUtils extends CustomDriver{
 		 }
 	 }
 	 
+	private WebElement alertBox() {
+		return findElement(By.xpath("//div[@class='msgtext']"));		
+	}
+	
+	public String get_alertMessage() {
+		return(alertBox().getText());
+	}
+	
 	 public void scrollTodashboard() {
 		 scrollTofindElement(dashboardField());		
 	 }	
@@ -188,7 +243,15 @@ public class Patient_DashboardPageUtils extends CustomDriver{
 		 wait_profileView();
 		 profile_mob().getText();
 		 System.out.println(profile_mob().getText());
-		 System.out.println("");
+	 }	 
+	 private WebElement profile_address() {
+		 return findElement(By.xpath("//table/div/div[2]/tbody/tr[4]/td"));
 	 }
-	 	 	 
-}
+	 public void get_profile_address() {
+		 wait_profileView();
+		 profile_address().getText();
+	 }
+	 }
+
+
+
