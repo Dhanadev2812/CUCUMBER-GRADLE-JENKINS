@@ -194,7 +194,7 @@ public class Patient_DashboardPageUtils extends CustomDriver{
 	}
 	
 	public String gettext_profileEditform() {
-		System.out.println(profileEditform().getText());
+		//System.out.println(profileEditform().getText());
 		return(profileEditform().getText());
 	}
 	

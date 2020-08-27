@@ -74,7 +74,7 @@ public class Patient_DashboardStepDefs {
 		dashboard.passProfiledetails(inputs);
 	}
 	
-	@Then("^Check the validation message for invalid deta$") 
+	@Then("^Check the validation message for invalid data$") 
 		public void alert_invalidMobnum() {
 		assertTrue(dashboard.gettext_profileEditform().contains("Mobile Number should be 10 digits"));
 		}

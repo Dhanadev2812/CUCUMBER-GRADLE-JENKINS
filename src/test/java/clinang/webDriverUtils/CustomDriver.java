@@ -1,6 +1,7 @@
 package clinang.webDriverUtils;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -165,5 +166,21 @@ public class CustomDriver extends WebDriverImplemented {
         js.executeScript("arguments[0].scrollIntoView(true);",element);
 		
 	}
+	
+	public boolean isElementPresent(By by) {
+		try {
+			InitiateDriver.driver.findElement(by);
+			return true;
+		}
+		catch(NoSuchElementException e) {
+			return false;
+		}
+	}
+	
+	public void mouseRightclick(WebElement element) {
+		Actions action = new Actions(InitiateDriver.driver);
+		action.contextClick(element).perform();
+	}
+	
 
 }

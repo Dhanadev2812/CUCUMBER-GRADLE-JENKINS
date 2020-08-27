@@ -31,6 +31,7 @@ Feature: Feature to done dashboard functionaity
     Then Check the validation message for mandatory fields
     Then Check the save button is disabled or not
     Then Click on "cancel"
+    Then Move to dashboard
 
   @Editprofile-Invaliddatas
   Scenario: Update profile with invalid details
@@ -44,6 +45,7 @@ Feature: Feature to done dashboard functionaity
     Then Enter invalid mobile number
       | mobile_number | address                   | street          | city    | state     | country | pincode |
       |           678 | 190,Crown city appartment | Aruthnar street | Chennai | Tamilnadu | USA     |  666777 |
-    Then Check the validation message for invalid deta
+    Then Check the validation message for invalid data
     Then Check the save button is disabled or not
     Then Click on "cancel"
+    Then Move to dashboard
