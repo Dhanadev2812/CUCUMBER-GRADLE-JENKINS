@@ -22,7 +22,7 @@ public class Patient_LoginStepDefs {
 		browser.openApp();
 	}
 
-	@When("^Enter the credentials,check if logged in and logout the screen$")
+	@When("^Enter the email,password and clinic code$")
 	public void login(DataTable inputs) throws InterruptedException {
 		loginPage.passLoginDetails(inputs);	
 	}

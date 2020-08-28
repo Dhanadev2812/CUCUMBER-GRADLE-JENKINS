@@ -1,35 +1,39 @@
 package clinang.pageUtils;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import clinang.webDriverUtils.CustomDriver;
 import io.cucumber.datatable.DataTable;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 public class Patient_MedicalhistoryPageUtils extends CustomDriver{
 	
 	private static final String wait_medicalHistoryField = "//*[contains(text(),' Medical History ')]";
+	private static final String form_medicalHistory ="//div[@class='col-lg-12 col-md-12 col-sm-12 col-xs-12']";
 	private static final String gender_maleField = "//*[contains(text(),'Male')]";
 	private static final String gender_femaleField = "//*[contains(text(),'Female')]";
 	private static final String select_bloodGroupdropDwon ="//div[@class='mat-select-arrow']";
+	private static final String bloodGroupfield ="//div[@class='mat-select-value']";
+	private static final String age ="//input[@formcontrolname='age']";
+	private static final String weight ="//input[@formcontrolname='weight']";
+	private static final String height ="//input[@formcontrolname='height']";
+	private static final String allergy ="//div[7]/div/ckeditor/div[2]/div[2]/div[@aria-label='Rich Text Editor, main']";
+	private static final String medicalHistory="//div[8]/div/ckeditor/div[2]/div[2]/div[@aria-label='Rich Text Editor, main']";
 	private static final String open_calenderField ="//button[@aria-label='Open calendar']";
-	private static final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy");
+	private static final String CurrentPeriod = "//*[@id=\"mat-datepicker-0\"]/mat-calendar-header/div/div/button[1]";
+	private static final String Currentyear="//button[@aria-label='Choose date']";
+	private static final String previousArrow = "//button[@aria-label='Previous 20 years']";
+	private static final String nextArrow ="//button[@aria-label='Next 20 years']";
+	private static final String clickSave = "//button[@class='reschedule-button mat-raised-button']";
+	private static final String clickCancel ="//button[@class='cancel-button mat-raised-button']";
+	private static final String clickUpdate = "//span[contains(text(),'Update')]";
+	private static final String alertBox="//div[@class='msgtext']";
 	String Y;
 	
 	private WebElement wait_medicalHistoryField() {
@@ -45,7 +49,7 @@ public class Patient_MedicalhistoryPageUtils extends CustomDriver{
 	}
 	
 	private WebElement form_medicalHistory() {
-		return findElement(By.xpath("//div[@class='col-lg-12 col-md-12 col-sm-12 col-xs-12']"));
+		return findElement(By.xpath(form_medicalHistory));
 	}
 	
 	public String get_medicalHistoryform() {	
@@ -55,6 +59,7 @@ public class Patient_MedicalhistoryPageUtils extends CustomDriver{
 	private WebElement gender_maleField() {
 		return findElement(By.xpath(gender_maleField));
 	}
+	
 	private WebElement gender_femaleField() {
 		return findElement(By.xpath(gender_femaleField));
 	}
@@ -80,26 +85,27 @@ public class Patient_MedicalhistoryPageUtils extends CustomDriver{
 	}
 	
 	private WebElement bloodGroupfield() {
-		return findElement(By.xpath("//div[@class='mat-select-value']"));
+		return findElement(By.xpath(bloodGroupfield));
 	}
+	
 	private WebElement age() {
-		return findElement(By.xpath("//input[@formcontrolname='age']"));
+		return findElement(By.xpath(age));
 	}
 	
 	private WebElement weight() {
-		return findElement(By.xpath("//input[@formcontrolname='weight']"));
+		return findElement(By.xpath(weight));
 	}
 	
 	private WebElement height() {
-		return findElement(By.xpath("//input[@formcontrolname='height']"));
+		return findElement(By.xpath(height));
 	}
 	
 	private WebElement allergy() {
-		return findElement(By.xpath("//div[7]/div/ckeditor/div[2]/div[2]/div[@aria-label='Rich Text Editor, main']")); 
+		return findElement(By.xpath(allergy)); 
 	}
 	
 	private WebElement medicalHistory() {
-		return findElement(By.xpath("//div[8]/div/ckeditor/div[2]/div[2]/div[@aria-label='Rich Text Editor, main']"));
+		return findElement(By.xpath(medicalHistory));
 	}
 	
 	private WebElement datePickerField() {
@@ -116,22 +122,22 @@ public class Patient_MedicalhistoryPageUtils extends CustomDriver{
 	}
 	
 	 public WebElement CurrentPeriod() {
-		 return findElement(By.xpath("//*[@id=\"mat-datepicker-0\"]/mat-calendar-header/div/div/button[1]"));
+		 return findElement(By.xpath(CurrentPeriod));
 	 }
 	 
 	public void view_yearTable() {
 		CurrentPeriod().click();
 	}
 	private WebElement Currentyear() {
-		return findElement(By.xpath("//button[@aria-label='Choose date']"));
+		return findElement(By.xpath(Currentyear));
 	}
 	
 	private WebElement previousArrow() {
-		return findElement(By.xpath("//button[@aria-label='Previous 20 years']"));
+		return findElement(By.xpath(previousArrow));
 	}
 	
 	private WebElement nextArrow() {
-		return findElement(By.xpath("//button[@aria-label='Next 20 years']"));
+		return findElement(By.xpath(nextArrow));
 	}
 	
 	private WebElement yearTable(String Y) {
@@ -147,19 +153,19 @@ public class Patient_MedicalhistoryPageUtils extends CustomDriver{
 	}
 	
 	public WebElement clickSave() {
-		 return findElement(By.xpath("//button[@class='reschedule-button mat-raised-button']"));
+		 return findElement(By.xpath(clickSave));
 	 }
 	 
 	 private WebElement clickCancel() {
-		  return findElement(By.xpath("//button[@class='cancel-button mat-raised-button']"));
-	  }
+		  return findElement(By.xpath(clickCancel));
+	 }
 	 
 	 private WebElement clickUpdate() {
-		 return findElement(By.xpath("//span[contains(text(),'Update')]"));
+		 return findElement(By.xpath(clickUpdate));
 	 }
 	 
 	private WebElement alertBox() {
-		return findElement(By.xpath("//div[@class='msgtext']"));		
+		return findElement(By.xpath(alertBox));		
 	}
 	
 	public String get_alertMessage() {
@@ -250,19 +256,7 @@ public class Patient_MedicalhistoryPageUtils extends CustomDriver{
 		return String.valueOf(medicalHistory_input);
 		  }	 
 	
-	public void select_option(String option) {
-		 if(option.equals("save")) {
-			 clickSave().click();
-		 }
-		 else if(option.equals("cancel")) {
-			 clickCancel().click();		 
-		 }
-		 else if(option.equals("update")) {
-			 clickUpdate().click();
-		 }
-	 }
-	
-	public void nullField() throws InterruptedException {
+	public void nullField_add() throws InterruptedException {
 		
 		weight().click();
 		weight().clear();
@@ -279,5 +273,80 @@ public class Patient_MedicalhistoryPageUtils extends CustomDriver{
 		Thread.sleep(1000);
 	}
 	
+	public String nullField_allergy_medicalHistory(DataTable inputs) throws ParseException {
+		List<Map<String, String>> medicalHistory_inputs = inputs.asMaps(String.class, String.class);
+		  for (Map<String, String> data : medicalHistory_inputs) {
+			  
+			  if(data.get("Gender").equals("Male")) {
+				  click_maleGender();		  
+			  }
+			  
+			  else if (data.get("Gender").equals("Female")) {
+				  click_femaleGender();
+			  }	
+			  
+			  click_bloodGroupdropDwon();
+			  bloodGroup(data.get("Blood_group")).click();		
+			  open_calenderField().click();
+			  view_yearTable();	
+			  selectDOB(Y, data.get("DOB"));
+			  age().clear();
+			  age().sendKeys(data.get("Age"));
+			  weight().clear();
+			  weight().sendKeys(data.get("Weight"));
+			  height().clear();
+			  height().sendKeys(data.get("Height"));
+			  allergy().click();
+			  allergy().clear();
+			  medicalHistory().click();
+			  medicalHistory().clear();
+			  
+		  } 
+		
+		return String.valueOf(medicalHistory_inputs);
+	}
 	
+	public void nullField_edit() throws InterruptedException {		
+			weight().click();
+			weight().sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
+			Thread.sleep(1000);
+			height().click();
+			height().sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
+			Thread.sleep(1000);
+			age().click();
+			age().sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));			
+	}
+
+	public void nullField_edit_allergy_medicalHistory() throws InterruptedException {	
+		allergy().click();
+		allergy().sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));	
+		medicalHistory().click();
+		medicalHistory().sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));	
+}
+
+	public String invalid_medicalHistory(DataTable inputs) {
+		List<Map<String, String>> medicalHistory_invalidInputs = inputs.asMaps(String.class, String.class);
+		  for (Map<String, String> data : medicalHistory_invalidInputs) {
+			  
+			  weight().clear();
+			  weight().sendKeys(data.get("Weight"));
+			  height().clear();
+			  height().sendKeys(data.get("Height"));
+			  
+		  } 
+		
+		return String.valueOf(medicalHistory_invalidInputs);
+	}
+
+	public void select_option(String option) {
+		if(option.equals("save")) {
+		 clickSave().click();
+		}
+		else if(option.equals("cancel")) {
+		 clickCancel().click();		 
+		}
+		else if(option.equals("update")) {
+		 clickUpdate().click();
+		}
+	}
 }

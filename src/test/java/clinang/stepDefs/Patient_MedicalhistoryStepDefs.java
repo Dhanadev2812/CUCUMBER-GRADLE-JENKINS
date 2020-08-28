@@ -44,7 +44,7 @@ public class Patient_MedicalhistoryStepDefs {
 	
 	@And("^Clear the mandatory fields$") 
 	public void check_add_mandatory() throws InterruptedException {
-		Medicalhistory.nullField();
+		Medicalhistory.nullField_add();
 	}
 	
 	@Then("^Check the validation message for medical history mandatory fields$")
@@ -56,7 +56,45 @@ public class Patient_MedicalhistoryStepDefs {
 		assertTrue(Medicalhistory.get_medicalHistoryform().contains("Please Enter the Weight"));
 		assertTrue(Medicalhistory.get_medicalHistoryform().contains("Please Enter the Height"));
 
-
-
+	}
+	
+	@And("^Enter the details except allergy and medical history$")
+	public void check_allergy_medicalhistory_mandatory(DataTable inputs) throws ParseException {
+		Medicalhistory.nullField_allergy_medicalHistory(inputs);
+	}
+	
+	@Then("^Check the validation message on allergy and medical history field$")
+	public void checkValidation_allergy_medicalHistory() {
+		assertTrue(Medicalhistory.get_medicalHistoryform().contains("Please enter any allergies that needs to be known"));
+		assertTrue(Medicalhistory.get_medicalHistoryform().contains("Please enter your medical history that needs to be known"));
+	}
+	
+	@And("^Clear the mandatory fields on edit screen$")
+	public void check_editMandatory() throws InterruptedException {
+		Medicalhistory.nullField_edit();
+	}
+	
+	@Then("^Check the validation message for medical history mandatory fields on edit$")
+	public void checkValidation_mandatory_edit() {
+		assertTrue(Medicalhistory.get_medicalHistoryform().contains("Please Enter Age"));
+		assertTrue(Medicalhistory.get_medicalHistoryform().contains("Please Enter the Weight"));
+		assertTrue(Medicalhistory.get_medicalHistoryform().contains("Please Enter the Height"));
+		
+	}
+	
+	@And("^Clear only allergy and medicalhistory details$")
+	public void Check_edit_allergy_medicalhistory_mandatory() throws InterruptedException {
+		Medicalhistory.nullField_edit_allergy_medicalHistory();
+	}
+	
+	@And("^Enter invalid details$")
+	public void enter_invalid_details(DataTable inputs) {
+		Medicalhistory.invalid_medicalHistory(inputs);
+	}
+	
+	@Then("^Check the validation message for invalid details$")
+	public void checkValidation_add_invalid() {
+		assertTrue(Medicalhistory.get_medicalHistoryform().contains("Weight must be number"));
+		assertTrue(Medicalhistory.get_medicalHistoryform().contains("Height must be number"));
 	}
 }

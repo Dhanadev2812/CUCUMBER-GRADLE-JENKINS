@@ -1,7 +1,7 @@
 package clinang.pageUtils;
 
 import org.openqa.selenium.By;
-
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -171,22 +171,23 @@ public class Patient_DashboardPageUtils extends CustomDriver{
 	public void updateProfile_nullValue() throws InterruptedException {
 		Thread.sleep(3000);
 		mobileNumberField().click();
-		mobileNumberField().clear();
+		mobileNumberField().sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));	
 		Thread.sleep(1000);
 		addressField().click();
-		addressField().clear();
+		addressField().sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));	
 		Thread.sleep(1000);
 		streetField().click();
-		streetField().clear();
+		streetField().sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));	
 		Thread.sleep(1000);
 		cityField().click();
-		cityField().clear();
+		cityField().sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));	
 		Thread.sleep(1000);
 		stateField().click();
-		stateField().clear();
+		stateField().sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));	
 		Thread.sleep(1000);
 		pincodeField().click();
-		pincodeField().clear();	
+		pincodeField().sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));	
+		clickSave().click();
 	}
 	
 	public WebElement profileEditform() {

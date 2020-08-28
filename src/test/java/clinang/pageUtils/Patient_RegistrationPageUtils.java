@@ -16,8 +16,17 @@ import java.util.Map;
 
 public class Patient_RegistrationPageUtils extends CustomDriver{
 	
+	private static final String registrationLink = "//a[contains(@href,'/register')]";
+	private static final String firstName  ="//input[contains(@formcontrolname,'firstname')]";
+	private static final String lastName = "//input[contains(@formcontrolname,'lastname')]";
+	private static final String email = "//input[contains(@formcontrolname,'email')]";
+	private static final String password ="//input[contains(@formcontrolname,'password')]";
+	private static final String registrationButton ="//button[@class='form-subbtn mat-raised-button']";
+	private static final String alertBox = "//div[@class='msgtext']";
+	private static final String login_form = "//div[@class='login-form']";
+	
 	private WebElement registrationLink() {
-		return findElement(By.xpath("//a[contains(@href,'/register')]"));
+		return findElement(By.xpath(registrationLink));
 	}
 	
 	public void ClickregistrationLink() {		
@@ -25,20 +34,31 @@ public class Patient_RegistrationPageUtils extends CustomDriver{
 	}
 	
 	private WebElement firstName() {
-		//return findElement(By.id("mat-input-3"));
-		return findElement(By.xpath("//input[contains(@formcontrolname,'firstname')]"));
+		return findElement(By.xpath(firstName));
 	}
 	
 	private WebElement lastName() {
-		return findElement(By.xpath("//input[contains(@formcontrolname,'lastname')]"));
+		return findElement(By.xpath(lastName));
 	}
 	
 	private WebElement email() {
-		return findElement(By.xpath("//input[contains(@formcontrolname,'email')]"));
+		return findElement(By.xpath(email));
 	}
 	
 	private WebElement password() {
-		return findElement(By.xpath("//input[contains(@formcontrolname,'password')]"));
+		return findElement(By.xpath(password));
+	}
+	
+	private WebElement registrationButton() {
+		return findElement(By.xpath(registrationButton));
+	}
+	
+	private WebElement alertBox() {
+		return findElement(By.xpath(alertBox));
+	}
+	
+	private WebElement login_form() {
+		return findElement(By.xpath(login_form));		
 	}
 	
 	public void passInput(DataTable inputs) {
@@ -51,34 +71,21 @@ public class Patient_RegistrationPageUtils extends CustomDriver{
 		  }	 
 	}
 	
-	private WebElement registrationButton() {
-		return findElement(By.xpath("//button[@class='form-subbtn mat-raised-button']"));
-	}
-	
-	public void clickRegButton() {
-		
+	public void clickRegButton() {	
 		registrationButton().click();
-	}
-	
-	private WebElement alertBox() {
-		return findElement(By.xpath("//div[@class='msgtext']"));
 	}
 	
 	public String get_alertMessage() {
 		return(alertBox().getText());			
-	}
-	
-	private WebElement log_form() {
-		return findElement(By.xpath("//div[@class='login-form']"));		
-	}
+	}	
 	
 	public String gettext_loginform() {
-		return(log_form().getText());			
+		return(login_form().getText());			
 	}
 	
 	public void log_form_array() {
 		String[] alert_list = {gettext_loginform()};
-		System.out.println(alert_list);
+		//System.out.println(alert_list);
 		
 	}
 	

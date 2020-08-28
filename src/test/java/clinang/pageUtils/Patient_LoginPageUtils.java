@@ -12,17 +12,37 @@ import java.util.List;
 import java.util.Map;
 
 public class Patient_LoginPageUtils extends CustomDriver {
-
+	
+	private static final String usernameField ="//input[@formcontrolname='email']";
+	private static final String passwordField ="//input[@formcontrolname='password']";
+	private static final String cliniccode ="//input[@formcontrolname='clinicid']";
+	private static final String logInButton = "//button[@class='form-subbtn mat-raised-button' and @type='submit']";
+	private static final String wait_myProfileview ="//div[@class='col-lg-12 col-md-12 col-sm-12 col-xs-12']";
+	private static final String alertMessage_email ="//form[@class='ng-invalid ng-dirty ng-touched']";
+	
+			
 	private WebElement usernameField() {
-		return findElement(By.xpath("//input[@formcontrolname='email']"));
+		return findElement(By.xpath(usernameField));
 	}
 	
 	private WebElement passwordField() {
-		return findElement(By.xpath("//input[@formcontrolname='password']"));
+		return findElement(By.xpath(passwordField));
 	}
 
 	private WebElement cliniccode() {
-		return findElement(By.xpath("//input[@formcontrolname='clinicid']"));
+		return findElement(By.xpath(cliniccode));
+	}
+	
+	private WebElement logInButton() {
+		return findElement(By.xpath(logInButton));
+	}
+	
+	public WebElement wait_myProfileview() {
+		return waitForElementDisplayed(By.xpath(wait_myProfileview));
+	}
+	
+	public String get_currenturl() throws InterruptedException {
+		return getCurrentUrl();
 	}
 	
 	public void passLoginDetails(DataTable inputs) {
@@ -33,21 +53,9 @@ public class Patient_LoginPageUtils extends CustomDriver {
 			  cliniccode().sendKeys(data.get("clinic_code")); 
 		  }	 
 	}
-	
-	private WebElement logInButton() {
-		return findElement(By.xpath("//button[@class='form-subbtn mat-raised-button' and @type='submit']"));
-	}
 
 	public void clickLogInButton() {
 		logInButton().click();
-	}
-	
-	public WebElement wait_myProfileview() {
-		return waitForElementDisplayed(By.xpath("//div[@class='col-lg-12 col-md-12 col-sm-12 col-xs-12']"));
-	}
-	
-	public String get_currenturl() throws InterruptedException {
-		return getCurrentUrl();
 	}
 	
 	public Boolean isNotLoggedIn() {
@@ -59,7 +67,7 @@ public class Patient_LoginPageUtils extends CustomDriver {
 	}
 	
 	private WebElement alertMessage_email() {
-		return findElement(By.xpath("//form[@class='ng-invalid ng-dirty ng-touched']"));
+		return findElement(By.xpath(alertMessage_email));
 	}
 	
 	public String get_emailAlert() {
