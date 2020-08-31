@@ -8,13 +8,14 @@ import io.cucumber.datatable.DataTable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 public class Patient_MedicalhistoryPageUtils extends CustomDriver{
 	
-	private static final String wait_medicalHistoryField = "//*[contains(text(),' Medical History ')]";
+	private static final String wait_medicalHistoryField = "//*[contains(text(),'Medical History')]";
 	private static final String form_medicalHistory ="//div[@class='col-lg-12 col-md-12 col-sm-12 col-xs-12']";
 	private static final String gender_maleField = "//*[contains(text(),'Male')]";
 	private static final String gender_femaleField = "//*[contains(text(),'Female')]";
@@ -34,6 +35,8 @@ public class Patient_MedicalhistoryPageUtils extends CustomDriver{
 	private static final String clickCancel ="//button[@class='cancel-button mat-raised-button']";
 	private static final String clickUpdate = "//span[contains(text(),'Update')]";
 	private static final String alertBox="//div[@class='msgtext']";
+	private static final String closeAlert_field="//i[@class='mdi mdi-window-close mdi-18px']";
+	public static String[] charArr = null;
 	String Y;
 	
 	private WebElement wait_medicalHistoryField() {
@@ -88,7 +91,7 @@ public class Patient_MedicalhistoryPageUtils extends CustomDriver{
 		return findElement(By.xpath(bloodGroupfield));
 	}
 	
-	private WebElement age() {
+	public WebElement age() {
 		return findElement(By.xpath(age));
 	}
 	
@@ -172,6 +175,13 @@ public class Patient_MedicalhistoryPageUtils extends CustomDriver{
 		return(alertBox().getText());
 	}
 	
+	public WebElement closeAlert_field() {
+		return findElement(By.xpath(closeAlert_field));
+	}
+	
+	public void closeAlert() {
+		closeAlert_field().click();
+	}
 	public void selectDOB(String Y, String DOB) throws ParseException  {
 				
 		final String givenDateFormat = "dd/MM/yyyy";
@@ -254,6 +264,7 @@ public class Patient_MedicalhistoryPageUtils extends CustomDriver{
 		  } 
 		
 		return String.valueOf(medicalHistory_input);
+		
 		  }	 
 	
 	public void nullField_add() throws InterruptedException {
@@ -306,6 +317,11 @@ public class Patient_MedicalhistoryPageUtils extends CustomDriver{
 		return String.valueOf(medicalHistory_inputs);
 	}
 	
+	public void Patient_MedicalhistoryPageUtils() {
+		String age_get = age().getAttribute("value"); 
+		this.charArr = new String[] {age_get};	
+	}
+	 	
 	public void nullField_edit() throws InterruptedException {		
 			weight().click();
 			weight().sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
@@ -349,4 +365,8 @@ public class Patient_MedicalhistoryPageUtils extends CustomDriver{
 		 clickUpdate().click();
 		}
 	}
+
+	
+
+	
 }

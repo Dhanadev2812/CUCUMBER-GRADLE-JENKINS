@@ -2,9 +2,11 @@ package clinang.stepDefs;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-
+import static org.junit.Assert.assertThat;
 import java.text.ParseException;
+import java.util.Arrays;
 
+import clinang.pageUtils.Patient_DashboardPageUtils;
 import clinang.pageUtils.Patient_MedicalhistoryPageUtils;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
@@ -14,7 +16,7 @@ import io.cucumber.java.en.When;
 public class Patient_MedicalhistoryStepDefs {
 	
 	Patient_MedicalhistoryPageUtils Medicalhistory = new Patient_MedicalhistoryPageUtils();
-	
+	Patient_DashboardPageUtils Dashboard = new Patient_DashboardPageUtils();	
 	
 	@Then("^Go to medical history$")
 	public void goto_medicalhistory() throws InterruptedException {
@@ -24,22 +26,35 @@ public class Patient_MedicalhistoryStepDefs {
 	
 	@And("^Enter the medical history details$")
 	public void enter_medicalHistorydetails(DataTable inputs) throws InterruptedException, ParseException {
-		Medicalhistory.passMedicalhistoryDetails(inputs);		
+		Medicalhistory.passMedicalhistoryDetails(inputs);	
+		//Medicalhistory.get_age();
+		
 	}
 	
 	@Then("^Click \"([^\"]*)\"$") 
 	public void click_option(String get_option) {
-		Medicalhistory.select_option(get_option);
-		
+		Medicalhistory.Patient_MedicalhistoryPageUtils();
+		Medicalhistory.select_option(get_option);		
 	}
+	
 	@Then("^Check validation message for successful medical history add$")
 	public void checkValidation_add() {
 		assertTrue(Medicalhistory.get_alertMessage().contains("Medical history saved successfully"));
+		
 	}
 	
 	@Then("^Check validation message for successful medical history update$")
-	public void checkValidation_update() {
-		assertTrue(Medicalhistory.get_alertMessage().contains("Medical history updated successfully"));
+	public void checkValidation_update()  {
+		assertTrue(Medicalhistory.get_alertMessage().contains("Medical history updated successfully"));		
+	}
+	
+	@Then("^Check the added details updated on patient dashboard$")
+	public void comparewith_dashboard() throws InterruptedException, ParseException {
+		Medicalhistory.closeAlert();
+		Dashboard.dashboard_data();
+		System.out.println(Arrays.toString(Medicalhistory.charArr));
+		assertTrue(Arrays.asList(Medicalhistory.charArr).contains(Dashboard. profile_age().getText()));
+
 	}
 	
 	@And("^Clear the mandatory fields$") 
