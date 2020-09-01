@@ -27,13 +27,11 @@ public class Patient_MedicalhistoryStepDefs {
 	@And("^Enter the medical history details$")
 	public void enter_medicalHistorydetails(DataTable inputs) throws InterruptedException, ParseException {
 		Medicalhistory.passMedicalhistoryDetails(inputs);	
-		//Medicalhistory.get_age();
-		
 	}
 	
 	@Then("^Click \"([^\"]*)\"$") 
-	public void click_option(String get_option) {
-		Medicalhistory.Patient_MedicalhistoryPageUtils();
+	public void click_option(String get_option) {	
+		Medicalhistory.get_medicalHistorydata();
 		Medicalhistory.select_option(get_option);		
 	}
 	
@@ -51,9 +49,10 @@ public class Patient_MedicalhistoryStepDefs {
 	@Then("^Check the added details updated on patient dashboard$")
 	public void comparewith_dashboard() throws InterruptedException, ParseException {
 		Medicalhistory.closeAlert();
-		Dashboard.dashboard_data();
 		System.out.println(Arrays.toString(Medicalhistory.charArr));
 		assertTrue(Arrays.asList(Medicalhistory.charArr).contains(Dashboard. profile_age().getText()));
+		assertTrue(Arrays.asList(Medicalhistory.charArr).contains(Dashboard. profile_gender().getText()));
+
 
 	}
 	

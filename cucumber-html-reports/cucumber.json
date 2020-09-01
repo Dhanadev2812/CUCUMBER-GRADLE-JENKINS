@@ -3,7 +3,7 @@
     "line": 2,
     "elements": [
       {
-        "start_timestamp": "2020-08-31T12:46:41.291Z",
+        "start_timestamp": "2020-09-01T08:29:36.905Z",
         "line": 62,
         "name": "Update medical history with valid details",
         "description": "",
@@ -13,7 +13,7 @@
         "steps": [
           {
             "result": {
-              "duration": 17464000000,
+              "duration": 21188000000,
               "status": "passed"
             },
             "line": 63,
@@ -25,7 +25,7 @@
           },
           {
             "result": {
-              "duration": 1234000000,
+              "duration": 634000000,
               "status": "passed"
             },
             "line": 64,
@@ -53,7 +53,7 @@
           },
           {
             "result": {
-              "duration": 175000000,
+              "duration": 214000000,
               "status": "passed"
             },
             "line": 67,
@@ -65,7 +65,7 @@
           },
           {
             "result": {
-              "duration": 1873000000,
+              "duration": 2377000000,
               "status": "passed"
             },
             "line": 68,
@@ -77,7 +77,7 @@
           },
           {
             "result": {
-              "duration": 404000000,
+              "duration": 382000000,
               "status": "passed"
             },
             "line": 69,
@@ -89,7 +89,7 @@
           },
           {
             "result": {
-              "duration": 25102000000,
+              "duration": 10984000000,
               "status": "passed"
             },
             "line": 70,
@@ -119,7 +119,7 @@
                   "56",
                   "155",
                   "Dust allergy",
-                  "As an expecting mother, I was adamant in my view that the body can heal itself without any kind of medical intervention. I was stubborn that my pregnancy should be of the same path. I am a sportsperson since my childhood and active even now. I had heard experiences of mothers where, even during normal birthing, they had taken supplements during their pregnancy and used medical interventions during child birth."
+                  "As an expecting mother, I was adamant in my view that the body can heal itself without any kind of medical intervention. I was stubborn that my pregnancy should be of the same path. I am a sportsperson since my childhood and active even now."
                 ]
               }
             ],
@@ -127,7 +127,7 @@
           },
           {
             "result": {
-              "duration": 165000000,
+              "duration": 382000000,
               "status": "passed"
             },
             "line": 73,
@@ -145,7 +145,7 @@
           },
           {
             "result": {
-              "duration": 1099000000,
+              "duration": 1107000000,
               "status": "passed"
             },
             "line": 74,
@@ -157,8 +157,9 @@
           },
           {
             "result": {
-              "duration": 10938000000,
-              "status": "passed"
+              "error_message": "java.lang.AssertionError\r\n\tat org.junit.Assert.fail(Assert.java:87)\r\n\tat org.junit.Assert.assertTrue(Assert.java:42)\r\n\tat org.junit.Assert.assertTrue(Assert.java:53)\r\n\tat clinang.stepDefs.Patient_MedicalhistoryStepDefs.comparewith_dashboard(Patient_MedicalhistoryStepDefs.java:53)\r\n\tat ✽.Check the added details updated on patient dashboard(file:///D:/Testing%20workspace/ClinaNG/src/test/resources/clinang_Feature_Patient/Patient_medicalhistory.feature:75)\r\n",
+              "duration": 361000000,
+              "status": "failed"
             },
             "line": 75,
             "name": "Check the added details updated on patient dashboard",

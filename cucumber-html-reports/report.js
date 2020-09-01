@@ -118,6 +118,7 @@ formatter.match({
   "location": "clinang.stepDefs.Patient_MedicalhistoryStepDefs.comparewith_dashboard()"
 });
 formatter.result({
-  "status": "passed"
+  "error_message": "java.lang.AssertionError\r\n\tat org.junit.Assert.fail(Assert.java:87)\r\n\tat org.junit.Assert.assertTrue(Assert.java:42)\r\n\tat org.junit.Assert.assertTrue(Assert.java:53)\r\n\tat clinang.stepDefs.Patient_MedicalhistoryStepDefs.comparewith_dashboard(Patient_MedicalhistoryStepDefs.java:53)\r\n\tat ✽.Check the added details updated on patient dashboard(file:///D:/Testing%20workspace/ClinaNG/src/test/resources/clinang_Feature_Patient/Patient_medicalhistory.feature:75)\r\n",
+  "status": "failed"
 });
 });

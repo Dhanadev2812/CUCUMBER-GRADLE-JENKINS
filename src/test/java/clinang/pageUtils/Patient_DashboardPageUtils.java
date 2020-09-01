@@ -306,7 +306,7 @@ public class Patient_DashboardPageUtils extends CustomDriver{
 		 System.out.println(profile_DOB().getText());
 	 }
 	 
-	 private WebElement profile_gender() {
+	 public WebElement profile_gender() {
 		 return findElement(By.xpath("//table/div/div[2]/tbody/tr[3]/td"));
 	 }
 	 
@@ -324,22 +324,6 @@ public class Patient_DashboardPageUtils extends CustomDriver{
 		 profile_address().getText();
 		 System.out.println(profile_address().getText());
 	 }
-	 
-	 public void dashboard_data() throws InterruptedException {
-		 Thread.sleep(9000);
-		 //wait_profileView();
-		 get_profile_firstName();
-		 get_profile_mob();
-		 get_profile_email();
-		 get_profile_bloodGroup();
-		 get_profile_age();
-		 get_profile_lastName();
-		 get_profile_DOB();
-		 get_profile_gender();
-		 get_profile_address();
-		 
-	 }
-	 
 	
 	 }
 

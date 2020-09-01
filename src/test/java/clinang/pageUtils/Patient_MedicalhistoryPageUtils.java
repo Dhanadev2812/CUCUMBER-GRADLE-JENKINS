@@ -36,8 +36,12 @@ public class Patient_MedicalhistoryPageUtils extends CustomDriver{
 	private static final String clickUpdate = "//span[contains(text(),'Update')]";
 	private static final String alertBox="//div[@class='msgtext']";
 	private static final String closeAlert_field="//i[@class='mdi mdi-window-close mdi-18px']";
+	public static final String gender = "//mat-radio-button[@value='1']";
+	public static final String gender2 ="//mat-radio-button[@value='2']";
 	public static String[] charArr = null;
 	String Y;
+	String gender_get;
+
 	
 	private WebElement wait_medicalHistoryField() {
 		return waitForElementDisplayed(By.xpath(wait_medicalHistoryField));	
@@ -57,6 +61,14 @@ public class Patient_MedicalhistoryPageUtils extends CustomDriver{
 	
 	public String get_medicalHistoryform() {	
 		return(form_medicalHistory().getText());
+	}
+	
+	private WebElement male_radio() {
+		return findElement(By.xpath(gender));
+	}
+	
+	private WebElement female_radio() {
+		return findElement(By.xpath(gender2));
 	}
 	
 	private WebElement gender_maleField() {
@@ -257,10 +269,12 @@ public class Patient_MedicalhistoryPageUtils extends CustomDriver{
 			  weight().sendKeys(data.get("Weight"));
 			  height().clear();
 			  height().sendKeys(data.get("Height"));
-			  allergy().clear();
+			  allergy().sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
 			  allergy().sendKeys(data.get("Allergies"));
-			  medicalHistory().clear();
+			  System.out.println(data.get("Allergies"));
+			  medicalHistory().sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
 			  medicalHistory().sendKeys(data.get("Medical_history"));
+			  System.out.println("mh: " + data.get("Medical_history"));
 		  } 
 		
 		return String.valueOf(medicalHistory_input);
@@ -271,17 +285,17 @@ public class Patient_MedicalhistoryPageUtils extends CustomDriver{
 		
 		weight().click();
 		weight().clear();
-		Thread.sleep(1000);
+		Thread.sleep(500);
 		height().click();
 		height().clear();
-		Thread.sleep(1000);
+		Thread.sleep(500);
 		datePickerField().click();
-		Thread.sleep(1000);
+		Thread.sleep(500);
 		age().click();
 		age().clear();		
-		Thread.sleep(1000);	
+		Thread.sleep(500);	
 		mouseRightclick(bloodGroupfield());		
-		Thread.sleep(1000);
+		Thread.sleep(500);
 	}
 	
 	public String nullField_allergy_medicalHistory(DataTable inputs) throws ParseException {
@@ -315,11 +329,6 @@ public class Patient_MedicalhistoryPageUtils extends CustomDriver{
 		  } 
 		
 		return String.valueOf(medicalHistory_inputs);
-	}
-	
-	public void Patient_MedicalhistoryPageUtils() {
-		String age_get = age().getAttribute("value"); 
-		this.charArr = new String[] {age_get};	
 	}
 	 	
 	public void nullField_edit() throws InterruptedException {		
@@ -364,6 +373,25 @@ public class Patient_MedicalhistoryPageUtils extends CustomDriver{
 		else if(option.equals("update")) {
 		 clickUpdate().click();
 		}
+	}
+	
+	public void get_medicalHistorydata() {
+		
+		String age_get = age().getAttribute("value"); 
+				
+		 if(male_radio().isSelected()) {
+			  gender_get = gender_maleField().getText();
+		 }
+		 else if(female_radio().isSelected()) {
+			 System.out.println("female");
+			  gender_get = gender_femaleField().getText();
+		 }
+		 else {
+			 System.out.println("No check box selected");
+		 }
+		 
+		this.charArr = new String[] {age_get,gender_get};	
+		System.out.println(Arrays.toString(charArr));
 	}
 
 	
