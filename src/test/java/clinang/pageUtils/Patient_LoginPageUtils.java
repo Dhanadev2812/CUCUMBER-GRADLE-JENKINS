@@ -1,48 +1,43 @@
 package clinang.pageUtils;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
-import clinang.webDriverUtils.CustomDriver;
 import io.cucumber.datatable.DataTable;
-
-import static org.junit.Assert.assertTrue;
-
 import java.util.List;
 import java.util.Map;
 
+import clinang.patient_Locators.Patient_LoginLocators;
+import clinang.webDriverUtils.CustomDriver;
+
 public class Patient_LoginPageUtils extends CustomDriver {
 	
-	private static final String usernameField ="//input[@formcontrolname='email']";
-	private static final String passwordField ="//input[@formcontrolname='password']";
-	private static final String cliniccode ="//input[@formcontrolname='clinicid']";
-	private static final String logInButton = "//button[@class='form-subbtn mat-raised-button' and @type='submit']";
-	private static final String wait_myProfileview ="//div[@class='col-lg-12 col-md-12 col-sm-12 col-xs-12']";
-	private static final String alertMessage_email ="//form[@class='ng-invalid ng-dirty ng-touched']";
-	
+	Patient_LoginLocators Login_Locator = new Patient_LoginLocators();
 			
 	private WebElement usernameField() {
-		return findElement(By.xpath(usernameField));
+		return findElement(Login_Locator.usernameField);
 	}
 	
 	private WebElement passwordField() {
-		return findElement(By.xpath(passwordField));
+		return findElement(Login_Locator.passwordField);
 	}
 
 	private WebElement cliniccode() {
-		return findElement(By.xpath(cliniccode));
+		return findElement(Login_Locator.cliniccodeField);
 	}
 	
 	private WebElement logInButton() {
-		return findElement(By.xpath(logInButton));
+		return findElement(Login_Locator.logInButton);
 	}
 	
 	public WebElement wait_myProfileview() {
-		return waitForElementDisplayed(By.xpath(wait_myProfileview));
+		return waitForElementDisplayed(Login_Locator.wait_myProfileview);
 	}
 	
 	public String get_currenturl() throws InterruptedException {
 		return getCurrentUrl();
+	}
+	
+	private WebElement alertMessage_email() {
+		return findElement(Login_Locator.alertMessage_email);
 	}
 	
 	public void passLoginDetails(DataTable inputs) {
@@ -58,23 +53,17 @@ public class Patient_LoginPageUtils extends CustomDriver {
 		logInButton().click();
 	}
 	
-	public Boolean isNotLoggedIn() {
+	public String get_emailAlert() {
+		return alertMessage_email().getText();
+	}
+	
+	/*public Boolean isNotLoggedIn() {
 		try {
 			return isElementDisplayed(usernameField());
 		} catch (Exception e) {
 			return false;
 		}
-	}
-	
-	private WebElement alertMessage_email() {
-		return findElement(By.xpath(alertMessage_email));
-	}
-	
-	public String get_emailAlert() {
-		return alertMessage_email().getText();
-	}
-	
-			
+	}*/				
 }
 
 

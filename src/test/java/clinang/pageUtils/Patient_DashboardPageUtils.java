@@ -3,22 +3,28 @@ package clinang.pageUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebElement;
-import clinang.webDriverUtils.CustomDriver;
-import io.cucumber.datatable.DataTable;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import io.cucumber.datatable.DataTable;
+
+import clinang.patient_Locators.Patient_DashboardLocators;
+import clinang.webDriverUtils.CustomDriver;
+
 
 public class Patient_DashboardPageUtils extends CustomDriver{
 		
+	Patient_DashboardLocators DashboardLocators = new Patient_DashboardLocators();
+	
+	public WebElement dashboardField() {
+		return findElement(DashboardLocators.dashboardField);		
+	 }
+	
 	private WebElement wait_logoutView() {
-		return waitForElementDisplayed(By.xpath("//img[@class='user-logout']"));
+		return waitForElementDisplayed(DashboardLocators.wait_logoutView);
 	}
 	
 	public void clickLogout() {	
@@ -26,13 +32,13 @@ public class Patient_DashboardPageUtils extends CustomDriver{
 	}
 	
 	public WebElement wait_profileView() {
-		return waitForElementDisplayed(By.xpath("//table"));
+		return waitForElementDisplayed(DashboardLocators.wait_profileView);
 	}
 	
 	private WebElement todayAppointment() {
-		return findElement(By.xpath("//h3[@class='tot-appointment']"));
-		
+		return findElement(DashboardLocators.todayAppointment);		
 	}
+	
 	public void clickTodayappointment() {		
 		todayAppointment().click();
 	}
@@ -43,7 +49,7 @@ public class Patient_DashboardPageUtils extends CustomDriver{
 	}
 	
 	private WebElement upcomingAppointment() {
-		return findElement(By.xpath("//h3[@class='up-appointment']"));
+		return findElement(DashboardLocators.upcomingAppointment);
 	}
 	
 	public void clickUpcomingappointment() {		
@@ -56,7 +62,7 @@ public class Patient_DashboardPageUtils extends CustomDriver{
 	}
 	
 	private WebElement cancelledAppointment() {
-		return findElement(By.xpath("//h3[@class='can-appointment']"));
+		return findElement(DashboardLocators.cancelledAppointment);
 	}
 	
 	public void clickCancelledappointment() {		
@@ -69,7 +75,7 @@ public class Patient_DashboardPageUtils extends CustomDriver{
 	}
 	
 	private WebElement editProfile() {
-		return findElement(By.xpath("//button[@class='mat-raised-button']"));
+		return findElement(DashboardLocators.editProfile);
 	} 
 	
 	public void clickEditProfile() {		
@@ -77,7 +83,7 @@ public class Patient_DashboardPageUtils extends CustomDriver{
 	}	
 	
 	private WebElement mobileNumberField() {
-		return findElement(By.xpath("//input[@formcontrolname='phone']"));
+		return findElement(DashboardLocators.mobileNumberField);
 	}
 	
 	public void clear_mobileNumberField() {		
@@ -85,7 +91,7 @@ public class Patient_DashboardPageUtils extends CustomDriver{
 	}
 	
 	private WebElement addressField() {
-		return findElement(By.xpath("//input[@formcontrolname='address']"));
+		return findElement(DashboardLocators.addressField);
 	}
 	
 	public void clear_addressField() {		
@@ -93,7 +99,7 @@ public class Patient_DashboardPageUtils extends CustomDriver{
 	}
 	
 	private WebElement streetField() {
-		return findElement(By.xpath("//input[@formcontrolname='street']"));
+		return findElement(DashboardLocators.streetField);
 	}
 	
 	public void clear_streetField() {		
@@ -101,22 +107,22 @@ public class Patient_DashboardPageUtils extends CustomDriver{
 	}
 	
 	private WebElement cityField() {
-		return findElement(By.xpath("//input[@formcontrolname='city']"));
+		return findElement(DashboardLocators.cityField);
 	}
 	
 	public void clear_cityField() {		
 		cityField().clear();
 	}
 	private WebElement stateField() {
-		return findElement(By.xpath("//input[@formcontrolname='state']"));
+		return findElement(DashboardLocators.stateField);
 	}
 	
 	public void clear_stateField() {		
 		stateField().clear();
 	}
 	
-	private WebElement click_countryField() {
-		return findElement(By.xpath("//div[@class='mat-select-value']"));
+	private WebElement click_countryDropdown() {
+		return findElement(DashboardLocators.click_countryDropdown);
 	}
 	
 	private WebElement select_countryField(String country) {
@@ -124,7 +130,7 @@ public class Patient_DashboardPageUtils extends CustomDriver{
 	}
 	
 	private WebElement pincodeField() {
-		return findElement(By.xpath("//input[@formcontrolname='pincode']"));
+		return findElement(DashboardLocators.pincodeField);
 	}
 	
 	public void clear_pincodeField()  {	
@@ -132,7 +138,7 @@ public class Patient_DashboardPageUtils extends CustomDriver{
 	}
 	
 	private WebElement profile_img() {
-		return findElement(By.xpath("//*[@id='imageUpload']"));	
+		return findElement(DashboardLocators.profile_imageUpload);	
 	}
 	
 	 public void scrollToupdateImg() {
@@ -143,6 +149,22 @@ public class Patient_DashboardPageUtils extends CustomDriver{
 		Thread.sleep(2000);
 		profile_img().sendKeys(img_path);
 	}
+	
+	public WebElement profileEditform() {
+		return findElement(DashboardLocators.profileEditform);
+	}
+	
+	public WebElement clickSave() {
+		 return findElement(DashboardLocators.clickSave);
+	 }
+	 
+	 private WebElement clickCancel() {
+		  return findElement(DashboardLocators.clickCancel);
+	  }
+	 
+	 private WebElement alertBox() {
+			return findElement(DashboardLocators.alertBox);		
+		}
 
 	public String passProfiledetails(DataTable inputs) throws InterruptedException  {
 		List<Map<String, String>> profileUpdate_input = inputs.asMaps(String.class, String.class);
@@ -160,7 +182,7 @@ public class Patient_DashboardPageUtils extends CustomDriver{
 			  stateField().sendKeys(data.get("state")); 
 			  clear_pincodeField();			  
 			  pincodeField().sendKeys(data.get("pincode"));
-			  click_countryField().click();				  
+			  click_countryDropdown().click();				  
 			  select_countryField(data.get("country")).click();		
 			  System.out.println(String.valueOf(profileUpdate_input));
 		  } 
@@ -190,22 +212,9 @@ public class Patient_DashboardPageUtils extends CustomDriver{
 		clickSave().click();
 	}
 	
-	public WebElement profileEditform() {
-		return findElement(By.xpath("//mat-card[@class='section-space mat-card']"));
-	}
-	
 	public String gettext_profileEditform() {
-		//System.out.println(profileEditform().getText());
 		return(profileEditform().getText());
-	}
-	
-	 public WebElement clickSave() {
-		 return findElement(By.xpath("//button[@class='reschedule-button mat-raised-button']"));
-	 }
-	 
-	 private WebElement clickCancel() {
-		  return findElement(By.xpath("//button[@class='cancel-button mat-raised-button']"));
-	  }
+	} 
 	 
 	 public void select_option(String option) {
 		 if(option.equals("save")) {
@@ -216,10 +225,6 @@ public class Patient_DashboardPageUtils extends CustomDriver{
 		 }
 	 }
 	 
-	private WebElement alertBox() {
-		return findElement(By.xpath("//div[@class='msgtext']"));		
-	}
-	
 	public String get_alertMessage() {
 		return(alertBox().getText());
 	}
@@ -228,101 +233,110 @@ public class Patient_DashboardPageUtils extends CustomDriver{
 		 scrollTofindElement(dashboardField());		
 	 }	
 	 
-	 public WebElement dashboardField() {
-		return findElement(By.xpath("//*[contains(text(),'Dashboard')]"));		
-	 }
+	 
 	 
 	 public void clickDashboard() {
 		 dashboardField().click();
 	 }
 	 
 	 public WebElement profile_firstName() {
-		 return findElement(By.xpath("//table/div/div[1]/tbody/tr[1]/td"));
+		 return findElement(DashboardLocators.profile_firstName);
 	 }
 	 
 	 public void get_profile_firstName() {
-		 wait_profileView();
+		 //wait_profileView();
 		 profile_firstName().getText();
-		 System.out.println(profile_firstName().getText());
 	 }
 	 
 	 private WebElement profile_mob() {
-		 return findElement(By.xpath("//table/div/div[1]/tbody/tr[2]/td"));
+		 return findElement(DashboardLocators.profile_mob);
 	 }
 	 
 	 public void get_profile_mob() throws InterruptedException {	
 		 wait_profileView();
 		 profile_mob().getText();
-		 System.out.println(profile_mob().getText());
 	 }	 
 	 
 	 private WebElement profile_email() {
-		 return findElement(By.xpath("//table/div/div[1]/tbody/tr[3]/td"));
+		 return findElement(DashboardLocators.profile_email);
 	 }
 	 
 	 public void get_profile_email() throws InterruptedException {	
 		 wait_profileView();
 		 profile_email().getText();
-		 System.out.println(profile_email().getText());
 	 }
 	 
-	 private WebElement profile_bloodGroup() {
-		 return findElement(By.xpath("//table/div/div[1]/tbody/tr[4]/td"));
+	 public WebElement profile_bloodGroup() throws InterruptedException {
+		 Thread.sleep(3000);
+		 return findElement(DashboardLocators.profile_bloodGroup);
 	 }
 	 
 	 public void get_profile_bloodGroup() throws InterruptedException {	
 		 wait_profileView();
 		 profile_bloodGroup().getText();
-		 System.out.println(profile_bloodGroup().getText());
 	 }
 	 
 	 public WebElement profile_age() {
-		 return findElement(By.xpath("//table/div/div[1]/tbody/tr[5]/td"));
+		 return findElement(DashboardLocators.profile_age);
 	 }
 	 
 	 public void get_profile_age() throws InterruptedException {	
 		 wait_profileView();
 		 profile_age().getText();
-		 System.out.println(profile_age().getText());
 	 }
 	 
 	 private WebElement profile_lastName() {
-		 return findElement(By.xpath("//table/div/div[2]/tbody/tr[1]/td"));
+		 return findElement(DashboardLocators.profile_lastName);
 	 }
 	 
 	 public void get_profile_lastName() throws InterruptedException {	
 		 wait_profileView();
 		 profile_lastName().getText();
-		 System.out.println(profile_lastName().getText());
 	 }
 	 
-	 private WebElement profile_DOB() {
-		 return findElement(By.xpath("//table/div/div[2]/tbody/tr[2]/td"));
+	 public WebElement profile_DOB() throws InterruptedException {
+		 Thread.sleep(3000);
+		 return findElement(DashboardLocators.profile_DOB);
 	 }
 	 
-	 public void get_profile_DOB() throws InterruptedException {	
+	 public String get_profile_DOB() throws InterruptedException {	
 		 wait_profileView();
-		 profile_DOB().getText();
-		 System.out.println(profile_DOB().getText());
+		 return profile_DOB().getText();
 	 }
 	 
-	 public WebElement profile_gender() {
-		 return findElement(By.xpath("//table/div/div[2]/tbody/tr[3]/td"));
+	 public String dob_changedformat() throws InterruptedException, ParseException {
+		 	 
+		 	final String givenDateFormat = "dd MMM,yyyy";
+			final String newFormat = "dd/MM/yyyy";	
+			String givenDOB = get_profile_DOB();
+			
+			SimpleDateFormat new_dob = new SimpleDateFormat(givenDateFormat);
+			Date dob = new_dob.parse(givenDOB);
+			new_dob.applyPattern(newFormat);
+			String required_dob = new_dob.format(dob);
+			
+			return required_dob;
+	 }
+	 
+	 public WebElement table() {
+		 return waitForElementDisplayed(By.xpath("//table[@class='table']"));
+	 }
+	 public WebElement profile_gender() throws InterruptedException {
+		 //table();
+		 Thread.sleep(3000);
+		 return waitForElementDisplayed(DashboardLocators.profile_gender);
 	 }
 	 
 	 public void get_profile_gender() throws InterruptedException {	
-		 wait_profileView();
 		 profile_gender().getText();
-		 System.out.println(profile_gender().getText());
-	 }
+	 }	 
 	 
 	 private WebElement profile_address() {
-		 return findElement(By.xpath("//table/div/div[2]/tbody/tr[4]/td"));
+		 return findElement(DashboardLocators.profile_address);
 	 }
 	 public void get_profile_address() {
 		 wait_profileView();
 		 profile_address().getText();
-		 System.out.println(profile_address().getText());
 	 }
 	
 	 }

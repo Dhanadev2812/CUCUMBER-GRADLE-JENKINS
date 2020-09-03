@@ -42,6 +42,7 @@ public class Patient_DashboardStepDefs {
 	public void moveto_dashboard() throws InterruptedException {
 		dashboard.scrollTodashboard();
 		dashboard.clickDashboard();
+		dashboard.dbdata();
 	}
 	
 	@Then("^Check validation message for successful update$")

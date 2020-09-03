@@ -27,7 +27,7 @@ public class RunTimeVariables {
 	}
 	
 	public RunTimeVariables() {
-		setEnvironmentUrl("https://latlontech.com/");
+		setEnvironmentUrl("http://107.180.92.143:5060/");
 		setBrowser("chrome");
 		
 		

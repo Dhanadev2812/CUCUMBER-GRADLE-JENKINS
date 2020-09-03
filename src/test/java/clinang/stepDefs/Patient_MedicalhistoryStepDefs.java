@@ -47,12 +47,13 @@ public class Patient_MedicalhistoryStepDefs {
 	}
 	
 	@Then("^Check the added details updated on patient dashboard$")
-	public void comparewith_dashboard() throws InterruptedException, ParseException {
+	public void comparewith_dashboard() throws InterruptedException, ParseException  {
+		
 		Medicalhistory.closeAlert();
-		System.out.println(Arrays.toString(Medicalhistory.charArr));
-		assertTrue(Arrays.asList(Medicalhistory.charArr).contains(Dashboard. profile_age().getText()));
-		assertTrue(Arrays.asList(Medicalhistory.charArr).contains(Dashboard. profile_gender().getText()));
-
+		assertTrue(Arrays.asList(Medicalhistory.charArr).contains(Dashboard.profile_age().getText()));
+		assertTrue(Arrays.asList(Medicalhistory.charArr).contains(Dashboard.profile_gender().getText()));
+		assertTrue(Arrays.asList(Medicalhistory.charArr).contains(Dashboard.profile_bloodGroup().getText()));
+		assertTrue(Arrays.asList(Medicalhistory.charArr).contains(Dashboard.dob_changedformat()));
 
 	}
 	

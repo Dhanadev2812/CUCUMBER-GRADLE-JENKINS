@@ -35,7 +35,7 @@ public class Patient_LoginStepDefs {
 	@Then("^Check i am logged in$")
 	public void check_i_am_logged_in() throws InterruptedException {		
 		loginPage.wait_myProfileview();		
-		assertTrue(loginPage.get_currenturl().equals("https://latlontech.com/portal/dashboard"));		
+		assertTrue(loginPage.get_currenturl().equals("http://107.180.92.143:5060/portal/dashboard"));		
 	}
 	
 	@Then("^Check validation message for invalid email$")

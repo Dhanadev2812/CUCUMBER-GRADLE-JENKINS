@@ -5,16 +5,17 @@ Feature: Feature to check medical history functionaity
   Scenario: Add medical history with valid details
     Given I open the app
     When Enter the email,password and clinic code
-      | email           | password    | clinic_code |
-      | banu@latlon.com | Password12# | ABC025      |
+      | email            | password    | clinic_code |
+      | anusri@gmail.com | Password12# | UCLA01      |
     And click on login button
     Then Check i am logged in
     Then Go to medical history
     And Enter the medical history details
       | Gender | Blood_group | DOB        | Age | Weight | Height | Allergies    | Medical_history                                                                                                                                                                                                                                   |
-      | Female | A1B+        | 28/12/1994 |  25 |     56 |    155 | Dust allergy | As an expecting mother, I was adamant in my view that the body can heal itself without any kind of medical intervention. I was stubborn that my pregnancy should be of the same path. I am a sportsperson since my childhood and active even now. |
+      | Female | A1B+        | 28/12/1994 |  21 |     56 |    155 | Dust allergy | As an expecting mother, I was adamant in my view that the body can heal itself without any kind of medical intervention. I was stubborn that my pregnancy should be of the same path. I am a sportsperson since my childhood and active even now. |
     Then Click "save"
     Then Check validation message for successful medical history add
+    Then Check the added details updated on patient dashboard
 
   @Medicalhistory-Add_Invalid
   Scenario: Invalid alert message on edit medical history screen
@@ -54,7 +55,7 @@ Feature: Feature to check medical history functionaity
     Then Go to medical history
     And Enter the details except allergy and medical history
       | Gender | Blood_group | DOB        | Age | Weight | Height |
-      | Female | A1B+        | 28/12/1994 |  25 |     56 |    155 |
+      | Male   | A1B+        | 28/12/1994 |  25 |     56 |    155 |
     Then Click "save"
     Then Check the validation message on allergy and medical history field
 
@@ -62,14 +63,14 @@ Feature: Feature to check medical history functionaity
   Scenario: Update medical history with valid details
     Given I open the app
     When Enter the email,password and clinic code
-      | email           | password    | clinic_code |
-      | banu@latlon.com | Password12# | ABC025      |
+      | email               | password    | clinic_code |
+      | mithila.p@gmail.com | Password12# | UCLA01      |
     And click on login button
     Then Check i am logged in
     Then Go to medical history
     And Enter the medical history details
       | Gender | Blood_group | DOB        | Age | Weight | Height | Allergies    | Medical_history                                                                                                                                                                                                                                   |
-      | Female | A1B+        | 28/12/1994 |  25 |     56 |    155 | Dust allergy | As an expecting mother, I was adamant in my view that the body can heal itself without any kind of medical intervention. I was stubborn that my pregnancy should be of the same path. I am a sportsperson since my childhood and active even now. |
+      | Male   | A1B+        | 28/12/1994 |  25 |     56 |    155 | Dust allergy | As an expecting mother, I was adamant in my view that the body can heal itself without any kind of medical intervention. I was stubborn that my pregnancy should be of the same path. I am a sportsperson since my childhood and active even now. |
     Then Click "update"
     Then Check validation message for successful medical history update
     Then Check the added details updated on patient dashboard
