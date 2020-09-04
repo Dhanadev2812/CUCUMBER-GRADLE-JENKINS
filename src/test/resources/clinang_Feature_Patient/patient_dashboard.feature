@@ -10,13 +10,14 @@ Feature: Feature to done dashboard functionaity
     And click on login button
     Then Check i am logged in
     And Click on edit profile option
-    Then Upload the image from "C://Users//DELL//Desktop//women.jpg"
+    Then Upload the image from "D://Testing workspace//ClinaNG//Profile_img//women.jpg"
     And Enter mobile_number,address,street,city,state,country and pincode
       | mobile_number | address                   | street          | city    | state     | country | pincode |
       |    0909090909 | 190,Crown city appartment | Aruthnar street | Chennai | Tamilnadu | USA     |  666777 |
     Then Click on "save"
     Then Check validation message for successful update
     Then Move to dashboard
+    And Check the profile details updated on dashboard
 
   @Editprofile-Null-Check_mandatory
   Scenario: Update profile with null details

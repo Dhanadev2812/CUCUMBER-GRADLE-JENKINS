@@ -3,6 +3,8 @@ package clinang.stepDefs;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.util.Arrays;
+
 import clinang.pageUtils.Patient_DashboardPageUtils;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
@@ -31,6 +33,7 @@ public class Patient_DashboardStepDefs {
 	@And("^Enter mobile_number,address,street,city,state,country and pincode$")
 	public void enter_profiledetails(DataTable inputs) throws InterruptedException {
 		dashboard.passProfiledetails(inputs);
+		dashboard.get_editFormdata();
 	}
 	
 	@Then("^Click on \"([^\"]*)\"$") 
@@ -42,13 +45,19 @@ public class Patient_DashboardStepDefs {
 	public void moveto_dashboard() throws InterruptedException {
 		dashboard.scrollTodashboard();
 		dashboard.clickDashboard();
-		dashboard.dbdata();
 	}
 	
 	@Then("^Check validation message for successful update$")
 	public void check_updatealert_success() {
 		assertTrue(dashboard.get_alertMessage().contains("Patient profile updated succesfully"));
 	}
+	
+	@And("^Check the profile details updated on dashboard$")
+	public void check_with_dashboard() throws InterruptedException {
+		assertTrue(Arrays.asList(dashboard.editpageArr).contains(dashboard.profile_mob().getText()));
+		assertTrue(Arrays.asList(dashboard.editpageArr).contains(dashboard.profile_address().getText()));
+
+	}	
 	
 	@Then("^Clear all existing details$")
 	public void update_with_nullDetails() throws InterruptedException  {

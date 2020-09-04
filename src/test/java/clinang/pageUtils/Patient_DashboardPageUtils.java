@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -18,7 +19,9 @@ import clinang.webDriverUtils.CustomDriver;
 public class Patient_DashboardPageUtils extends CustomDriver{
 		
 	Patient_DashboardLocators DashboardLocators = new Patient_DashboardLocators();
+	public static String[] editpageArr = null;
 	
+	//dashboard
 	public WebElement dashboardField() {
 		return findElement(DashboardLocators.dashboardField);		
 	 }
@@ -74,6 +77,72 @@ public class Patient_DashboardPageUtils extends CustomDriver{
 		System.out.println(cancelledAppointment().getText());
 	}
 	
+	public WebElement profile_firstName() {
+		 return findElement(DashboardLocators.profile_firstName);
+	 }
+	 
+	 public void get_profile_firstName() {
+		 profile_firstName().getText();
+	 }
+	 
+	 public WebElement profile_mob() throws InterruptedException {
+		 Thread.sleep(3000);
+		 return findElement(DashboardLocators.profile_mob);
+	 }
+	 
+	 public WebElement profile_email() throws InterruptedException {
+		 Thread.sleep(3000);
+		 return findElement(DashboardLocators.profile_email);
+	 }
+	 
+	 public WebElement profile_bloodGroup() throws InterruptedException {
+		 Thread.sleep(3000);
+		 return findElement(DashboardLocators.profile_bloodGroup);
+	 }
+	 
+	 public WebElement profile_age() {
+		 return findElement(DashboardLocators.profile_age);
+	 }
+	 
+	 private WebElement profile_lastName() {
+		 return findElement(DashboardLocators.profile_lastName);
+	 }
+	 
+	 public void get_profile_lastName() throws InterruptedException {	
+		 wait_profileView();
+		 profile_lastName().getText();
+	 }
+	 
+	 public WebElement profile_DOB() throws InterruptedException {
+		 Thread.sleep(3000);
+		 return findElement(DashboardLocators.profile_DOB);
+	 }
+	 
+	 public WebElement profile_gender() throws InterruptedException {
+		 Thread.sleep(3000);
+		 return waitForElementDisplayed(DashboardLocators.profile_gender);
+	 }
+	 
+	 public WebElement profile_address() throws InterruptedException {
+		 Thread.sleep(3000);
+		 return findElement(DashboardLocators.profile_address);
+	 }
+	 
+	 public String dob_changedformat() throws InterruptedException, ParseException {
+		 	 
+		 	final String givenDateFormat = "dd MMM,yyyy";
+			final String newFormat = "dd/MM/yyyy";	
+			String givenDOB = profile_DOB().getText();
+			
+			SimpleDateFormat new_dob = new SimpleDateFormat(givenDateFormat);
+			Date dob = new_dob.parse(givenDOB);
+			new_dob.applyPattern(newFormat);
+			String required_dob = new_dob.format(dob);
+			
+			return required_dob;
+	 }
+	 
+	//editprofile
 	private WebElement editProfile() {
 		return findElement(DashboardLocators.editProfile);
 	} 
@@ -164,7 +233,7 @@ public class Patient_DashboardPageUtils extends CustomDriver{
 	 
 	 private WebElement alertBox() {
 			return findElement(DashboardLocators.alertBox);		
-		}
+		}	 
 
 	public String passProfiledetails(DataTable inputs) throws InterruptedException  {
 		List<Map<String, String>> profileUpdate_input = inputs.asMaps(String.class, String.class);
@@ -184,7 +253,7 @@ public class Patient_DashboardPageUtils extends CustomDriver{
 			  pincodeField().sendKeys(data.get("pincode"));
 			  click_countryDropdown().click();				  
 			  select_countryField(data.get("country")).click();		
-			  System.out.println(String.valueOf(profileUpdate_input));
+			  //System.out.println(String.valueOf(profileUpdate_input));
 		  } 
 		
 		return String.valueOf(profileUpdate_input);
@@ -215,6 +284,18 @@ public class Patient_DashboardPageUtils extends CustomDriver{
 	public String gettext_profileEditform() {
 		return(profileEditform().getText());
 	} 
+	
+	public void get_editFormdata() {
+		String get_mobileNum =  mobileNumberField().getAttribute("value");
+		String get_address = addressField().getAttribute("value");
+		String get_street = streetField().getAttribute("value");
+		String get_city = cityField().getAttribute("value");
+		String get_pincode = pincodeField().getAttribute("value");
+		String get_state = stateField().getAttribute("value");
+		String combinedAddresss = get_address+","+" "+get_street+","+" "+get_city+"-"+get_pincode+","+" "+get_state;	
+		
+		this.editpageArr = new String[] {get_mobileNum,combinedAddresss};
+	 }
 	 
 	 public void select_option(String option) {
 		 if(option.equals("save")) {
@@ -232,113 +313,11 @@ public class Patient_DashboardPageUtils extends CustomDriver{
 	 public void scrollTodashboard() {
 		 scrollTofindElement(dashboardField());		
 	 }	
-	 
-	 
-	 
+	   
 	 public void clickDashboard() {
 		 dashboardField().click();
 	 }
 	 
-	 public WebElement profile_firstName() {
-		 return findElement(DashboardLocators.profile_firstName);
-	 }
-	 
-	 public void get_profile_firstName() {
-		 //wait_profileView();
-		 profile_firstName().getText();
-	 }
-	 
-	 private WebElement profile_mob() {
-		 return findElement(DashboardLocators.profile_mob);
-	 }
-	 
-	 public void get_profile_mob() throws InterruptedException {	
-		 wait_profileView();
-		 profile_mob().getText();
-	 }	 
-	 
-	 private WebElement profile_email() {
-		 return findElement(DashboardLocators.profile_email);
-	 }
-	 
-	 public void get_profile_email() throws InterruptedException {	
-		 wait_profileView();
-		 profile_email().getText();
-	 }
-	 
-	 public WebElement profile_bloodGroup() throws InterruptedException {
-		 Thread.sleep(3000);
-		 return findElement(DashboardLocators.profile_bloodGroup);
-	 }
-	 
-	 public void get_profile_bloodGroup() throws InterruptedException {	
-		 wait_profileView();
-		 profile_bloodGroup().getText();
-	 }
-	 
-	 public WebElement profile_age() {
-		 return findElement(DashboardLocators.profile_age);
-	 }
-	 
-	 public void get_profile_age() throws InterruptedException {	
-		 wait_profileView();
-		 profile_age().getText();
-	 }
-	 
-	 private WebElement profile_lastName() {
-		 return findElement(DashboardLocators.profile_lastName);
-	 }
-	 
-	 public void get_profile_lastName() throws InterruptedException {	
-		 wait_profileView();
-		 profile_lastName().getText();
-	 }
-	 
-	 public WebElement profile_DOB() throws InterruptedException {
-		 Thread.sleep(3000);
-		 return findElement(DashboardLocators.profile_DOB);
-	 }
-	 
-	 public String get_profile_DOB() throws InterruptedException {	
-		 wait_profileView();
-		 return profile_DOB().getText();
-	 }
-	 
-	 public String dob_changedformat() throws InterruptedException, ParseException {
-		 	 
-		 	final String givenDateFormat = "dd MMM,yyyy";
-			final String newFormat = "dd/MM/yyyy";	
-			String givenDOB = get_profile_DOB();
-			
-			SimpleDateFormat new_dob = new SimpleDateFormat(givenDateFormat);
-			Date dob = new_dob.parse(givenDOB);
-			new_dob.applyPattern(newFormat);
-			String required_dob = new_dob.format(dob);
-			
-			return required_dob;
-	 }
-	 
-	 public WebElement table() {
-		 return waitForElementDisplayed(By.xpath("//table[@class='table']"));
-	 }
-	 public WebElement profile_gender() throws InterruptedException {
-		 //table();
-		 Thread.sleep(3000);
-		 return waitForElementDisplayed(DashboardLocators.profile_gender);
-	 }
-	 
-	 public void get_profile_gender() throws InterruptedException {	
-		 profile_gender().getText();
-	 }	 
-	 
-	 private WebElement profile_address() {
-		 return findElement(DashboardLocators.profile_address);
-	 }
-	 public void get_profile_address() {
-		 wait_profileView();
-		 profile_address().getText();
-	 }
-	
 	 }
 
 
