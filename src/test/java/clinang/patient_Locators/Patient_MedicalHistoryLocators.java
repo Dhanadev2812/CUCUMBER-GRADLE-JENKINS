@@ -8,7 +8,7 @@ public class Patient_MedicalHistoryLocators extends CustomDriver{
 	
 	public By wait_medicalHistoryField = By.xpath("//a[@href='/portal/medicalhistory']");
 	public By form_medicalHistory =By.xpath("//div[@class='col-lg-12 col-md-12 col-sm-12 col-xs-12']");
-	public By gender_maleField = By.xpath("//*[contains(text(),'Male')]");
+	public By gender_maleField = By.xpath("//*[(normalize-space(text())='Male')]");
 	public By gender_femaleField = By.xpath("//*[contains(text(),'Female')]");
 	public By select_bloodGroupdropDwon =By.xpath("//div[@class='mat-select-arrow']");
 	public By bloodGroupfield =By.xpath("//div[@class='mat-select-value']");

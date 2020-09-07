@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
+import com.sun.xml.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -19,6 +21,7 @@ import clinang.webDriverUtils.CustomDriver;
 public class Patient_DashboardPageUtils extends CustomDriver{
 		
 	Patient_DashboardLocators DashboardLocators = new Patient_DashboardLocators();
+	Patient_LoginPageUtils loginPage = new Patient_LoginPageUtils();
 	public static String[] editpageArr = null;
 	
 	//dashboard
@@ -100,17 +103,13 @@ public class Patient_DashboardPageUtils extends CustomDriver{
 		 return findElement(DashboardLocators.profile_bloodGroup);
 	 }
 	 
-	 public WebElement profile_age() {
+	 public WebElement profile_age() throws InterruptedException {
+		 Thread.sleep(4000);
 		 return findElement(DashboardLocators.profile_age);
 	 }
 	 
 	 private WebElement profile_lastName() {
 		 return findElement(DashboardLocators.profile_lastName);
-	 }
-	 
-	 public void get_profile_lastName() throws InterruptedException {	
-		 wait_profileView();
-		 profile_lastName().getText();
 	 }
 	 
 	 public WebElement profile_DOB() throws InterruptedException {
@@ -195,7 +194,7 @@ public class Patient_DashboardPageUtils extends CustomDriver{
 	}
 	
 	private WebElement select_countryField(String country) {
-		return findElement(By.xpath("//*[contains(text()"+","+"'"+country+"'"+")]/ancestor::mat-option"));
+		return findElement(By.xpath("//*[(normalize-space(text())"+"="+"'"+country+"'"+")]/ancestor::mat-option"));
 	}
 	
 	private WebElement pincodeField() {

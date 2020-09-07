@@ -9,8 +9,6 @@ import clinang.webDriverUtils.CustomDriver;
 import io.cucumber.datatable.DataTable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -75,8 +73,8 @@ public class Patient_MedicalhistoryPageUtils extends CustomDriver{
 		select_bloodGroupdropDwon().click();
 	}
 	
-	private WebElement bloodGroup(String BG) {
-		return findElement(By.xpath("//*[contains(text()"+","+"'"+BG+"'"+")]/ancestor::mat-option"));
+	private WebElement bloodGroup(String BG) {	
+		return waitForElementDisplayed(By.xpath("//*[(normalize-space(text())"+"="+"'"+BG+"'"+") and @class='mat-option-text']"));
 	}
 	
 	private WebElement bloodGroupfield() {
@@ -136,15 +134,15 @@ public class Patient_MedicalhistoryPageUtils extends CustomDriver{
 	}
 	
 	private WebElement yearTable(String Y) {
-		return findElement(By.xpath("//*[contains(text()"+","+"'"+Y+"'"+")]/ancestor::td"));
+		return findElement(By.xpath("//*[(normalize-space(text())"+"="+"'"+Y+"'"+")]/ancestor::td"));
 	}
 	
 	private WebElement selectMonth(String M) {
-		return findElement(By.xpath("//*[contains(text()"+","+"'"+M+"'"+")]/ancestor::td"));
+		return findElement(By.xpath("//*[(normalize-space(text())"+"="+"'"+M+"'"+")]/ancestor::td"));
 	}
 	
 	private WebElement selectDate(String D) {
-		return findElement(By.xpath("//*[contains(text()"+","+"'"+D+"'"+")]/ancestor::td"));
+		return findElement(By.xpath("//*[(normalize-space(text())"+"="+"'"+D+"'"+")]/ancestor::td"));
 	}
 	
 	public WebElement clickSave() {
@@ -251,10 +249,8 @@ public class Patient_MedicalhistoryPageUtils extends CustomDriver{
 			  height().sendKeys(data.get("Height"));
 			  allergy().sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
 			  allergy().sendKeys(data.get("Allergies"));
-			  //System.out.println(data.get("Allergies"));
 			  medicalHistory().sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
 			  medicalHistory().sendKeys(data.get("Medical_history"));
-			  //System.out.println("mh: " + data.get("Medical_history"));
 		  } 
 		
 		return String.valueOf(medicalHistory_input);

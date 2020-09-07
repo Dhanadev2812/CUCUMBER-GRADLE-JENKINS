@@ -3,20 +3,18 @@
     "line": 2,
     "elements": [
       {
-        "start_timestamp": "2020-08-27T11:26:35.327Z",
-        "line": 5,
-        "name": "Login with valid credentials",
+        "line": 4,
+        "name": "User is Logged In",
         "description": "",
-        "id": "feature-to-done-login-process;login-with-valid-credentials",
-        "type": "scenario",
-        "keyword": "Scenario",
+        "type": "background",
+        "keyword": "Background",
         "steps": [
           {
             "result": {
-              "duration": 18907000000,
+              "duration": 16957000000,
               "status": "passed"
             },
-            "line": 6,
+            "line": 5,
             "name": "I open the app",
             "match": {
               "location": "clinang.stepDefs.Patient_LoginStepDefs.openTheApp()"
@@ -25,10 +23,10 @@
           },
           {
             "result": {
-              "duration": 2830000000,
+              "duration": 1012000000,
               "status": "passed"
             },
-            "line": 7,
+            "line": 6,
             "name": "Enter the email,password and clinic code",
             "match": {
               "location": "clinang.stepDefs.Patient_LoginStepDefs.login(io.cucumber.datatable.DataTable)"
@@ -43,16 +41,9 @@
               },
               {
                 "cells": [
-                  "banu@latlon.com",
+                  "wilson@gmail.com",
                   "Password12#",
-                  "ABC025"
-                ]
-              },
-              {
-                "cells": [
-                  "arun.m@gmail.com",
-                  "Password12#",
-                  "ABC025"
+                  "LAT004"
                 ]
               }
             ],
@@ -60,10 +51,10 @@
           },
           {
             "result": {
-              "duration": 187000000,
+              "duration": 224000000,
               "status": "passed"
             },
-            "line": 11,
+            "line": 9,
             "name": "click on login button",
             "match": {
               "location": "clinang.stepDefs.Patient_LoginStepDefs.clickLogin()"
@@ -72,14 +63,321 @@
           },
           {
             "result": {
-              "error_message": "org.openqa.selenium.WebDriverException: chrome not reachable\n  (Session info: chrome\u003d84.0.4147.135)\nBuild info: version: \u00273.141.59\u0027, revision: \u0027e82be7d358\u0027, time: \u00272018-11-14T08:17:03\u0027\nSystem info: host: \u0027COMP\u0027, ip: \u0027192.168.43.207\u0027, os.name: \u0027Windows 10\u0027, os.arch: \u0027amd64\u0027, os.version: \u002710.0\u0027, java.version: \u00271.8.0_241\u0027\nDriver info: org.openqa.selenium.chrome.ChromeDriver\nCapabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 84.0.4147.135, chrome: {chromedriverVersion: 84.0.4147.30 (48b3e868b4cc0..., userDataDir: C:\\Users\\DELL\\AppData\\Local...}, goog:chromeOptions: {debuggerAddress: localhost:65026}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:virtualAuthenticators: true}\nSession ID: 5d8f844f37aab51351933ba0bba9d5bc\n*** Element info: {Using\u003dxpath, value\u003d//div[@class\u003d\u0027col-lg-12 col-md-12 col-sm-12 col-xs-12\u0027]}\r\n\tat sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)\r\n\tat sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)\r\n\tat sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)\r\n\tat java.lang.reflect.Constructor.newInstance(Unknown Source)\r\n\tat org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)\r\n\tat org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)\r\n\tat org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)\r\n\tat org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)\r\n\tat org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)\r\n\tat org.openqa.selenium.By$ByXPath.findElement(By.java:353)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)\r\n\tat clinang.webDriverUtils.CustomDriver$2.apply(CustomDriver.java:50)\r\n\tat clinang.webDriverUtils.CustomDriver$2.apply(CustomDriver.java:1)\r\n\tat org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:249)\r\n\tat clinang.webDriverUtils.CustomDriver.waitForElementDisplayed(CustomDriver.java:61)\r\n\tat clinang.pageUtils.Patient_LoginPageUtils.wait_myProfileview(Patient_LoginPageUtils.java:46)\r\n\tat clinang.stepDefs.Patient_LoginStepDefs.check_i_am_logged_in(Patient_LoginStepDefs.java:37)\r\n\tat ✽.Check i am logged in(file:///D:/Testing%20workspace/ClinaNG/src/test/resources/clinang_Feature/Patient_alogin.feature:12)\r\n",
-              "duration": 20742000000,
-              "status": "failed"
+              "duration": 2867000000,
+              "status": "passed"
             },
-            "line": 12,
+            "line": 10,
             "name": "Check i am logged in",
             "match": {
               "location": "clinang.stepDefs.Patient_LoginStepDefs.check_i_am_logged_in()"
+            },
+            "keyword": "Then "
+          }
+        ]
+      },
+      {
+        "start_timestamp": "2020-09-07T11:19:21.273Z",
+        "before": [
+          {
+            "result": {
+              "duration": 3000000,
+              "status": "passed"
+            },
+            "match": {
+              "location": "clinang.webDriverUtils.Hooks_Utils.beforeScenarioStart()"
+            }
+          }
+        ],
+        "line": 13,
+        "name": "Update profile with valid details",
+        "description": "",
+        "id": "feature-to-done-dashboard-functionaity;update-profile-with-valid-details",
+        "after": [
+          {
+            "result": {
+              "duration": 1814000000,
+              "status": "passed"
+            },
+            "match": {
+              "location": "clinang.webDriverUtils.Hooks_Utils.beforeScenario()"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "clinang.webDriverUtils.Hooks_Utils.afterScenarioFinish()"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 172000000,
+              "status": "passed"
+            },
+            "line": 14,
+            "name": "Click on edit profile option",
+            "match": {
+              "location": "clinang.stepDefs.Patient_DashboardStepDefs.click_editProfile()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 3353000000,
+              "status": "passed"
+            },
+            "line": 15,
+            "name": "Upload the image from \"D://Testing workspace//ClinaNG//Profile_img//women.jpg\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "D://Testing workspace//ClinaNG//Profile_img//women.jpg",
+                  "offset": 23
+                }
+              ],
+              "location": "clinang.stepDefs.Patient_DashboardStepDefs.uploadimage(java.lang.String)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 11238000000,
+              "status": "passed"
+            },
+            "line": 16,
+            "name": "Enter mobile_number,address,street,city,state,country and pincode",
+            "match": {
+              "location": "clinang.stepDefs.Patient_DashboardStepDefs.enter_profiledetails(io.cucumber.datatable.DataTable)"
+            },
+            "rows": [
+              {
+                "cells": [
+                  "mobile_number",
+                  "address",
+                  "street",
+                  "city",
+                  "state",
+                  "country",
+                  "pincode"
+                ]
+              },
+              {
+                "cells": [
+                  "0909090909",
+                  "191,Crown city appartment",
+                  "Aruthnar street",
+                  "Chennai",
+                  "Tamilnadu",
+                  "USA",
+                  "666777"
+                ]
+              }
+            ],
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 140000000,
+              "status": "passed"
+            },
+            "line": 19,
+            "name": "Click on \"save\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "save",
+                  "offset": 10
+                }
+              ],
+              "location": "clinang.stepDefs.Patient_DashboardStepDefs.click_option(java.lang.String)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 4686000000,
+              "status": "passed"
+            },
+            "line": 20,
+            "name": "Check validation message for successful update",
+            "match": {
+              "location": "clinang.stepDefs.Patient_DashboardStepDefs.check_updatealert_success()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 677000000,
+              "status": "passed"
+            },
+            "line": 21,
+            "name": "Move to dashboard",
+            "match": {
+              "location": "clinang.stepDefs.Patient_DashboardStepDefs.moveto_dashboard()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 6207000000,
+              "status": "passed"
+            },
+            "line": 22,
+            "name": "Check the profile details updated on dashboard",
+            "match": {
+              "location": "clinang.stepDefs.Patient_DashboardStepDefs.check_with_dashboard()"
+            },
+            "keyword": "And "
+          }
+        ],
+        "tags": [
+          {
+            "name": "@Patientdashboard"
+          },
+          {
+            "name": "@Editprofile-valid"
+          }
+        ]
+      },
+      {
+        "line": 4,
+        "name": "User is Logged In",
+        "description": "",
+        "type": "background",
+        "keyword": "Background",
+        "steps": [
+          {
+            "result": {
+              "error_message": "org.openqa.selenium.NoSuchSessionException: Session ID is null. Using WebDriver after calling quit()?\nBuild info: version: \u00273.141.59\u0027, revision: \u0027e82be7d358\u0027, time: \u00272018-11-14T08:17:03\u0027\nSystem info: host: \u0027COMP\u0027, ip: \u0027192.168.43.207\u0027, os.name: \u0027Windows 10\u0027, os.arch: \u0027amd64\u0027, os.version: \u002710.0\u0027, java.version: \u00271.8.0_241\u0027\nDriver info: driver.version: CustomDriver\r\n\tat org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:125)\r\n\tat org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.get(RemoteWebDriver.java:277)\r\n\tat clinang.webDriverUtils.CustomDriver.get(CustomDriver.java:22)\r\n\tat clinang.pageUtils.BrowserUtils.openApp(BrowserUtils.java:16)\r\n\tat clinang.stepDefs.Patient_LoginStepDefs.openTheApp(Patient_LoginStepDefs.java:24)\r\n\tat ✽.I open the app(file:///D:/Testing%20workspace/ClinaNG/src/test/resources/clinang_Feature_Patient/patient_dashboard.feature:5)\r\n",
+              "duration": 6000000,
+              "status": "failed"
+            },
+            "line": 5,
+            "name": "I open the app",
+            "match": {
+              "location": "clinang.stepDefs.Patient_LoginStepDefs.openTheApp()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 3000000,
+              "status": "skipped"
+            },
+            "line": 6,
+            "name": "Enter the email,password and clinic code",
+            "match": {
+              "location": "clinang.stepDefs.Patient_LoginStepDefs.login(io.cucumber.datatable.DataTable)"
+            },
+            "rows": [
+              {
+                "cells": [
+                  "email",
+                  "password",
+                  "clinic_code"
+                ]
+              },
+              {
+                "cells": [
+                  "wilson@gmail.com",
+                  "Password12#",
+                  "LAT004"
+                ]
+              }
+            ],
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 2000000,
+              "status": "skipped"
+            },
+            "line": 9,
+            "name": "click on login button",
+            "match": {
+              "location": "clinang.stepDefs.Patient_LoginStepDefs.clickLogin()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 1000000,
+              "status": "skipped"
+            },
+            "line": 10,
+            "name": "Check i am logged in",
+            "match": {
+              "location": "clinang.stepDefs.Patient_LoginStepDefs.check_i_am_logged_in()"
+            },
+            "keyword": "Then "
+          }
+        ]
+      },
+      {
+        "start_timestamp": "2020-09-07T11:20:10.789Z",
+        "before": [
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "clinang.webDriverUtils.Hooks_Utils.beforeScenarioStart()"
+            }
+          }
+        ],
+        "line": 25,
+        "name": "Update profile with null details",
+        "description": "",
+        "id": "feature-to-done-dashboard-functionaity;update-profile-with-null-details",
+        "after": [
+          {
+            "result": {
+              "error_message": "org.openqa.selenium.NoSuchSessionException: Session ID is null. Using WebDriver after calling quit()?\nBuild info: version: \u00273.141.59\u0027, revision: \u0027e82be7d358\u0027, time: \u00272018-11-14T08:17:03\u0027\nSystem info: host: \u0027COMP\u0027, ip: \u0027192.168.43.207\u0027, os.name: \u0027Windows 10\u0027, os.arch: \u0027amd64\u0027, os.version: \u002710.0\u0027, java.version: \u00271.8.0_241\u0027\nDriver info: driver.version: RemoteWebDriver\r\n\tat org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:125)\r\n\tat org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:609)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver$RemoteWebDriverOptions.deleteAllCookies(RemoteWebDriver.java:694)\r\n\tat clinang.webDriverUtils.Hooks_Utils.beforeScenario(Hooks_Utils.java:27)\r\n",
+              "duration": 1000000,
+              "status": "failed"
+            },
+            "match": {
+              "location": "clinang.webDriverUtils.Hooks_Utils.beforeScenario()"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "clinang.webDriverUtils.Hooks_Utils.afterScenarioFinish()"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 3000000,
+              "status": "skipped"
+            },
+            "line": 26,
+            "name": "Click on edit profile option",
+            "match": {
+              "location": "clinang.stepDefs.Patient_DashboardStepDefs.click_editProfile()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 2000000,
+              "status": "skipped"
+            },
+            "line": 27,
+            "name": "Clear all existing details",
+            "match": {
+              "location": "clinang.stepDefs.Patient_DashboardStepDefs.update_with_nullDetails()"
             },
             "keyword": "Then "
           },
@@ -88,32 +386,298 @@
               "duration": 2000000,
               "status": "skipped"
             },
-            "line": 13,
-            "name": "click on logout button",
+            "line": 28,
+            "name": "Check the validation message for mandatory fields",
             "match": {
-              "location": "clinang.stepDefs.Patient_DashboardStepDefs.clickon_Logout()"
+              "location": "clinang.stepDefs.Patient_DashboardStepDefs.validation_message_mandatory()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 1000000,
+              "status": "skipped"
+            },
+            "line": 29,
+            "name": "Check the save button is disabled or not",
+            "match": {
+              "location": "clinang.stepDefs.Patient_DashboardStepDefs.check_saveDisable()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 2000000,
+              "status": "skipped"
+            },
+            "line": 30,
+            "name": "Click on \"cancel\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "cancel",
+                  "offset": 10
+                }
+              ],
+              "location": "clinang.stepDefs.Patient_DashboardStepDefs.click_option(java.lang.String)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 1000000,
+              "status": "skipped"
+            },
+            "line": 31,
+            "name": "Move to dashboard",
+            "match": {
+              "location": "clinang.stepDefs.Patient_DashboardStepDefs.moveto_dashboard()"
             },
             "keyword": "Then "
           }
         ],
         "tags": [
           {
-            "name": "@loginfunction"
+            "name": "@Patientdashboard"
           },
           {
-            "name": "@login_valid"
+            "name": "@Editprofile-Null-Check_mandatory"
+          }
+        ]
+      },
+      {
+        "line": 4,
+        "name": "User is Logged In",
+        "description": "",
+        "type": "background",
+        "keyword": "Background",
+        "steps": [
+          {
+            "result": {
+              "error_message": "org.openqa.selenium.NoSuchSessionException: Session ID is null. Using WebDriver after calling quit()?\nBuild info: version: \u00273.141.59\u0027, revision: \u0027e82be7d358\u0027, time: \u00272018-11-14T08:17:03\u0027\nSystem info: host: \u0027COMP\u0027, ip: \u0027192.168.43.207\u0027, os.name: \u0027Windows 10\u0027, os.arch: \u0027amd64\u0027, os.version: \u002710.0\u0027, java.version: \u00271.8.0_241\u0027\nDriver info: driver.version: CustomDriver\r\n\tat org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:125)\r\n\tat org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.get(RemoteWebDriver.java:277)\r\n\tat clinang.webDriverUtils.CustomDriver.get(CustomDriver.java:22)\r\n\tat clinang.pageUtils.BrowserUtils.openApp(BrowserUtils.java:16)\r\n\tat clinang.stepDefs.Patient_LoginStepDefs.openTheApp(Patient_LoginStepDefs.java:24)\r\n\tat ✽.I open the app(file:///D:/Testing%20workspace/ClinaNG/src/test/resources/clinang_Feature_Patient/patient_dashboard.feature:5)\r\n",
+              "duration": 4000000,
+              "status": "failed"
+            },
+            "line": 5,
+            "name": "I open the app",
+            "match": {
+              "location": "clinang.stepDefs.Patient_LoginStepDefs.openTheApp()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 5000000,
+              "status": "skipped"
+            },
+            "line": 6,
+            "name": "Enter the email,password and clinic code",
+            "match": {
+              "location": "clinang.stepDefs.Patient_LoginStepDefs.login(io.cucumber.datatable.DataTable)"
+            },
+            "rows": [
+              {
+                "cells": [
+                  "email",
+                  "password",
+                  "clinic_code"
+                ]
+              },
+              {
+                "cells": [
+                  "wilson@gmail.com",
+                  "Password12#",
+                  "LAT004"
+                ]
+              }
+            ],
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 1000000,
+              "status": "skipped"
+            },
+            "line": 9,
+            "name": "click on login button",
+            "match": {
+              "location": "clinang.stepDefs.Patient_LoginStepDefs.clickLogin()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 2000000,
+              "status": "skipped"
+            },
+            "line": 10,
+            "name": "Check i am logged in",
+            "match": {
+              "location": "clinang.stepDefs.Patient_LoginStepDefs.check_i_am_logged_in()"
+            },
+            "keyword": "Then "
+          }
+        ]
+      },
+      {
+        "start_timestamp": "2020-09-07T11:20:10.873Z",
+        "before": [
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "clinang.webDriverUtils.Hooks_Utils.beforeScenarioStart()"
+            }
+          }
+        ],
+        "line": 34,
+        "name": "Update profile with invalid details",
+        "description": "",
+        "id": "feature-to-done-dashboard-functionaity;update-profile-with-invalid-details",
+        "after": [
+          {
+            "result": {
+              "error_message": "org.openqa.selenium.NoSuchSessionException: Session ID is null. Using WebDriver after calling quit()?\nBuild info: version: \u00273.141.59\u0027, revision: \u0027e82be7d358\u0027, time: \u00272018-11-14T08:17:03\u0027\nSystem info: host: \u0027COMP\u0027, ip: \u0027192.168.43.207\u0027, os.name: \u0027Windows 10\u0027, os.arch: \u0027amd64\u0027, os.version: \u002710.0\u0027, java.version: \u00271.8.0_241\u0027\nDriver info: driver.version: RemoteWebDriver\r\n\tat org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:125)\r\n\tat org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:609)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver$RemoteWebDriverOptions.deleteAllCookies(RemoteWebDriver.java:694)\r\n\tat clinang.webDriverUtils.Hooks_Utils.beforeScenario(Hooks_Utils.java:27)\r\n",
+              "status": "failed"
+            },
+            "match": {
+              "location": "clinang.webDriverUtils.Hooks_Utils.beforeScenario()"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "clinang.webDriverUtils.Hooks_Utils.afterScenarioFinish()"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 5000000,
+              "status": "skipped"
+            },
+            "line": 35,
+            "name": "Click on edit profile option",
+            "match": {
+              "location": "clinang.stepDefs.Patient_DashboardStepDefs.click_editProfile()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 9000000,
+              "status": "skipped"
+            },
+            "line": 36,
+            "name": "Enter invalid mobile number",
+            "match": {
+              "location": "clinang.stepDefs.Patient_DashboardStepDefs.invalid_mobileNum(io.cucumber.datatable.DataTable)"
+            },
+            "rows": [
+              {
+                "cells": [
+                  "mobile_number",
+                  "address",
+                  "street",
+                  "city",
+                  "state",
+                  "country",
+                  "pincode"
+                ]
+              },
+              {
+                "cells": [
+                  "678",
+                  "190,Crown city appartment",
+                  "Aruthnar street",
+                  "Chennai",
+                  "Tamilnadu",
+                  "USA",
+                  "666777"
+                ]
+              }
+            ],
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 1000000,
+              "status": "skipped"
+            },
+            "line": 39,
+            "name": "Check the validation message for invalid data",
+            "match": {
+              "location": "clinang.stepDefs.Patient_DashboardStepDefs.alert_invalidMobnum()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 2000000,
+              "status": "skipped"
+            },
+            "line": 40,
+            "name": "Check the save button is disabled or not",
+            "match": {
+              "location": "clinang.stepDefs.Patient_DashboardStepDefs.check_saveDisable()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 1000000,
+              "status": "skipped"
+            },
+            "line": 41,
+            "name": "Click on \"cancel\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "cancel",
+                  "offset": 10
+                }
+              ],
+              "location": "clinang.stepDefs.Patient_DashboardStepDefs.click_option(java.lang.String)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 2000000,
+              "status": "skipped"
+            },
+            "line": 42,
+            "name": "Move to dashboard",
+            "match": {
+              "location": "clinang.stepDefs.Patient_DashboardStepDefs.moveto_dashboard()"
+            },
+            "keyword": "Then "
+          }
+        ],
+        "tags": [
+          {
+            "name": "@Patientdashboard"
+          },
+          {
+            "name": "@Editprofile-Invaliddatas"
           }
         ]
       }
     ],
-    "name": "Feature to done login process",
+    "name": "Feature to done dashboard functionaity",
     "description": "",
-    "id": "feature-to-done-login-process",
+    "id": "feature-to-done-dashboard-functionaity",
     "keyword": "Feature",
-    "uri": "file:src/test/resources/clinang_Feature/Patient_alogin.feature",
+    "uri": "file:src/test/resources/clinang_Feature_Patient/patient_dashboard.feature",
     "tags": [
       {
-        "name": "@loginfunction",
+        "name": "@Patientdashboard",
         "type": "Tag",
         "location": {
           "line": 1,

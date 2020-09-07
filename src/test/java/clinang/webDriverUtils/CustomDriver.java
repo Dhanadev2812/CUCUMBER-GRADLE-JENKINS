@@ -17,7 +17,7 @@ import com.google.common.base.Function;
 
 
 public class CustomDriver extends WebDriverImplemented {
-
+	
 	public void get(String url) {
 		InitiateDriver.driver.get(url);
 	}
@@ -56,13 +56,13 @@ public class CustomDriver extends WebDriverImplemented {
 			}
 		};
 	}
-
+	
 	public WebElement waitForElementDisplayed(By by) {
 		WebDriverWait wait = new WebDriverWait(InitiateDriver.driver, 40);
 		WebElement element = wait.until(visibilityOfElementLocated(by));
 		return element;
-	}
-	
+	}	
+
 	public WebElement waitForElementPresent(By by) {
 		WebDriverWait wait = new WebDriverWait(InitiateDriver.driver, 30);
 		WebElement element = wait.until(presenceOfElementLocated(by));
@@ -87,7 +87,7 @@ public class CustomDriver extends WebDriverImplemented {
 	public boolean isTextPresent(WebElement element, String text) {
 		return element.getText().contains(text);
 	}
-
+	
 	public boolean isTextPresent(String text) {
 		return InitiateDriver.driver.findElement(By.xpath("/html/body")).getText().contains(text);
 	}

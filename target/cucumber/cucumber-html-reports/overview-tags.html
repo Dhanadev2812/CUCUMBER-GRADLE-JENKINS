@@ -48,32 +48,32 @@ $(document).ready(function() {
 $(document).ready(function() {
 
     var chartData = {
-        labels:  [ "@Dashboard",  "@Editprofile-valid",  "@alogin",  "@loginfun",  "@patientregister",  "@register-existingdetails",  "@register-invaliddetails",  "@register-valid",  "@sanitytest", ] ,
+        labels:  [ "@Medicalhistory",  "@Medicalhistory-Add-Valid", ] ,
         datasets: [
             {
                 label: "Passed",
                 backgroundColor: "#92DD96",
-                data:  [ 75.00,  75.00,  100.00,  100.00,  80.00,  80.00,  80.00,  80.00,  100.00, ] 
+                data:  [ 20.00,  20.00, ] 
             },
             {
                 label: "Failed",
                 backgroundColor: "#F2928C",
-                data:  [ 0.00,  0.00,  0.00,  0.00,  20.00,  20.00,  20.00,  20.00,  0.00, ] 
+                data:  [ 20.00,  20.00, ] 
             },
             {
                 label: "Skipped",
                 backgroundColor: "#8AF",
-                data:  [ 0.00,  0.00,  0.00,  0.00,  0.00,  0.00,  0.00,  0.00,  0.00, ] 
+                data:  [ 60.00,  60.00, ] 
             },
             {
                 label: "Pending",
                 backgroundColor: "#F5F28F",
-                data:  [ 0.00,  0.00,  0.00,  0.00,  0.00,  0.00,  0.00,  0.00,  0.00, ] 
+                data:  [ 0.00,  0.00, ] 
             },
             {
                 label: "Undefined",
                 backgroundColor: "#F5B975",
-                data:  [ 25.00,  25.00,  0.00,  0.00,  0.00,  0.00,  0.00,  0.00,  0.00, ] 
+                data:  [ 0.00,  0.00, ] 
             }
         ]
     };
@@ -133,7 +133,7 @@ $(document).ready(function() {
   <tbody>
     <tr class="info">
       <td>No Name (add projectName to cucumber-reporting.properties)</td>
-      <td>20 Aug 2020, 14:31</td>
+      <td>07 Sep 2020, 12:45</td>
     </tr>
   </tbody>
 </table>
@@ -195,96 +195,11 @@ $(document).ready(function() {
 
   <tbody>
       <tr>
-        <td class="tagname"><a href="report-tag_3411628595.html">@Dashboard</a></td>
+        <td class="tagname"><a href="report-tag_3288813890.html">@Medicalhistory</a></td>
 
-        <td      class="passed"    >3</td>
-        <td >0</td>
-        <td >0</td>
-        <td >0</td>
-        <td   class="undefined" >1</td>
-        <td class="total">4</td>
-
-        <td >0</td>
-        <td  class="failed"    >1</td>
-        <td class="total">1</td>
-
-        <td class="duration" data-value="4917000000">4.917</td>
-        <td class="failed">Failed</td>
-      </tr>
-      <tr>
-        <td class="tagname"><a href="report-tag_854688941.html">@Editprofile-valid</a></td>
-
-        <td      class="passed"    >3</td>
-        <td >0</td>
-        <td >0</td>
-        <td >0</td>
-        <td   class="undefined" >1</td>
-        <td class="total">4</td>
-
-        <td >0</td>
-        <td  class="failed"    >1</td>
-        <td class="total">1</td>
-
-        <td class="duration" data-value="4917000000">4.917</td>
-        <td class="failed">Failed</td>
-      </tr>
-      <tr>
-        <td class="tagname"><a href="report-tag_1698354151.html">@alogin</a></td>
-
-        <td      class="passed"    >2</td>
-        <td >0</td>
-        <td >0</td>
-        <td >0</td>
-        <td >0</td>
-        <td class="total">2</td>
-
-        <td  class="passed"    >1</td>
-        <td >0</td>
-        <td class="total">1</td>
-
-        <td class="duration" data-value="30535000000">30.535</td>
-        <td class="passed">Passed</td>
-      </tr>
-      <tr>
-        <td class="tagname"><a href="report-tag_162314677.html">@loginfun</a></td>
-
-        <td      class="passed"    >2</td>
-        <td >0</td>
-        <td >0</td>
-        <td >0</td>
-        <td >0</td>
-        <td class="total">2</td>
-
-        <td  class="passed"    >1</td>
-        <td >0</td>
-        <td class="total">1</td>
-
-        <td class="duration" data-value="30535000000">30.535</td>
-        <td class="passed">Passed</td>
-      </tr>
-      <tr>
-        <td class="tagname"><a href="report-tag_3227696231.html">@patientregister</a></td>
-
-        <td      class="passed"    >12</td>
-        <td      class="failed"    >3</td>
-        <td >0</td>
-        <td >0</td>
-        <td >0</td>
-        <td class="total">15</td>
-
-        <td >0</td>
-        <td  class="failed"    >3</td>
-        <td class="total">3</td>
-
-        <td class="duration" data-value="18057000000">18.057</td>
-        <td class="failed">Failed</td>
-      </tr>
-      <tr>
-        <td class="tagname"><a href="report-tag_3612099436.html">@register-existingdetails</a></td>
-
-        <td      class="passed"    >4</td>
+        <td      class="passed"    >1</td>
         <td      class="failed"    >1</td>
-        <td >0</td>
+        <td     class="skipped"   >3</td>
         <td >0</td>
         <td >0</td>
         <td class="total">5</td>
@@ -293,15 +208,15 @@ $(document).ready(function() {
         <td  class="failed"    >1</td>
         <td class="total">1</td>
 
-        <td class="duration" data-value="5422000000">5.422</td>
+        <td class="duration" data-value="102206000000">1:42.206</td>
         <td class="failed">Failed</td>
       </tr>
       <tr>
-        <td class="tagname"><a href="report-tag_503441556.html">@register-invaliddetails</a></td>
+        <td class="tagname"><a href="report-tag_563235717.html">@Medicalhistory-Add-Valid</a></td>
 
-        <td      class="passed"    >4</td>
+        <td      class="passed"    >1</td>
         <td      class="failed"    >1</td>
-        <td >0</td>
+        <td     class="skipped"   >3</td>
         <td >0</td>
         <td >0</td>
         <td class="total">5</td>
@@ -310,75 +225,41 @@ $(document).ready(function() {
         <td  class="failed"    >1</td>
         <td class="total">1</td>
 
-        <td class="duration" data-value="1801000000">1.801</td>
+        <td class="duration" data-value="102206000000">1:42.206</td>
         <td class="failed">Failed</td>
-      </tr>
-      <tr>
-        <td class="tagname"><a href="report-tag_2573900945.html">@register-valid</a></td>
-
-        <td      class="passed"    >4</td>
-        <td      class="failed"    >1</td>
-        <td >0</td>
-        <td >0</td>
-        <td >0</td>
-        <td class="total">5</td>
-
-        <td >0</td>
-        <td  class="failed"    >1</td>
-        <td class="total">1</td>
-
-        <td class="duration" data-value="10834000000">10.834</td>
-        <td class="failed">Failed</td>
-      </tr>
-      <tr>
-        <td class="tagname"><a href="report-tag_3323571871.html">@sanitytest</a></td>
-
-        <td      class="passed"    >2</td>
-        <td >0</td>
-        <td >0</td>
-        <td >0</td>
-        <td >0</td>
-        <td class="total">2</td>
-
-        <td  class="passed"    >1</td>
-        <td >0</td>
-        <td class="total">1</td>
-
-        <td class="duration" data-value="30535000000">30.535</td>
-        <td class="passed">Passed</td>
       </tr>
   </tbody>
 
   <tfoot class="total">
     <tr>
       <td></td>
-      <td>36</td>
+      <td>2</td>
+      <td>2</td>
       <td>6</td>
       <td>0</td>
       <td>0</td>
+      <td>10</td>
+
+      <td>0</td>
       <td>2</td>
-      <td>44</td>
+      <td>2</td>
 
-      <td>3</td>
-      <td>8</td>
-      <td>11</td>
-
-      <td class="duration">2:17.553</td>
-      <td>9</td>
+      <td class="duration">3:24.412</td>
+      <td>2</td>
     </tr>
     <tr>
       <td></td>
-      <td>81.82%</td>
-      <td>13.64%</td>
+      <td>20.00%</td>
+      <td>20.00%</td>
+      <td>60.00%</td>
       <td>0.00%</td>
       <td>0.00%</td>
-      <td>4.55%</td>
       <td></td>
-      <td>27.27%</td>
-      <td>72.73%</td>
+      <td>0.00%</td>
+      <td>100.00%</td>
       <td></td>
       <td></td>
-      <td>33.33%</td>
+      <td>0.00%</td>
     </tr>
   </tfoot>
 </table>

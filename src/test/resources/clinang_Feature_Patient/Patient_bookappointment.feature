@@ -1,14 +1,14 @@
-
 @Bookappointment
 Feature: Feature to check book appointment functionaity
 
-  @Bookappointment-valid
-  Scenario: Book new appointment with vaalid details
+  Background: User is Logged In
     Given I open the app
     When Enter the email,password and clinic code
       | email            | password    | clinic_code |
-      | anusri@gmail.com | Password12# | UCLA01      |
+      | wilson@gmail.com | Password12# | LAT004      |
     And click on login button
     Then Check i am logged in
 
-  
+  @BookAppointment-Create
+  Scenario: Create new appointment-Today
+  When Go to book appointment screen

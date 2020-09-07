@@ -11,10 +11,11 @@ public class BrowserUtils extends CustomDriver {
 	
 	RunTimeVariables vars = new RunTimeVariables();
 	
-	public void openApp() {
+	public void openApp() throws InterruptedException {
 		InitiateDriver.setProfile();
 		get(vars.getEnvironmentUrl());	
 		maximiseWindow();
+		//Thread.sleep(50000);
 		
 	}
 	

@@ -6,7 +6,7 @@ import clinang.webDriverUtils.CustomDriver;
 
 public class Patient_DashboardLocators extends CustomDriver{
 	 //Dashboard
-	 public By dashboardField =By.xpath("//*[contains(text(),'Dashboard')]");
+	 public By dashboardField =By.xpath("//*[(normalize-space(text())='Dashboard')]");
 	 public By wait_logoutView = By.xpath("//img[@class='user-logout']");
 	 public By wait_profileView = By.xpath("//table");
 	 public By todayAppointment = By.xpath("//h3[@class='tot-appointment']");
