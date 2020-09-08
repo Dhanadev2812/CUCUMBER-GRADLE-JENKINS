@@ -27,11 +27,11 @@ public class Patient_LoginStepDefs {
 	@When("^Enter the email,password and clinic code$")
 	public void login(DataTable inputs) throws InterruptedException {
 		loginPage.passLoginDetails(inputs);	
-		loginPage.get_usernameValue();
 	}
 	
 	@And("^click on login button$")
 	public void clickLogin() {
+		loginPage.get_usernameValue();
 		loginPage.clickLogInButton();
 	}
 	

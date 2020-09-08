@@ -1,5 +1,6 @@
 package clinang.pageUtils;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.interactions.Actions;
 
@@ -15,8 +16,8 @@ public class BrowserUtils extends CustomDriver {
 		InitiateDriver.setProfile();
 		get(vars.getEnvironmentUrl());	
 		maximiseWindow();
-		//Thread.sleep(50000);
-		
+		System.out.println("Waiting for login screen");
+		fluentWait(By.xpath("//input[@formcontrolname='email']"));
 	}
 	
 	public void closeApp() {

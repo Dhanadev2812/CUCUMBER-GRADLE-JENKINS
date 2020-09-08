@@ -79,32 +79,26 @@ public class Patient_DashboardPageUtils extends CustomDriver{
 		upcomingAppointment().getText();
 		System.out.println(cancelledAppointment().getText());
 	}
-	
+	public void fluentWait_profileMail() {	
+		waitForElementPresent(By.xpath("//td[(normalize-space(text())"+"="+"'"+loginPage.str_userName+"'"+")]"));
+	}
 	public WebElement profile_firstName() {
 		 return findElement(DashboardLocators.profile_firstName);
 	 }
 	 
-	 public void get_profile_firstName() {
-		 profile_firstName().getText();
-	 }
-	 
 	 public WebElement profile_mob() throws InterruptedException {
-		 Thread.sleep(3000);
 		 return findElement(DashboardLocators.profile_mob);
 	 }
 	 
 	 public WebElement profile_email() throws InterruptedException {
-		 Thread.sleep(3000);
 		 return findElement(DashboardLocators.profile_email);
 	 }
 	 
 	 public WebElement profile_bloodGroup() throws InterruptedException {
-		 Thread.sleep(3000);
 		 return findElement(DashboardLocators.profile_bloodGroup);
 	 }
 	 
 	 public WebElement profile_age() throws InterruptedException {
-		 Thread.sleep(4000);
 		 return findElement(DashboardLocators.profile_age);
 	 }
 	 
@@ -113,17 +107,14 @@ public class Patient_DashboardPageUtils extends CustomDriver{
 	 }
 	 
 	 public WebElement profile_DOB() throws InterruptedException {
-		 Thread.sleep(3000);
 		 return findElement(DashboardLocators.profile_DOB);
 	 }
 	 
 	 public WebElement profile_gender() throws InterruptedException {
-		 Thread.sleep(3000);
 		 return waitForElementDisplayed(DashboardLocators.profile_gender);
 	 }
 	 
 	 public WebElement profile_address() throws InterruptedException {
-		 Thread.sleep(3000);
 		 return findElement(DashboardLocators.profile_address);
 	 }
 	 

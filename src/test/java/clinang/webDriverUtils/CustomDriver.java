@@ -1,16 +1,17 @@
 package clinang.webDriverUtils;
 
+import java.time.Duration;
 import java.util.List;
-import java.util.NoSuchElementException;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.google.common.base.Function;
@@ -182,5 +183,23 @@ public class CustomDriver extends WebDriverImplemented {
 		action.contextClick(element).perform();
 	}
 	
+public WebElement fluentWait(By by) {
+		
+		Wait<WebDriver> w = new FluentWait<WebDriver>(InitiateDriver.driver)
+				  .withTimeout(Duration.ofMinutes(30))
+			      .pollingEvery(Duration.ofSeconds(10))
+			      .ignoring(NoSuchElementException.class);
+		
+		Function<WebDriver, WebElement> function = new Function<WebDriver, WebElement>() {
+			public WebElement apply(WebDriver arg0) {
+				WebElement element = arg0.findElement(by);
+				if (element != null) {
+					System.out.println("A new dynamic object is found.");
+				}
+				return element;
+			}
+		};
 
+		return w.until(function);
+		}			
 }

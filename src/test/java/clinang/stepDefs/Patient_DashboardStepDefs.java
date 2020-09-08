@@ -54,6 +54,7 @@ public class Patient_DashboardStepDefs {
 	
 	@And("^Check the profile details updated on dashboard$")
 	public void check_with_dashboard() throws InterruptedException {
+		dashboard.fluentWait_profileMail();
 		assertTrue(Arrays.asList(dashboard.editpageArr).contains(dashboard.profile_mob().getText()));
 		assertTrue(Arrays.asList(dashboard.editpageArr).contains(dashboard.profile_address().getText()));
 

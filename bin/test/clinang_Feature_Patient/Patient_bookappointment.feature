@@ -11,4 +11,7 @@ Feature: Feature to check book appointment functionaity
 
   @BookAppointment-Create
   Scenario: Create new appointment-Today
-  When Go to book appointment screen
+    When Go to book appointment screen
+    And Enter the appointment details
+      | mobile     | appointment_type | speciality   | doctor        | date_of_appointment | timeslot | chief_complaint    |
+      | 9090909090 | Clinic Visit     | Cardiologist | Dr. gilbret S | 11/9/2020           | 9:00AM   | online appointment |

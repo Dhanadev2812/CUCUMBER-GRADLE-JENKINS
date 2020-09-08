@@ -13,7 +13,8 @@ import clinang.webDriverUtils.CustomDriver;
 public class Patient_LoginPageUtils extends CustomDriver {
 	
 	Patient_LoginLocators Login_Locator = new Patient_LoginLocators();
-	public static String[] loginarr=null;
+	public static  String[] loginarr;
+	public static String str_userName;
 			
 	private WebElement usernameField() {
 		return findElement(Login_Locator.usernameField);
@@ -22,6 +23,13 @@ public class Patient_LoginPageUtils extends CustomDriver {
 	public void get_usernameValue() {
 		String get_username = usernameField().getAttribute("value");
 		this.loginarr = new String[] {get_username};
+		StringBuilder strbul=new StringBuilder();
+		for(String str : loginarr)
+		{
+			strbul.append(str);
+		}
+		str_userName=strbul.toString();
+
 	}
 	private WebElement passwordField() {
 		return findElement(Login_Locator.passwordField);

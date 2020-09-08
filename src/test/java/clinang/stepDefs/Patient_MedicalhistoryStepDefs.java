@@ -47,6 +47,7 @@ public class Patient_MedicalhistoryStepDefs {
 	public void comparewith_dashboard() throws InterruptedException, ParseException  {
 		
 		Medicalhistory.closeAlert();
+		Dashboard.fluentWait_profileMail();
 		assertTrue(Arrays.asList(Medicalhistory.charArr).contains(Dashboard.profile_age().getText()));
 		assertTrue(Arrays.asList(Medicalhistory.charArr).contains(Dashboard.profile_gender().getText()));
 		assertTrue(Arrays.asList(Medicalhistory.charArr).contains(Dashboard.profile_bloodGroup().getText()));
