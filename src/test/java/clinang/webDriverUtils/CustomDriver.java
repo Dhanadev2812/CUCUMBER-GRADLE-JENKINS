@@ -2,6 +2,8 @@ package clinang.webDriverUtils;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
@@ -194,12 +196,17 @@ public WebElement fluentWait(By by) {
 			public WebElement apply(WebDriver arg0) {
 				WebElement element = arg0.findElement(by);
 				if (element != null) {
-					System.out.println("A new dynamic object is found.");
+					//System.out.println("A new dynamic object is found.");
 				}
 				return element;
 			}
 		};
 
 		return w.until(function);
-		}			
+		}
+
+public void implicitWait() {
+	InitiateDriver.driver.manage().timeouts().implicitlyWait(100, TimeUnit.SECONDS);
+
+}
 }

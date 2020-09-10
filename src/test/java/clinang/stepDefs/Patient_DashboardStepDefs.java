@@ -15,7 +15,7 @@ public class Patient_DashboardStepDefs {
 	
 	Patient_DashboardPageUtils dashboard = new Patient_DashboardPageUtils();
 	
-	@Then("^click on logout button$")
+	@And("^click on logout button$")
 	public void clickon_Logout()  {
 		dashboard.clickLogout();
 	}
@@ -25,23 +25,23 @@ public class Patient_DashboardStepDefs {
 		dashboard.clickEditProfile();		
 	}
 	
-	@Then("^Upload the image from \"([^\"]*)\"$")
+	@And("^Upload the image from \"([^\"]*)\"$")
 	public void uploadimage(String img_path) throws InterruptedException {
 		dashboard.upload_profileImg(img_path);
 	}
 	
-	@And("^Enter mobile_number,address,street,city,state,country and pincode$")
+	@When("^Enter mobile_number,address,street,city,state,country and pincode$")
 	public void enter_profiledetails(DataTable inputs) throws InterruptedException {
 		dashboard.passProfiledetails(inputs);
 		dashboard.get_editFormdata();
 	}
 	
-	@Then("^Click on \"([^\"]*)\"$") 
+	@And("^Click on \"([^\"]*)\"$") 
 	public void click_option(String get_option) {
 		dashboard.select_option(get_option);
 		
 	}
-	@Then("^Move to dashboard$")
+	@And("^Move to dashboard$")
 	public void moveto_dashboard() throws InterruptedException {
 		dashboard.scrollTodashboard();
 		dashboard.clickDashboard();
@@ -52,7 +52,7 @@ public class Patient_DashboardStepDefs {
 		assertTrue(dashboard.get_alertMessage().contains("Patient profile updated succesfully"));
 	}
 	
-	@And("^Check the profile details updated on dashboard$")
+	@Then("^Check the profile details updated on dashboard$")
 	public void check_with_dashboard() throws InterruptedException {
 		dashboard.fluentWait_profileMail();
 		assertTrue(Arrays.asList(dashboard.editpageArr).contains(dashboard.profile_mob().getText()));
@@ -80,7 +80,7 @@ public class Patient_DashboardStepDefs {
 		assertEquals(false, dashboard.clickSave().isEnabled());
 	}
 	
-	@Then("^Enter invalid mobile number$")
+	@When("^Enter invalid mobile number$")
 	public void invalid_mobileNum(DataTable inputs ) throws InterruptedException {
 		dashboard.passProfiledetails(inputs);
 	}

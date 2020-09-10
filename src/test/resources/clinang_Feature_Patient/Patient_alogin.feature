@@ -9,7 +9,7 @@ Feature: Feature to done login process
       | banu@latlon.com | Password12# | ABC025      |
     And click on login button
     Then Check i am logged in
-    Then click on logout button
+    And click on logout button
 
   @login_invalidEmail
   Scenario: Login with invalid email id
@@ -18,4 +18,4 @@ Feature: Feature to done login process
       | email | password    | clinic_code |
       | banu  | Password12# | ABC025      |
     And click on login button
-    Then Check validation message for invalid email
+    But It display invalid email alert message

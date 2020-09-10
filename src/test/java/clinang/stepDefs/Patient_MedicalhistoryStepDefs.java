@@ -8,7 +8,9 @@ import clinang.pageUtils.Patient_DashboardPageUtils;
 import clinang.pageUtils.Patient_MedicalhistoryPageUtils;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.But;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 
 public class Patient_MedicalhistoryStepDefs {
 	
@@ -21,12 +23,12 @@ public class Patient_MedicalhistoryStepDefs {
 		Medicalhistory.click_medicalHistory();
 	}
 	
-	@And("^Enter the medical history details$")
+	@When("^Enter the medical history details$")
 	public void enter_medicalHistorydetails(DataTable inputs) throws InterruptedException, ParseException {
 		Medicalhistory.passMedicalhistoryDetails(inputs);	
 	}
 	
-	@Then("^Click \"([^\"]*)\"$") 
+	@And("^Click \"([^\"]*)\"$") 
 	public void click_option(String get_option) {	
 		Medicalhistory.get_medicalHistorydata();
 		Medicalhistory.select_option(get_option);		
@@ -71,7 +73,7 @@ public class Patient_MedicalhistoryStepDefs {
 
 	}
 	
-	@And("^Enter the details except allergy and medical history$")
+	@When("^Enter the details except allergy and medical history$")
 	public void check_allergy_medicalhistory_mandatory(DataTable inputs) throws ParseException {
 		Medicalhistory.nullField_allergy_medicalHistory(inputs);
 	}
@@ -100,12 +102,12 @@ public class Patient_MedicalhistoryStepDefs {
 		Medicalhistory.nullField_edit_allergy_medicalHistory();
 	}
 	
-	@And("^Enter invalid details$")
+	@When("^Enter invalid details$")
 	public void enter_invalid_details(DataTable inputs) {
 		Medicalhistory.invalid_medicalHistory(inputs);
 	}
 	
-	@Then("^Check the validation message for invalid details$")
+	@But("^It display alert message - Weight and height must be number$")
 	public void checkValidation_add_invalid() {
 		assertTrue(Medicalhistory.get_medicalHistoryform().contains("Weight must be number"));
 		assertTrue(Medicalhistory.get_medicalHistoryform().contains("Height must be number"));

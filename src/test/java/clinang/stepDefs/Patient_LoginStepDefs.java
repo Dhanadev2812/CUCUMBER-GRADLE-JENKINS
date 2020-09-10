@@ -5,6 +5,7 @@ import java.util.Arrays;
 import org.junit.BeforeClass;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.But;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -42,7 +43,7 @@ public class Patient_LoginStepDefs {
 		//assertTrue(Arrays.asList(loginPage.loginarr).contains(Dashboard.profile_email().getText()));	
 	}
 	
-	@Then("^Check validation message for invalid email$")
+	@But("^It display invalid email alert message$")
 	public void checkValidation_invalidEmail() {		
 		assertTrue(loginPage.get_emailAlert().contains("Enter a valid Email"));
 	}	
