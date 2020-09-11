@@ -11,6 +11,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.Wait;
@@ -35,7 +36,7 @@ public class CustomDriver extends WebDriverImplemented {
 
 	public WebElement findElement(By by) {
 
-		WebDriverWait wait = new WebDriverWait(InitiateDriver.driver, 80);
+		WebDriverWait wait = new WebDriverWait(InitiateDriver.driver, 30);
 		WebElement element = wait.until(presenceOfElementLocated(by));
 		return element;
 	}
@@ -185,28 +186,31 @@ public class CustomDriver extends WebDriverImplemented {
 		action.contextClick(element).perform();
 	}
 	
-public WebElement fluentWait(By by) {
+	public WebElement fluentWait(By by) {
 		
-		Wait<WebDriver> w = new FluentWait<WebDriver>(InitiateDriver.driver)
-				  .withTimeout(Duration.ofMinutes(30))
-			      .pollingEvery(Duration.ofSeconds(10))
-			      .ignoring(NoSuchElementException.class);
+			Wait<WebDriver> w = new FluentWait<WebDriver>(InitiateDriver.driver)
+					.withTimeout(Duration.ofMinutes(30))
+					.pollingEvery(Duration.ofSeconds(10))
+					.ignoring(NoSuchElementException.class);
 		
-		Function<WebDriver, WebElement> function = new Function<WebDriver, WebElement>() {
-			public WebElement apply(WebDriver arg0) {
-				WebElement element = arg0.findElement(by);
-				if (element != null) {
-					//System.out.println("A new dynamic object is found.");
+			Function<WebDriver, WebElement> function = new Function<WebDriver, WebElement>() {
+				public WebElement apply(WebDriver arg0) {
+					WebElement element = arg0.findElement(by);
+					if (element != null) {
+						//System.out.println("A new dynamic object is found.");
+					}
+					return element;
 				}
-				return element;
-			}
-		};
+			};
 
-		return w.until(function);
+			return w.until(function);
 		}
+	public List<WebElement> findElement_list(By by) {		
+		WebDriverWait wait = new WebDriverWait(InitiateDriver.driver, 80);
+		List<WebElement> element = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(by));
+		return element;
+	}
+	
+	
 
-public void implicitWait() {
-	InitiateDriver.driver.manage().timeouts().implicitlyWait(100, TimeUnit.SECONDS);
-
-}
 }

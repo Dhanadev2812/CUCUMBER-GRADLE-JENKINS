@@ -6,6 +6,7 @@ import clinang.patient_Locators.Patient_BookAppointmentLocators;
 import clinang.webDriverUtils.CustomDriver;
 import io.cucumber.datatable.DataTable;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
@@ -13,6 +14,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -27,12 +29,13 @@ public class Patient_BookAppointmentPageUtils extends CustomDriver {
 	private Integer current_date;
 	private Integer current_month;
 	private Integer current_year;
-	private Integer expectedYear;
+	private String CurrentTime_newTimeformat;
 	private int expectedDate;
 	private Integer expectedMonth_F02;
-	private String requiredYear;
-	private String monthRequired;
+	private Integer expectedYear;
 	private String requiredDate;
+	private String monthRequired;
+	private String requiredYear;
 	
 	private WebElement goTo_bookAppointment() {
 		return findElement(Bookappoinment_Locators.moveTo_bookAppointment);
@@ -118,10 +121,37 @@ public class Patient_BookAppointmentPageUtils extends CustomDriver {
 		return findElement(Bookappoinment_Locators.slot_row_null);
 	}
 	
-	private WebElement slot_get() {
-		return findElement(Bookappoinment_Locators.slot_get);
+	private List<WebElement> slot_get() {	
+		return findElement_list(Bookappoinment_Locators.slot_get);	
 	}
 	
+	private WebElement slot(String slot) {
+		return findElement(By.xpath("//*[(normalize-space(text())"+"="+"'"+slot+"'"+")]"));	
+	}
+	
+	public void clickSlot(String slot) {
+		slot(slot).click();
+	}
+	
+	public WebElement payNow_button() {
+		return findElement(Bookappoinment_Locators.payNow_button);
+	}
+	
+	public void clickPaynow() {
+		payNow_button().click();
+	}
+	
+	private WebElement consultationFee() {
+		return findElement(Bookappoinment_Locators.consultationFee);
+	}
+	
+	public String get_consultationFee() {
+		String text = consultationFee().getText();
+		String[] fee=text.split(" ");
+		String consultation_fee = fee[8].replaceAll("[^0-9.]", "");
+		return consultation_fee;
+	}
+
 	public String passAppointmentdetails(DataTable inputs) throws InterruptedException, ParseException  {
 		List<Map<String, String>>appointment_input = inputs.asMaps(String.class, String.class);
 		  for (Map<String, String> data : appointment_input) {
@@ -215,16 +245,16 @@ public class Patient_BookAppointmentPageUtils extends CustomDriver {
 	public void currentDateandTime(String Zone) {
 		
 		Instant instant = Instant.now();
-		LocalDateTime dateTimeInstant = LocalDateTime.ofInstant(instant, ZoneId.of("Asia/Kolkata"));
+		LocalDateTime dateTimeInstant = LocalDateTime.ofInstant(instant, ZoneId.of(Zone));
 		DateTimeFormatter formatDate = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		DateTimeFormatter formatTime = DateTimeFormatter.ofPattern("hh:mm a");
+		//DateTimeFormatter formatTime = DateTimeFormatter.ofPattern("hh:mm a");
+		DateTimeFormatter formatTime = DateTimeFormatter.ofPattern("HH:mm");
 		String date = dateTimeInstant.format(formatDate);
 		
 		long n = 2;
-		LocalDateTime currentTime = dateTimeInstant.plusHours(n);
-		String currentTimeformat = currentTime.format(formatTime);
-		System.out.println(dateTimeInstant);
-		System.out.println(currentTimeformat);
+		LocalDateTime extraTime = dateTimeInstant.plusHours(n);
+		CurrentTime_newTimeformat = extraTime.format(formatTime);
+		//System.out.println(CurrentTime_newTimeformat);	
 		
 		String[] current_date_split = date.split("/"); 	
 		current_date=Integer.valueOf(current_date_split[0].replaceAll(" ", ""));
@@ -255,12 +285,51 @@ public class Patient_BookAppointmentPageUtils extends CustomDriver {
 		}
 	}
 	
-	public void check_slot() {
-		
-	}
-	
-	
-	
-	
-	
+	public void check_slot() throws ParseException {
+
+		if(expectedDate==current_date) {
+			try {
+				if(slotForm_null().isDisplayed()==true) {
+					System.out.println(slotForm_null().getText());
+					assert false;
+					}
+			    } 
+			catch (Exception e) {
+				List<WebElement> spanList = slot_get();			
+				for( WebElement slot: spanList){	   
+				    //12 hrs into 24hrs 
+					SimpleDateFormat displayFormat = new SimpleDateFormat("HH:mm");
+					SimpleDateFormat parseFormat = new SimpleDateFormat("hh:mm a");
+					Date date = parseFormat.parse(slot.getAttribute("innerHTML"));
+					String slotTime = displayFormat.format(date);
+					
+					int compareTime = slotTime.compareTo(CurrentTime_newTimeformat);					
+						if(compareTime<0) {
+							//"slot time is lessthan the current time"
+							assert false;
+						}
+						else if(compareTime>0) {
+							//"slot time is greater than the current time"
+							assert true;
+						}
+						else if(compareTime==0) {
+							//"slot time is equal to the current time"
+							assert true;
+						}				
+				}		     			      
+			}		
+		}
+		else {
+			try {
+				if(slotForm_null().isDisplayed()==true) {
+					System.out.println(slotForm_null().getText());
+					assert false;
+					}
+			    } 
+			catch (Exception e) {
+				assert true;
+			}
+			
+		}
+	}					
 }

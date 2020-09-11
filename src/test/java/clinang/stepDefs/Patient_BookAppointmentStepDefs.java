@@ -2,6 +2,9 @@ package clinang.stepDefs;
 
 
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import java.text.ParseException;
 import clinang.pageUtils.Patient_BookAppointmentPageUtils;
 import io.cucumber.datatable.DataTable;
@@ -35,9 +38,27 @@ public class Patient_BookAppointmentStepDefs {
 		B_appointment.selectDatefromDatepicker();	
 	}
 	
-	@Then("^Check the slot time is 2hrs>current time,if the current date is equal to the given date$")
-	public void compare_slot() {
+	@Then("^Check the slot time is 2hrs>current time,if the appointment booked on today date and check the slot availability$")
+	public void compare_slot() throws ParseException {
 		B_appointment.check_slot();
+	}
+	
+	@And("^Select the slot \"([^\"]*)\"$")
+	public void select_slot(String slot) {
+		B_appointment.clickSlot(slot);
+	}
+	
+	@Then("^Check the paynow option is enabled or not$")
+	public void check_payNow_enable() {
+		assertEquals(true, B_appointment.payNow_button().isEnabled());		
+	}
+	
+	@And("^Check the consultation fee \"([^\"]*)\" and then Click on paynow$")
+	public void click_on_payNow(String ConsultationFee) {
+		B_appointment.get_consultationFee();
+		assertTrue(B_appointment.get_consultationFee().equals(ConsultationFee));
+		B_appointment.clickPaynow();
+		
 	}
 	
 }

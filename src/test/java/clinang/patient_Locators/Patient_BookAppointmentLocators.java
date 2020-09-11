@@ -17,6 +17,8 @@ public class Patient_BookAppointmentLocators  {
 	public By nextArrow =By.xpath("//button[@aria-label='Next 20 years']");
 	public By chiefComment = By.xpath("//textarea[@formcontrolname='comment']");
 	public By slot_row_null = By.xpath("//p[@class='center']");
-	public By slot_get = By.xpath("//*[@class='slot-button1 mat-raised-button']");
+	public By slot_get = By.xpath("//div[@class='form-group']//*[@class='ng-star-inserted']//descendant::span");
+	public By payNow_button = By.xpath("//button[@class='paynow-btn mat-raised-button']");
+	public By consultationFee = By.xpath("//p[@class='text-center']");
 	
 }
