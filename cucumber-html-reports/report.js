@@ -62,6 +62,16 @@ formatter.result({
   "status": "passed"
 });
 formatter.step({
+  "name": "Get the patient country",
+  "keyword": "And "
+});
+formatter.match({
+  "location": "clinang.stepDefs.Patient_BookAppointmentStepDefs.get_country()"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
   "name": "Go to book appointment screen",
   "keyword": "And "
 });
@@ -99,7 +109,7 @@ formatter.result({
   "status": "passed"
 });
 formatter.step({
-  "name": "Check wheather the appointment date-\"11/09/2020\" is a past date or not,Based on zoneid \"Asia/Kolkata\"",
+  "name": "Check wheather the appointment date-\"16/09/2020\" is a past date or not,Based on zoneid \"Asia/Kolkata\"",
   "keyword": "Then "
 });
 formatter.match({
@@ -109,7 +119,7 @@ formatter.result({
   "status": "passed"
 });
 formatter.step({
-  "name": "Select the appointment date \"12/9/2020\"",
+  "name": "Select the appointment date \"16/9/2020\"",
   "keyword": "And "
 });
 formatter.match({
@@ -129,7 +139,7 @@ formatter.result({
   "status": "passed"
 });
 formatter.step({
-  "name": "Select the slot \"7:00 PM\"",
+  "name": "Select the slot \"8:00 PM\"",
   "keyword": "And "
 });
 formatter.match({
@@ -149,11 +159,39 @@ formatter.result({
   "status": "passed"
 });
 formatter.step({
-  "name": "Check the consultation fee \"20000\" and Click then on paynow",
+  "name": "Check the fee details based on country",
+  "rows": [
+    {},
+    {}
+  ],
+  "keyword": "Then "
+});
+formatter.match({
+  "location": "clinang.stepDefs.Patient_BookAppointmentStepDefs.check_patient_currentCountry(io.cucumber.datatable.DataTable)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "Click on paynow",
   "keyword": "And "
 });
 formatter.match({
-  "location": "clinang.stepDefs.Patient_BookAppointmentStepDefs.click_on_payNow(java.lang.String)"
+  "location": "clinang.stepDefs.Patient_BookAppointmentStepDefs.click_on_payNow()"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "Done a payment process via \"emi\"",
+  "rows": [
+    {},
+    {}
+  ],
+  "keyword": "Then "
+});
+formatter.match({
+  "location": "clinang.stepDefs.Patient_BookAppointmentStepDefs.payment_process(java.lang.String,io.cucumber.datatable.DataTable)"
 });
 formatter.result({
   "status": "passed"

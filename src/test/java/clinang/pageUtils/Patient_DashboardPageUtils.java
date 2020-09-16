@@ -23,6 +23,7 @@ public class Patient_DashboardPageUtils extends CustomDriver{
 	Patient_DashboardLocators DashboardLocators = new Patient_DashboardLocators();
 	Patient_LoginPageUtils loginPage = new Patient_LoginPageUtils();
 	public static String[] editpageArr = null;
+	public static String[] patient_Country_Array = null;
 	
 	//dashboard
 	public WebElement dashboardField() {
@@ -180,6 +181,14 @@ public class Patient_DashboardPageUtils extends CustomDriver{
 		stateField().clear();
 	}
 	
+	public WebElement country() {
+		return waitForElementDisplayed(DashboardLocators.country);
+	}
+	
+	public void scrollTocountry() {
+		scrollTofindElement(country());
+	}
+
 	private WebElement click_countryDropdown() {
 		return findElement(DashboardLocators.click_countryDropdown);
 	}
@@ -307,6 +316,15 @@ public class Patient_DashboardPageUtils extends CustomDriver{
 	 public void clickDashboard() {
 		 dashboardField().click();
 	 }
+	 
+	 public List<String> patient_country() throws InterruptedException {
+			scrollTocountry();
+			Thread.sleep(2000);
+			String patientCountry = country().getText();
+			this.patient_Country_Array = new String[] {patientCountry};
+			return Arrays.asList(patient_Country_Array);
+			
+		}
 	 
 	 }
 

@@ -29,6 +29,7 @@ public class Patient_DashboardLocators extends CustomDriver{
 	 public By streetField = By.xpath("//input[@formcontrolname='street']");
 	 public By cityField = By.xpath("//input[@formcontrolname='city']");
 	 public By stateField = By.xpath("//input[@formcontrolname='state']");
+	 public By country = By.xpath("//*[@class='mat-select-value']");
 	 public By click_countryDropdown = By.xpath("//div[@class='mat-select-value']");
 	 public By pincodeField = By.xpath("//input[@formcontrolname='pincode']");
 	 public By profile_imageUpload = By.xpath("//*[@id='imageUpload']");

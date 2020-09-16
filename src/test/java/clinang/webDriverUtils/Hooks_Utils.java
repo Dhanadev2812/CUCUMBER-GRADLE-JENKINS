@@ -30,8 +30,8 @@ public class Hooks_Utils extends CustomDriver {
 @After(order=1)
  public void afterScenarioFinish(){
 	 
-	 System.out.println("----------Deleting Browser Cookies----------");
-	 deleteAllCookies();	 
+	 //System.out.println("----------Deleting Browser Cookies----------");
+	 //deleteAllCookies();	 
 		
 	 }  
 

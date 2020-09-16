@@ -11,7 +11,7 @@
         "steps": [
           {
             "result": {
-              "duration": 18145000000,
+              "duration": 26552000000,
               "status": "passed"
             },
             "line": 5,
@@ -23,7 +23,7 @@
           },
           {
             "result": {
-              "duration": 635000000,
+              "duration": 675000000,
               "status": "passed"
             },
             "line": 6,
@@ -41,9 +41,9 @@
               },
               {
                 "cells": [
-                  "wilson@gmail.com",
+                  "will@patient.com",
                   "Password12#",
-                  "LAT004"
+                  "LAT002"
                 ]
               }
             ],
@@ -51,7 +51,7 @@
           },
           {
             "result": {
-              "duration": 295000000,
+              "duration": 252000000,
               "status": "passed"
             },
             "line": 9,
@@ -63,7 +63,7 @@
           },
           {
             "result": {
-              "duration": 2371000000,
+              "duration": 5593000000,
               "status": "passed"
             },
             "line": 10,
@@ -75,10 +75,22 @@
           },
           {
             "result": {
-              "duration": 371000000,
+              "duration": 6491000000,
               "status": "passed"
             },
             "line": 11,
+            "name": "Get the patient country",
+            "match": {
+              "location": "clinang.stepDefs.Patient_BookAppointmentStepDefs.get_country()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 96000000,
+              "status": "passed"
+            },
+            "line": 12,
             "name": "Go to book appointment screen",
             "match": {
               "location": "clinang.stepDefs.Patient_BookAppointmentStepDefs.Goto_bookAppointment()"
@@ -88,11 +100,11 @@
         ]
       },
       {
-        "start_timestamp": "2020-09-11T12:09:59.639Z",
+        "start_timestamp": "2020-09-16T11:48:04.608Z",
         "before": [
           {
             "result": {
-              "duration": 1000000,
+              "duration": 2000000,
               "status": "passed"
             },
             "match": {
@@ -100,14 +112,13 @@
             }
           }
         ],
-        "line": 16,
+        "line": 18,
         "name": "Create new appointment-Today",
         "description": "",
         "id": "feature-to-check-book-appointment-functionaity;create-new-appointment-today",
         "after": [
           {
             "result": {
-              "duration": 18000000,
               "status": "passed"
             },
             "match": {
@@ -128,10 +139,10 @@
         "steps": [
           {
             "result": {
-              "duration": 12046000000,
+              "duration": 15265000000,
               "status": "passed"
             },
-            "line": 17,
+            "line": 19,
             "name": "Enter the appointment details",
             "match": {
               "location": "clinang.stepDefs.Patient_BookAppointmentStepDefs.Enter_appointment_details(io.cucumber.datatable.DataTable)"
@@ -150,8 +161,8 @@
                 "cells": [
                   "9090909090",
                   "Clinic Visit",
-                  "Cardiologist",
-                  "Dr. gilbret S",
+                  "Physiotherapist",
+                  "Dr. Eritriya Drud",
                   "General appointment"
                 ]
               }
@@ -163,12 +174,12 @@
               "duration": 11000000,
               "status": "passed"
             },
-            "line": 20,
-            "name": "Check wheather the appointment date-\"11/09/2020\" is a past date or not,Based on zoneid \"Asia/Kolkata\"",
+            "line": 22,
+            "name": "Check wheather the appointment date-\"16/09/2020\" is a past date or not,Based on zoneid \"Asia/Kolkata\"",
             "match": {
               "arguments": [
                 {
-                  "val": "11/09/2020",
+                  "val": "16/09/2020",
                   "offset": 37
                 },
                 {
@@ -182,15 +193,15 @@
           },
           {
             "result": {
-              "duration": 1324000000,
+              "duration": 1447000000,
               "status": "passed"
             },
-            "line": 21,
-            "name": "Select the appointment date \"12/9/2020\"",
+            "line": 23,
+            "name": "Select the appointment date \"16/9/2020\"",
             "match": {
               "arguments": [
                 {
-                  "val": "12/9/2020",
+                  "val": "16/9/2020",
                   "offset": 29
                 }
               ],
@@ -200,10 +211,10 @@
           },
           {
             "result": {
-              "duration": 30292000000,
+              "duration": 30242000000,
               "status": "passed"
             },
-            "line": 22,
+            "line": 24,
             "name": "Check the slot time is 2hrs\u003ecurrent time,if the appointment booked on today date and check the slot availability",
             "match": {
               "location": "clinang.stepDefs.Patient_BookAppointmentStepDefs.compare_slot()"
@@ -212,15 +223,15 @@
           },
           {
             "result": {
-              "duration": 234000000,
+              "duration": 285000000,
               "status": "passed"
             },
-            "line": 23,
-            "name": "Select the slot \"7:00 PM\"",
+            "line": 25,
+            "name": "Select the slot \"8:00 PM\"",
             "match": {
               "arguments": [
                 {
-                  "val": "7:00 PM",
+                  "val": "8:00 PM",
                   "offset": 17
                 }
               ],
@@ -230,10 +241,10 @@
           },
           {
             "result": {
-              "duration": 95000000,
+              "duration": 142000000,
               "status": "passed"
             },
-            "line": 24,
+            "line": 26,
             "name": "Check the paynow option is enabled or not",
             "match": {
               "location": "clinang.stepDefs.Patient_BookAppointmentStepDefs.check_payNow_enable()"
@@ -242,21 +253,71 @@
           },
           {
             "result": {
-              "duration": 353000000,
+              "duration": 140000000,
               "status": "passed"
             },
-            "line": 25,
-            "name": "Check the consultation fee \"20000\" and Click then on paynow",
+            "line": 27,
+            "name": "Check the fee details based on country",
+            "match": {
+              "location": "clinang.stepDefs.Patient_BookAppointmentStepDefs.check_patient_currentCountry(io.cucumber.datatable.DataTable)"
+            },
+            "rows": [
+              {
+                "cells": [
+                  "Domestic Consulting Fee",
+                  "Overseas Consulting Fee"
+                ]
+              },
+              {
+                "cells": [
+                  "1000",
+                  "2000"
+                ]
+              }
+            ],
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 313000000,
+              "status": "passed"
+            },
+            "line": 30,
+            "name": "Click on paynow",
+            "match": {
+              "location": "clinang.stepDefs.Patient_BookAppointmentStepDefs.click_on_payNow()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 3279000000,
+              "status": "passed"
+            },
+            "line": 31,
+            "name": "Done a payment process via \"emi\"",
             "match": {
               "arguments": [
                 {
-                  "val": "20000",
+                  "val": "emi",
                   "offset": 28
                 }
               ],
-              "location": "clinang.stepDefs.Patient_BookAppointmentStepDefs.click_on_payNow(java.lang.String)"
+              "location": "clinang.stepDefs.Patient_BookAppointmentStepDefs.payment_process(java.lang.String,io.cucumber.datatable.DataTable)"
             },
-            "keyword": "And "
+            "rows": [
+              {
+                "cells": [
+                  "card"
+                ]
+              },
+              {
+                "cells": [
+                  "test"
+                ]
+              }
+            ],
+            "keyword": "Then "
           }
         ],
         "tags": [

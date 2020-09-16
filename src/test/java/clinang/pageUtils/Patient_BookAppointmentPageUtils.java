@@ -6,6 +6,8 @@ import clinang.patient_Locators.Patient_BookAppointmentLocators;
 import clinang.webDriverUtils.CustomDriver;
 import io.cucumber.datatable.DataTable;
 
+import static org.junit.Assert.assertTrue;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -14,10 +16,14 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
+import java.util.TimeZone;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -25,6 +31,8 @@ import org.openqa.selenium.Keys;
 public class Patient_BookAppointmentPageUtils extends CustomDriver {
 	
 	Patient_BookAppointmentLocators Bookappoinment_Locators = new Patient_BookAppointmentLocators();
+	Patient_DashboardPageUtils editProfile = new Patient_DashboardPageUtils();
+	
 	String givenDate;
 	private Integer current_date;
 	private Integer current_month;
@@ -36,6 +44,7 @@ public class Patient_BookAppointmentPageUtils extends CustomDriver {
 	private String requiredDate;
 	private String monthRequired;
 	private String requiredYear;
+	
 	
 	private WebElement goTo_bookAppointment() {
 		return findElement(Bookappoinment_Locators.moveTo_bookAppointment);
@@ -151,6 +160,42 @@ public class Patient_BookAppointmentPageUtils extends CustomDriver {
 		String consultation_fee = fee[8].replaceAll("[^0-9.]", "");
 		return consultation_fee;
 	}
+	
+	private WebElement iframe_in() {
+		return findElement(Bookappoinment_Locators.iframe_in);
+	}
+	
+	public void switch_frameIn() {
+		switchToIframe(iframe_in());
+	}
+	
+	public void switch_frameOut() {
+		switchOutOfIframe();
+	}
+	
+	private WebElement wait_paymentForm() {
+		return waitForElementDisplayed(Bookappoinment_Locators.payment_form);
+	}
+	
+	private WebElement card() {
+		return waitForElementPresent(Bookappoinment_Locators.card);
+	}
+	
+	private WebElement upi() {
+		return waitForElementPresent(Bookappoinment_Locators.upi);
+	}
+	
+	private WebElement netbanking() {
+		return waitForElementPresent(Bookappoinment_Locators.netbanking);
+	}
+	
+	private WebElement wallet() {
+		return waitForElementPresent(Bookappoinment_Locators.wallet);
+	}
+	
+	private WebElement emi() {
+		return waitForElementPresent(Bookappoinment_Locators.emi);
+	}
 
 	public String passAppointmentdetails(DataTable inputs) throws InterruptedException, ParseException  {
 		List<Map<String, String>>appointment_input = inputs.asMaps(String.class, String.class);
@@ -164,10 +209,10 @@ public class Patient_BookAppointmentPageUtils extends CustomDriver {
 			  else if (data.get("appointment_type").equals("Clinic Visit")) {
 				  clinicVisit_radioButton().click();
 			  }	
-			  Thread.sleep(4000);			  
+			  Thread.sleep(5000);			  
 			  speciality_dropDown().click();
 			  selectSpeciality(data.get("speciality")).click();
-			  Thread.sleep(4000);
+			  Thread.sleep(6000);
 			  doctor_dropDown().click();
 			  select_doctor(data.get("doctor")).click();
 			  chiefComment().sendKeys(data.get("chief_complaint"));
@@ -331,5 +376,104 @@ public class Patient_BookAppointmentPageUtils extends CustomDriver {
 			}
 			
 		}
-	}					
+	}	
+	
+	public String getCurrentcountryCode() {
+		Locale currentCountrycode_obj = Locale.getDefault();
+		String currentCountryCode = currentCountrycode_obj.getCountry();
+        System.out.println("currentCountrycode: " + currentCountryCode);
+		return currentCountryCode;
+	}
+	public String getCurrentcountry() {	
+		Locale currentCountry_obj = Locale.getDefault();
+		String currentCountry = currentCountry_obj.getDisplayCountry();
+		System.out.println("country"+currentCountry);
+		return currentCountry;
+                      
+		/*Locale specificCountry_obj =new Locale("ENGLISH", "USA");
+		 //for country code - USA
+         //String specificCountry = specificCountry_obj.getCountry();
+         //for country united states
+        String specificCountry = specificCountry_obj.getDisplayCountry();
+        System.out.println("Specific counrtry : " + specificCountry);
+        return specificCountry;  */
+	}
+	
+	public String check_patient_fee(DataTable inputs) throws InterruptedException, ParseException  {
+		List<Map<String, String>>patientFee = inputs.asMaps(String.class, String.class);
+		  for (Map<String, String> data : patientFee) {
+			  
+			  if((Arrays.asList(editProfile.patient_Country_Array)).contains(getCurrentcountry())) {
+				  System.out.println("Domestic fee");
+				  assertTrue(data.get("Domestic Consulting Fee").equals(get_consultationFee()));
+			  }		 
+			  else if((Arrays.asList(editProfile.patient_Country_Array)).contains(getCurrentcountryCode())) {
+				  System.out.println("Domestic fee");
+				  assertTrue(data.get("Domestic Consulting Fee").equals(get_consultationFee()));
+			  }
+			  else {
+				  System.out.println("Overseas");
+				  assertTrue(data.get("Overseas Consulting Fee").equals(get_consultationFee()));
+			  }
+		  }
+		  return String.valueOf(patientFee);
+			  
+		  }
+	
+	public String paymentMethod_card(DataTable inputs) throws ParseException, InterruptedException  {
+		List<Map<String, String>>paymentMethod = inputs.asMaps(String.class, String.class);
+		  for (Map<String, String> data : paymentMethod) {
+			  switch_frameIn();
+			  wait_paymentForm();
+			  card().click();
+		  }
+		 switch_frameOut();
+		return String.valueOf(paymentMethod);
+	}
+	
+	public String paymentMethod_upi(DataTable inputs) throws ParseException  {
+		List<Map<String, String>>paymentMethod = inputs.asMaps(String.class, String.class);
+		  for (Map<String, String> data : paymentMethod) {
+			  switch_frameIn();
+			  wait_paymentForm();
+			  upi().click();
+		  }
+		 switch_frameOut();
+		return String.valueOf(paymentMethod);
+	}
+	
+	public String paymentMethod_netbanking(DataTable inputs) throws ParseException  {
+		List<Map<String, String>>paymentMethod = inputs.asMaps(String.class, String.class);
+		  for (Map<String, String> data : paymentMethod) {
+			 switch_frameIn();
+			 wait_paymentForm();
+			 netbanking().click();
+		  }
+		  switch_frameOut();
+		return String.valueOf(paymentMethod);
+	}
+	
+	public String paymentMethod_wallet(DataTable inputs) throws ParseException  {
+		List<Map<String, String>>paymentMethod = inputs.asMaps(String.class, String.class);
+		  for (Map<String, String> data : paymentMethod) {
+			 switch_frameIn();
+			 wait_paymentForm();
+			 wallet().click();
+		  }
+		  switch_frameOut();
+		return String.valueOf(paymentMethod);
+	}
+	
+	public String paymentMethod_emi(DataTable inputs) throws ParseException  {
+		List<Map<String, String>>paymentMethod = inputs.asMaps(String.class, String.class);
+		  for (Map<String, String> data : paymentMethod) {
+			 switch_frameIn();
+			 wait_paymentForm();
+			 emi().click();
+		  }
+		  switch_frameOut();
+		return String.valueOf(paymentMethod);
+	}
+	
+	
 }

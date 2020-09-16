@@ -7,6 +7,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.text.ParseException;
 import clinang.pageUtils.Patient_BookAppointmentPageUtils;
+import clinang.pageUtils.Patient_DashboardPageUtils;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
@@ -14,7 +15,13 @@ import io.cucumber.java.en.When;
 
 public class Patient_BookAppointmentStepDefs {
 	Patient_BookAppointmentPageUtils B_appointment = new Patient_BookAppointmentPageUtils();
+	Patient_DashboardPageUtils editProfile = new Patient_DashboardPageUtils();
 	
+	@And("^Get the patient country$")
+	public void get_country() throws InterruptedException {
+		editProfile.clickEditProfile();
+		editProfile.patient_country();
+	}
 	@And("^Go to book appointment screen$") 
 	public void Goto_bookAppointment() {
 		B_appointment.click_bookAppointment();	
@@ -53,11 +60,35 @@ public class Patient_BookAppointmentStepDefs {
 		assertEquals(true, B_appointment.payNow_button().isEnabled());		
 	}
 	
-	@And("^Check the consultation fee \"([^\"]*)\" and then Click on paynow$")
-	public void click_on_payNow(String ConsultationFee) {
-		B_appointment.get_consultationFee();
-		assertTrue(B_appointment.get_consultationFee().equals(ConsultationFee));
+	@Then("^Check the fee details based on country$")
+	public void check_patient_currentCountry(DataTable inputs) throws InterruptedException, ParseException {
+		B_appointment.check_patient_fee(inputs);
+	}
+	
+	@And("^Click on paynow$")
+	public void click_on_payNow() {	
 		B_appointment.clickPaynow();
+	}
+	
+	@Then("Done a payment process via \"([^\"]*)\"$")
+	public void payment_process(String paymentMethod,DataTable inputs) throws ParseException, InterruptedException {
+		switch (paymentMethod) {
+	       case "card":
+	    	   B_appointment.paymentMethod_card(inputs);
+	          break;  
+	       case "upi":  
+	    	   B_appointment.paymentMethod_upi(inputs);
+	          break;
+	       case "netbanking":
+	    	   B_appointment.paymentMethod_netbanking(inputs);
+	    	   break;
+	       case "wallet" :
+	    	   B_appointment.paymentMethod_wallet(inputs);
+	    	   break;
+	       case "emi":
+	    	   B_appointment.paymentMethod_emi(inputs);
+	    	   break;
+	  }
 		
 	}
 	
