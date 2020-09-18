@@ -13,6 +13,7 @@ import clinang.webDriverUtils.CustomDriver;
 public class Patient_LoginPageUtils extends CustomDriver {
 	
 	Patient_LoginLocators Login_Locator = new Patient_LoginLocators();
+	
 	public static  String[] loginarr;
 	public static String str_userName;
 			

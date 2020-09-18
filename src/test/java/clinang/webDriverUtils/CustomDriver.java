@@ -1,7 +1,10 @@
 package clinang.webDriverUtils;
 
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -211,6 +214,17 @@ public class CustomDriver extends WebDriverImplemented {
 		return element;
 	}
 	
-	
+	public void switchTochildWindow() {
+		
+		ArrayList<String> tabs = new ArrayList<String>(InitiateDriver.driver.getWindowHandles());
+		InitiateDriver.driver.switchTo().window(tabs.get(1));	
+		System.out.println(InitiateDriver.driver.getCurrentUrl());
+	}
+	public void switchTomainWindow() {
+		
+		ArrayList<String> tabs = new ArrayList<String>(InitiateDriver.driver.getWindowHandles());
+		InitiateDriver.driver.switchTo().window(tabs.get(0));	
+		System.out.println(InitiateDriver.driver.getCurrentUrl());
+	}
 
 }

@@ -13,12 +13,14 @@ import io.cucumber.java.en.When;
 import clinang.pageUtils.BrowserUtils;
 import clinang.pageUtils.Patient_DashboardPageUtils;
 import clinang.pageUtils.Patient_LoginPageUtils;
+import clinang.webDriverUtils.RunTimeVariables;
 
 public class Patient_LoginStepDefs {
 
 	Patient_LoginPageUtils loginPage = new Patient_LoginPageUtils();
 	Patient_DashboardPageUtils Dashboard = new Patient_DashboardPageUtils();
 	BrowserUtils browser = new BrowserUtils();
+	RunTimeVariables vars = new RunTimeVariables();
 	
 	@Given("^I open the app$")
 	public void openTheApp() throws InterruptedException {
@@ -39,7 +41,7 @@ public class Patient_LoginStepDefs {
 	@Then("^Check i am logged in$")
 	public void check_i_am_logged_in() throws InterruptedException {		
 		loginPage.wait_myProfileview();		
-		assertTrue(loginPage.get_currenturl().equals("https://latlontech.com/portal/dashboard"));
+		assertTrue(loginPage.get_currenturl().equals(vars.getEnvironmentUrl()+"portal/dashboard"));
 		//assertTrue(Arrays.asList(loginPage.loginarr).contains(Dashboard.profile_email().getText()));	
 	}
 	

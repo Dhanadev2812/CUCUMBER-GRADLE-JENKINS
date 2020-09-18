@@ -18,6 +18,7 @@ public final class InitiateDriver {
 			if (var.getBrowser().contentEquals("chrome")) {
 				System.setProperty("webdriver.chrome.driver","src/test/resources/drivers/chromedriver84.exe");
 				driver = new ChromeDriver();
+				
 			} else if (var.getBrowser().contentEquals("firefox")) {
 				System.setProperty("webdriver.gecko.driver", "src/test/resources/drivers/geckodriver.exe");
 			}

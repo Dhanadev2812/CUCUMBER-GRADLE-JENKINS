@@ -8,14 +8,16 @@ import static org.junit.Assert.assertTrue;
 import java.text.ParseException;
 import clinang.pageUtils.Patient_BookAppointmentPageUtils;
 import clinang.pageUtils.Patient_DashboardPageUtils;
+import clinang.webDriverUtils.CustomDriver;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-public class Patient_BookAppointmentStepDefs {
+public class Patient_BookAppointmentStepDefs extends CustomDriver {
 	Patient_BookAppointmentPageUtils B_appointment = new Patient_BookAppointmentPageUtils();
 	Patient_DashboardPageUtils editProfile = new Patient_DashboardPageUtils();
+	
 	
 	@And("^Get the patient country$")
 	public void get_country() throws InterruptedException {
@@ -56,7 +58,8 @@ public class Patient_BookAppointmentStepDefs {
 	}
 	
 	@Then("^Check the paynow option is enabled or not$")
-	public void check_payNow_enable() {
+	public void check_payNow_enable() throws ParseException {
+		B_appointment.get_appointmentDetails();
 		assertEquals(true, B_appointment.payNow_button().isEnabled());		
 	}
 	
@@ -74,7 +77,7 @@ public class Patient_BookAppointmentStepDefs {
 	public void payment_process(String paymentMethod,DataTable inputs) throws ParseException, InterruptedException {
 		switch (paymentMethod) {
 	       case "card":
-	    	   B_appointment.paymentMethod_card(inputs);
+	    	   B_appointment.paymentMethod_card(inputs);	   
 	          break;  
 	       case "upi":  
 	    	   B_appointment.paymentMethod_upi(inputs);
@@ -89,6 +92,13 @@ public class Patient_BookAppointmentStepDefs {
 	    	   B_appointment.paymentMethod_emi(inputs);
 	    	   break;
 	  }
+		
+		switchTochildWindow();
+		B_appointment.wait_razorPayForm();
+		B_appointment.razorPay_clickSuccess();
+		switchTomainWindow();
+		Thread.sleep(2000);
+		B_appointment.clickViewappointment();
 		
 	}
 	
