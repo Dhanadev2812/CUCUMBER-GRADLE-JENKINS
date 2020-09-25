@@ -8,6 +8,7 @@ import io.cucumber.datatable.DataTable;
 
 import static org.junit.Assert.assertTrue;
 
+import java.awt.print.Book;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -27,6 +28,7 @@ import java.util.TimeZone;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.StaleElementReferenceException;
 
 public class Patient_BookAppointmentPageUtils extends CustomDriver {
 	
@@ -34,19 +36,20 @@ public class Patient_BookAppointmentPageUtils extends CustomDriver {
 	Patient_DashboardPageUtils editProfile = new Patient_DashboardPageUtils();
 	
 	String givenDate;
-	private Integer current_date;
-	private Integer current_month;
-	private Integer current_year;
+	public Integer current_date;
+	public Integer current_month;
+	public Integer current_year;
 	private String CurrentTime_newTimeformat;
-	private int expectedDate;
-	private Integer expectedMonth_F02;
-	private Integer expectedYear;
+	public int expectedDate;
+	public Integer expectedMonth_F02;
+	public Integer expectedYear;
 	private String requiredDate;
 	private String monthRequired;
 	private String requiredYear;
 	private String appointmentType_appointmentPage;
 	private String activeSlot;
-	public static String[] appointmentFormdetails = null;
+	public static String[] appointmentID_bookingScreen;
+	public static String[] bookAppointment_details = null;
 	public static String[] consultationFee_appointmentBooking = null;
 	
 	
@@ -83,9 +86,11 @@ public class Patient_BookAppointmentPageUtils extends CustomDriver {
 	}
 	
 	private WebElement speciality_dropDown() {
-		return waitForElementDisplayed(Bookappoinment_Locators.speciality_dropDown);
+		return waitForElementClick(Bookappoinment_Locators.speciality_dropDown);
 	}
-	
+	private void moveTospeciality_dropDown() {
+		 scrollTofindElement(speciality_dropDown());
+	}
 	private WebElement selectSpeciality(String speciality) {
 		return findElement(By.xpath("//*[(normalize-space(text())"+"="+"'"+speciality+"'"+")]/ancestor::mat-option"));
 	}
@@ -94,9 +99,11 @@ public class Patient_BookAppointmentPageUtils extends CustomDriver {
 		return findElement(Bookappoinment_Locators.doctor_field);
 	}
 	private WebElement doctor_dropDown() {
-		return waitForElementDisplayed(Bookappoinment_Locators.doctor_dropDown);
+		return waitForElementClick(Bookappoinment_Locators.doctor_dropDown);
 	}
-	
+	private void moveTodoctor_dropDown() {
+		 scrollTofindElement(doctor_dropDown());
+	}
 	private WebElement select_doctor(String doctor) {
 		return findElement(By.xpath("//*[(normalize-space(text())"+"="+"'"+doctor+"'"+")]/ancestor::mat-option"));
 	}
@@ -187,8 +194,7 @@ public class Patient_BookAppointmentPageUtils extends CustomDriver {
 		String[] fee=text.split(" ");
 		String consultation_fee = fee[8].replaceAll("[^0-9.]", "");
 		this.consultationFee_appointmentBooking = new String[] {consultation_fee};
-		return consultation_fee;
-		
+		return consultation_fee;	
 	}
 	
 	private WebElement iframe_in() {
@@ -208,23 +214,23 @@ public class Patient_BookAppointmentPageUtils extends CustomDriver {
 	}
 	
 	private WebElement card() {
-		return waitForElementDisplayed(Bookappoinment_Locators.card);
+		return waitForElementClick(Bookappoinment_Locators.card);
 	}
 	
 	private WebElement upi() {
-		return waitForElementDisplayed(Bookappoinment_Locators.upi);
+		return waitForElementClick(Bookappoinment_Locators.upi);
 	}
 	
 	private WebElement netbanking() {
-		return waitForElementDisplayed(Bookappoinment_Locators.netbanking);
+		return waitForElementClick(Bookappoinment_Locators.netbanking);
 	}
 	
 	private WebElement wallet() {
-		return waitForElementDisplayed(Bookappoinment_Locators.wallet);
+		return waitForElementClick(Bookappoinment_Locators.wallet);
 	}
 	
 	private WebElement emi() {
-		return waitForElementDisplayed(Bookappoinment_Locators.emi);
+		return waitForElementClick(Bookappoinment_Locators.emi);
 	}
 	
 	private WebElement skipSavedcard() {
@@ -232,11 +238,11 @@ public class Patient_BookAppointmentPageUtils extends CustomDriver {
 	}
 	
 	private WebElement paymentForm_mobile() {
-		return findElement(Bookappoinment_Locators.paymentForm_mobile);
+		return waitForElementDisplayed(Bookappoinment_Locators.paymentForm_mobile);
 	}
 	
 	private WebElement paymentForm_amount() {
-		return findElement(Bookappoinment_Locators.paymentForm_amount);
+		return waitForElementDisplayed(Bookappoinment_Locators.paymentForm_amount);
 	}
 	
 	public String get_paymentForm_amount() {
@@ -263,28 +269,62 @@ public class Patient_BookAppointmentPageUtils extends CustomDriver {
 
 	private WebElement cardRemember() {
 		return findElement(Bookappoinment_Locators.rememberCard);
+	}	
+	
+	private WebElement wait_netBankingform() {
+		return waitForElementDisplayed(Bookappoinment_Locators.wait_netBanking_form);
+	}
+	
+	private WebElement netBanking_grid_bankList(String Bank) {
+		return findElement(By.xpath("//*[(normalize-space(text())"+"="+"'"+Bank+"'"+")]"));
+	}
+	
+	private WebElement searchBank() {
+		return findElement(Bookappoinment_Locators.search_bank);
+	}
+	
+	private WebElement bankSearch_textField() {
+		return findElement(Bookappoinment_Locators.bankSearch_textField);
+	}
+	
+	private WebElement bankList() {
+		return findElement(By.xpath("//div[@class='list svelte-1l2wmbb']"));
+	}
+	
+	private WebElement bankType(String bankType) {
+		return findElement(By.xpath("//*[(normalize-space(text())"+"="+"'"+bankType+"'"+")]"));
 	}
 	
 	private WebElement payment_pay() {
 		return findElement(Bookappoinment_Locators.paymentForm_pay);
 	}
+	private void moveTo_payment_pay() {
+		 scrollTofindElement(payment_pay());
+	}
 	
 	public WebElement wait_razorPayForm() {
 		return waitForElementDisplayed(Bookappoinment_Locators.razorPay_form);
 	}
+	
 	private WebElement razorPaysuccess() {
 		return waitForElementDisplayed(Bookappoinment_Locators.razorPay_success);
 	}
+	
 	private WebElement  razorPayFailure() {
 		return waitForElementDisplayed(Bookappoinment_Locators.razorPay_failure);
 	}
+	
 	public void razorPay_clickSuccess() {
 		razorPaysuccess().click();
 	}
+	
 	public void razorPay_clickFailure() {
 		razorPayFailure().click();
 	}
 	
+	public void pageLoader() {
+		 Loader(Bookappoinment_Locators.pageLoader);
+	}
 	private WebElement viewAppointmentButton() {
 		return waitForElementDisplayed(Bookappoinment_Locators.viewAppointmentButton);
 	}
@@ -293,6 +333,56 @@ public class Patient_BookAppointmentPageUtils extends CustomDriver {
 		viewAppointmentButton().click();
 	}
 	
+	public WebElement appointmentSuccessform_speciality() {
+		return waitForElementDisplayed(Bookappoinment_Locators.appointment_successForm_speciality);
+	}
+	
+	public  WebElement appointmentSuccessform_date() {
+		return waitForElementDisplayed(Bookappoinment_Locators.appointment_successForm_date);
+	}
+	
+	public  WebElement appointmentSuccessform_clinic() {
+		return waitForElementDisplayed(Bookappoinment_Locators.appointment_successForm_clinic);
+	}
+	
+	public  WebElement appointmentSuccessform_time() {
+		return waitForElementDisplayed(Bookappoinment_Locators.appointment_successForm_time);
+	}
+	
+	public String get_appointmentSuccessform_time() {
+		String[] appointmentTime=appointmentSuccessform_time().getText().split(":");
+		String appointmentTime_Hours = appointmentTime[0];
+		if(appointmentTime_Hours.startsWith("0")) {
+			String appointmentTime_replace = appointmentTime_Hours.replace("0", " ");
+			String newAppointmenttime = appointmentTime_replace+":"+appointmentTime[1];
+			return newAppointmenttime;
+		}	
+		else {
+			String appointment_Time = appointmentSuccessform_time().getText();
+			return appointment_Time;
+		}
+		
+	}
+	
+	public  WebElement appointmentSuccessform_doctor() {
+		return waitForElementDisplayed(Bookappoinment_Locators.appointment_successForm_doctor);
+		
+	}
+	
+	public  WebElement appointmentSuccessform_type() {
+		return waitForElementDisplayed(Bookappoinment_Locators.appointment_successForm_type);
+	}
+	
+	public WebElement appointmentSuccessform_appointmentID() {
+		return waitForElementDisplayed(Bookappoinment_Locators.appointment_successForm_appointmentID);
+	}
+	
+	public String get_successForm_appointmentID() {
+		String[] appointmentID=appointmentSuccessform_appointmentID().getText().split(" ");
+		String appointment_ID = appointmentID[7];
+		this.appointmentID_bookingScreen = new String[] {appointment_ID};
+		return appointment_ID;
+	}
 	public String passAppointmentdetails(DataTable inputs) throws InterruptedException, ParseException  {
 		List<Map<String, String>>appointment_input = inputs.asMaps(String.class, String.class);
 		  for (Map<String, String> data : appointment_input) {
@@ -304,11 +394,13 @@ public class Patient_BookAppointmentPageUtils extends CustomDriver {
 			  }
 			  else if (data.get("appointment_type").equals("Clinic Visit")) {
 				  clinicVisit_radioButton().click();
-			  }	
-			  Thread.sleep(5000);			  
+			  }		  
+			  moveTospeciality_dropDown();
+			  Thread.sleep(5000);
 			  speciality_dropDown().click();
 			  selectSpeciality(data.get("speciality")).click();
-			  Thread.sleep(6000);
+			  moveTodoctor_dropDown();
+			  Thread.sleep(5000);
 			  doctor_dropDown().click();
 			  select_doctor(data.get("doctor")).click();
 			  chiefComment().sendKeys(data.get("chief_complaint"));
@@ -341,8 +433,8 @@ public class Patient_BookAppointmentPageUtils extends CustomDriver {
 		date_format.applyPattern(date);
 		requiredDate = date_format.format(Date);
 		
-		expectedYear=Integer.parseInt(requiredYear);
-		expectedDate = Integer.parseInt(requiredDate);
+		expectedYear=Integer.valueOf((requiredYear).replaceAll(" ", ""));
+		expectedDate = Integer.valueOf((requiredDate).replaceAll(" ", ""));
 		monthRequired = requiredMonth.toUpperCase();
 		
 		String[] expectedMonth_F2 = givenDate.split("/"); 	
@@ -379,8 +471,7 @@ public class Patient_BookAppointmentPageUtils extends CustomDriver {
 				}
 			else {
 				break;
-			}	
-		
+			}		
 	}
 	
 	public void currentDateandTime(String Zone) {
@@ -426,8 +517,10 @@ public class Patient_BookAppointmentPageUtils extends CustomDriver {
 	}
 	
 	public void check_slot() throws ParseException {
-
-		if(expectedDate==current_date) {
+		String providedDate = (expectedDate+"/"+expectedMonth_F02+"/"+expectedYear);
+		String Currentdate = (current_date+"/"+current_month+"/"+current_year);
+		
+		if(providedDate.equals(Currentdate)) {
 			try {
 				if(slotForm_null().isDisplayed()==true) {
 					System.out.println(slotForm_null().getText());
@@ -445,11 +538,11 @@ public class Patient_BookAppointmentPageUtils extends CustomDriver {
 					
 					int compareTime = slotTime.compareTo(CurrentTime_newTimeformat);					
 						if(compareTime<0) {
-							//"slot time is lessthan the current time"
+							System.out.println("slot time is lessthan the current time");
 							assert false;
 						}
 						else if(compareTime>0) {
-							//"slot time is greater than the current time"
+							System.out.println("slot time is greater than the current time");
 							assert true;
 						}
 						else if(compareTime==0) {
@@ -468,8 +561,7 @@ public class Patient_BookAppointmentPageUtils extends CustomDriver {
 			    } 
 			catch (Exception e) {
 				assert true;
-			}
-			
+			}			
 		}
 	}	
 	
@@ -523,7 +615,7 @@ public class Patient_BookAppointmentPageUtils extends CustomDriver {
 		String dateOfappointment_appointmentPage = dateOfappointment().getAttribute("value");		
 	
 		SimpleDateFormat format1 = new SimpleDateFormat("MM/dd/yyyy");
-	    SimpleDateFormat format2 = new SimpleDateFormat("MMM dd,yyyy");
+	    SimpleDateFormat format2 = new SimpleDateFormat("MMM dd, yyyy");
 	    Date date = format1.parse(dateOfappointment_appointmentPage);
 	    String appointmentDate = format2.format(date);
 		
@@ -547,8 +639,8 @@ public class Patient_BookAppointmentPageUtils extends CustomDriver {
 		}
 		
 		String appointment = appointmentDate +" "+activeSlot;
-		this.appointmentFormdetails = new String[] {firstName_appointmentPage,lastName_appointmentPage,email_appointmentPage,mobile_appointmentPage,
-				appointmentType_appointmentPage,speciality_appointmentPage,doctor_appointmentPage,clinic_appointmentPage,complaint_appointmentPage,appointment};
+		this.bookAppointment_details = new String[] {firstName_appointmentPage,lastName_appointmentPage,email_appointmentPage,mobile_appointmentPage,
+				appointmentType_appointmentPage,speciality_appointmentPage,doctor_appointmentPage,clinic_appointmentPage,complaint_appointmentPage,appointmentDate,activeSlot};
 	}
 	
 	public String paymentMethod_card(DataTable inputs) throws ParseException, InterruptedException  {
@@ -557,16 +649,25 @@ public class Patient_BookAppointmentPageUtils extends CustomDriver {
 		  for (Map<String, String> data : paymentMethod_card) {
 			  switch_frameIn();
 			  wait_paymentForm();
-			  Thread.sleep(1000);
-			  card().click();
-			  if(skipSavedcard().isDisplayed()) {
-				  skipSavedcard().click();
+			  try {
+				  Thread.sleep(2000);
+				  card().click();
 			  }
-			  else {
+			  
+			  catch (StaleElementReferenceException e) {
+				  card();
+				  card().click();
+			  }
+			  try {
+				  if(skipSavedcard().isDisplayed()) {
+					  skipSavedcard().click();
+				  }
+			  }
+			  catch (Exception e) {
 				  assert true;
 			  }
 			  
-			  assertTrue(Arrays.asList(appointmentFormdetails).contains(paymentForm_mobile().getText()));
+			  assertTrue(Arrays.asList(bookAppointment_details).contains(paymentForm_mobile().getText()));
 			  assertTrue(Arrays.asList(consultationFee_appointmentBooking).contains(get_paymentForm_amount()));		
 			  cardNumber().sendKeys(data.get("card_number"));
 			  cardExpirey().sendKeys(data.get("card_expiry-MM/YY"));
@@ -593,18 +694,62 @@ public class Patient_BookAppointmentPageUtils extends CustomDriver {
 		  for (Map<String, String> data : paymentMethod) {
 			  switch_frameIn();
 			  wait_paymentForm();
-			  upi().click();
+			  try {
+				  upi().click();
+			  }
+			  
+			  catch (StaleElementReferenceException e) {
+				  upi();
+				  upi().click();
+			  }
+			 
 		  }
 		 switch_frameOut();
 		return String.valueOf(paymentMethod);
 	}
 	
-	public String paymentMethod_netbanking(DataTable inputs) throws ParseException  {
+	public String paymentMethod_netbanking(DataTable inputs) throws ParseException, InterruptedException  {
 		List<Map<String, String>>paymentMethod = inputs.asMaps(String.class, String.class);
 		  for (Map<String, String> data : paymentMethod) {
 			 switch_frameIn();
 			 wait_paymentForm();
-			 netbanking().click();
+			 
+			 try {
+				 Thread.sleep(2000);
+				 netbanking().click();
+			  }
+			  
+			  catch (StaleElementReferenceException e) {
+				  netbanking();
+				  netbanking().click();
+			  }
+			 
+			 wait_netBankingform();	 
+			 
+			 assertTrue(Arrays.asList(bookAppointment_details).contains(paymentForm_mobile().getText()));
+			 assertTrue(Arrays.asList(consultationFee_appointmentBooking).contains(get_paymentForm_amount()));
+			 try {
+				 if(netBanking_grid_bankList(data.get("netbanking_bankname")).isDisplayed()==true) {
+					 netBanking_grid_bankList(data.get("netbanking_bankname")).click();
+				 }			 
+				    } 
+				catch (Exception e) {
+					searchBank().click();
+					bankSearch_textField().sendKeys(data.get("netbanking_bankname"));
+					assertTrue(bankList().getText().contains(data.get("netbanking_bankname")));
+					bankSearch_textField().sendKeys(Keys.ENTER); 
+				}
+			 try {
+				 if(bankType(data.get("bank_type")).isDisplayed()==true) {
+					 bankType(data.get("bank_type")).click();
+					 payment_pay().click();
+				 }
+			 }
+			 catch(Exception e)
+			 {
+				 moveTo_payment_pay();
+				 payment_pay().click();
+			 }		 		 
 		  }
 		  switch_frameOut();
 		return String.valueOf(paymentMethod);
@@ -615,7 +760,15 @@ public class Patient_BookAppointmentPageUtils extends CustomDriver {
 		  for (Map<String, String> data : paymentMethod) {
 			 switch_frameIn();
 			 wait_paymentForm();
-			 wallet().click();
+			 
+			 try {
+				 wallet().click();
+			  }
+			  
+			  catch (StaleElementReferenceException e) {
+				  wallet();
+				  wallet().click();
+			  }
 		  }
 		  switch_frameOut();
 		return String.valueOf(paymentMethod);
@@ -626,12 +779,17 @@ public class Patient_BookAppointmentPageUtils extends CustomDriver {
 		  for (Map<String, String> data : paymentMethod) {
 			 switch_frameIn();
 			 wait_paymentForm();	 
-			 emi().click();
+			 
+			 try {
+				 emi().click();
+			  }
+			  
+			  catch (StaleElementReferenceException e) {
+				  emi();
+				  emi().click();
+			  }
 		  }
 		  switch_frameOut();
 		return String.valueOf(paymentMethod);
-	}
-	
-	
-	
+	}			
 }

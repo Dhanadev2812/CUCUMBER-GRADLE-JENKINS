@@ -9,9 +9,9 @@ public class Patient_DashboardLocators extends CustomDriver{
 	 public By dashboardField =By.xpath("//*[(normalize-space(text())='Dashboard')]");
 	 public By wait_logoutView = By.xpath("//img[@class='user-logout']");
 	 public By wait_profileView = By.xpath("//table");
-	 public By todayAppointment = By.xpath("//h3[@class='tot-appointment']");
-	 public By upcomingAppointment = By.xpath("//h3[@class='up-appointment']");
-	 public By cancelledAppointment = By.xpath("//h3[@class='can-appointment']");
+	 public By todayAppointment = By.xpath("//a[@routerlink='/portal/appointmentlist/Today']/mat-card/div[2]/h3");
+	 public By upcomingAppointment = By.xpath("//a[@routerlink='/portal/appointmentlist/Upcoming']/mat-card/div[2]/h3");
+	 public By cancelledAppointment = By.xpath("//a[@routerlink='/portal/appointmentlist/Cancelled']/mat-card/div[2]/h3");
 	 public By profile_firstName = By.xpath("//table/div/div[1]/tbody/tr[1]/td");
 	 public By profile_mob = By.xpath("//table/div/div[1]/tbody/tr[2]/td");
 	 public By profile_email = By.xpath("//table/div/div[1]/tbody/tr[3]/td");

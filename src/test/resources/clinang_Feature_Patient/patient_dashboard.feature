@@ -9,7 +9,8 @@ Feature: Feature to done dashboard functionaity
     And click on login button
     Then Check i am logged in
     And Click on edit profile option
-
+    
+#Ref Patient-Inputs text file before edit
   @Editprofile-valid
   Scenario: Update profile with valid details
     And Upload the image from "D://Testing workspace//ClinaNG//Profile_img//women.jpg"

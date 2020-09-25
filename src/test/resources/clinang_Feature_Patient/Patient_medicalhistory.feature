@@ -10,10 +10,10 @@ Feature: Feature to check medical history functionaity
     Then Check i am logged in
     And Go to medical history
 
- 	#Use Male/Female
+ 	#Ref Patient-Inputs text file before edit
   @Medicalhistory-Add-Valid
   Scenario: Add medical history with valid details
-    When Enter the medical history details #user Male/Female
+    When Enter the medical history details 
       | Gender | Blood_group | DOB        | Age | Weight | Height | Allergies    | Medical_history                                                                                                                                                                                                                                   |
       | Female | A+          | 28/12/1994 |  22 |     54 |    155 | Dust allergy | As an expecting mother, I was adamant in my view that the body can heal itself without any kind of medical intervention. I was stubborn that my pregnancy should be of the same path. I am a sportsperson since my childhood and active even now. |
     And Click "save"

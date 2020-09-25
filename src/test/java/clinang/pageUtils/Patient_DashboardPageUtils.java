@@ -22,6 +22,7 @@ public class Patient_DashboardPageUtils extends CustomDriver{
 		
 	Patient_DashboardLocators DashboardLocators = new Patient_DashboardLocators();
 	Patient_LoginPageUtils loginPage = new Patient_LoginPageUtils();
+	public String[] dashboard_appointmentCount;
 	public static String[] editpageArr = null;
 	public static String[] patient_Country_Array = null;
 	
@@ -42,7 +43,7 @@ public class Patient_DashboardPageUtils extends CustomDriver{
 		return waitForElementDisplayed(DashboardLocators.wait_profileView);
 	}
 	
-	private WebElement todayAppointment() {
+	public WebElement todayAppointment() {
 		return findElement(DashboardLocators.todayAppointment);		
 	}
 	
@@ -50,9 +51,8 @@ public class Patient_DashboardPageUtils extends CustomDriver{
 		todayAppointment().click();
 	}
 	
-	public void getCount_todayApp() {		
-		todayAppointment().getText();
-		System.out.println(todayAppointment().getText());
+	public String getCount_todayApp() {		
+		return todayAppointment().getText();
 	}
 	
 	private WebElement upcomingAppointment() {
@@ -63,9 +63,8 @@ public class Patient_DashboardPageUtils extends CustomDriver{
 		upcomingAppointment().click();
 	}
 	
-	public void getCount_upcomingApp() {		
-		upcomingAppointment().getText();
-		System.out.println(upcomingAppointment().getText());
+	public String getCount_upcomingApp() {		
+		return upcomingAppointment().getText();
 	}
 	
 	private WebElement cancelledAppointment() {
@@ -76,9 +75,8 @@ public class Patient_DashboardPageUtils extends CustomDriver{
 		cancelledAppointment().click();
 	}
 	
-	public void getCount_cancelledApp() {		
-		upcomingAppointment().getText();
-		System.out.println(cancelledAppointment().getText());
+	public String getCount_cancelledApp() {		
+		return cancelledAppointment().getText();
 	}
 	public void fluentWait_profileMail() {	
 		waitForElementPresent(By.xpath("//td[(normalize-space(text())"+"="+"'"+loginPage.str_userName+"'"+")]"));
@@ -325,6 +323,16 @@ public class Patient_DashboardPageUtils extends CustomDriver{
 			return Arrays.asList(patient_Country_Array);
 			
 		}
+	 
+	 public List<String> appointmentCount() throws InterruptedException {
+		 Thread.sleep(2000);
+		 String todayAppointment_count = getCount_todayApp();
+		 String upcomingAppointment_count =getCount_upcomingApp();
+		 String cancelledAppointment_count =getCount_cancelledApp();
+		 this.dashboard_appointmentCount = new String[] {todayAppointment_count,upcomingAppointment_count,cancelledAppointment_count};
+		return Arrays.asList(dashboard_appointmentCount);
+		 
+	 }
 	 
 	 }
 

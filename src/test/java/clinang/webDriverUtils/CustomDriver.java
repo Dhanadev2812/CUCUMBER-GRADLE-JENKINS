@@ -10,6 +10,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -65,7 +66,7 @@ public class CustomDriver extends WebDriverImplemented {
 	}
 	
 	public WebElement waitForElementDisplayed(By by) {
-		WebDriverWait wait = new WebDriverWait(InitiateDriver.driver, 40);
+		WebDriverWait wait = new WebDriverWait(InitiateDriver.driver, 50);
 		WebElement element = wait.until(visibilityOfElementLocated(by));
 		return element;
 	}	
@@ -218,13 +219,42 @@ public class CustomDriver extends WebDriverImplemented {
 		
 		ArrayList<String> tabs = new ArrayList<String>(InitiateDriver.driver.getWindowHandles());
 		InitiateDriver.driver.switchTo().window(tabs.get(1));	
-		System.out.println(InitiateDriver.driver.getCurrentUrl());
 	}
 	public void switchTomainWindow() {
 		
 		ArrayList<String> tabs = new ArrayList<String>(InitiateDriver.driver.getWindowHandles());
 		InitiateDriver.driver.switchTo().window(tabs.get(0));	
-		System.out.println(InitiateDriver.driver.getCurrentUrl());
 	}
+		
+	public void clickEvent(By by) {
+		WebElement element = InitiateDriver.driver.findElement(by);
+		JavascriptExecutor executor = (JavascriptExecutor)InitiateDriver.driver;
+		executor.executeScript("arguments[0].click()", element);
+	}
+	
+	public void Click(By element) {
+		Actions ClickAction = new Actions(InitiateDriver.driver);
+		ClickAction.moveToElement(InitiateDriver.driver.findElement(element));
+		
+	}
+	
+	public static void Loader(By by)
+	{
+	    WebDriverWait wait = new WebDriverWait(InitiateDriver.driver, 5);
+	    while (true)
+	    {
+	        try
+	        {
+	            wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+	            wait.until(ExpectedConditions.invisibilityOfElementLocated(by));
+	           
+	        }
+	        catch (Exception e)
+	        {
+	            break;
+	        }
+	    }
+	}
+	
 
 }
