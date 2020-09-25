@@ -20,7 +20,7 @@ Feature: Feature to check book appointment functionaity
     Then Check wheather the appointment date-"25/09/2020" is a past date or not,Based on zoneid "Asia/Kolkata"
     And Select the appointment date "25/9/2020"
     Then Check the slot time is 2hrs>current time,if the appointment booked on today date and check the slot availability
-    And Select the slot "10:30 PM"
+    And Select the slot "10:00 PM"
     Then Check the paynow option is enabled or not
     Then Check the fee details based on country
       | Domestic Consulting Fee | Overseas Consulting Fee |

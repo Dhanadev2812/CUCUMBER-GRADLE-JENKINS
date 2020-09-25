@@ -439,6 +439,7 @@ public class Patient_BookAppointmentPageUtils extends CustomDriver {
 		
 		String[] expectedMonth_F2 = givenDate.split("/"); 	
 		expectedMonth_F02 =Integer.valueOf(expectedMonth_F2[1].replaceAll(" ", ""));
+
 	}
 	
 	public void selectDatefromDatepicker() {
@@ -542,7 +543,7 @@ public class Patient_BookAppointmentPageUtils extends CustomDriver {
 							assert false;
 						}
 						else if(compareTime>0) {
-							System.out.println("slot time is greater than the current time");
+							//System.out.println("slot time is greater than the current time");
 							assert true;
 						}
 						else if(compareTime==0) {

@@ -1,11 +1,11 @@
-$(document).ready(function() {var formatter = new CucumberHTML.DOMFormatter($('.cucumber-report'));formatter.uri("file:src/test/resources/clinang_Feature_Patient/Patient_bookappointment.feature");
+$(document).ready(function() {var formatter = new CucumberHTML.DOMFormatter($('.cucumber-report'));formatter.uri("file:src/test/resources/clinang_Feature_Patient/Patient_appointment.feature");
 formatter.feature({
-  "name": "Feature to check book appointment functionaity",
+  "name": "Feature to appointment functionaity",
   "description": "",
   "keyword": "Feature",
   "tags": [
     {
-      "name": "@Bookappointment"
+      "name": "@Appointment"
     }
   ]
 });
@@ -61,167 +61,65 @@ formatter.match({
 formatter.result({
   "status": "passed"
 });
-formatter.step({
-  "name": "Get the patient country",
-  "keyword": "And "
-});
-formatter.match({
-  "location": "clinang.stepDefs.Patient_BookAppointmentStepDefs.get_country()"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "Go to book appointment screen",
-  "keyword": "And "
-});
-formatter.match({
-  "location": "clinang.stepDefs.Patient_BookAppointmentStepDefs.Goto_bookAppointment()"
-});
-formatter.result({
-  "status": "passed"
-});
 formatter.scenario({
-  "name": "Create new appointment-Today",
+  "name": "Add medical report",
   "description": "",
   "keyword": "Scenario",
   "tags": [
     {
-      "name": "@Bookappointment"
+      "name": "@Appointment"
     },
     {
-      "name": "@BookAppointment-Create"
+      "name": "@Add_medicalreport"
     }
   ]
 });
 formatter.step({
-  "name": "Enter the appointment details",
-  "rows": [
-    {},
-    {}
-  ],
+  "name": "Go to appointment module",
+  "keyword": "And "
+});
+formatter.match({
+  "location": "clinang.stepDefs.Patient_AppointmentStepDefs.goTo_appointment()"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "Move to appointment list page based on appointment date \"25/9/2020\" and zoneid \"Asia/Kolkata\"",
+  "keyword": "And "
+});
+formatter.match({
+  "location": "clinang.stepDefs.Patient_AppointmentStepDefs.compare__date(java.lang.String,java.lang.String)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "Find the appointment using the appointment ID \"203\"",
+  "keyword": "And "
+});
+formatter.match({
+  "location": "clinang.stepDefs.Patient_AppointmentStepDefs.find_appointmentID(java.lang.String)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "Reschedule the appointment to \"26/9/2020\" \"11:00 AM\" with complaint \"general appointment\"",
   "keyword": "When "
 });
 formatter.match({
-  "location": "clinang.stepDefs.Patient_BookAppointmentStepDefs.Enter_appointment_details(io.cucumber.datatable.DataTable)"
+  "location": "clinang.stepDefs.Patient_AppointmentStepDefs.rescheduleAppointment(java.lang.String,java.lang.String,java.lang.String)"
 });
 formatter.result({
   "status": "passed"
 });
 formatter.step({
-  "name": "Check wheather the appointment date-\"25/09/2020\" is a past date or not,Based on zoneid \"Asia/Kolkata\"",
+  "name": "Check validation message",
   "keyword": "Then "
 });
 formatter.match({
-  "location": "clinang.stepDefs.Patient_BookAppointmentStepDefs.validation_appointmentDate(java.lang.String,java.lang.String)"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "Select the appointment date \"25/9/2020\"",
-  "keyword": "And "
-});
-formatter.match({
-  "location": "clinang.stepDefs.Patient_BookAppointmentStepDefs.select_appointment_Date(java.lang.String)"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "Check the slot time is 2hrs\u003ecurrent time,if the appointment booked on today date and check the slot availability",
-  "keyword": "Then "
-});
-formatter.match({
-  "location": "clinang.stepDefs.Patient_BookAppointmentStepDefs.compare_slot()"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "Select the slot \"10:30 PM\"",
-  "keyword": "And "
-});
-formatter.match({
-  "location": "clinang.stepDefs.Patient_BookAppointmentStepDefs.select_slot(java.lang.String)"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "Check the paynow option is enabled or not",
-  "keyword": "Then "
-});
-formatter.match({
-  "location": "clinang.stepDefs.Patient_BookAppointmentStepDefs.check_payNow_enable()"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "Check the fee details based on country",
-  "rows": [
-    {},
-    {}
-  ],
-  "keyword": "Then "
-});
-formatter.match({
-  "location": "clinang.stepDefs.Patient_BookAppointmentStepDefs.check_patient_currentCountry(io.cucumber.datatable.DataTable)"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "Click on paynow",
-  "keyword": "And "
-});
-formatter.match({
-  "location": "clinang.stepDefs.Patient_BookAppointmentStepDefs.click_on_payNow()"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "Done a payment process via \"netbanking\"",
-  "rows": [
-    {},
-    {}
-  ],
-  "keyword": "Then "
-});
-formatter.match({
-  "location": "clinang.stepDefs.Patient_BookAppointmentStepDefs.payment_process(java.lang.String,io.cucumber.datatable.DataTable)"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "validate the appointment details",
-  "keyword": "Then "
-});
-formatter.match({
-  "location": "clinang.stepDefs.Patient_BookAppointmentStepDefs.validate_appointment_details()"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "Check payment details from payment module",
-  "keyword": "Then "
-});
-formatter.match({
-  "location": "clinang.stepDefs.Patient_BookAppointmentStepDefs.check_payment_details()"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "Check the appointment count from dashboard module",
-  "keyword": "Then "
-});
-formatter.match({
-  "location": "clinang.stepDefs.Patient_BookAppointmentStepDefs.check_dashboard_appointmentCount()"
+  "location": "clinang.stepDefs.Patient_AppointmentStepDefs.check_validation_message()"
 });
 formatter.result({
   "status": "passed"

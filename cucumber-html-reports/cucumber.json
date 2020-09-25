@@ -11,7 +11,7 @@
         "steps": [
           {
             "result": {
-              "duration": 16263000000,
+              "duration": 18464000000,
               "status": "passed"
             },
             "line": 5,
@@ -23,7 +23,7 @@
           },
           {
             "result": {
-              "duration": 573000000,
+              "duration": 843000000,
               "status": "passed"
             },
             "line": 6,
@@ -51,7 +51,7 @@
           },
           {
             "result": {
-              "duration": 250000000,
+              "duration": 230000000,
               "status": "passed"
             },
             "line": 9,
@@ -63,7 +63,7 @@
           },
           {
             "result": {
-              "duration": 1825000000,
+              "duration": 3236000000,
               "status": "passed"
             },
             "line": 10,
@@ -72,35 +72,11 @@
               "location": "clinang.stepDefs.Patient_LoginStepDefs.check_i_am_logged_in()"
             },
             "keyword": "Then "
-          },
-          {
-            "result": {
-              "duration": 6239000000,
-              "status": "passed"
-            },
-            "line": 11,
-            "name": "Get the patient country",
-            "match": {
-              "location": "clinang.stepDefs.Patient_BookAppointmentStepDefs.get_country()"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 297000000,
-              "status": "passed"
-            },
-            "line": 12,
-            "name": "Go to book appointment screen",
-            "match": {
-              "location": "clinang.stepDefs.Patient_BookAppointmentStepDefs.Goto_bookAppointment()"
-            },
-            "keyword": "And "
           }
         ]
       },
       {
-        "start_timestamp": "2020-09-25T04:52:00.503Z",
+        "start_timestamp": "2020-09-25T12:24:43.280Z",
         "before": [
           {
             "result": {
@@ -112,10 +88,10 @@
             }
           }
         ],
-        "line": 16,
-        "name": "Create new appointment-Today",
+        "line": 13,
+        "name": "Add medical report",
         "description": "",
-        "id": "feature-to-check-book-appointment-functionaity;create-new-appointment-today",
+        "id": "feature-to-appointment-functionaity;add-medical-report",
         "after": [
           {
             "result": {
@@ -139,251 +115,113 @@
         "steps": [
           {
             "result": {
-              "duration": 14916000000,
+              "duration": 371000000,
               "status": "passed"
             },
-            "line": 17,
-            "name": "Enter the appointment details",
+            "line": 14,
+            "name": "Go to appointment module",
             "match": {
-              "location": "clinang.stepDefs.Patient_BookAppointmentStepDefs.Enter_appointment_details(io.cucumber.datatable.DataTable)"
+              "location": "clinang.stepDefs.Patient_AppointmentStepDefs.goTo_appointment()"
             },
-            "rows": [
-              {
-                "cells": [
-                  "mobile",
-                  "appointment_type",
-                  "speciality",
-                  "doctor",
-                  "chief_complaint"
-                ]
-              },
-              {
-                "cells": [
-                  "9090909091",
-                  "Online Consultation",
-                  "Physiotherapist",
-                  "Dr. Eritriya Druid",
-                  "General appointment"
-                ]
-              }
-            ],
-            "keyword": "When "
+            "keyword": "And "
           },
           {
             "result": {
-              "duration": 10000000,
+              "duration": 2828000000,
               "status": "passed"
             },
-            "line": 20,
-            "name": "Check wheather the appointment date-\"25/09/2020\" is a past date or not,Based on zoneid \"Asia/Kolkata\"",
-            "match": {
-              "arguments": [
-                {
-                  "val": "25/09/2020",
-                  "offset": 37
-                },
-                {
-                  "val": "Asia/Kolkata",
-                  "offset": 88
-                }
-              ],
-              "location": "clinang.stepDefs.Patient_BookAppointmentStepDefs.validation_appointmentDate(java.lang.String,java.lang.String)"
-            },
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "duration": 1030000000,
-              "status": "passed"
-            },
-            "line": 21,
-            "name": "Select the appointment date \"25/9/2020\"",
+            "line": 15,
+            "name": "Move to appointment list page based on appointment date \"25/9/2020\" and zoneid \"Asia/Kolkata\"",
             "match": {
               "arguments": [
                 {
                   "val": "25/9/2020",
-                  "offset": 29
+                  "offset": 57
+                },
+                {
+                  "val": "Asia/Kolkata",
+                  "offset": 80
                 }
               ],
-              "location": "clinang.stepDefs.Patient_BookAppointmentStepDefs.select_appointment_Date(java.lang.String)"
+              "location": "clinang.stepDefs.Patient_AppointmentStepDefs.compare__date(java.lang.String,java.lang.String)"
             },
             "keyword": "And "
           },
           {
             "result": {
-              "duration": 30403000000,
+              "duration": 11390000000,
               "status": "passed"
             },
-            "line": 22,
-            "name": "Check the slot time is 2hrs\u003ecurrent time,if the appointment booked on today date and check the slot availability",
-            "match": {
-              "location": "clinang.stepDefs.Patient_BookAppointmentStepDefs.compare_slot()"
-            },
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "duration": 124000000,
-              "status": "passed"
-            },
-            "line": 23,
-            "name": "Select the slot \"10:30 PM\"",
+            "line": 16,
+            "name": "Find the appointment using the appointment ID \"203\"",
             "match": {
               "arguments": [
                 {
-                  "val": "10:30 PM",
-                  "offset": 17
+                  "val": "203",
+                  "offset": 47
                 }
               ],
-              "location": "clinang.stepDefs.Patient_BookAppointmentStepDefs.select_slot(java.lang.String)"
+              "location": "clinang.stepDefs.Patient_AppointmentStepDefs.find_appointmentID(java.lang.String)"
             },
             "keyword": "And "
           },
           {
             "result": {
-              "duration": 861000000,
+              "duration": 10336000000,
               "status": "passed"
             },
-            "line": 24,
-            "name": "Check the paynow option is enabled or not",
-            "match": {
-              "location": "clinang.stepDefs.Patient_BookAppointmentStepDefs.check_payNow_enable()"
-            },
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "duration": 44000000,
-              "status": "passed"
-            },
-            "line": 25,
-            "name": "Check the fee details based on country",
-            "match": {
-              "location": "clinang.stepDefs.Patient_BookAppointmentStepDefs.check_patient_currentCountry(io.cucumber.datatable.DataTable)"
-            },
-            "rows": [
-              {
-                "cells": [
-                  "Domestic Consulting Fee",
-                  "Overseas Consulting Fee"
-                ]
-              },
-              {
-                "cells": [
-                  "2000",
-                  "4000"
-                ]
-              }
-            ],
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "duration": 131000000,
-              "status": "passed"
-            },
-            "line": 28,
-            "name": "Click on paynow",
-            "match": {
-              "location": "clinang.stepDefs.Patient_BookAppointmentStepDefs.click_on_payNow()"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 39642000000,
-              "status": "passed"
-            },
-            "line": 29,
-            "name": "Done a payment process via \"netbanking\"",
+            "line": 17,
+            "name": "Reschedule the appointment to \"26/9/2020\" \"11:00 AM\" with complaint \"general appointment\"",
             "match": {
               "arguments": [
                 {
-                  "val": "netbanking",
-                  "offset": 28
+                  "val": "26/9/2020",
+                  "offset": 31
+                },
+                {
+                  "val": "11:00 AM",
+                  "offset": 43
+                },
+                {
+                  "val": "general appointment",
+                  "offset": 69
                 }
               ],
-              "location": "clinang.stepDefs.Patient_BookAppointmentStepDefs.payment_process(java.lang.String,io.cucumber.datatable.DataTable)"
+              "location": "clinang.stepDefs.Patient_AppointmentStepDefs.rescheduleAppointment(java.lang.String,java.lang.String,java.lang.String)"
             },
-            "rows": [
-              {
-                "cells": [
-                  "card_number",
-                  "card_expiry-MM/YY",
-                  "card_holder",
-                  "card_cvv",
-                  "netbanking_bankname",
-                  "bank_type"
-                ]
-              },
-              {
-                "cells": [
-                  "4111111111111111",
-                  "1228",
-                  "Will",
-                  "123",
-                  "SBI",
-                  "Retail"
-                ]
-              }
-            ],
-            "keyword": "Then "
+            "keyword": "When "
           },
           {
             "result": {
-              "duration": 8853000000,
+              "duration": 115000000,
               "status": "passed"
             },
-            "line": 32,
-            "name": "validate the appointment details",
+            "line": 18,
+            "name": "Check validation message",
             "match": {
-              "location": "clinang.stepDefs.Patient_BookAppointmentStepDefs.validate_appointment_details()"
-            },
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "duration": 24214000000,
-              "status": "passed"
-            },
-            "line": 33,
-            "name": "Check payment details from payment module",
-            "match": {
-              "location": "clinang.stepDefs.Patient_BookAppointmentStepDefs.check_payment_details()"
-            },
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "duration": 5632000000,
-              "status": "passed"
-            },
-            "line": 34,
-            "name": "Check the appointment count from dashboard module",
-            "match": {
-              "location": "clinang.stepDefs.Patient_BookAppointmentStepDefs.check_dashboard_appointmentCount()"
+              "location": "clinang.stepDefs.Patient_AppointmentStepDefs.check_validation_message()"
             },
             "keyword": "Then "
           }
         ],
         "tags": [
           {
-            "name": "@Bookappointment"
+            "name": "@Appointment"
           },
           {
-            "name": "@BookAppointment-Create"
+            "name": "@Add_medicalreport"
           }
         ]
       }
     ],
-    "name": "Feature to check book appointment functionaity",
+    "name": "Feature to appointment functionaity",
     "description": "",
-    "id": "feature-to-check-book-appointment-functionaity",
+    "id": "feature-to-appointment-functionaity",
     "keyword": "Feature",
-    "uri": "file:src/test/resources/clinang_Feature_Patient/Patient_bookappointment.feature",
+    "uri": "file:src/test/resources/clinang_Feature_Patient/Patient_appointment.feature",
     "tags": [
       {
-        "name": "@Bookappointment",
+        "name": "@Appointment",
         "type": "Tag",
         "location": {
           "line": 1,
