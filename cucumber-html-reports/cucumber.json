@@ -11,7 +11,7 @@
         "steps": [
           {
             "result": {
-              "duration": 42747000000,
+              "duration": 23626000000,
               "status": "passed"
             },
             "line": 5,
@@ -23,7 +23,7 @@
           },
           {
             "result": {
-              "duration": 575000000,
+              "duration": 686000000,
               "status": "passed"
             },
             "line": 6,
@@ -51,7 +51,7 @@
           },
           {
             "result": {
-              "duration": 232000000,
+              "duration": 252000000,
               "status": "passed"
             },
             "line": 9,
@@ -63,7 +63,7 @@
           },
           {
             "result": {
-              "duration": 2365000000,
+              "duration": 1938000000,
               "status": "passed"
             },
             "line": 10,
@@ -76,7 +76,7 @@
         ]
       },
       {
-        "start_timestamp": "2020-09-28T11:18:32.626Z",
+        "start_timestamp": "2020-09-29T12:20:10.778Z",
         "before": [
           {
             "result": {
@@ -88,10 +88,10 @@
             }
           }
         ],
-        "line": 13,
-        "name": "Reschedule the appointment",
+        "line": 37,
+        "name": "Add medical report",
         "description": "",
-        "id": "feature-to-appointment-functionaity;reschedule-the-appointment",
+        "id": "feature-to-appointment-functionaity;add-medical-report",
         "after": [
           {
             "result": {
@@ -115,10 +115,10 @@
         "steps": [
           {
             "result": {
-              "duration": 2317000000,
+              "duration": 7533000000,
               "status": "passed"
             },
-            "line": 14,
+            "line": 38,
             "name": "Go to appointment module",
             "match": {
               "location": "clinang.stepDefs.Patient_AppointmentStepDefs.goTo_appointment()"
@@ -127,15 +127,15 @@
           },
           {
             "result": {
-              "duration": 2191000000,
+              "duration": 5331000000,
               "status": "passed"
             },
-            "line": 15,
-            "name": "Move to appointment list page based on date \"29/9/2020\" and zoneid \"Asia/Kolkata\"",
+            "line": 39,
+            "name": "Move to appointment list page based on date \"19/9/2020\" and zoneid \"Asia/Kolkata\"",
             "match": {
               "arguments": [
                 {
-                  "val": "29/9/2020",
+                  "val": "19/9/2020",
                   "offset": 45
                 },
                 {
@@ -145,19 +145,19 @@
               ],
               "location": "clinang.stepDefs.Patient_AppointmentStepDefs.compare__date(java.lang.String,java.lang.String)"
             },
-            "keyword": "And "
+            "keyword": "When "
           },
           {
             "result": {
-              "duration": 10623000000,
+              "duration": 11674000000,
               "status": "passed"
             },
-            "line": 16,
-            "name": "Find the appointment using the appointment ID \"232\"",
+            "line": 40,
+            "name": "Find the appointment using the appointment ID \"100\"",
             "match": {
               "arguments": [
                 {
-                  "val": "232",
+                  "val": "100",
                   "offset": 47
                 }
               ],
@@ -167,151 +167,29 @@
           },
           {
             "result": {
-              "duration": 4000000,
+              "duration": 18598000000,
               "status": "passed"
             },
-            "line": 17,
-            "name": "Check wheather the appointment date-\"29/9/2020\" is a past date or not,Based on zoneid \"Asia/Kolkata\"",
+            "line": 41,
+            "name": "Add medical report",
             "match": {
-              "arguments": [
-                {
-                  "val": "29/9/2020",
-                  "offset": 37
-                },
-                {
-                  "val": "Asia/Kolkata",
-                  "offset": 87
-                }
-              ],
-              "location": "clinang.stepDefs.Patient_BookAppointmentStepDefs.validation_appointmentDate(java.lang.String,java.lang.String)"
+              "location": "clinang.stepDefs.Patient_AppointmentStepDefs.add_medicalReport(io.cucumber.datatable.DataTable)"
             },
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "duration": 2000000,
-              "status": "passed"
-            },
-            "line": 18,
-            "name": "Check wheather the reschedule date-\"30/9/2020\" is a past date or not,Based on zoneid \"Asia/Kolkata\"",
-            "match": {
-              "arguments": [
-                {
-                  "val": "30/9/2020",
-                  "offset": 36
-                },
-                {
-                  "val": "Asia/Kolkata",
-                  "offset": 86
-                }
-              ],
-              "location": "clinang.stepDefs.Patient_AppointmentStepDefs.check_reschedule_date(java.lang.String,java.lang.String)"
-            },
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "duration": 1229000000,
-              "status": "passed"
-            },
-            "line": 19,
-            "name": "Reschedule the appointment to \"30/9/2020\"",
-            "match": {
-              "arguments": [
-                {
-                  "val": "30/9/2020",
-                  "offset": 31
-                }
-              ],
-              "location": "clinang.stepDefs.Patient_AppointmentStepDefs.rescheduleAppointment(java.lang.String)"
-            },
-            "keyword": "When "
-          },
-          {
-            "result": {
-              "duration": 30133000000,
-              "status": "passed"
-            },
-            "line": 20,
-            "name": "Check the slot time is 2hrs\u003ecurrent time,if the reschedule date \"30/9/2020\" is a current date also check the slot availability",
-            "match": {
-              "arguments": [
-                {
-                  "val": "30/9/2020",
-                  "offset": 65
-                }
-              ],
-              "location": "clinang.stepDefs.Patient_AppointmentStepDefs.Check_slot(java.lang.String)"
-            },
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "duration": 7778000000,
-              "status": "passed"
-            },
-            "line": 21,
-            "name": "Select slot  \"8:30 PM\" with complaint \"general appointment\"",
-            "match": {
-              "arguments": [
-                {
-                  "val": "8:30 PM",
-                  "offset": 14
-                },
-                {
-                  "val": "general appointment",
-                  "offset": 39
-                }
-              ],
-              "location": "clinang.stepDefs.Patient_AppointmentStepDefs.Select_slot_complaint(java.lang.String,java.lang.String)"
-            },
-            "keyword": "When "
-          },
-          {
-            "result": {
-              "duration": 1828000000,
-              "status": "passed"
-            },
-            "line": 22,
-            "name": "Check validation message",
-            "match": {
-              "location": "clinang.stepDefs.Patient_AppointmentStepDefs.check_validation_message()"
-            },
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "duration": 2000000,
-              "status": "passed"
-            },
-            "line": 23,
-            "name": "Validate rescheduled appointment details",
-            "match": {
-              "location": "clinang.stepDefs.Patient_AppointmentStepDefs.Validate_rescheduleDetails()"
-            },
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "duration": 5869000000,
-              "status": "passed"
-            },
-            "line": 24,
-            "name": "Check the appointment count based on reschedule date \"30/9/2020\" and previous appointment date \"29/9/2020\"",
-            "match": {
-              "arguments": [
-                {
-                  "val": "30/9/2020",
-                  "offset": 54
-                },
-                {
-                  "val": "29/9/2020",
-                  "offset": 96
-                }
-              ],
-              "location": "clinang.stepDefs.Patient_AppointmentStepDefs.check_appointmentCount(java.lang.String,java.lang.String)"
-            },
-            "keyword": "Then "
+            "rows": [
+              {
+                "cells": [
+                  "D:\\Testing workspace\\ClinaNG\\Files\\Patient_medicalReport\\Will Amster\\PDF.pdf",
+                  "Pdf-Medical report"
+                ]
+              },
+              {
+                "cells": [
+                  "D:\\Testing workspace\\ClinaNG\\Files\\Patient_medicalReport\\Will Amster\\JPG-1MB.jpg",
+                  "Scean image"
+                ]
+              }
+            ],
+            "keyword": "And "
           }
         ],
         "tags": [
@@ -319,7 +197,7 @@
             "name": "@Appointment"
           },
           {
-            "name": "@Reschedule"
+            "name": "@Add-Medicalreport"
           }
         ]
       }

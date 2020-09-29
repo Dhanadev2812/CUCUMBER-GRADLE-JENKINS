@@ -13,7 +13,7 @@ Feature: Feature to done dashboard functionaity
 #Ref Patient-Inputs text file before edit
   @Editprofile-valid
   Scenario: Update profile with valid details
-    And Upload the image from "D://Testing workspace//ClinaNG//Profile_img//women.jpg"
+    And Upload the image from "D://Testing workspace//ClinaNG//Files//Profile_img//women.jpg"
     When Enter mobile_number,address,street,city,state,country and pincode
       | mobile_number | address                   | street          | city    | state     | country | pincode |
       |    0909090909 | 191,Crown city appartment | Aruthnar street | Chennai | Tamilnadu | USA     |  666777 |

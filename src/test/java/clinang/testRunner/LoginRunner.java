@@ -11,7 +11,7 @@ import io.cucumber.junit.CucumberOptions;
 @CucumberOptions(plugin = {"pretty","html: cucumber-html-reports","json: cucumber-html-reports/cucumber.json" },
 features= {"src/test/resources/clinang_Feature_Patient/Patient_appointment.feature"},
 glue= {"clinang.webDriverUtils","clinang.stepDefs"},
-tags = {"@Reschedule"},
+tags = {"@Add-Medicalreport"},
 monochrome = true,
 strict=true)
 public class LoginRunner {

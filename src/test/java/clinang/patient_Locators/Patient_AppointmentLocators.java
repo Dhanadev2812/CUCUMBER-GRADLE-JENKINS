@@ -19,7 +19,7 @@ public class Patient_AppointmentLocators{
 	public By messageBox = By.xpath("//div[@class='msgtext']");
 	public By reschedule_get_dateOfappointment = By.xpath("//input[@formcontrolname='dateofappointment']");
 	public By slotList_active_check = By.xpath("//div[@class='form-group']//button[@type='button']");
-	public By reschedule_closeAlert =By.xpath("//i[@class='mdi mdi-window-close mdi-18px']");
+	public By closeAlertbox =By.xpath("//i[@class='mdi mdi-window-close mdi-18px']");
 	public By appointmentView_getAppointmentID = By.xpath("//table/div/div[1]/tbody/tr[1]/td");
 	public By appointmentView_getSpeciality = By.xpath("//table/div/div[1]/tbody/tr[2]/td");
 	public By appointmentView_getClinic =By.xpath("//table/div/div[1]/tbody/tr[3]/td");
@@ -27,5 +27,11 @@ public class Patient_AppointmentLocators{
 	public By appointmentView_getType = By.xpath("//table/div/div[2]/tbody/tr[2]/td");
 	public By appointmentView_getDoctor = By.xpath("//table/div/div[2]/tbody/tr[3]/td");
 	public By appointmentView_comment =By.xpath("//span[@class='ng-star-inserted']//following-sibling::p");
+	public By cancelConfirm_alertBox = By.xpath("//div[@class='cancelappt-modal']");
+	public By cancelButton = By.xpath("//button[@class='cancel-button mat-raised-button ng-star-inserted']");
+	public By cancelConfirm_button =By.xpath("//*[(normalize-space(text())='Confirm')]");
+	public By upload_medicalReport = By.id("file");
+	public By medicalReport_description = By.xpath("//textarea[@formcontrolname='description']");
+	public By submit_medicalReport = By.xpath("//*[(normalize-space(text())='Submit')]");
 	
 }

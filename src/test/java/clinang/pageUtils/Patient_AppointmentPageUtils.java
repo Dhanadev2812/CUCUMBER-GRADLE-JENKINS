@@ -1,5 +1,7 @@
 package clinang.pageUtils;
 
+import static org.junit.Assert.assertTrue;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -11,6 +13,7 @@ import org.openqa.selenium.WebElement;
 
 import clinang.patient_Locators.Patient_AppointmentLocators;
 import clinang.webDriverUtils.CustomDriver;
+import io.cucumber.datatable.DataTable;
 
 public class Patient_AppointmentPageUtils extends CustomDriver{
 	
@@ -125,12 +128,12 @@ public class Patient_AppointmentPageUtils extends CustomDriver{
 		return findElement_list(appointmentLocators.slotList_active_check);
 	}
 	
-	private WebElement reschedule_closeAlert() {
-		return findElement(appointmentLocators.reschedule_closeAlert);
+	private WebElement closeAlertbox() {
+		return findElement(appointmentLocators.closeAlertbox);
 	}
 	
-	public void click_reschedule_closeAlert() {
-		reschedule_closeAlert().click();
+	public void click_closeOption() {
+		closeAlertbox().click();
 	}
 	
 	private WebElement appointmentView_getAppointmentID() {
@@ -161,6 +164,47 @@ public class Patient_AppointmentPageUtils extends CustomDriver{
 		return findElement(appointmentLocators.appointmentView_comment);
 	}
 	
+	public WebElement wait_cancelConfirm_alertBox() {
+		return waitForElementDisplayed(appointmentLocators.cancelConfirm_alertBox);
+	}
+	private WebElement cancelButton() {
+		return findElement(appointmentLocators.cancelButton);
+	}
+	
+	public void click_cancelButton() {
+		cancelButton().click();
+	}
+	private WebElement confirmCancel_button() {
+		return findElement(appointmentLocators.cancelConfirm_button);
+	}
+	public void click_confirmCancel( ) {
+		confirmCancel_button().click();
+	}
+	
+	private WebElement upload_medicalReport() {
+		return findElement(appointmentLocators.upload_medicalReport);
+	}
+	private WebElement medicalReport_description() {
+		return findElement(appointmentLocators.medicalReport_description);		
+	}
+	private WebElement submit_medicalReport() {
+		return findElement(appointmentLocators.submit_medicalReport);
+	}
+	
+	public void addFile_medicalRecord(DataTable medicalReport) {
+		List<List<String>> data = medicalReport.asLists(String.class);
+		int fileCount = data.size();
+		for (int i = 0; i<fileCount; i++) {
+			String File = data.get(i).get(0);
+			String description = data.get(i).get(1);
+			upload_medicalReport().sendKeys(File);		
+			medicalReport_description().sendKeys(description);
+			submit_medicalReport().click();
+			wait_pageLoadercomplate();
+			assertTrue(get_message().contains("Medical record uploaded successfully"));
+			click_closeOption();
+		}
+	}
 	public void findAppointment(String appointmentID ) {
 		
 		wait_pageLoadercomplate();

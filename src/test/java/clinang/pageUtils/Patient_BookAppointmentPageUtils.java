@@ -497,20 +497,29 @@ public class Patient_BookAppointmentPageUtils extends CustomDriver {
 	public void compare_date() {
 		
 		if(expectedYear<current_year) {
-			System.out.println("Year<current year");
+			System.out.println("PAST YEAR");
 			assert false;	
 		}
-		else {
+		else if(expectedYear>current_year) {
+			assert true;	
+		}
+		else if(expectedYear.equals(current_year)) {
 			if(expectedMonth_F02<current_month) {
-				System.out.println("Month<current month");
+				System.out.println("PAST MONTH");
 				assert false;
 			}
-			else {
+			else if(expectedMonth_F02>current_month) {
+				assert true;
+			}
+			else if(expectedMonth_F02.equals(current_month)) {
 				if(expectedDate<current_date) {
-					System.out.println("Date<Current Date");
-					assert false;	
+					assert false;
+					System.out.println("PAST DATE");
 				}
-				else {
+				else if(expectedDate>current_date) {
+					assert true;
+				}
+				else if(expectedDate==current_date) {
 					assert true;
 				}
 			}

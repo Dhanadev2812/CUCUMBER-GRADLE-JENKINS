@@ -62,7 +62,7 @@ formatter.result({
   "status": "passed"
 });
 formatter.scenario({
-  "name": "Reschedule the appointment",
+  "name": "Add medical report",
   "description": "",
   "keyword": "Scenario",
   "tags": [
@@ -70,7 +70,7 @@ formatter.scenario({
       "name": "@Appointment"
     },
     {
-      "name": "@Reschedule"
+      "name": "@Add-Medicalreport"
     }
   ]
 });
@@ -85,8 +85,8 @@ formatter.result({
   "status": "passed"
 });
 formatter.step({
-  "name": "Move to appointment list page based on date \"29/9/2020\" and zoneid \"Asia/Kolkata\"",
-  "keyword": "And "
+  "name": "Move to appointment list page based on date \"19/9/2020\" and zoneid \"Asia/Kolkata\"",
+  "keyword": "When "
 });
 formatter.match({
   "location": "clinang.stepDefs.Patient_AppointmentStepDefs.compare__date(java.lang.String,java.lang.String)"
@@ -95,7 +95,7 @@ formatter.result({
   "status": "passed"
 });
 formatter.step({
-  "name": "Find the appointment using the appointment ID \"232\"",
+  "name": "Find the appointment using the appointment ID \"100\"",
   "keyword": "And "
 });
 formatter.match({
@@ -105,81 +105,15 @@ formatter.result({
   "status": "passed"
 });
 formatter.step({
-  "name": "Check wheather the appointment date-\"29/9/2020\" is a past date or not,Based on zoneid \"Asia/Kolkata\"",
-  "keyword": "Then "
+  "name": "Add medical report",
+  "rows": [
+    {},
+    {}
+  ],
+  "keyword": "And "
 });
 formatter.match({
-  "location": "clinang.stepDefs.Patient_BookAppointmentStepDefs.validation_appointmentDate(java.lang.String,java.lang.String)"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "Check wheather the reschedule date-\"30/9/2020\" is a past date or not,Based on zoneid \"Asia/Kolkata\"",
-  "keyword": "Then "
-});
-formatter.match({
-  "location": "clinang.stepDefs.Patient_AppointmentStepDefs.check_reschedule_date(java.lang.String,java.lang.String)"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "Reschedule the appointment to \"30/9/2020\"",
-  "keyword": "When "
-});
-formatter.match({
-  "location": "clinang.stepDefs.Patient_AppointmentStepDefs.rescheduleAppointment(java.lang.String)"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "Check the slot time is 2hrs\u003ecurrent time,if the reschedule date \"30/9/2020\" is a current date also check the slot availability",
-  "keyword": "Then "
-});
-formatter.match({
-  "location": "clinang.stepDefs.Patient_AppointmentStepDefs.Check_slot(java.lang.String)"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "Select slot  \"8:30 PM\" with complaint \"general appointment\"",
-  "keyword": "When "
-});
-formatter.match({
-  "location": "clinang.stepDefs.Patient_AppointmentStepDefs.Select_slot_complaint(java.lang.String,java.lang.String)"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "Check validation message",
-  "keyword": "Then "
-});
-formatter.match({
-  "location": "clinang.stepDefs.Patient_AppointmentStepDefs.check_validation_message()"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "Validate rescheduled appointment details",
-  "keyword": "Then "
-});
-formatter.match({
-  "location": "clinang.stepDefs.Patient_AppointmentStepDefs.Validate_rescheduleDetails()"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "Check the appointment count based on reschedule date \"30/9/2020\" and previous appointment date \"29/9/2020\"",
-  "keyword": "Then "
-});
-formatter.match({
-  "location": "clinang.stepDefs.Patient_AppointmentStepDefs.check_appointmentCount(java.lang.String,java.lang.String)"
+  "location": "clinang.stepDefs.Patient_AppointmentStepDefs.add_medicalReport(io.cucumber.datatable.DataTable)"
 });
 formatter.result({
   "status": "passed"
