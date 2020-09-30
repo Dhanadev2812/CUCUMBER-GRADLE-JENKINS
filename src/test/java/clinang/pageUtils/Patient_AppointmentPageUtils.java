@@ -2,6 +2,7 @@ package clinang.pageUtils;
 
 import static org.junit.Assert.assertTrue;
 
+import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -190,20 +191,16 @@ public class Patient_AppointmentPageUtils extends CustomDriver{
 	private WebElement submit_medicalReport() {
 		return findElement(appointmentLocators.submit_medicalReport);
 	}
+	private WebElement get_medicalReport_reportName (int spanCount) {
+		return findElement( By.xpath("//span/span["+spanCount+"]/div/div/div[1]//child::div[2]/p"));
+	}
+	private WebElement get_medicalReport_reportDescription(int spanCount) {
+		return findElement( By.xpath("//span/span["+spanCount+"]/div/div/div[2]//child::p"));
+	}
 	
-	public void addFile_medicalRecord(DataTable medicalReport) {
-		List<List<String>> data = medicalReport.asLists(String.class);
-		int fileCount = data.size();
-		for (int i = 0; i<fileCount; i++) {
-			String File = data.get(i).get(0);
-			String description = data.get(i).get(1);
-			upload_medicalReport().sendKeys(File);		
-			medicalReport_description().sendKeys(description);
-			submit_medicalReport().click();
-			wait_pageLoadercomplate();
-			assertTrue(get_message().contains("Medical record uploaded successfully"));
-			click_closeOption();
-		}
+	private WebElement get_span_medicalReports() {
+		return findElement(appointmentLocators.get_medicalReports_spans);
+		
 	}
 	public void findAppointment(String appointmentID ) {
 		
@@ -277,5 +274,60 @@ public class Patient_AppointmentPageUtils extends CustomDriver{
 		
 		this.appointmentViewpage_getDetails = new String[] {appointmentID,speciality,clinic,type,doctor,appointmentDateTime,comment};
 		
+	}
+	
+	public void addFile_medicalRecord(DataTable medicalReport) {
+		List<List<String>> data = medicalReport.asLists(String.class);	
+		int fileCount = data.size();
+		for (int i = 0; i<fileCount; i++) {
+			String File_path = data.get(i).get(0);
+			String description = data.get(i).get(1);
+			File file = new File(File_path);
+			upload_medicalReport().sendKeys(file.getAbsolutePath());		
+			medicalReport_description().sendKeys(description);
+			submit_medicalReport().click();
+			wait_pageLoadercomplate();
+			assertTrue(get_message().contains("Medical record uploaded successfully"));
+			click_closeOption();
+		}
+	}
+	
+	public void validate_uploadedReport(DataTable uploaded_medicalReport) {	
+		wait_pageLoadercomplate();
+		List<List<String>> data = uploaded_medicalReport.asLists(String.class);
+		int numberOfChilds = Integer.parseInt(get_span_medicalReports().getAttribute("childElementCount"));   
+		int fileCount = data.size();
+		
+		for (int i = 0; i<fileCount; i++) {
+			String reportName = data.get(i).get(0);
+			String reportDescription = data.get(i).get(1);
+			
+			loop02:
+			for(int j=1;j<numberOfChilds+1;j++) {		
+				
+				if(reportName.replace(" ", "").equals(get_medicalReport_reportName(j).getText().replace(" ", ""))) {
+					if(reportDescription.replace(" ", "").equals(get_medicalReport_reportDescription(j).getText().replace(" ", ""))) {
+						assert true;
+						break loop02;
+					}
+				}	
+				if(j==numberOfChilds) {
+					if(reportName.replace(" ", "").equals(get_medicalReport_reportName(numberOfChilds).getText().replace(" ", ""))) {
+						if(reportDescription.replace(" ", "").equals(get_medicalReport_reportDescription(j).getText().replace(" ", ""))) {
+							assert true;
+							break loop02;
+						}
+						else {
+							System.out.println("Report Description"+" "+"for"+" "+reportName+" "+"is not available");
+							assert false;
+						}
+					}
+					else {
+						System.out.println("Report Name"+" "+reportName+" "+"is not available");
+						assert false;
+					}
+				}	
+			}				
+		}
 	}
 }

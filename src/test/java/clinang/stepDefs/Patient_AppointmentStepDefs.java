@@ -24,7 +24,7 @@ public class Patient_AppointmentStepDefs {
 	
 	@And("^Go to appointment module$")
 	public void goTo_appointment() throws InterruptedException {
-		dashboard.wait_profileView();
+		dashboard.fluentWait_profileMail();
 		dashboard.appointmentCount();
 		appointmentPageUtils.Click_appointmentModule();
 		appointmentPageUtils.wait_pageLoadercomplate();	
@@ -198,9 +198,14 @@ public class Patient_AppointmentStepDefs {
 		}
 	}
 	
-	@And("^Add medical report$")
+	@And("^Add medical report with description$")
 	public void add_medicalReport(DataTable medicalReport) {
 		appointmentPageUtils.addFile_medicalRecord(medicalReport);
+	}
+	
+	@Then("^Validate the uploaded medical reports$")
+	public void Validate_uploadedReport(DataTable uploaded_medicalReport) {
+		appointmentPageUtils.validate_uploadedReport(uploaded_medicalReport);
 	}
 	
 }

@@ -33,5 +33,6 @@ public class Patient_AppointmentLocators{
 	public By upload_medicalReport = By.id("file");
 	public By medicalReport_description = By.xpath("//textarea[@formcontrolname='description']");
 	public By submit_medicalReport = By.xpath("//*[(normalize-space(text())='Submit')]");
-	
+	public By get_medicalReports_spans = By.xpath("//div[@class='patient-uploads']//*[@class='ng-star-inserted']");
+
 }

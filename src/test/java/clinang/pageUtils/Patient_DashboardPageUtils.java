@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 
 import com.sun.xml.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
 
+import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -211,9 +212,10 @@ public class Patient_DashboardPageUtils extends CustomDriver{
 		 scrollTofindElement(profile_img());		
 	 }	
 	 	
-	public void upload_profileImg(String img_path) throws InterruptedException {	
+	public void upload_profileImg(String File_path) throws InterruptedException {	
 		Thread.sleep(2000);
-		profile_img().sendKeys(img_path);
+		File profileImage = new File(File_path);
+		profile_img().sendKeys(profileImage.getAbsolutePath());
 	}
 	
 	public WebElement profileEditform() {

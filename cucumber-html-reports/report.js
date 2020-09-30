@@ -95,7 +95,7 @@ formatter.result({
   "status": "passed"
 });
 formatter.step({
-  "name": "Find the appointment using the appointment ID \"100\"",
+  "name": "Find the appointment using the appointment ID \"103\"",
   "keyword": "And "
 });
 formatter.match({
@@ -105,7 +105,7 @@ formatter.result({
   "status": "passed"
 });
 formatter.step({
-  "name": "Add medical report",
+  "name": "Add medical report with description",
   "rows": [
     {},
     {}
@@ -117,6 +117,21 @@ formatter.match({
 });
 formatter.result({
   "status": "passed"
+});
+formatter.step({
+  "name": "Validate the uploaded medical reports",
+  "rows": [
+    {},
+    {}
+  ],
+  "keyword": "Then "
+});
+formatter.match({
+  "location": "clinang.stepDefs.Patient_AppointmentStepDefs.Validate_uploadedReport(io.cucumber.datatable.DataTable)"
+});
+formatter.result({
+  "error_message": "java.lang.AssertionError\r\n\tat clinang.pageUtils.Patient_AppointmentPageUtils.validate_uploadedReport(Patient_AppointmentPageUtils.java:327)\r\n\tat clinang.stepDefs.Patient_AppointmentStepDefs.Validate_uploadedReport(Patient_AppointmentStepDefs.java:208)\r\n\tat ✽.Validate the uploaded medical reports(file:///D:/Testing%20workspace/ClinaNG/src/test/resources/clinang_Feature_Patient/Patient_appointment.feature:44)\r\n",
+  "status": "failed"
 });
 formatter.after({
   "status": "passed"

@@ -11,7 +11,7 @@
         "steps": [
           {
             "result": {
-              "duration": 23626000000,
+              "duration": 21620000000,
               "status": "passed"
             },
             "line": 5,
@@ -23,7 +23,7 @@
           },
           {
             "result": {
-              "duration": 686000000,
+              "duration": 569000000,
               "status": "passed"
             },
             "line": 6,
@@ -51,7 +51,7 @@
           },
           {
             "result": {
-              "duration": 252000000,
+              "duration": 238000000,
               "status": "passed"
             },
             "line": 9,
@@ -63,7 +63,7 @@
           },
           {
             "result": {
-              "duration": 1938000000,
+              "duration": 2780000000,
               "status": "passed"
             },
             "line": 10,
@@ -76,7 +76,7 @@
         ]
       },
       {
-        "start_timestamp": "2020-09-29T12:20:10.778Z",
+        "start_timestamp": "2020-09-30T12:56:10.889Z",
         "before": [
           {
             "result": {
@@ -103,6 +103,7 @@
           },
           {
             "result": {
+              "duration": 1000000,
               "status": "passed"
             },
             "match": {
@@ -115,7 +116,7 @@
         "steps": [
           {
             "result": {
-              "duration": 7533000000,
+              "duration": 8467000000,
               "status": "passed"
             },
             "line": 38,
@@ -127,7 +128,7 @@
           },
           {
             "result": {
-              "duration": 5331000000,
+              "duration": 5251000000,
               "status": "passed"
             },
             "line": 39,
@@ -149,15 +150,15 @@
           },
           {
             "result": {
-              "duration": 11674000000,
+              "duration": 12612000000,
               "status": "passed"
             },
             "line": 40,
-            "name": "Find the appointment using the appointment ID \"100\"",
+            "name": "Find the appointment using the appointment ID \"103\"",
             "match": {
               "arguments": [
                 {
-                  "val": "100",
+                  "val": "103",
                   "offset": 47
                 }
               ],
@@ -167,29 +168,56 @@
           },
           {
             "result": {
-              "duration": 18598000000,
+              "duration": 14761000000,
               "status": "passed"
             },
             "line": 41,
-            "name": "Add medical report",
+            "name": "Add medical report with description",
             "match": {
               "location": "clinang.stepDefs.Patient_AppointmentStepDefs.add_medicalReport(io.cucumber.datatable.DataTable)"
             },
             "rows": [
               {
                 "cells": [
-                  "D:\\Testing workspace\\ClinaNG\\Files\\Patient_medicalReport\\Will Amster\\PDF.pdf",
+                  "src\\test\\resources\\Patient_TestData\\Will Amster\\Patient_medicalReport\\PDF.pdf",
                   "Pdf-Medical report"
                 ]
               },
               {
                 "cells": [
-                  "D:\\Testing workspace\\ClinaNG\\Files\\Patient_medicalReport\\Will Amster\\JPG-1MB.jpg",
+                  "src\\test\\resources\\Patient_TestData\\Will Amster\\Patient_medicalReport\\JPG-1MB.jpg",
                   "Scean image"
                 ]
               }
             ],
             "keyword": "And "
+          },
+          {
+            "result": {
+              "error_message": "java.lang.AssertionError\r\n\tat clinang.pageUtils.Patient_AppointmentPageUtils.validate_uploadedReport(Patient_AppointmentPageUtils.java:327)\r\n\tat clinang.stepDefs.Patient_AppointmentStepDefs.Validate_uploadedReport(Patient_AppointmentStepDefs.java:208)\r\n\tat ✽.Validate the uploaded medical reports(file:///D:/Testing%20workspace/ClinaNG/src/test/resources/clinang_Feature_Patient/Patient_appointment.feature:44)\r\n",
+              "duration": 7049000000,
+              "status": "failed"
+            },
+            "line": 44,
+            "name": "Validate the uploaded medical reports",
+            "match": {
+              "location": "clinang.stepDefs.Patient_AppointmentStepDefs.Validate_uploadedReport(io.cucumber.datatable.DataTable)"
+            },
+            "rows": [
+              {
+                "cells": [
+                  "PDF.pdf",
+                  "Pdf-Medical report"
+                ]
+              },
+              {
+                "cells": [
+                  "JPG-11MB.jpg",
+                  "Scean image"
+                ]
+              }
+            ],
+            "keyword": "Then "
           }
         ],
         "tags": [

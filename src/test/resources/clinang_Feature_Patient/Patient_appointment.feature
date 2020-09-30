@@ -37,7 +37,10 @@ Feature: Feature to appointment functionaity
   Scenario: Add medical report
     And Go to appointment module
     When Move to appointment list page based on date "19/9/2020" and zoneid "Asia/Kolkata"
-    And Find the appointment using the appointment ID "100"
-    And Add medical report
-      | D:\\Testing workspace\\ClinaNG\\Files\\Patient_medicalReport\\Will Amster\\PDF.pdf     | Pdf-Medical report |
-      | D:\\Testing workspace\\ClinaNG\\Files\\Patient_medicalReport\\Will Amster\\JPG-1MB.jpg | Scean image        |
+    And Find the appointment using the appointment ID "103"
+    And Add medical report with description
+      | src\\test\\resources\\Patient_TestData\\Will Amster\\Patient_medicalReport\\PDF.pdf     | Pdf-Medical report |
+      | src\\test\\resources\\Patient_TestData\\Will Amster\\Patient_medicalReport\\JPG-1MB.jpg | Scean image        |
+    Then Validate the uploaded medical reports
+      | PDF.pdf     | Pdf-Medical report |
+      | JPG-1MB.jpg | Scean image        |

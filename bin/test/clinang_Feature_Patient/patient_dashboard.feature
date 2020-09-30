@@ -5,7 +5,7 @@ Feature: Feature to done dashboard functionaity
     Given I open the app
     When Enter the email,password and clinic code
       | email            | password    | clinic_code |
-      | wilson@gmail.com | Password12# | LAT004      |
+      | will@patient.com | Password12# | LAT002      |
     And click on login button
     Then Check i am logged in
     And Click on edit profile option
@@ -13,7 +13,7 @@ Feature: Feature to done dashboard functionaity
 #Ref Patient-Inputs text file before edit
   @Editprofile-valid
   Scenario: Update profile with valid details
-    And Upload the image from "D://Testing workspace//ClinaNG//Files//Profile_img//women.jpg"
+    And Upload the image from "src\test\resources\Patient_TestData\Will Amster\Profile_img\men.jpg"
     When Enter mobile_number,address,street,city,state,country and pincode
       | mobile_number | address                   | street          | city    | state     | country | pincode |
       |    0909090909 | 191,Crown city appartment | Aruthnar street | Chennai | Tamilnadu | USA     |  666777 |
