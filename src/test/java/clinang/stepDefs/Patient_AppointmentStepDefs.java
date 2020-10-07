@@ -3,6 +3,7 @@ package clinang.stepDefs;
 import static org.junit.Assert.assertTrue;
 import java.text.ParseException;
 import java.util.Arrays;
+import java.awt.AWTException;
 import java.io.File;
 import java.net.URL;
 
@@ -208,4 +209,62 @@ public class Patient_AppointmentStepDefs {
 		appointmentPageUtils.validate_uploadedReport(uploaded_medicalReport);
 	}
 	
+	@When("^download all the uploaded report$")
+	public void download_all_report() throws InterruptedException {
+		appointmentPageUtils.wait_pageLoadercomplate();	
+		appointmentPageUtils.downloadAllreport();
+	}
+	
+	@When("^Download specific uploaded report based on report name and description$") 
+	public void download_specific_report(DataTable reportName) {
+		appointmentPageUtils.wait_pageLoadercomplate();
+		appointmentPageUtils.downloadSpecificreport(reportName);
+	}
+	@When("^delete all the uploaded report$") 
+	public void delete_all_medicalReport() throws InterruptedException {
+		appointmentPageUtils.wait_pageLoadercomplate();
+		appointmentPageUtils.deleteAllreport();
+	}
+	
+	@When("^Delete specific uploaded report based on report name and description$")
+	public void delete_specific_report(DataTable uploaded_medicalReport) {
+		appointmentPageUtils.deleteSpecificreport(uploaded_medicalReport);
+	}
+	
+	@Then("^Check wheather the appointment date-\"([^\"]*)\" is a upcoming date or not,Based on zoneid \"([^\"]*)\"$")
+	public void check_appointmentDate_upcoming(String dateofappointment,String Zone) throws ParseException {
+		appointmentPageUtils.wait_pageLoadercomplate();
+		bookAppointment_PageUtils.get_dateOfappointment(dateofappointment);
+		bookAppointment_PageUtils.currentDateandTime(Zone);
+		bookAppointment_PageUtils.compareDate_upcoming();
+	}
+	@Then("^Check the appointment have an option to book a followup$")
+	public void Check_bookFollowupOption() {
+		appointmentPageUtils.wait_pageLoadercomplate();
+		if(appointmentPageUtils.bookFollowup().isDisplayed()==true) {
+			assert true;
+		}
+		else {
+			assert false;
+		}
+		
+	}
+	@Then("^Validate the followup fees$")
+	public void Validate_followupFee(DataTable inputs) throws InterruptedException, ParseException {
+		appointmentPageUtils.bookFollowup_Appointment();
+		appointmentPageUtils.check_patient_followupFee(inputs);
+	}
+	@And("^Accept the book followup$")
+	public void Accept_bookFollowup() {
+		appointmentPageUtils.accept_bookFollowup();
+	}
+	@When("^Enter the followup appointment details$")
+	public void followup_appointmentDetails(DataTable inputs) throws InterruptedException, ParseException {
+		appointmentPageUtils.wait_pageLoadercomplate();
+		appointmentPageUtils.passFollowupappointmentDetails(inputs);
+	}
+	@Then("^Validate the payment amount with followup fee details$")
+	public void Validate_followUp_fee() {
+		assertTrue((Arrays.asList(appointmentPageUtils.appointmentView_followupDetails[0]).contains(bookAppointment_PageUtils.get_consultationFee())));
+	}
 }

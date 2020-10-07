@@ -69,15 +69,15 @@ public class Patient_BookAppointmentPageUtils extends CustomDriver {
 	private WebElement email() {
 		return findElement(Bookappoinment_Locators.email_appointmentFrom);
 	}
-	private WebElement mobile() {
+	public WebElement mobile() {
 		return findElement(Bookappoinment_Locators.mobile);
 	}
 	
-	private WebElement online_radioButton() {
+	public WebElement online_radioButton() {
 		return findElement(Bookappoinment_Locators.online_radioButton);
 	}
 	
-	private WebElement clinicVisit_radioButton() {
+	public WebElement clinicVisit_radioButton() {
 		return findElement(Bookappoinment_Locators.clinicVisit_radioButton);
 	}
 	
@@ -112,7 +112,7 @@ public class Patient_BookAppointmentPageUtils extends CustomDriver {
 		return findElement(Bookappoinment_Locators.clinic_field);
 	}
 	
-	private WebElement chiefComment() {
+	public WebElement chiefComment() {
 		return findElement(Bookappoinment_Locators.chiefComment);
 	}
 	
@@ -459,7 +459,14 @@ public class Patient_BookAppointmentPageUtils extends CustomDriver {
 					 if(yearTable(requiredYear).isDisplayed()== true) {
 					 yearTable(requiredYear).click();	
 					 selectMonth(monthRequired).click();
-					 selectDate(requiredDate).click();
+					 if(requiredDate.startsWith("0")) {
+						 String requiredDate_replace = requiredDate.replace("0", "");
+						 selectDate(requiredDate_replace).click();
+					 }
+					 else {
+						 selectDate(requiredDate).click();
+					 }
+					 
 
 				 } 	break;					
 				} 
@@ -526,6 +533,36 @@ public class Patient_BookAppointmentPageUtils extends CustomDriver {
 		}
 	}
 	
+	public void compareDate_upcoming() {
+		if(expectedYear>current_year) {
+			System.out.println("Upcoming YEAR");
+			assert false;	
+		}
+		else if(expectedYear<current_year) {
+			assert true;	
+		}
+		else if(expectedYear.equals(current_year)) {
+			if(expectedMonth_F02>current_month) {
+				System.out.println("Upcoming MONTH");
+				assert false;
+			}
+			else if(expectedMonth_F02<current_month) {
+				assert true;
+			}
+			else if(expectedMonth_F02.equals(current_month)) {
+				if(expectedDate>current_date) {
+					assert false;
+					System.out.println("Upcoming DATE");
+				}
+				else if(expectedDate<current_date) {
+					assert true;
+				}
+				else if(expectedDate==current_date) {
+					assert true;
+				}
+			}
+		}
+	}
 	public void check_slot() throws ParseException {
 		String providedDate = (expectedDate+"/"+expectedMonth_F02+"/"+expectedYear);
 		String Currentdate = (current_date+"/"+current_month+"/"+current_year);

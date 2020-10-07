@@ -1,19 +1,24 @@
 package clinang.pageUtils;
 
 import static org.junit.Assert.assertTrue;
-
 import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
 import clinang.patient_Locators.Patient_AppointmentLocators;
 import clinang.webDriverUtils.CustomDriver;
+import clinang.webDriverUtils.InitiateDriver;
 import io.cucumber.datatable.DataTable;
 
 public class Patient_AppointmentPageUtils extends CustomDriver{
@@ -24,6 +29,7 @@ public class Patient_AppointmentPageUtils extends CustomDriver{
 	public String[] reschedule_appointmentDetails;
 	public String[] appointmentViewpage_getDetails;
 	private String appointmentDateTime;
+	public String[] appointmentView_followupDetails;
 	
 	private WebElement appointmentModule() {
 		return findElement(appointmentLocators.appointmentModule);
@@ -192,15 +198,45 @@ public class Patient_AppointmentPageUtils extends CustomDriver{
 		return findElement(appointmentLocators.submit_medicalReport);
 	}
 	private WebElement get_medicalReport_reportName (int spanCount) {
-		return findElement( By.xpath("//span/span["+spanCount+"]/div/div/div[1]//child::div[2]/p"));
+		return findElement(By.xpath("//span/span["+spanCount+"]/div/div/div[1]//child::div[2]/p"));
 	}
 	private WebElement get_medicalReport_reportDescription(int spanCount) {
-		return findElement( By.xpath("//span/span["+spanCount+"]/div/div/div[2]//child::p"));
+		return findElement(By.xpath("//span/span["+spanCount+"]/div/div/div[2]//child::p"));
 	}
 	
+	private WebElement medicalReport_download(int spanCount) {
+		return findElement(By.xpath("//span/span["+spanCount+"]/div/div/div[1]/div/div[2]//child::p/a/span[(normalize-space(text())='Download')]"));
+	}
+	
+	private WebElement medicalReport_view(int spanCount) {
+		return findElement(By.xpath("//span/span["+spanCount+"]/div/div/div[1]/div/div[2]//child::p/a/span[(normalize-space(text())='View')]"));
+	}
+	private WebElement medicalReport_delete(int spanCount) {
+		return findElement(By.xpath("//span/span["+spanCount+"]/div/div/div[1]/div/div[2]//child::p/a/span[(normalize-space(text())='Delete')]"));
+	}
 	private WebElement get_span_medicalReports() {
-		return findElement(appointmentLocators.get_medicalReports_spans);
-		
+		return findElement(appointmentLocators.get_medicalReports_spans);	
+	}
+	private WebElement deleteReport_confirm()  {
+		return findElement(appointmentLocators.deleteReport_confirm);
+	}
+	private WebElement patientUploads() {
+		return findElement(appointmentLocators.patientUploads);
+	}
+	public WebElement bookFollowup() {
+		return findElement(appointmentLocators.bookFollowup_button);
+	}
+	public WebElement bookFollowup_fee() {
+		return findElement(appointmentLocators.bookFollowup_fee);
+	}
+	public WebElement bookFollowup_comment() {
+		return findElement(appointmentLocators.bookFollowup_comment);
+	}
+	private WebElement accept_bookFollowup_button() {
+		return findElement(appointmentLocators.accept_bookFollowup);
+	}
+	public void accept_bookFollowup() {
+		accept_bookFollowup_button().click();
 	}
 	public void findAppointment(String appointmentID ) {
 		
@@ -238,9 +274,8 @@ public class Patient_AppointmentPageUtils extends CustomDriver{
 		for( WebElement slot: spanList){
 			String getClass =slot.getAttribute("class");
 			if(getClass.contains("activeslotbutton")) {
-				activeSlot = slot.getText();
-				
-				 break;
+				activeSlot = slot.getText();				
+				break;
 			}						
 		}
 		
@@ -275,7 +310,13 @@ public class Patient_AppointmentPageUtils extends CustomDriver{
 		this.appointmentViewpage_getDetails = new String[] {appointmentID,speciality,clinic,type,doctor,appointmentDateTime,comment};
 		
 	}
-	
+	public void check_patientUpload_empty() {
+		wait_pageLoadercomplate();
+		if(patientUploads().getText().contains("No documents uploaded")) {
+			System.out.println("No documents uploaded");
+			assert false;
+		}
+	}
 	public void addFile_medicalRecord(DataTable medicalReport) {
 		List<List<String>> data = medicalReport.asLists(String.class);	
 		int fileCount = data.size();
@@ -295,24 +336,25 @@ public class Patient_AppointmentPageUtils extends CustomDriver{
 	public void validate_uploadedReport(DataTable uploaded_medicalReport) {	
 		wait_pageLoadercomplate();
 		List<List<String>> data = uploaded_medicalReport.asLists(String.class);
-		int numberOfChilds = Integer.parseInt(get_span_medicalReports().getAttribute("childElementCount"));   
+		int numberOfrecord_medicalReport = Integer.parseInt(get_span_medicalReports().getAttribute("childElementCount"));   
 		int fileCount = data.size();
 		
 		for (int i = 0; i<fileCount; i++) {
 			String reportName = data.get(i).get(0);
 			String reportDescription = data.get(i).get(1);
-			
 			loop02:
-			for(int j=1;j<numberOfChilds+1;j++) {		
-				
+			for(int j=1;j<numberOfrecord_medicalReport+1;j++) {	
+				check_patientUpload_empty();			
 				if(reportName.replace(" ", "").equals(get_medicalReport_reportName(j).getText().replace(" ", ""))) {
 					if(reportDescription.replace(" ", "").equals(get_medicalReport_reportDescription(j).getText().replace(" ", ""))) {
+						System.out.println(get_medicalReport_reportName(j).getText());
 						assert true;
 						break loop02;
 					}
 				}	
-				if(j==numberOfChilds) {
-					if(reportName.replace(" ", "").equals(get_medicalReport_reportName(numberOfChilds).getText().replace(" ", ""))) {
+				
+				if(j==numberOfrecord_medicalReport) {
+					if(reportName.replace(" ", "").equals(get_medicalReport_reportName(numberOfrecord_medicalReport).getText().replace(" ", ""))) {
 						if(reportDescription.replace(" ", "").equals(get_medicalReport_reportDescription(j).getText().replace(" ", ""))) {
 							assert true;
 							break loop02;
@@ -326,8 +368,188 @@ public class Patient_AppointmentPageUtils extends CustomDriver{
 						System.out.println("Report Name"+" "+reportName+" "+"is not available");
 						assert false;
 					}
-				}	
+				}
+				
 			}				
 		}
 	}
-}
+	private void download_medicalReport(int report_id) {
+		String substring = get_medicalReport_reportName(report_id).getText().length() > 3 ? get_medicalReport_reportName(report_id).getText().substring(get_medicalReport_reportName(report_id).getText().length() - 3) : get_medicalReport_reportName(report_id).getText();
+		if(substring.equals("pdf")) {			
+			medicalReport_download(report_id).click();
+		}
+		else if(substring.equals("jpg")||substring.equals("png")) {
+			medicalReport_view(report_id).click();
+		}
+	}
+	public void downloadAllreport() throws InterruptedException {
+		int numberOfrecord_medicalReport = Integer.parseInt(get_span_medicalReports().getAttribute("childElementCount")); 
+		for (int i = 1; i<numberOfrecord_medicalReport+1; i++) {
+			check_patientUpload_empty();
+			download_medicalReport(i);
+			Thread.sleep(2000);
+		}
+	}
+	
+	public void download_duplicate_report(int report_id,int reportCount) {
+		wait_pageLoadercomplate();
+		int numberOfrecord_medicalReport = Integer.parseInt(get_span_medicalReports().getAttribute("childElementCount"));
+		
+        for (int i = report_id; i < reportCount+1; i++)
+        {
+            for (int j = report_id+1; j < numberOfrecord_medicalReport+1; j++)
+            {           
+                if (((get_medicalReport_reportName(i).getText().replace(" ", "").equals(get_medicalReport_reportName(j).getText().replace(" ", ""))) && (i != j)) 
+                		&& get_medicalReport_reportDescription(i).getText().replace(" ", "").equals(get_medicalReport_reportDescription(j).getText().replace(" ", "")))
+                {
+                	download_medicalReport(j);
+                }
+            }
+           break;
+        }
+	}
+	public void downloadSpecificreport(DataTable uploaded_medicalReport) {
+		
+			wait_pageLoadercomplate();
+			List<List<String>> data = uploaded_medicalReport.asLists(String.class);
+			int numberOfrecord_medicalReport = Integer.parseInt(get_span_medicalReports().getAttribute("childElementCount"));   
+			int fileCount = data.size();
+			
+			for (int i = 0; i<fileCount; i++) {
+				String reportName = data.get(i).get(0);
+				String reportDescription = data.get(i).get(1);
+				
+				loop02:
+				for(int j=1;j<numberOfrecord_medicalReport+1;j++) {	
+					check_patientUpload_empty();
+					if(reportName.replace(" ", "").equals(get_medicalReport_reportName(j).getText().replace(" ", "")) 
+							&& (reportDescription.replace(" ", "").equals(get_medicalReport_reportDescription(j).getText().replace(" ", "")))) {
+																	
+							download_medicalReport(j);
+							download_duplicate_report(j,fileCount);
+							break loop02;
+						}
+					
+					if(j==numberOfrecord_medicalReport+1) {
+						if(reportName.replace(" ", "").equals(get_medicalReport_reportName(numberOfrecord_medicalReport).getText().replace(" ", "")) 
+								&& (reportDescription.replace(" ", "").equals(get_medicalReport_reportDescription(j).getText().replace(" ", "")))) {
+							 
+							download_medicalReport(j);
+							break loop02;
+							}
+							else {
+								System.out.println("Invalid report name/report description");
+								assert false;
+							}
+						}						
+					}																			
+			}
+		}	
+	public void deleteReport(int recordID) {
+		medicalReport_delete(recordID).click();
+		wait_pageLoadercomplate();
+		deleteReport_confirm().click();
+		wait_pageLoadercomplate();
+		assertTrue(get_message().contains("Medical record deleted successfully."));
+		click_closeOption();
+		wait_pageLoadercomplate();
+	}
+	public void deleteAllreport() {
+		wait_pageLoadercomplate();
+		int numberOfrecord_medicalReport = Integer.parseInt(get_span_medicalReports().getAttribute("childElementCount")); 
+		int i = 1;
+		while(i<=numberOfrecord_medicalReport){			
+			if(patientUploads().getText().contains("No documents uploaded")) {
+				break;
+			}
+			deleteReport(i);
+		}
+	}
+	
+	public void deleteSpecificreport(DataTable uploaded_medicalReport) {
+		wait_pageLoadercomplate();
+		List<List<String>> data = uploaded_medicalReport.asLists(String.class);
+		int numberOfrecord_medicalReport = Integer.parseInt(get_span_medicalReports().getAttribute("childElementCount"));   
+		int fileCount = data.size();
+		
+		for (int i = 0; i<fileCount; i++) {
+			String reportName = data.get(i).get(0);
+			String reportDescription = data.get(i).get(1);
+			
+			loop02:
+			for(int j=1;j<numberOfrecord_medicalReport+1;j++) {	
+				check_patientUpload_empty();
+				if(reportName.replace(" ", "").equals(get_medicalReport_reportName(j).getText().replace(" ", "")) 
+						&& (reportDescription.replace(" ", "").equals(get_medicalReport_reportDescription(j).getText().replace(" ", "")))) {
+					deleteReport(j);											
+					break loop02;
+					}
+				
+				if(j==numberOfrecord_medicalReport+1) {
+					if(reportName.replace(" ", "").equals(get_medicalReport_reportName(numberOfrecord_medicalReport).getText().replace(" ", "")) 
+							&& (reportDescription.replace(" ", "").equals(get_medicalReport_reportDescription(j).getText().replace(" ", "")))) {
+						 
+						deleteReport(j);
+						break loop02;
+						}
+						else {
+							System.out.println("Invalid report name/report description");
+							System.out.println(reportName.replace(" ", ""));
+							System.out.println(get_medicalReport_reportName(numberOfrecord_medicalReport).getText().replace(" ", ""));
+							assert false;
+						}
+					}						
+				}																			
+		}
+	}
+	
+	public void bookFollowup_Appointment() {
+		bookFollowup().click();
+		String followupFee = bookFollowup_fee().getText();
+		String followupComment = bookFollowup_comment().getText();
+		
+		this.appointmentView_followupDetails = new String[] {followupFee,followupComment};
+	}
+	
+	public String check_patient_followupFee(DataTable inputs) throws InterruptedException, ParseException  {
+		List<Map<String, String>>patientFollowupfee = inputs.asMaps(String.class, String.class);
+		  for (Map<String, String> data : patientFollowupfee) {
+			  
+			  if((Arrays.asList(B_appointment.editProfile.patient_Country_Array)).contains(B_appointment.getCurrentcountry())) {
+				  assertTrue(Arrays.asList(appointmentView_followupDetails[0]).contains(data.get("Domestic Followup Fee")));
+			  }		 
+			  else if((Arrays.asList(B_appointment.editProfile.patient_Country_Array)).contains(B_appointment.getCurrentcountryCode())) {
+				  assertTrue(Arrays.asList(appointmentView_followupDetails[0]).contains(data.get("Domestic Followup Fee")));
+			  }
+			  else {
+				  assertTrue(Arrays.asList(appointmentView_followupDetails[0]).contains(data.get("Overseas Followup Fee")));
+			  }
+		  }
+		  return String.valueOf(patientFollowupfee);
+			  
+		  }
+	public String passFollowupappointmentDetails(DataTable inputs) throws InterruptedException, ParseException  {
+		List<Map<String, String>>appointment_input = inputs.asMaps(String.class, String.class);
+		  for (Map<String, String> data : appointment_input) {
+			  
+			  B_appointment.mobile().click();
+			  B_appointment.mobile().clear();
+			  B_appointment.mobile().sendKeys(data.get("mobile"));
+			  if(data.get("appointment_type").equals("Online Consultation")) {
+				  B_appointment.online_radioButton().click();		  
+			  }
+			  else if (data.get("appointment_type").equals("Clinic Visit")) {
+				  B_appointment.clinicVisit_radioButton().click();
+			  }		  		  
+			  B_appointment.chiefComment().sendKeys(data.get("chief_complaint"));
+		  } 
+		
+		return String.valueOf(appointment_input);
+		
+		  }	 
+	
+	
+ }
+		
+	
+	

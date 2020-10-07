@@ -332,8 +332,7 @@ public class Patient_DashboardPageUtils extends CustomDriver{
 		 String upcomingAppointment_count =getCount_upcomingApp();
 		 String cancelledAppointment_count =getCount_cancelledApp();
 		 this.dashboard_appointmentCount = new String[] {todayAppointment_count,upcomingAppointment_count,cancelledAppointment_count};
-		 System.out.println(Arrays.asList(dashboard_appointmentCount));
-		return Arrays.asList(dashboard_appointmentCount);
+		 return Arrays.asList(dashboard_appointmentCount);
 		 
 	 }
 	 

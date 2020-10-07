@@ -34,5 +34,10 @@ public class Patient_AppointmentLocators{
 	public By medicalReport_description = By.xpath("//textarea[@formcontrolname='description']");
 	public By submit_medicalReport = By.xpath("//*[(normalize-space(text())='Submit')]");
 	public By get_medicalReports_spans = By.xpath("//div[@class='patient-uploads']//*[@class='ng-star-inserted']");
-
+	public By deleteReport_confirm = By.xpath("//button[@class='delbtn mat-raised-button']//child::span[(normalize-space(text())='Yes')]");
+	public By patientUploads = By.xpath("//div[@class='col-lg-12 col-md-12 col-sm-12 col-xs-12']");
+	public By bookFollowup_button = By.xpath("//*[(normalize-space(text())='Book Follow Up')]");
+	public By bookFollowup_fee = By.xpath("//mat-dialog-content[@class='mat-dialog-content']//child::tbody/tr[1]/td");
+	public By bookFollowup_comment =By.xpath("//mat-dialog-content[@class='mat-dialog-content']//child::tbody/tr[2]/td");
+	public By accept_bookFollowup = By.xpath("//mat-dialog-content[@class='mat-dialog-content']//child::button/span[(normalize-space(text())='Book Follow Up')]");
 }
