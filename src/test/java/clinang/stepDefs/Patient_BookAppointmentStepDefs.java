@@ -1,18 +1,19 @@
 package clinang.stepDefs;
 
-
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Assert;
 
+import clinang.pageUtils.Patient_AppointmentPageUtils;
 import clinang.pageUtils.Patient_BookAppointmentPageUtils;
 import clinang.pageUtils.Patient_DashboardPageUtils;
+import clinang.pageUtils.Patient_MytreatmentPageUtils;
 import clinang.pageUtils.Patient_PaymentPageUtils;
 import clinang.webDriverUtils.CustomDriver;
 import io.cucumber.datatable.DataTable;
@@ -24,6 +25,8 @@ public class Patient_BookAppointmentStepDefs extends CustomDriver {
 	Patient_BookAppointmentPageUtils B_appointment = new Patient_BookAppointmentPageUtils();
 	Patient_DashboardPageUtils dashboard = new Patient_DashboardPageUtils();
 	Patient_PaymentPageUtils payment = new Patient_PaymentPageUtils();
+	Patient_AppointmentPageUtils appointmentView = new Patient_AppointmentPageUtils();
+	Patient_MytreatmentPageUtils myTreatment = new Patient_MytreatmentPageUtils();
 	
 	
 	@And("^Get the patient country$")
@@ -108,7 +111,7 @@ public class Patient_BookAppointmentStepDefs extends CustomDriver {
 		
 	}
 	
-	@Then("^validate the appointment details$")
+	@Then("^validate the appointment details on payment success screen$")
 	public void validate_appointment_details()  {
 		B_appointment.get_successForm_appointmentID();
 		assertTrue(Arrays.asList(B_appointment.bookAppointment_details).contains(B_appointment.appointmentSuccessform_clinic().getText()));
@@ -117,8 +120,7 @@ public class Patient_BookAppointmentStepDefs extends CustomDriver {
 		assertTrue(Arrays.asList(B_appointment.bookAppointment_details).contains(B_appointment.appointmentSuccessform_date().getText()));
 		assertTrue(Arrays.asList(B_appointment.bookAppointment_details[10].replace(" ", "")).contains(B_appointment.get_appointmentSuccessform_time().replace(" ", "")));
 		assertTrue(Arrays.asList(B_appointment.bookAppointment_details).contains(B_appointment.appointmentSuccessform_type().getText()));
-		B_appointment.pageLoader();
-		B_appointment.clickViewappointment();	
+		B_appointment.pageLoader();	
 	}
 	
 	@Then("^Check payment details from payment module$")
@@ -127,7 +129,7 @@ public class Patient_BookAppointmentStepDefs extends CustomDriver {
 		payment.pageLoad();
 		List<String> appointmentId = Arrays.asList(B_appointment.appointmentID_bookingScreen);
 		payment.detailsFromlistPage(appointmentId);
-		//assertTrue(Arrays.asList(B_appointment.bookAppointment_details[6]).equals(Arrays.asList(payment.listPage_doctor)));
+		assertTrue(Arrays.asList(B_appointment.bookAppointment_details[6]).equals(Arrays.asList(payment.listPage_doctor)));
 		assertTrue(Arrays.asList(B_appointment.bookAppointment_details[7]).equals(Arrays.asList(payment.listPage_clinic)));
 		assertTrue(Arrays.asList(B_appointment.consultationFee_appointmentBooking).equals(Arrays.asList(payment.listPage_amount)));
 	}
@@ -150,8 +152,37 @@ public class Patient_BookAppointmentStepDefs extends CustomDriver {
 		   }
 			
 		else {
-			System.out.println(Arrays.asList(arr[1]+1));
 			assertTrue((Arrays.asList(arr[1]+1).toString()).contains(dashboard.getCount_upcomingApp()));
 		}
+	}
+	
+	@Then("^validate the appointment details from appointment view page$")
+	public void validate_appointmentDetails_viewPage() throws ParseException, InterruptedException {
+		B_appointment.clickViewappointment();
+		appointmentView.wait_pageLoadercomplate();
+		Thread.sleep(4000);
+		appointmentView.get_appointmentDetails_viewPage();
+		assertTrue(Arrays.asList(B_appointment.appointmentID_bookingScreen[0]).equals(Arrays.asList(appointmentView.appointmentViewpage_getDetails[0])));
+		assertTrue(Arrays.asList(B_appointment.bookAppointment_details[11].replace(" ", "")).equals(Arrays.asList(appointmentView.appointmentViewpage_getDetails[5].replace(" ", ""))));
+		assertTrue(Arrays.asList(B_appointment.bookAppointment_details[5].replace(" ", "")).equals(Arrays.asList(appointmentView.appointmentViewpage_getDetails[1].replace(" ", ""))));
+		assertTrue(Arrays.asList(B_appointment.bookAppointment_details[4].replace(" ", "")).equals(Arrays.asList(appointmentView.appointmentViewpage_getDetails[3].replace(" ", ""))));
+		assertTrue(Arrays.asList(B_appointment.bookAppointment_details[7].replace(" ", "")).equals(Arrays.asList(appointmentView.appointmentViewpage_getDetails[2].replace(" ", ""))));
+		assertTrue(Arrays.asList(B_appointment.bookAppointment_details[6].replace(" ", "")).equals(Arrays.asList(appointmentView.appointmentViewpage_getDetails[4].replace(" ", ""))));
+		assertTrue(Arrays.asList(B_appointment.bookAppointment_details[8].replace(" ", "")).equals(Arrays.asList(appointmentView.appointmentViewpage_getDetails[6].replace(" ", ""))));
+	}
+	
+	@Then("^Check the appointment details from my treatment module$")
+	public void check_myTreatment_appointmentDetails() {
+		myTreatment.click_myTreatmentmodule();
+		myTreatment.wait_pageLoadercomplate();
+		List<String> List_appointmentID = new ArrayList<String>();
+		List_appointmentID = Arrays.asList(B_appointment.appointmentID_bookingScreen);
+		myTreatment.get_Mytreatmentdetails_listPage(List_appointmentID);
+		assertTrue(Arrays.asList(B_appointment.bookAppointment_details[11].replace(" ", "")).equals(Arrays.asList(myTreatment.myTreatment_gridDetails[0].replace(" ", ""))));
+		assertTrue(Arrays.asList(B_appointment.bookAppointment_details[4].replace(" ", "")).equals(Arrays.asList(myTreatment.myTreatment_gridDetails[1].replace(" ", ""))));
+		assertTrue(Arrays.asList(B_appointment.bookAppointment_details[5].replace(" ", "")).equals(Arrays.asList(myTreatment.myTreatment_gridDetails[2].replace(" ", ""))));
+		assertTrue(Arrays.asList(B_appointment.bookAppointment_details[6].replace(" ", "")).equals(Arrays.asList(myTreatment.myTreatment_gridDetails[3].replace(" ", ""))));
+		assertTrue(Arrays.asList(B_appointment.bookAppointment_details[7].replace(" ", "")).equals(Arrays.asList(myTreatment.myTreatment_gridDetails[4].replace(" ", ""))));
+
 	}
 }

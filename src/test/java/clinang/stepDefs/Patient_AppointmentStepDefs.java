@@ -2,7 +2,9 @@ package clinang.stepDefs;
 
 import static org.junit.Assert.assertTrue;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.awt.AWTException;
 import java.io.File;
 import java.net.URL;
@@ -15,6 +17,7 @@ import io.cucumber.java.en.When;
 import clinang.pageUtils.Patient_AppointmentPageUtils;
 import clinang.pageUtils.Patient_BookAppointmentPageUtils;
 import clinang.pageUtils.Patient_DashboardPageUtils;
+import clinang.pageUtils.Patient_MytreatmentPageUtils;
 
 
 public class Patient_AppointmentStepDefs {
@@ -22,6 +25,7 @@ public class Patient_AppointmentStepDefs {
 	Patient_AppointmentPageUtils appointmentPageUtils = new Patient_AppointmentPageUtils();
 	Patient_BookAppointmentPageUtils bookAppointment_PageUtils = new Patient_BookAppointmentPageUtils();
 	Patient_DashboardPageUtils dashboard = new Patient_DashboardPageUtils();
+	Patient_MytreatmentPageUtils myTreatment = new Patient_MytreatmentPageUtils();
 	
 	@And("^Go to appointment module$")
 	public void goTo_appointment() throws InterruptedException {
@@ -246,8 +250,7 @@ public class Patient_AppointmentStepDefs {
 		}
 		else {
 			assert false;
-		}
-		
+		}		
 	}
 	@Then("^Validate the followup fees$")
 	public void Validate_followupFee(DataTable inputs) throws InterruptedException, ParseException {
@@ -266,5 +269,14 @@ public class Patient_AppointmentStepDefs {
 	@Then("^Validate the payment amount with followup fee details$")
 	public void Validate_followUp_fee() {
 		assertTrue((Arrays.asList(appointmentPageUtils.appointmentView_followupDetails[0]).contains(bookAppointment_PageUtils.get_consultationFee())));
+	}
+	@Then("^Check the appointment id \"([^\"]*)\" should removed from my treatment list$") 
+	public void check_appointmentID_mytreatment(String appointmentId) throws InterruptedException {
+		myTreatment.wait_pageLoadercomplate();
+		myTreatment.click_myTreatmentmodule();
+		myTreatment.wait_pageLoadercomplate();
+		List<String> List_appointmentID = new ArrayList<String>();
+		List_appointmentID = Arrays.asList(appointmentId);
+		myTreatment.check_cancelled_appointmentID(List_appointmentID);
 	}
 }

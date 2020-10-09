@@ -48,6 +48,10 @@ dependencies {
 	// https://mvnrepository.com/artifact/io.rest-assured/rest-assured
 	testImplementation group: 'io.rest-assured', name: 'rest-assured', version: '4.3.0'
 	
+	// https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml
+	compile group: 'org.apache.poi', name: 'poi-ooxml', version: '4.0.0'
+	
+	
 }
 //https://cucumber.io/docs/tools/java/
 configurations {

@@ -388,6 +388,7 @@ public class Patient_BookAppointmentPageUtils extends CustomDriver {
 		  for (Map<String, String> data : appointment_input) {
 			  
 			  mobile().click();
+			  mobile().clear();
 			  mobile().sendKeys(data.get("mobile"));
 			  if(data.get("appointment_type").equals("Online Consultation")) {
 				  online_radioButton().click();		  
@@ -685,8 +686,9 @@ public class Patient_BookAppointmentPageUtils extends CustomDriver {
 		}
 		
 		String appointment = appointmentDate +" "+activeSlot;
+		
 		this.bookAppointment_details = new String[] {firstName_appointmentPage,lastName_appointmentPage,email_appointmentPage,mobile_appointmentPage,
-				appointmentType_appointmentPage,speciality_appointmentPage,doctor_appointmentPage,clinic_appointmentPage,complaint_appointmentPage,appointmentDate,activeSlot};
+				appointmentType_appointmentPage,speciality_appointmentPage,doctor_appointmentPage,clinic_appointmentPage,complaint_appointmentPage,appointmentDate,activeSlot,appointment};
 	}
 	
 	public String paymentMethod_card(DataTable inputs) throws ParseException, InterruptedException  {

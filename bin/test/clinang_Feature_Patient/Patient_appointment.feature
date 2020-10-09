@@ -26,12 +26,14 @@ Feature: Feature to appointment functionaity
   @Cancel
   Scenario: Cancel the appointment
     And Go to appointment module
-    When Move to appointment list page based on date "7/10/2020" and zoneid "Asia/Kolkata"
-    And Find the appointment using the appointment ID "236"
-    Then Check wheather the appointment date-"7/10/2020" is a past date or not,Based on zoneid "Asia/Kolkata"
+    When Move to appointment list page based on date "9/10/2020" and zoneid "Asia/Kolkata"
+    And Find the appointment using the appointment ID "9"
+    Then Check wheather the appointment date-"9/10/2020" is a past date or not,Based on zoneid "Asia/Kolkata"
     And Cancel the appointment
     Then Check the validation message for cancellation process
-    Then Check the appointment count based on cancelled appointment date "7/10/2020"
+    Then Check the appointment count based on cancelled appointment date "9/10/2020"
+    Then Check the appointment id "2" should removed from my treatment list
+    
 
   @Addfollowup
   Scenario: Add followup
@@ -49,7 +51,7 @@ Feature: Feature to appointment functionaity
     When Enter the followup appointment details
       | mobile     | appointment_type    | chief_complaint     |
       | 9090909091 | Online Consultation | General appointment |
-    Then Check wheather the appointment date-"7/10/2020" is a past date or not,Based on zoneid "Asia/Kolkata"
+    Then Check wheather the appointment date-"10/10/2020" is a past date or not,Based on zoneid "Asia/Kolkata"
     And Select the appointment date "10/10/2020"
     Then Check the slot time is 2hrs>current time,if the appointment booked on today date and check the slot availability
     And Select the slot "9:00 PM"
@@ -59,7 +61,7 @@ Feature: Feature to appointment functionaity
     Then Done a payment process via "netbanking"
       | card_number      | card_expiry-MM/YY | card_holder | card_cvv | netbanking_bankname | bank_type |
       | 4111111111111111 |              1228 | Will        |      123 | SBI                 | Retail    |
-    Then validate the appointment details
+    Then validate the appointment details on payment success screen
     Then Check payment details from payment module
     Then Check the appointment count from dashboard module
 
@@ -69,8 +71,8 @@ Feature: Feature to appointment functionaity
     When Move to appointment list page based on date "19/9/2020" and zoneid "Asia/Kolkata"
     And Find the appointment using the appointment ID "237"
     And Add medical report with description
-      | src\\test\\resources\\Patient_TestData\\Will Amster\\Patient_medicalReport\\PDF.pdf     | Pdf-Medical report |
-      | src\\test\\resources\\Patient_TestData\\Will Amster\\Patient_medicalReport\\JPG-1MB.jpg | Scean image        |
+      | src\test\resources\Patient_TestData\Sandhiya-ID-1\Patient_medicalReport\JPG-1MB.jpg     | Pdf-Medical report |
+      | src\test\resources\Patient_TestData\Sandhiya-ID-1\Patient_medicalReport\JPG-1MB.jpg | Scean image        |
     Then Validate the uploaded medical reports
       | PDF.pdf     | Pdf-Medical report |
       | JPG-1MB.jpg | Scean image        |
