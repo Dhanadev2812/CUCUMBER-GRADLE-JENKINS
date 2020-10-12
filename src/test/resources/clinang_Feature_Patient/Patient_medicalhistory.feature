@@ -4,16 +4,16 @@ Feature: Feature to check medical history functionaity
   Background: User is Logged In
     Given I open the app
     When Enter the email,password and clinic code
-      | email            | password    | clinic_code |
-      | wilson@gmail.com | Password12# | LAT004      |
+      | email                   | password    | clinic_code |
+      | sandhiya.2894@gmail.com | Password12# | LAT002      |
     And click on login button
     Then Check i am logged in
     And Go to medical history
 
- 	#Ref Patient-Inputs text file before edit
+  #Ref Patient-Inputs text file before edit
   @Medicalhistory-Add-Valid
   Scenario: Add medical history with valid details
-    When Enter the medical history details 
+    When Enter the medical history details
       | Gender | Blood_group | DOB        | Age | Weight | Height | Allergies    | Medical_history                                                                                                                                                                                                                                   |
       | Female | A+          | 28/12/1994 |  22 |     54 |    155 | Dust allergy | As an expecting mother, I was adamant in my view that the body can heal itself without any kind of medical intervention. I was stubborn that my pregnancy should be of the same path. I am a sportsperson since my childhood and active even now. |
     And Click "save"

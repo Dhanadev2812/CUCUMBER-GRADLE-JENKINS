@@ -4,13 +4,13 @@ Feature: Feature to done dashboard functionaity
   Background: User is Logged In
     Given I open the app
     When Enter the email,password and clinic code
-      | email            | password    | clinic_code |
-      | will@patient.com | Password12# | LAT002      |
+      | email                   | password    | clinic_code |
+      | sandhiya.2894@gmail.com | Password12# | LAT002      |
     And click on login button
     Then Check i am logged in
     And Click on edit profile option
-    
-#Ref Patient-Inputs text file before edit
+
+  #Ref Patient-Inputs text file before edit
   @Editprofile-valid
   Scenario: Update profile with valid details
     And Upload the image from "src\test\resources\Patient_TestData\Sandhiya-ID-1\Profile_img\women.jpg"
