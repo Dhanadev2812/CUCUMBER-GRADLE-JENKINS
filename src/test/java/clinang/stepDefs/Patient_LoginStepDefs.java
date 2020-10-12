@@ -33,7 +33,7 @@ public class Patient_LoginStepDefs {
 	}
 	
 	@And("^click on login button$")
-	public void clickLogin() {
+	public void clickLogin() throws InterruptedException {
 		loginPage.get_usernameValue();
 		loginPage.clickLogInButton();
 	}
@@ -45,11 +45,15 @@ public class Patient_LoginStepDefs {
 		//assertTrue(Arrays.asList(loginPage.loginarr).contains(Dashboard.profile_email().getText()));	
 	}
 	
-	@But("^It display invalid email alert message$")
+	@But("^It display Username or Password is Wrong alert message$")
 	public void checkValidation_invalidEmail() {		
-		assertTrue(loginPage.get_emailAlert().contains("Enter a valid Email"));
+		assertTrue(loginPage.get_emailAlert().contains("Username or Password is Wrong"));
 	}	
 	
+	@But("^It display Clinic code is invalid alert message$")
+	public void checkValidation_invalidCliniccode() {		
+		assertTrue(loginPage.get_emailAlert().contains("Clinic code is invalid"));
+	}	
 	@Then("^close the browser$")
 	public void close() {
 		browser.closeApp();

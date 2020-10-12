@@ -9,8 +9,8 @@ Feature: Feature to check my treatment functionaity
     And click on login button
     Then Check i am logged in
 
-  @Check-Mytreatment
-  Scenario: Check my treatment
+  @Check-Mytreatmentdetails
+  Scenario: Check my treatment details
     And Move to my treatment
     Then Check the my treatment details with the help of "src\test\resources\Patient_TestData\Sandhiya-ID-1\Patient_Mytreatment\TreatmentDetails.xlsx"
 

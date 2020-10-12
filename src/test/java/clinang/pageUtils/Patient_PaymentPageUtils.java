@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
+
+import java.util.Arrays;
 import java.util.List;
 
 import clinang.patient_Locators.Patient_PaymentLocators;
@@ -16,6 +18,9 @@ public class Patient_PaymentPageUtils extends CustomDriver{
 	public String listPage_doctor;
 	public String listPage_amount;
 	public String listPage_clinic;
+	private String[] invoiceDetails;
+	public List<String> invoice_doctor;
+	public List<String> invoice_fees;
 	
 	private WebElement paymentModule() {
 		return findElement(paymentLocators.paymentModule);
@@ -68,10 +73,22 @@ public class Patient_PaymentPageUtils extends CustomDriver{
 		return findElement(By.xpath("//table/tbody/tr["+i+"]/td[5]"));
 	}
 	
-	/*private void grid_viewInvoice(int i) {
-		 hoverOverElementAndClick(findElement(By.xpath("//*[@id='mat-tab-content-0-0']/div/div/table/tbody/tr["+i+"]/td[7]/svg")));
-	}*/
+	private WebElement grid_viewInvoice(int i) {
+		return findElement(By.xpath("//td[contains(text(),'" +i+"')]//following-sibling::td[contains(@class, 'mat-cell cdk-column-invoice mat-column-invoice ng-star-inserted')]//*[local-name()='svg']"));
+	}
 	
+	private WebElement invoice_id() {
+		return findElement(paymentLocators.invoice_id);
+	}
+	private WebElement invoice_doctorName() {
+		return findElement(paymentLocators.invoice_doctorName);
+	}
+	private WebElement invoice_fee() {
+		return findElement(paymentLocators.invoice_fee);
+	}
+	private WebElement downloadInvoice() {
+		return findElement(paymentLocators.downloadInvoice);
+	}
 	
 	public void detailsFromlistPage(List<String> appointmentId) throws InterruptedException {		
 		wait_paymentTable();	
@@ -80,7 +97,7 @@ public class Patient_PaymentPageUtils extends CustomDriver{
 			
 			if(wait_paymentTable().isDisplayed()==true) {
 				WebElement TargetRows = findElement(paymentLocators.targetRow);
-				List<WebElement>TotalRowsList = TargetRows.findElements(By.tagName("tr"));
+				List<WebElement>TotalRowsList = TargetRows.findElements(By.tagName("tr"));				
 					int i = 1;					
 					while(i<=TotalRowsList.size()-1) {			
 						if(appointmentId.contains(grid_appointmentID(i).getText())) {
@@ -95,19 +112,36 @@ public class Patient_PaymentPageUtils extends CustomDriver{
 							 listPage_amount = grid_paymentDetails[1];
 							 listPage_clinic =grid_paymentDetails[2];
 							
-							 Thread.sleep(6000);
-							 //grid_viewInvoice(i);
-							 					 
+							 grid_viewInvoice(i).click();		 					 
 							 break whileloop;			 
-						} i++;
-					} 
+						} 			
+						else if((pagination_next().isEnabled()==false)&&(i==TotalRowsList.size()-1)){
+							assert false;
+						}	
+						i++;					
+					}
 				if(pagination_next().isEnabled()==true) {
 					pagination_next().click();
-					}														
+					}				
 				}	
-			}
+			}	
+		}	
 	
+	public void get_invoiceDetails() {
+		
+		String invoice_appointmentID = invoice_id().getText();
+		String invoice_doctorName = invoice_doctorName().getText();
+		String invoice_fee =invoice_fee().getText();
+		String[] fee=invoice_fee.split(" ");
+		String table_invoiceFee = fee[1].replaceAll("[^0-9.]", "");
+		
+		this.invoiceDetails = new String[] {invoice_appointmentID,invoice_doctorName,table_invoiceFee};
+		invoice_doctor = Arrays.asList(invoiceDetails[1]);
+		invoice_fees = Arrays.asList(invoiceDetails[2]);
+		System.out.println(Arrays.asList(invoiceDetails));
 	}
-	
-	
+	public void downloadInvoices() {
+		pageLoad();
+		downloadInvoice().click();
+	}
 }

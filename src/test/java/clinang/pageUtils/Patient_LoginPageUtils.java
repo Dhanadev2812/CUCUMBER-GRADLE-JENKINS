@@ -52,8 +52,8 @@ public class Patient_LoginPageUtils extends CustomDriver {
 		return getCurrentUrl();
 	}
 	
-	private WebElement alertMessage_email() {
-		return findElement(Login_Locator.alertMessage_email);
+	private WebElement alertMessage() {
+		return findElement(Login_Locator.alertMessage);
 	}
 	
 	public void passLoginDetails(DataTable inputs) {
@@ -65,12 +65,19 @@ public class Patient_LoginPageUtils extends CustomDriver {
 		  }	 
 	}
 
-	public void clickLogInButton() {
-		logInButton().click();
+	public void clickLogInButton() throws InterruptedException {
+		if(logInButton().isEnabled()==true) {
+			logInButton().click();
+		}
+		else {
+			Thread.sleep(2000);
+			logInButton().click();
+		}
+		
 	}
 	
 	public String get_emailAlert() {
-		return alertMessage_email().getText();
+		return alertMessage().getText();
 	}
 	
 	/*public Boolean isNotLoggedIn() {

@@ -253,7 +253,12 @@ public class Patient_AppointmentPageUtils extends CustomDriver{
 							grid_viewAppointment(appointmentID).click();
 							wait_pageLoadercomplate();
 							break whileLoop;															 			 
-						} i++;
+						} 
+						else if((paginationNext().isEnabled()==false)&&(i==TotalRowsList.size()-1)){
+							assert false;
+						}	
+						
+						i++;
 					} 
 				if(paginationNext().isEnabled()==true) {
 					paginationNext().click();

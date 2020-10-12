@@ -107,8 +107,6 @@ public class Patient_MytreatmentPageUtils extends CustomDriver{
 				List<WebElement>TotalRowsList = TargetRows.findElements(By.tagName("tr"));
 					int i = 1;					
 					while(i<=TotalRowsList.size()-1) {	
-						System.out.println(appointmentId);
-						System.out.println(grid_appointmentID(i).getText());
 						if(appointmentId.contains(grid_appointmentID(i).getText())) {
 							System.out.println("Cancelled appointment exhibits on my treatment list");
 							assert false;

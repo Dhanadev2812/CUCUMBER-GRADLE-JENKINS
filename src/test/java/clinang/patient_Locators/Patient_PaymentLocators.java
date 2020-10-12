@@ -14,4 +14,8 @@ public class Patient_PaymentLocators {
 	public By grid_amount =By.xpath("//td[@class='mat-cell cdk-column-amount mat-column-amount ng-star-inserted']");
 	public By grid_clinicName = By.xpath("//td[@class='mat-cell cdk-column-clinicname mat-column-clinicname ng-star-inserted']");
 	public By pageLoader =By.xpath("//img[class='pl-3 loader']");
+	public By invoice_id = By.xpath("//div[@class='mat-elevation-z8']//child::tbody/tr/td[1]");
+	public By invoice_doctorName = By.xpath("//div[@class='mat-elevation-z8']//child::tbody/tr/td[2]");
+	public By invoice_fee =By.xpath("//div[@class='mat-elevation-z8']//child::tbody/tr/td[3]");
+	public By downloadInvoice = By.xpath("//span[(normalize-space(text())='Download Invoice')]");
 }
