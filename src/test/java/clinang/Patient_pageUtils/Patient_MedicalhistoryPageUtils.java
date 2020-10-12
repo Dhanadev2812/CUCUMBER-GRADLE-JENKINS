@@ -1,4 +1,4 @@
-package clinang.pageUtils;
+package clinang.Patient_pageUtils;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;

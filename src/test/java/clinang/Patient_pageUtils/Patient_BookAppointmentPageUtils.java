@@ -1,30 +1,22 @@
-package clinang.pageUtils;
+package clinang.Patient_pageUtils;
 
 import org.openqa.selenium.WebElement;
 
 import clinang.patient_Locators.Patient_BookAppointmentLocators;
 import clinang.webDriverUtils.CustomDriver;
 import io.cucumber.datatable.DataTable;
-
 import static org.junit.Assert.assertTrue;
-
-import java.awt.print.Book;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.TimeZone;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;

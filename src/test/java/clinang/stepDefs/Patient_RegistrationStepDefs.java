@@ -2,7 +2,7 @@ package clinang.stepDefs;
 
 import static org.junit.Assert.assertTrue;
 
-import clinang.pageUtils.Patient_RegistrationPageUtils;
+import clinang.Patient_pageUtils.Patient_RegistrationPageUtils;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;

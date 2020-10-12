@@ -1,11 +1,8 @@
-package clinang.pageUtils;
+package clinang.Patient_pageUtils;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-
-import com.sun.xml.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
-
 import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

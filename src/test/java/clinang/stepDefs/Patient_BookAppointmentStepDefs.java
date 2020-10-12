@@ -10,11 +10,11 @@ import java.util.List;
 
 import org.junit.Assert;
 
-import clinang.pageUtils.Patient_AppointmentPageUtils;
-import clinang.pageUtils.Patient_BookAppointmentPageUtils;
-import clinang.pageUtils.Patient_DashboardPageUtils;
-import clinang.pageUtils.Patient_MytreatmentPageUtils;
-import clinang.pageUtils.Patient_PaymentPageUtils;
+import clinang.Patient_pageUtils.Patient_AppointmentPageUtils;
+import clinang.Patient_pageUtils.Patient_BookAppointmentPageUtils;
+import clinang.Patient_pageUtils.Patient_DashboardPageUtils;
+import clinang.Patient_pageUtils.Patient_MytreatmentPageUtils;
+import clinang.Patient_pageUtils.Patient_PaymentPageUtils;
 import clinang.webDriverUtils.CustomDriver;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;

@@ -1,9 +1,7 @@
-package clinang.pageUtils;
+package clinang.Patient_pageUtils;
 
 import org.openqa.selenium.WebElement;
 import io.cucumber.datatable.DataTable;
-
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 

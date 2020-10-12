@@ -5,7 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
 
-import clinang.pageUtils.Patient_DashboardPageUtils;
+import clinang.Patient_pageUtils.Patient_DashboardPageUtils;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;

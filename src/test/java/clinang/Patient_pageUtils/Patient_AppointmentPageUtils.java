@@ -1,4 +1,4 @@
-package clinang.pageUtils;
+package clinang.Patient_pageUtils;
 
 import static org.junit.Assert.assertTrue;
 import java.io.File;
@@ -8,17 +8,11 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.StaleElementReferenceException;
-import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 
 import clinang.patient_Locators.Patient_AppointmentLocators;
 import clinang.webDriverUtils.CustomDriver;
-import clinang.webDriverUtils.InitiateDriver;
 import io.cucumber.datatable.DataTable;
 
 public class Patient_AppointmentPageUtils extends CustomDriver{

@@ -1,8 +1,6 @@
-package clinang.pageUtils;
+package clinang.Patient_pageUtils;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
 
 import java.util.Arrays;

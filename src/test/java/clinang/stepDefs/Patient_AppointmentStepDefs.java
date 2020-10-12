@@ -5,6 +5,12 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import clinang.Patient_pageUtils.Patient_AppointmentPageUtils;
+import clinang.Patient_pageUtils.Patient_BookAppointmentPageUtils;
+import clinang.Patient_pageUtils.Patient_DashboardPageUtils;
+import clinang.Patient_pageUtils.Patient_MytreatmentPageUtils;
+
 import java.awt.AWTException;
 import java.io.File;
 import java.net.URL;
@@ -13,11 +19,6 @@ import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-
-import clinang.pageUtils.Patient_AppointmentPageUtils;
-import clinang.pageUtils.Patient_BookAppointmentPageUtils;
-import clinang.pageUtils.Patient_DashboardPageUtils;
-import clinang.pageUtils.Patient_MytreatmentPageUtils;
 
 
 public class Patient_AppointmentStepDefs {

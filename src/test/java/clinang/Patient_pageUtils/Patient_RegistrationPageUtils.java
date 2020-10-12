@@ -1,4 +1,4 @@
-package clinang.pageUtils;
+package clinang.Patient_pageUtils;
 
 import org.openqa.selenium.WebElement;
 import io.cucumber.datatable.DataTable;
