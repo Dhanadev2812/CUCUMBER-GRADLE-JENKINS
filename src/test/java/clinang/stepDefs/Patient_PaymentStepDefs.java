@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import clinang.Patient_pageUtils.Patient_BookAppointmentPageUtils;
-import clinang.Patient_pageUtils.Patient_PaymentPageUtils;
+import clinang.pageUtils.Patient_BookAppointmentPageUtils;
+import clinang.pageUtils.Patient_PaymentPageUtils;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 

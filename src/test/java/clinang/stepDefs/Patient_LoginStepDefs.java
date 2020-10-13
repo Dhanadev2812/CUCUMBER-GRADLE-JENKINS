@@ -9,9 +9,9 @@ import io.cucumber.java.en.But;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import clinang.Patient_pageUtils.BrowserUtils;
-import clinang.Patient_pageUtils.Patient_DashboardPageUtils;
-import clinang.Patient_pageUtils.Patient_LoginPageUtils;
+import clinang.pageUtils.BrowserUtils;
+import clinang.pageUtils.Patient_DashboardPageUtils;
+import clinang.pageUtils.Patient_LoginPageUtils;
 import clinang.webDriverUtils.RunTimeVariables;
 
 public class Patient_LoginStepDefs {

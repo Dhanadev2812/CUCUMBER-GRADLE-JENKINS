@@ -1,11 +1,11 @@
-$(document).ready(function() {var formatter = new CucumberHTML.DOMFormatter($('.cucumber-report'));formatter.uri("file:src/test/resources/clinang_Feature_Patient/Patient_appointment.feature");
+$(document).ready(function() {var formatter = new CucumberHTML.DOMFormatter($('.cucumber-report'));formatter.uri("file:src/test/resources/clinang_Feature_Patient/ClinicAdmin_Profileupdate.feature");
 formatter.feature({
-  "name": "Feature to appointment functionaity",
+  "name": "Feature to done clinic update functionaity",
   "description": "",
   "keyword": "Feature",
   "tags": [
     {
-      "name": "@Appointment"
+      "name": "@ClinicUpdate"
     }
   ]
 });
@@ -28,7 +28,17 @@ formatter.result({
   "status": "passed"
 });
 formatter.step({
-  "name": "Enter the email,password and clinic code",
+  "name": "Move to admin login page",
+  "keyword": "And "
+});
+formatter.match({
+  "location": "clinang.stepDefs.ClinicAdmin_LoginStepDefs.admin_loginPage()"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "Enter clinic admin credentials",
   "rows": [
     {},
     {}
@@ -36,120 +46,90 @@ formatter.step({
   "keyword": "When "
 });
 formatter.match({
-  "location": "clinang.stepDefs.Patient_LoginStepDefs.login(io.cucumber.datatable.DataTable)"
+  "location": "clinang.stepDefs.ClinicAdmin_LoginStepDefs.enter_credentials(io.cucumber.datatable.DataTable)"
 });
 formatter.result({
   "status": "passed"
 });
 formatter.step({
-  "name": "click on login button",
+  "name": "Click on Login button",
   "keyword": "And "
 });
 formatter.match({
-  "location": "clinang.stepDefs.Patient_LoginStepDefs.clickLogin()"
+  "location": "clinang.stepDefs.ClinicAdmin_LoginStepDefs.click_loginButton()"
 });
 formatter.result({
   "status": "passed"
 });
 formatter.step({
-  "name": "Check i am logged in",
+  "name": "Check i am logged in as a clinic admin",
   "keyword": "Then "
 });
 formatter.match({
-  "location": "clinang.stepDefs.Patient_LoginStepDefs.check_i_am_logged_in()"
+  "location": "clinang.stepDefs.ClinicAdmin_LoginStepDefs.check_loggedIn_clinicAdmin()"
 });
 formatter.result({
   "status": "passed"
 });
 formatter.scenario({
-  "name": "Cancel the appointment",
+  "name": "Check the mandatory fields",
   "description": "",
   "keyword": "Scenario",
   "tags": [
     {
-      "name": "@Appointment"
+      "name": "@ClinicUpdate"
     },
     {
-      "name": "@Cancel"
+      "name": "@Clinicupdate-Invalidemail"
     }
   ]
 });
 formatter.step({
-  "name": "Go to appointment module",
+  "name": "Go to clinic admin module",
   "keyword": "And "
 });
 formatter.match({
-  "location": "clinang.stepDefs.Patient_AppointmentStepDefs.goTo_appointment()"
+  "location": "clinang.stepDefs.ClinicAdmin_ProfileupdateStepDefs.goto_clinicAdmin()"
 });
 formatter.result({
   "status": "passed"
 });
 formatter.step({
-  "name": "Move to appointment list page based on date \"13/10/2020\" and zoneid \"Asia/Kolkata\"",
+  "name": "Click on edit option",
+  "keyword": "And "
+});
+formatter.match({
+  "location": "clinang.stepDefs.ClinicAdmin_ProfileupdateStepDefs.click_edit()"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "enter invalid email \"@test.com\"",
   "keyword": "When "
 });
 formatter.match({
-  "location": "clinang.stepDefs.Patient_AppointmentStepDefs.compare__date(java.lang.String,java.lang.String)"
+  "location": "clinang.stepDefs.ClinicAdmin_ProfileupdateStepDefs.enter_invalid_email(java.lang.String)"
 });
 formatter.result({
   "status": "passed"
 });
 formatter.step({
-  "name": "Find the appointment using the appointment ID \"27\"",
+  "name": "Submit the clinic updates",
   "keyword": "And "
 });
 formatter.match({
-  "location": "clinang.stepDefs.Patient_AppointmentStepDefs.find_appointmentID(java.lang.String)"
+  "location": "clinang.stepDefs.ClinicAdmin_ProfileupdateStepDefs.submit_clinicUpdate()"
 });
 formatter.result({
   "status": "passed"
 });
 formatter.step({
-  "name": "Check wheather the appointment date-\"13/10/2020\" is a past date or not,Based on zoneid \"Asia/Kolkata\"",
-  "keyword": "Then "
+  "name": "It display invalid email alert",
+  "keyword": "But "
 });
 formatter.match({
-  "location": "clinang.stepDefs.Patient_BookAppointmentStepDefs.validation_appointmentDate(java.lang.String,java.lang.String)"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "Cancel the appointment",
-  "keyword": "And "
-});
-formatter.match({
-  "location": "clinang.stepDefs.Patient_AppointmentStepDefs.cancel_appointment()"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "Check the validation message for cancellation process",
-  "keyword": "Then "
-});
-formatter.match({
-  "location": "clinang.stepDefs.Patient_AppointmentStepDefs.Check_validationMessage_cancel()"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "Check the appointment count based on cancelled appointment date \"13/10/2020\"",
-  "keyword": "Then "
-});
-formatter.match({
-  "location": "clinang.stepDefs.Patient_AppointmentStepDefs.Check_appointmentCount_dashborad(java.lang.String)"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "Check the appointment id \"27\" should removed from my treatment list",
-  "keyword": "Then "
-});
-formatter.match({
-  "location": "clinang.stepDefs.Patient_AppointmentStepDefs.check_appointmentID_mytreatment(java.lang.String)"
+  "location": "clinang.stepDefs.ClinicAdmin_ProfileupdateStepDefs.invalid_email_alert()"
 });
 formatter.result({
   "status": "passed"

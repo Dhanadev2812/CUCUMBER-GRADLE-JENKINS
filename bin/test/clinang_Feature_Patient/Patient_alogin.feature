@@ -1,7 +1,7 @@
-@loginfunction
+@patient:loginfunction
 Feature: Feature to done login process
 
-  @login_valid
+  @patient:login_valid
   Scenario: Login with valid credentials
     Given I open the app
     When Enter the email,password and clinic code
@@ -11,7 +11,7 @@ Feature: Feature to done login process
     Then Check i am logged in
     And click on logout button
 
-  @login_invalidEmail_invalidPassword
+  @patient:login_invalidEmail_invalidPassword
   Scenario: Login with invalid email id/Password
     Given I open the app
     When Enter the email,password and clinic code
@@ -20,7 +20,7 @@ Feature: Feature to done login process
     And click on login button
     But It display Username or Password is Wrong alert message
     
-    @login_invalid_clinic_code
+    @patient:login_invalid_clinic_code
   Scenario: Login with invalid email id/Password
     Given I open the app
     When Enter the email,password and clinic code

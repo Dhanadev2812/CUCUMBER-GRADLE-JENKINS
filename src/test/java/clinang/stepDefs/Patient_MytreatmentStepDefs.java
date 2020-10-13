@@ -3,7 +3,7 @@ package clinang.stepDefs;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import clinang.Patient_pageUtils.Patient_MytreatmentPageUtils;
+import clinang.pageUtils.Patient_MytreatmentPageUtils;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;

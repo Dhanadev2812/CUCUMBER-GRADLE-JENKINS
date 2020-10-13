@@ -5,7 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
 
-import clinang.Patient_pageUtils.Patient_DashboardPageUtils;
+import clinang.pageUtils.Patient_DashboardPageUtils;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
@@ -87,7 +87,7 @@ public class Patient_DashboardStepDefs {
 	
 	@Then("^Check the validation message for invalid data$") 
 		public void alert_invalidMobnum() {
-		assertTrue(dashboard.gettext_profileEditform().contains("Mobile Number should be 10 digits"));
+		assertTrue(dashboard.gettext_profileEditform().contentEquals("Mobile Number should be 10 digits"));
 		}
 	}
 

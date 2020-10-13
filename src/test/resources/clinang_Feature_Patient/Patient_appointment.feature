@@ -1,5 +1,5 @@
 @Appointment
-Feature: Feature to appointment functionaity
+Feature: Feature to done appointment functionaity
 
   Background: User is Logged In
     Given I open the app
