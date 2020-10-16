@@ -88,6 +88,9 @@ public class Patient_MedicalhistoryPageUtils extends CustomDriver{
 	private WebElement weight() {
 		return findElement(MedicalHistory_Locators.weight);
 	}
+	private void weightClick() {
+		clickEvent(MedicalHistory_Locators.weight);
+	}
 	
 	private WebElement height() {
 		return findElement(MedicalHistory_Locators.height);
@@ -103,6 +106,9 @@ public class Patient_MedicalhistoryPageUtils extends CustomDriver{
 	
 	private WebElement datePickerField() {
 		return findElement(MedicalHistory_Locators.dobField);
+	}
+	private void datePickerFieldClick() {
+		clickEvent(MedicalHistory_Locators.dobField);
 	}
 	
 	//datepicker
@@ -146,7 +152,7 @@ public class Patient_MedicalhistoryPageUtils extends CustomDriver{
 	}
 	
 	public WebElement clickSave() {
-		 return findElement(MedicalHistory_Locators.clickSave);
+		return findElement(MedicalHistory_Locators.clickSave);
 	 }
 	 
 	 private WebElement clickCancel() {
@@ -171,6 +177,12 @@ public class Patient_MedicalhistoryPageUtils extends CustomDriver{
 	
 	public void closeAlert()  {
 		closeAlert_field().click();
+	}
+	private WebElement wait_header() {
+		return fluentWait(MedicalHistory_Locators.header);
+	}
+	public void pageLoadercomplete() {
+		 Loader(MedicalHistory_Locators.pageLoader);
 	}
 	public void selectDOB(String Y, String DOB) throws ParseException  {
 				
@@ -258,20 +270,22 @@ public class Patient_MedicalhistoryPageUtils extends CustomDriver{
 		  }	 
 	
 	public void nullField_add() throws InterruptedException {
-		
+		wait_header();
+		pageLoadercomplete();
+		mouseRightclick(bloodGroupfield());
 		weight().click();
-		weight().clear();
+		weight().sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
+		Thread.sleep(500);
+		datePickerField().click();
 		Thread.sleep(500);
 		height().click();
 		height().clear();
 		Thread.sleep(500);
-		datePickerField().click();
-		Thread.sleep(500);
 		age().click();
-		age().clear();		
+		age().clear();	
+		weight().click();
 		Thread.sleep(500);	
-		mouseRightclick(bloodGroupfield());		
-		Thread.sleep(500);
+		
 	}
 	
 	public String nullField_allergy_medicalHistory(DataTable inputs) throws ParseException {

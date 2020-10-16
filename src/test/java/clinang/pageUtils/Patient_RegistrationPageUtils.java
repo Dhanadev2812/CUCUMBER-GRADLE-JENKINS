@@ -11,6 +11,7 @@ import clinang.webDriverUtils.CustomDriver;
 public class Patient_RegistrationPageUtils extends CustomDriver{
 	
 	Patient_RegistrationLocators Registration_Locators = new Patient_RegistrationLocators();
+	public String email;
 	
 	private WebElement registrationLink() {
 		return findElement(Registration_Locators.registrationLink);
@@ -41,7 +42,7 @@ public class Patient_RegistrationPageUtils extends CustomDriver{
 	}
 	
 	private WebElement alertBox() {
-		return findElement(Registration_Locators.alertBox);
+		return findElement(Registration_Locators.alert);
 	}
 	
 	private WebElement login_form() {
@@ -55,6 +56,7 @@ public class Patient_RegistrationPageUtils extends CustomDriver{
 			  lastName().sendKeys(data.get("lastname")); 
 			  email().sendKeys(data.get("email")); 
 			  password().sendKeys(data.get("password")); 
+			   email = data.get("email");
 		  }	 
 	}
 	

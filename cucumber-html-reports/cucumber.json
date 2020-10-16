@@ -11,7 +11,7 @@
         "steps": [
           {
             "result": {
-              "duration": 18410000000,
+              "duration": 41779000000,
               "status": "passed"
             },
             "line": 5,
@@ -23,37 +23,27 @@
           },
           {
             "result": {
-              "duration": 5332000000,
+              "duration": 1637000000,
               "status": "passed"
             },
             "line": 6,
-            "name": "Move to admin login page",
+            "name": "Enter the email,password and clinic code",
             "match": {
-              "location": "clinang.stepDefs.ClinicAdmin_LoginStepDefs.admin_loginPage()"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 6727000000,
-              "status": "passed"
-            },
-            "line": 7,
-            "name": "Enter clinic admin credentials",
-            "match": {
-              "location": "clinang.stepDefs.ClinicAdmin_LoginStepDefs.enter_credentials(io.cucumber.datatable.DataTable)"
+              "location": "clinang.stepDefs.Patient_LoginStepDefs.login(io.cucumber.datatable.DataTable)"
             },
             "rows": [
               {
                 "cells": [
-                  "UserName",
-                  "Password"
+                  "email",
+                  "password",
+                  "clinic_code"
                 ]
               },
               {
                 "cells": [
-                  "watts@clinicadmin.com",
-                  "Password12#"
+                  "sandhiya.2894@gmail.com",
+                  "Password12#",
+                  "LAT002"
                 ]
               }
             ],
@@ -61,36 +51,48 @@
           },
           {
             "result": {
-              "duration": 5615000000,
+              "duration": 379000000,
               "status": "passed"
             },
-            "line": 10,
-            "name": "Click on Login button",
+            "line": 9,
+            "name": "click on login button",
             "match": {
-              "location": "clinang.stepDefs.ClinicAdmin_LoginStepDefs.click_loginButton()"
+              "location": "clinang.stepDefs.Patient_LoginStepDefs.clickLogin()"
             },
             "keyword": "And "
           },
           {
             "result": {
-              "duration": 5433000000,
+              "duration": 4218000000,
+              "status": "passed"
+            },
+            "line": 10,
+            "name": "Check i am logged in",
+            "match": {
+              "location": "clinang.stepDefs.Patient_LoginStepDefs.check_i_am_logged_in()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 771000000,
               "status": "passed"
             },
             "line": 11,
-            "name": "Check i am logged in as a clinic admin",
+            "name": "Go to medical history",
             "match": {
-              "location": "clinang.stepDefs.ClinicAdmin_LoginStepDefs.check_loggedIn_clinicAdmin()"
+              "location": "clinang.stepDefs.Patient_MedicalhistoryStepDefs.goto_medicalhistory()"
             },
-            "keyword": "Then "
+            "keyword": "And "
           }
         ]
       },
       {
-        "start_timestamp": "2020-10-13T12:39:00.485Z",
+        "start_timestamp": "2020-10-16T13:01:07.757Z",
         "before": [
           {
             "result": {
-              "duration": 2000000,
+              "duration": 10000000,
               "status": "passed"
             },
             "match": {
@@ -98,10 +100,10 @@
             }
           }
         ],
-        "line": 34,
-        "name": "Check the mandatory fields",
+        "line": 75,
+        "name": "Cancel medical history form",
         "description": "",
-        "id": "feature-to-done-clinic-update-functionaity;check-the-mandatory-fields",
+        "id": "feature-to-check-medical-history-functionaity;cancel-medical-history-form",
         "after": [
           {
             "result": {
@@ -113,6 +115,7 @@
           },
           {
             "result": {
+              "duration": 1000000,
               "status": "passed"
             },
             "match": {
@@ -125,89 +128,41 @@
         "steps": [
           {
             "result": {
-              "duration": 5680000000,
+              "duration": 9852000000,
               "status": "passed"
             },
-            "line": 35,
-            "name": "Go to clinic admin module",
-            "match": {
-              "location": "clinang.stepDefs.ClinicAdmin_ProfileupdateStepDefs.goto_clinicAdmin()"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 8294000000,
-              "status": "passed"
-            },
-            "line": 36,
-            "name": "Click on edit option",
-            "match": {
-              "location": "clinang.stepDefs.ClinicAdmin_ProfileupdateStepDefs.click_edit()"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 6310000000,
-              "status": "passed"
-            },
-            "line": 37,
-            "name": "enter invalid email \"@test.com\"",
+            "line": 76,
+            "name": "Click \"cancel\"",
             "match": {
               "arguments": [
                 {
-                  "val": "@test.com",
-                  "offset": 21
+                  "val": "cancel",
+                  "offset": 7
                 }
               ],
-              "location": "clinang.stepDefs.ClinicAdmin_ProfileupdateStepDefs.enter_invalid_email(java.lang.String)"
-            },
-            "keyword": "When "
-          },
-          {
-            "result": {
-              "duration": 5475000000,
-              "status": "passed"
-            },
-            "line": 38,
-            "name": "Submit the clinic updates",
-            "match": {
-              "location": "clinang.stepDefs.ClinicAdmin_ProfileupdateStepDefs.submit_clinicUpdate()"
+              "location": "clinang.stepDefs.Patient_MedicalhistoryStepDefs.click_option(java.lang.String)"
             },
             "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 40000000,
-              "status": "passed"
-            },
-            "line": 39,
-            "name": "It display invalid email alert",
-            "match": {
-              "location": "clinang.stepDefs.ClinicAdmin_ProfileupdateStepDefs.invalid_email_alert()"
-            },
-            "keyword": "But "
           }
         ],
         "tags": [
           {
-            "name": "@ClinicUpdate"
+            "name": "@Medicalhistory"
           },
           {
-            "name": "@Clinicupdate-Invalidemail"
+            "name": "@Medicalhistory-Cancel"
           }
         ]
       }
     ],
-    "name": "Feature to done clinic update functionaity",
+    "name": "Feature to check medical history functionaity",
     "description": "",
-    "id": "feature-to-done-clinic-update-functionaity",
+    "id": "feature-to-check-medical-history-functionaity",
     "keyword": "Feature",
-    "uri": "file:src/test/resources/clinang_Feature_Patient/ClinicAdmin_Profileupdate.feature",
+    "uri": "file:src/test/resources/clinang_Feature_Patient/Patient_medicalhistory.feature",
     "tags": [
       {
-        "name": "@ClinicUpdate",
+        "name": "@Medicalhistory",
         "type": "Tag",
         "location": {
           "line": 1,

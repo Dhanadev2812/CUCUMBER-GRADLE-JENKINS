@@ -1,6 +1,7 @@
 package clinang.stepDefs;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.text.ParseException;
@@ -9,6 +10,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Assert;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebElement;
 
 import clinang.pageUtils.Patient_AppointmentPageUtils;
 import clinang.pageUtils.Patient_BookAppointmentPageUtils;
@@ -160,7 +163,6 @@ public class Patient_BookAppointmentStepDefs extends CustomDriver {
 	public void validate_appointmentDetails_viewPage() throws ParseException, InterruptedException {
 		B_appointment.clickViewappointment();
 		appointmentView.wait_pageLoadercomplate();
-		Thread.sleep(4000);
 		appointmentView.get_appointmentDetails_viewPage();
 		assertTrue(Arrays.asList(B_appointment.appointmentID_bookingScreen[0]).equals(Arrays.asList(appointmentView.appointmentViewpage_getDetails[0])));
 		assertTrue(Arrays.asList(B_appointment.bookAppointment_details[11].replace(" ", "")).equals(Arrays.asList(appointmentView.appointmentViewpage_getDetails[5].replace(" ", ""))));
@@ -168,8 +170,15 @@ public class Patient_BookAppointmentStepDefs extends CustomDriver {
 		assertTrue(Arrays.asList(B_appointment.bookAppointment_details[4].replace(" ", "")).equals(Arrays.asList(appointmentView.appointmentViewpage_getDetails[3].replace(" ", ""))));
 		assertTrue(Arrays.asList(B_appointment.bookAppointment_details[7].replace(" ", "")).equals(Arrays.asList(appointmentView.appointmentViewpage_getDetails[2].replace(" ", ""))));
 		assertTrue(Arrays.asList(B_appointment.bookAppointment_details[6].replace(" ", "")).equals(Arrays.asList(appointmentView.appointmentViewpage_getDetails[4].replace(" ", ""))));
-		assertTrue(Arrays.asList(B_appointment.bookAppointment_details[8].replace(" ", "")).equals(Arrays.asList(appointmentView.appointmentViewpage_getDetails[6].replace(" ", ""))));
-	}
+		assertTrue(Arrays.asList(B_appointment.bookAppointment_details[8].replace(" ", "")).equals(Arrays.asList(appointmentView.appointmentViewpage_getDetails[6].replace(" ", ""))));	
+		
+			if((Arrays.asList(B_appointment.bookAppointment_details[4].replace(" ", "")).toString().contains(("Online Consultation").replace(" ", "")))) {
+				assertTrue(B_appointment.appointmentView_videoCall().getText().equalsIgnoreCase("Video Call"));
+			}
+			else if((Arrays.asList(B_appointment.bookAppointment_details[4].replace(" ", "")).toString().contains(("Clinic Visit").replace(" ", "")))) {
+				assertFalse(B_appointment.appointmentView_videoCall().getText().equalsIgnoreCase("Video Call"));
+				}
+			}
 	
 	@Then("^Check the appointment details from my treatment module$")
 	public void check_myTreatment_appointmentDetails() {

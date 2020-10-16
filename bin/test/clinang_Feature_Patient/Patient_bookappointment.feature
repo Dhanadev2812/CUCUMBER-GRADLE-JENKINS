@@ -4,8 +4,8 @@ Feature: Feature to check book appointment functionaity
   Background: User is Logged In
     Given I open the app
     When Enter the email,password and clinic code
-      | email                   | password    | clinic_code |
-      | sandhiya.2894@gmail.com | Password12# | LAT002      |
+      | email             | password    | clinic_code |
+      | wilson@patient.com | Password12# | LAT002      |
     And click on login button
     Then Check i am logged in
     And Get the patient country
@@ -15,12 +15,12 @@ Feature: Feature to check book appointment functionaity
   @BookAppointment-Create
   Scenario: Create new appointment
     When Enter the appointment details
-      | mobile     | appointment_type    | speciality      | doctor            | chief_complaint     |
-      | 9090909091 | Online Consultation | Physiotherapist | Dr. Eritriya Drud | General appointment |
-    Then Check wheather the appointment date-"13/10/2020" is a past date or not,Based on zoneid "Asia/Kolkata"
-    And Select the appointment date "13/10/2020"
+      | mobile     | appointment_type | speciality      | doctor            | chief_complaint     |
+      | 9090909091 | Clinic Visit     | Physiotherapist | Dr. Eritriya Drud | General appointment |
+    Then Check wheather the appointment date-"18/10/2020" is a past date or not,Based on zoneid "Asia/Kolkata"
+    And Select the appointment date "18/10/2020"
     Then Check the slot time is 2hrs>current time,if the appointment booked on today date and check the slot availability
-    And Select the slot "9:00 AM"
+    And Select the slot "1:30 PM"
     Then Check the paynow option is enabled or not
     Then Check the fee details based on country
       | Domestic Consulting Fee | Overseas Consulting Fee |

@@ -30,4 +30,6 @@ public class Patient_MedicalHistoryLocators extends CustomDriver{
 	public By gender_male = By.xpath("//mat-radio-button[@value='1']");
 	public By gender_female =By.xpath("//mat-radio-button[@value='2']");
 	public By dobField = By.name("dob");
+	public By header =By.xpath("//div[@class='table-header']//child::h4");
+	public By pageLoader = By.xpath("//img[class='pl-3 loader']");
 }

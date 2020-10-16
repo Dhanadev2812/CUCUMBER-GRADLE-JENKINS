@@ -3,6 +3,8 @@ package clinang.pageUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import static org.junit.Assert.assertTrue;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -54,7 +56,21 @@ public class Patient_PaymentPageUtils extends CustomDriver{
 	private WebElement wait_paymentTable() {
 		return waitForElementPresent(paymentLocators.paymentTable);
 	}
+	private WebElement grid_appointmentID_Single() {
+		return findElement(By.xpath("//table/tbody/tr/td[1]"));
+	}
 	
+	private WebElement grid_doctorName_Single() {
+		return findElement(By.xpath("//table/tbody/tr/td[3]"));
+	}
+	
+	private WebElement grid_amount_Single() {
+		return findElement(By.xpath("//table/tbody/tr/td[4]"));
+	}
+	
+	private WebElement grid_clinic_Single() {
+		return findElement(By.xpath("//table/tbody/tr/td[5]"));
+	}
 	private WebElement grid_appointmentID(int i) {
 		return findElement(By.xpath("//table/tbody/tr["+i+"]/td[1]"));
 	}
@@ -97,8 +113,24 @@ public class Patient_PaymentPageUtils extends CustomDriver{
 				WebElement TargetRows = findElement(paymentLocators.targetRow);
 				List<WebElement>TotalRowsList = TargetRows.findElements(By.tagName("tr"));				
 					int i = 1;					
-					while(i<=TotalRowsList.size()-1) {			
-						if(appointmentId.contains(grid_appointmentID(i).getText())) {
+					while(i<=TotalRowsList.size()-1) {		
+						if(TotalRowsList.size()-1==1) {
+							assertTrue(appointmentId.contains(grid_appointmentID_Single().getText()));
+							String grid_doctor = grid_doctorName_Single().getText();
+							String paymentAmount =grid_amount_Single().getText();
+							String[] fee=paymentAmount.split(" ");
+							String grid_paymentAmount = fee[1].replaceAll("[^0-9.]", "");
+							String grid_clinic = grid_clinic_Single().getText();
+							
+							this.grid_paymentDetails = new String[] {grid_doctor,grid_paymentAmount,grid_clinic};
+							 listPage_doctor = grid_paymentDetails[0];
+							 listPage_amount = grid_paymentDetails[1];
+							 listPage_clinic =grid_paymentDetails[2];
+							
+							 grid_viewInvoice(i).click();		 					 
+							 break whileloop;
+						}
+						else if(appointmentId.contains(grid_appointmentID(i).getText())) {
 							String grid_doctor = grid_doctorName(i).getText();
 							String paymentAmount =grid_amount(i).getText();
 							String[] fee=paymentAmount.split(" ");

@@ -25,19 +25,20 @@ Feature: Feature to check medical history functionaity
     When Enter invalid details
       | Weight | Height |
       | h      | w      |
-    And Click "update"
+    And Click "save"
     But It display alert message - Weight and height must be number
 
   @Medicalhistory-Add_Mandatory
   Scenario: Mandatory message on add medical history screen
     And Clear the mandatory fields
+    And Click "save"
     Then Check the validation message for medical history mandatory fields
 
   @Medicalhistory-Add_Allergy&medicalhistory_Mandatory
   Scenario: Mandatory message on add medical history screen for allergy and medical history
     When Enter the details except allergy and medical history
       | Gender | Blood_group | DOB        | Age | Weight | Height |
-      | Male   | A1B+        | 28/12/1994 |  24 |     56 |    155 |
+      | Male   | AB+         | 28/12/1994 |  24 |     56 |    155 |
     And Click "save"
     Then Check the validation message on allergy and medical history field
 
@@ -55,7 +56,7 @@ Feature: Feature to check medical history functionaity
     When Enter invalid details
       | Weight | Height |
       | h      | w      |
-    And Click "save"
+    And Click "update"
     But It display alert message - Weight and height must be number
 
   @Medicalhistory-Edit_Mandatory

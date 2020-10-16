@@ -1,5 +1,6 @@
 package clinang.stepDefs;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -279,5 +280,28 @@ public class Patient_AppointmentStepDefs {
 		List<String> List_appointmentID = new ArrayList<String>();
 		List_appointmentID = Arrays.asList(appointmentId);
 		myTreatment.check_cancelled_appointmentID(List_appointmentID);
+	}
+	@Then("^validate the followup appointment details from appointment view page$")
+	public void validate_followUp_appointment() throws ParseException, InterruptedException {
+		bookAppointment_PageUtils.clickViewappointment();
+		appointmentPageUtils.wait_pageLoadercomplate();
+		Thread.sleep(4000);
+		appointmentPageUtils.get_appointmentDetails_viewPage();
+		appointmentPageUtils.get_followUpcomment_viewPage();
+		assertTrue(Arrays.asList(bookAppointment_PageUtils.appointmentID_bookingScreen[0]).equals(Arrays.asList(appointmentPageUtils.appointmentViewpage_getDetails[0])));
+		assertTrue(Arrays.asList(bookAppointment_PageUtils.bookAppointment_details[11].replace(" ", "")).equals(Arrays.asList(appointmentPageUtils.appointmentViewpage_getDetails[5].replace(" ", ""))));
+		assertTrue(Arrays.asList(bookAppointment_PageUtils.bookAppointment_details[5].replace(" ", "")).equals(Arrays.asList(appointmentPageUtils.appointmentViewpage_getDetails[1].replace(" ", ""))));
+		assertTrue(Arrays.asList(bookAppointment_PageUtils.bookAppointment_details[4].replace(" ", "")).equals(Arrays.asList(appointmentPageUtils.appointmentViewpage_getDetails[3].replace(" ", ""))));
+		assertTrue(Arrays.asList(bookAppointment_PageUtils.bookAppointment_details[7].replace(" ", "")).equals(Arrays.asList(appointmentPageUtils.appointmentViewpage_getDetails[2].replace(" ", ""))));
+		assertTrue(Arrays.asList(bookAppointment_PageUtils.bookAppointment_details[6].replace(" ", "")).equals(Arrays.asList(appointmentPageUtils.appointmentViewpage_getDetails[4].replace(" ", ""))));
+		assertTrue(Arrays.asList(bookAppointment_PageUtils.bookAppointment_details[8].replace(" ", "")).equals(Arrays.asList(appointmentPageUtils.appointmentViewpage_getDetails[6].replace(" ", ""))));
+		assertTrue((Arrays.asList(appointmentPageUtils.followUpcomment_viewPage_get[0]).equals(Arrays.asList(appointmentPageUtils.appointmentView_followupDetails[1]))));
+	
+		if((Arrays.asList(bookAppointment_PageUtils.bookAppointment_details[4].replace(" ", "")).toString().contains(("Online Consultation").replace(" ", "")))) {
+			assertTrue(bookAppointment_PageUtils.appointmentView_videoCall().getText().equalsIgnoreCase("Video Call"));
+		}
+		else if((Arrays.asList(bookAppointment_PageUtils.bookAppointment_details[4].replace(" ", "")).toString().contains(("Clinic Visit").replace(" ", "")))) {
+			assertFalse(bookAppointment_PageUtils.appointmentView_videoCall().getText().equalsIgnoreCase("Video Call"));
+			}
 	}
 }

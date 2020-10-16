@@ -39,21 +39,21 @@ Feature: Feature to done appointment functionaity
     And Get the patient country
     And Move to dashboard
     And Go to appointment module
-    Then Check wheather the appointment date-"7/10/2020" is a upcoming date or not,Based on zoneid "Asia/Kolkata"
-    When Move to appointment list page based on date "7/10/2020" and zoneid "Asia/Kolkata"
-    And Find the appointment using the appointment ID "3"
+    Then Check wheather the appointment date-"16/10/2020" is a upcoming date or not,Based on zoneid "Asia/Kolkata"
+    When Move to appointment list page based on date "16/10/2020" and zoneid "Asia/Kolkata"
+    And Find the appointment using the appointment ID "37"
     Then Check the appointment have an option to book a followup
     Then Validate the followup fees
       | Domestic Followup Fee | Overseas Followup Fee |
       |                  1000 |                  1500 |
     And Accept the book followup
     When Enter the followup appointment details
-      | mobile     | appointment_type    | chief_complaint     |
-      | 9090909091 | Online Consultation | General appointment |
-    Then Check wheather the appointment date-"14/10/2020" is a past date or not,Based on zoneid "Asia/Kolkata"
-    And Select the appointment date "14/10/2020"
+      | mobile     | appointment_type    | chief_complaint              |
+      | 9090909091 | Online Consultation | Followup-General appointment |
+    Then Check wheather the appointment date-"17/10/2020" is a past date or not,Based on zoneid "Asia/Kolkata"
+    And Select the appointment date "17/10/2020"
     Then Check the slot time is 2hrs>current time,if the appointment booked on today date and check the slot availability
-    And Select the slot "8:00 PM"
+    And Select the slot "11:00 AM"
     Then Check the paynow option is enabled or not
     Then Validate the payment amount with followup fee details
     And Click on paynow
@@ -61,7 +61,7 @@ Feature: Feature to done appointment functionaity
       | card_number      | card_expiry-MM/YY | card_holder | card_cvv | netbanking_bankname | bank_type |
       | 4111111111111111 |              1228 | Sandhiya    |      123 | SBI                 | Retail    |
     Then validate the appointment details on payment success screen
-    Then validate the appointment details from appointment view page
+    Then validate the followup appointment details from appointment view page
     Then Check payment details from payment module
     Then Check the appointment count from dashboard module
     Then Check the appointment details from my treatment module

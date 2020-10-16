@@ -7,7 +7,7 @@ Feature: Feature to done patient registration
     When Click on registration link
     Then Enter firstname,lastname,email and password
       | firstname | lastname | email          | password    |
-      | Arun      | Kumar    | sr1w@gmail.com | Password12# |
+      | Arun      | Kumar    | arun123@test.com | Password12# |
     And Click on register button
     Then Check the validation message for success registration
 
@@ -17,7 +17,7 @@ Feature: Feature to done patient registration
     When Click on registration link
     Then Enter firstname,lastname,email and password
       | firstname | lastname | email        | password    |
-      | Arun      | Kumar    | sr@gmail.com | Password12# |
+      | Arun      | Kumar    | arun123@test.com | Password12# |
     And Click on register button
     Then Check the validation message for existing details
 

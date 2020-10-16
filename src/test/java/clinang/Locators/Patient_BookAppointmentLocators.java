@@ -59,4 +59,7 @@ public class Patient_BookAppointmentLocators  {
 	public By appointment_successForm_doctor = By.xpath("//table/div/div[1]/tbody/tr[3]/td");
 	public By appointment_successForm_type = By.xpath("//table/div/div[2]/tbody/tr[3]/td");
 	public By appointment_successForm_appointmentID = By.xpath("//div[@class='col-lg-10']");
+	public By appointmentView_videoCallicon = By.xpath("//div[@class='button-right']");
+	
+	
 }

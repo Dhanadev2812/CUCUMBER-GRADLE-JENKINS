@@ -1,5 +1,8 @@
 package clinang.webDriverUtils;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -7,6 +10,10 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.poi.ss.usermodel.DataFormatter;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -255,6 +262,32 @@ public class CustomDriver extends WebDriverImplemented {
 	            break;
 	        }
 	    }
+	}	
+	
+	
+	public static int rowSize(String filePath,String sheetName)throws IOException  {
+		FileInputStream fs = new FileInputStream(filePath);
+		XSSFWorkbook workbook = new XSSFWorkbook(fs);
+		XSSFSheet sheet = workbook.getSheet(sheetName);
+		int lastRow = sheet.getLastRowNum();
+		return lastRow;	
+	}
+	public static int columnSize(String filePath,String sheetName)throws IOException  {
+		FileInputStream fs = new FileInputStream(filePath);
+		XSSFWorkbook workbook = new XSSFWorkbook(fs);
+		XSSFSheet sheet = workbook.getSheet(sheetName);
+		int lastCol = sheet.getRow(0).getPhysicalNumberOfCells();
+		return lastCol;	
+	}
+	
+	public static String integerConverter_excel(String filePath,String sheetName,int i,int j) throws IOException{
+		FileInputStream fs = new FileInputStream(filePath);
+		XSSFWorkbook workbook = new XSSFWorkbook(fs);
+		XSSFSheet sheet = workbook.getSheet(sheetName);
+		XSSFCell ID = sheet.getRow(i).getCell(j);
+		DataFormatter formatter = new DataFormatter();
+		String result = formatter.formatCellValue(ID);
+		return result;
 	}
 	
 }

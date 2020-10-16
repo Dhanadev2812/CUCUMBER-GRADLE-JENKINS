@@ -368,6 +368,9 @@ public class Patient_BookAppointmentPageUtils extends CustomDriver {
 	public WebElement appointmentSuccessform_appointmentID() {
 		return waitForElementDisplayed(Bookappoinment_Locators.appointment_successForm_appointmentID);
 	}
+	public WebElement appointmentView_videoCall() {
+		return findElement(Bookappoinment_Locators.appointmentView_videoCallicon);
+	}
 	
 	public String get_successForm_appointmentID() {
 		String[] appointmentID=appointmentSuccessform_appointmentID().getText().split(" ");

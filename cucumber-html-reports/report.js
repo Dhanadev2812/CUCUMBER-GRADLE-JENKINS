@@ -1,11 +1,11 @@
-$(document).ready(function() {var formatter = new CucumberHTML.DOMFormatter($('.cucumber-report'));formatter.uri("file:src/test/resources/clinang_Feature_Patient/ClinicAdmin_Profileupdate.feature");
+$(document).ready(function() {var formatter = new CucumberHTML.DOMFormatter($('.cucumber-report'));formatter.uri("file:src/test/resources/clinang_Feature_Patient/Patient_medicalhistory.feature");
 formatter.feature({
-  "name": "Feature to done clinic update functionaity",
+  "name": "Feature to check medical history functionaity",
   "description": "",
   "keyword": "Feature",
   "tags": [
     {
-      "name": "@ClinicUpdate"
+      "name": "@Medicalhistory"
     }
   ]
 });
@@ -28,17 +28,7 @@ formatter.result({
   "status": "passed"
 });
 formatter.step({
-  "name": "Move to admin login page",
-  "keyword": "And "
-});
-formatter.match({
-  "location": "clinang.stepDefs.ClinicAdmin_LoginStepDefs.admin_loginPage()"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "Enter clinic admin credentials",
+  "name": "Enter the email,password and clinic code",
   "rows": [
     {},
     {}
@@ -46,90 +36,60 @@ formatter.step({
   "keyword": "When "
 });
 formatter.match({
-  "location": "clinang.stepDefs.ClinicAdmin_LoginStepDefs.enter_credentials(io.cucumber.datatable.DataTable)"
+  "location": "clinang.stepDefs.Patient_LoginStepDefs.login(io.cucumber.datatable.DataTable)"
 });
 formatter.result({
   "status": "passed"
 });
 formatter.step({
-  "name": "Click on Login button",
+  "name": "click on login button",
   "keyword": "And "
 });
 formatter.match({
-  "location": "clinang.stepDefs.ClinicAdmin_LoginStepDefs.click_loginButton()"
+  "location": "clinang.stepDefs.Patient_LoginStepDefs.clickLogin()"
 });
 formatter.result({
   "status": "passed"
 });
 formatter.step({
-  "name": "Check i am logged in as a clinic admin",
+  "name": "Check i am logged in",
   "keyword": "Then "
 });
 formatter.match({
-  "location": "clinang.stepDefs.ClinicAdmin_LoginStepDefs.check_loggedIn_clinicAdmin()"
+  "location": "clinang.stepDefs.Patient_LoginStepDefs.check_i_am_logged_in()"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "Go to medical history",
+  "keyword": "And "
+});
+formatter.match({
+  "location": "clinang.stepDefs.Patient_MedicalhistoryStepDefs.goto_medicalhistory()"
 });
 formatter.result({
   "status": "passed"
 });
 formatter.scenario({
-  "name": "Check the mandatory fields",
+  "name": "Cancel medical history form",
   "description": "",
   "keyword": "Scenario",
   "tags": [
     {
-      "name": "@ClinicUpdate"
+      "name": "@Medicalhistory"
     },
     {
-      "name": "@Clinicupdate-Invalidemail"
+      "name": "@Medicalhistory-Cancel"
     }
   ]
 });
 formatter.step({
-  "name": "Go to clinic admin module",
+  "name": "Click \"cancel\"",
   "keyword": "And "
 });
 formatter.match({
-  "location": "clinang.stepDefs.ClinicAdmin_ProfileupdateStepDefs.goto_clinicAdmin()"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "Click on edit option",
-  "keyword": "And "
-});
-formatter.match({
-  "location": "clinang.stepDefs.ClinicAdmin_ProfileupdateStepDefs.click_edit()"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "enter invalid email \"@test.com\"",
-  "keyword": "When "
-});
-formatter.match({
-  "location": "clinang.stepDefs.ClinicAdmin_ProfileupdateStepDefs.enter_invalid_email(java.lang.String)"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "Submit the clinic updates",
-  "keyword": "And "
-});
-formatter.match({
-  "location": "clinang.stepDefs.ClinicAdmin_ProfileupdateStepDefs.submit_clinicUpdate()"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "It display invalid email alert",
-  "keyword": "But "
-});
-formatter.match({
-  "location": "clinang.stepDefs.ClinicAdmin_ProfileupdateStepDefs.invalid_email_alert()"
+  "location": "clinang.stepDefs.Patient_MedicalhistoryStepDefs.click_option(java.lang.String)"
 });
 formatter.result({
   "status": "passed"

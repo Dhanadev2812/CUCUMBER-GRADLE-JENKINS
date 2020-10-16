@@ -24,6 +24,7 @@ public class Patient_AppointmentPageUtils extends CustomDriver{
 	public String[] appointmentViewpage_getDetails;
 	private String appointmentDateTime;
 	public String[] appointmentView_followupDetails;
+	public String[] followUpcomment_viewPage_get;
 	
 	private WebElement appointmentModule() {
 		return findElement(appointmentLocators.appointmentModule);
@@ -75,6 +76,9 @@ public class Patient_AppointmentPageUtils extends CustomDriver{
 	
 	private WebElement grid_appointmentID(int i) {
 		return findElement(By.xpath("//table/tbody/tr["+i+"]/td[1]"));
+	}
+	private WebElement grid_appointmentID_single() {
+		return findElement(By.xpath("//table/tbody/tr/td[1]"));
 	}
 	
 	private WebElement grid_viewAppointment(String appointmentID) {
@@ -164,7 +168,9 @@ public class Patient_AppointmentPageUtils extends CustomDriver{
 	private WebElement appointmentView_comment() {
 		return findElement(appointmentLocators.appointmentView_comment);
 	}
-	
+	private WebElement appointmentView_folllowUpcomment() {
+		return findElement(appointmentLocators.appointmentView_followUpcomment);
+	}
 	public WebElement wait_cancelConfirm_alertBox() {
 		return waitForElementDisplayed(appointmentLocators.cancelConfirm_alertBox);
 	}
@@ -232,6 +238,9 @@ public class Patient_AppointmentPageUtils extends CustomDriver{
 	public void accept_bookFollowup() {
 		accept_bookFollowup_button().click();
 	}
+	private WebElement wait_viewappointmentPage() {
+		return fluentWait(By.xpath("//*[(normalize-space(text())='Appointment ID')]"));
+	}
 	public void findAppointment(String appointmentID ) {
 		
 		wait_pageLoadercomplate();
@@ -242,15 +251,24 @@ public class Patient_AppointmentPageUtils extends CustomDriver{
 				WebElement TargetRows = findElement(appointmentLocators.targetRow);
 				List<WebElement>TotalRowsList = TargetRows.findElements(By.tagName("tr"));
 					int i = 1;					
-					while(i<=TotalRowsList.size()-1) {			
-						if(appointmentID.contains(grid_appointmentID(i).getText())) {
+					while(i<=TotalRowsList.size()-1) {
+						if(TotalRowsList.size()-1==1) {
+							assertTrue(grid_appointmentID_single().getText().contentEquals(appointmentID));
+							grid_viewAppointment(appointmentID).click();
+							wait_pageLoadercomplate();
+							break whileLoop;		
+						}
+						else if(appointmentID.contentEquals(grid_appointmentID(i).getText())) {
 							grid_viewAppointment(appointmentID).click();
 							wait_pageLoadercomplate();
 							break whileLoop;															 			 
 						} 
 						else if((paginationNext().isEnabled()==false)&&(i==TotalRowsList.size()-1)){
 							assert false;
-						}	
+						}
+						else if(TotalRowsList.size()-1==0) {
+							assert false;
+						}
 						
 						i++;
 					} 
@@ -284,8 +302,9 @@ public class Patient_AppointmentPageUtils extends CustomDriver{
 	}
 	
 	public void get_appointmentDetails_viewPage() throws ParseException {
-		
-		String appointmentID = appointmentView_getAppointmentID().getText();	
+		wait_viewappointmentPage();
+		wait_pageLoadercomplate();
+		String appointmentID = appointmentView_getAppointmentID().getText();
 		String speciality = appointmentView_getSpeciality().getText();
 		String clinic = appointmentView_getClinic().getText();
 		String dateAndtime = appointmentView_getDatetime().getText();
@@ -308,6 +327,10 @@ public class Patient_AppointmentPageUtils extends CustomDriver{
 		
 		this.appointmentViewpage_getDetails = new String[] {appointmentID,speciality,clinic,type,doctor,appointmentDateTime,comment};
 		
+	}
+	public void get_followUpcomment_viewPage() {
+		String followUpcomment = appointmentView_folllowUpcomment().getText();
+		this.followUpcomment_viewPage_get = new String[] {followUpcomment};
 	}
 	public void check_patientUpload_empty() {
 		wait_pageLoadercomplate();
@@ -513,7 +536,7 @@ public class Patient_AppointmentPageUtils extends CustomDriver{
 	public String check_patient_followupFee(DataTable inputs) throws InterruptedException, ParseException  {
 		List<Map<String, String>>patientFollowupfee = inputs.asMaps(String.class, String.class);
 		  for (Map<String, String> data : patientFollowupfee) {
-			  
+			  wait_pageLoadercomplate();
 			  if((Arrays.asList(B_appointment.editProfile.patient_Country_Array)).contains(B_appointment.getCurrentcountry())) {
 				  assertTrue(Arrays.asList(appointmentView_followupDetails[0]).contains(data.get("Domestic Followup Fee")));
 			  }		 

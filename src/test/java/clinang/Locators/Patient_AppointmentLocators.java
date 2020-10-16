@@ -26,7 +26,8 @@ public class Patient_AppointmentLocators{
 	public By appointmentView_getDatetime = By.xpath("//table/div/div[2]/tbody/tr[1]/td");
 	public By appointmentView_getType = By.xpath("//table/div/div[2]/tbody/tr[2]/td");
 	public By appointmentView_getDoctor = By.xpath("//table/div/div[2]/tbody/tr[3]/td");
-	public By appointmentView_comment =By.xpath("//span[@class='ng-star-inserted']//following-sibling::p");
+	public By appointmentView_comment =By.xpath("//mat-card/div[3]/div/div[3]//following-sibling::p");
+	public By appointmentView_followUpcomment =By.xpath("//mat-card/div[3]/div/div[4]//following-sibling::p");
 	public By cancelConfirm_alertBox = By.xpath("//div[@class='cancelappt-modal']");
 	public By cancelButton = By.xpath("//button[@class='cancel-button mat-raised-button ng-star-inserted']");
 	public By cancelConfirm_button =By.xpath("//*[(normalize-space(text())='Confirm')]");

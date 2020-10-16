@@ -12,6 +12,6 @@ public class Patient_RegistrationLocators extends CustomDriver{
 	public By email_Field = By.xpath("//input[contains(@formcontrolname,'email')]");
 	public By password_Field =By.xpath("//input[contains(@formcontrolname,'password')]");
 	public By registrationButton =By.xpath("//button[@class='form-subbtn mat-raised-button']");
-	public By alertBox =By.xpath("//div[@class='msgtext']");
+	public By alert =By.xpath("//div[@class='errormsg ng-star-inserted']");
 	public By login_form = By.xpath("//div[@class='login-form']");
 }

@@ -1,5 +1,6 @@
 package clinang.pageUtils;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.io.FileInputStream;
@@ -22,6 +23,10 @@ public class Patient_MytreatmentPageUtils extends CustomDriver{
 	Patient_MytreatmentLocators myTreatment_Locator = new Patient_MytreatmentLocators();
 	public String[] myTreatment_gridDetails;
 	private String appointmentDateTime;
+	private String type;
+	private String speciality;
+	private String doctor;
+	private String clinic;
 	
 	public void wait_pageLoadercomplate() {
 		 Loader(myTreatment_Locator.pageLoader);
@@ -62,7 +67,24 @@ public class Patient_MytreatmentPageUtils extends CustomDriver{
 	private WebElement prescripionTable() {
 		return findElement(myTreatment_Locator.prescriptionTable);
 	}
-	
+	private WebElement grid_appointmentID_single() {
+		return findElement(By.xpath("//table/tbody/tr/td[1]"));
+	}
+	private WebElement grid_dateTime_single() {
+		return findElement(By.xpath("//table/tbody/tr/td[2]"));
+	}
+	private WebElement grid_type_single() {
+		return findElement(By.xpath("//table/tbody/tr/td[3]"));
+	}
+	private WebElement grid_speciality_single() {
+		return findElement(By.xpath("//table/tbody/tr/td[4]"));
+	}
+	private WebElement grid_doctor_single() {
+		return findElement(By.xpath("//table/tbody/tr/td[5]"));
+	}
+	private WebElement grid_clinicName_single() {
+		return findElement(By.xpath("//table/tbody/tr/td[6]"));
+	}
 	private WebElement grid_appointmentID(int i) {
 		return findElement(By.xpath("//table/tbody/tr["+i+"]/td[1]"));
 	}
@@ -86,9 +108,7 @@ public class Patient_MytreatmentPageUtils extends CustomDriver{
 	}
 	private WebElement pagination_next() {
 		return findElement(myTreatment_Locator.paginationNext);
-	}
-	
-	
+	}	
 
 	public void check_cancelled_appointmentID(List<String> appointmentId) throws InterruptedException {		
 		wait_pageLoadercomplate();	
@@ -100,11 +120,19 @@ public class Patient_MytreatmentPageUtils extends CustomDriver{
 				List<WebElement>TotalRowsList = TargetRows.findElements(By.tagName("tr"));
 					int i = 1;					
 					while(i<=TotalRowsList.size()-1) {	
-						if(appointmentId.contains(grid_appointmentID(i).getText())) {
+						if(TotalRowsList.size()-1==1) {
+							assertFalse(appointmentId.contains(grid_appointmentID_single().getText()));
+							break whileloop;
+						}
+						else if(appointmentId.contains(grid_appointmentID(i).getText())) {
 							System.out.println("Cancelled appointment exhibits on my treatment list");
 							assert false;
 							break whileloop;							 					 							 		 
 						} 
+						else if(TotalRowsList.size()-1==0) {
+							assert false;
+							break whileloop;
+						}
 						else {
 							if(!(appointmentId.contains(grid_appointmentID(i).getText()))) {
 								if(i==TotalRowsList.size()-1) {
@@ -160,7 +188,12 @@ public class Patient_MytreatmentPageUtils extends CustomDriver{
 			for(int j=1; j<=numberOf_prescriptions; j++) {
 				Loop3:
 				for(int k=1;k<=5;k++) {
-					if(data.get(i).get(0).replace(" ", "").contentEquals(prescriptionDetails_multiple(j,1).getText().replace(" ", ""))) {
+					if(numberOf_prescriptions==1) {
+						assertTrue(data.get(i).get(0).replace(" ", "").contentEquals(prescriptionDetails_single(1).getText().replace(" ", "")));
+						assertTrue(data.get(i).get(k-1).replace(" ", "").contentEquals(prescriptionDetails_single(k).getText().replace(" ", "")));
+						break Loop2;
+					}
+					else if(data.get(i).get(0).replace(" ", "").contentEquals(prescriptionDetails_multiple(j,1).getText().replace(" ", ""))) {
 						assertTrue(data.get(i).get(k-1).replace(" ", "").contentEquals(prescriptionDetails_multiple(j,k).getText().replace(" ", "")));
 						if(k==5) {
 							break Loop2;
@@ -174,9 +207,11 @@ public class Patient_MytreatmentPageUtils extends CustomDriver{
 						}	
 						else {
 							assert false;
-						}
-						
+						}		
 					}	
+					else if(numberOf_prescriptions==0) {
+						assert false;
+					}
 					else {
 						break Loop3;
 					}
@@ -189,23 +224,49 @@ public class Patient_MytreatmentPageUtils extends CustomDriver{
 	}
 	
 	public void get_Mytreatmentdetails_listPage(List<String> appointmentId) {
-		
 		wait_pageLoadercomplate();
 		whileloop:
 		while(true) {
 			
 			if(wait_treatmentTable().isDisplayed()==true) {
+				
 				WebElement TargetRows = findElement(myTreatment_Locator.targetRow);
 				List<WebElement>TotalRowsList = TargetRows.findElements(By.tagName("tr"));
-					int i = 1;					
-					while(i<=TotalRowsList.size()-1) {			
-						if(appointmentId.contains(grid_appointmentID(i).getText())) {
+					int i = 1;		
+					
+					while(i<=TotalRowsList.size()-1) {
+						
+						if(TotalRowsList.size()-1==1) {
+							System.out.println("TotalRowsList==1");
+							assertTrue(appointmentId.contains(grid_appointmentID_single().getText()));
+							String appointmentDateTime01 = grid_dateTime_single().getText();
+							type = grid_type_single().getText();
+							speciality = grid_speciality_single().getText();
+							doctor = grid_doctor_single().getText();
+							clinic = grid_clinicName_single().getText();
 							
+							String[] appointmentTime=grid_dateTime_single().getText().split(" ");
+							if(appointmentTime[3].startsWith("0")) {
+								String[] appointmentTime_hr = appointmentTime[3].split(":");
+								String appointmentHr_replace = appointmentTime_hr[0].replace("0", " ");
+								String newAppointmenttime = appointmentHr_replace+":"+appointmentTime_hr[1]+" "+appointmentTime[4];
+								 appointmentDateTime = appointmentTime[0]+" " +appointmentTime[1]+" "+appointmentTime[2]+" "+newAppointmenttime;
+								 
+							}
+							else {
+								appointmentDateTime =  appointmentTime[0]+" " +appointmentTime[1]+" "+appointmentTime[2]+" "+" "+appointmentTime[3]+" "+appointmentTime[4];
+							}
+							this.myTreatment_gridDetails = new String[] {appointmentDateTime,type,speciality,doctor,clinic};
+							break whileloop;
+						}
+						
+						else if(appointmentId.contains(grid_appointmentID(i).getText())) {
+							System.out.println("TotalRowsList!=1");
 							String appointmentDateTime01 = grid_dateTime(i).getText();
-							String type = grid_type(i).getText();
-							String speciality = grid_speciality(i).getText();
-							String doctor = grid_doctor(i).getText();
-							String clinic = grid_clinicName(i).getText();
+							type = grid_type(i).getText();
+							speciality = grid_speciality(i).getText();
+							doctor = grid_doctor(i).getText();
+							clinic = grid_clinicName(i).getText();
 							
 							String[] appointmentTime=grid_dateTime(i).getText().split(" ");
 							if(appointmentTime[3].startsWith("0")) {
@@ -213,23 +274,26 @@ public class Patient_MytreatmentPageUtils extends CustomDriver{
 								String appointmentHr_replace = appointmentTime_hr[0].replace("0", " ");
 								String newAppointmenttime = appointmentHr_replace+":"+appointmentTime_hr[1]+" "+appointmentTime[4];
 								 appointmentDateTime = appointmentTime[0]+" " +appointmentTime[1]+" "+appointmentTime[2]+" "+newAppointmenttime;
-							}	
-							
+							}			
 							else {
 								appointmentDateTime =  appointmentTime[0]+" " +appointmentTime[1]+" "+appointmentTime[2]+" "+" "+appointmentTime[3]+" "+appointmentTime[4];
 							}
 							
 							this.myTreatment_gridDetails = new String[] {appointmentDateTime,type,speciality,doctor,clinic};
 							 break whileloop;			 
-						} i++;
+						}
+						else if(TotalRowsList.size()-1==0) {
+							assert false;
+						}
+						else if((pagination_next().isEnabled()==false)&&(i==TotalRowsList.size()-1)){
+							assert false;
+						}
+						i++;
 					} 
 				if(pagination_next().isEnabled()==true) {
 					pagination_next().click();
 					}														
 				}	
 			}
-	
-	}
-	
-	
+		}
 	}

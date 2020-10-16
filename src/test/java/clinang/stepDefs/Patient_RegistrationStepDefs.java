@@ -28,21 +28,21 @@ public class Patient_RegistrationStepDefs {
 	
 	@Then("^Check the validation message for success registration$")
 	public void checkSuccessProcess() {	
-		assertTrue(registration.get_alertMessage().contains("Registered successfully."));
+		assertTrue(registration.get_alertMessage().contentEquals("Registered successfully."));
 	}
 	
 	@Then("^Check the validation message for existing details$")
-	public void checkFailedprocess_existing() {		
-		assertTrue(registration.get_alertMessage().contains("Something went wrong!, Please try again later"));
+	public void checkFailedprocess_existing() {	
+		assertTrue(registration.get_alertMessage().contentEquals("User name '"+registration.email+"' is already taken."));
 		
 	}
 	
 	@Then("^Check validation message for invalid details$")
 	public void checkFailedprocess_invalid_all() {		
-		assertTrue(registration.gettext_loginform().contains("First Name should be in alphabets"));
-		assertTrue(registration.gettext_loginform().contains("Last Name should be in alphabets"));
-		assertTrue(registration.gettext_loginform().contains("Enter a valid Email"));
-		assertTrue(registration.gettext_loginform().contains("Password must have atleast 6 characters with a mix of special character, digit, uppercase and lowercase"));
+		assertTrue(registration.gettext_loginform().replace(" ", "").contentEquals(("First Name should be in alphabets").replace(" ", "")));
+		assertTrue(registration.gettext_loginform().replace(" ", "").contentEquals(("Last Name should be in alphabets").replace(" ", "")));
+		assertTrue(registration.gettext_loginform().replace(" ", "").contentEquals(("Enter a valid Email").replace(" ", "")));
+		assertTrue(registration.gettext_loginform().replace(" ", "").contentEquals(("Password must have atleast 6 characters with a mix of special character, digit, uppercase and lowercase").replace(" ", "")));
 		//System.out.println(registration.gettext_loginform());
 	}
 	
