@@ -128,7 +128,7 @@ public class Patient_AppointmentStepDefs {
 		assertTrue(Arrays.asList(appointmentPageUtils.appointmentViewpage_getDetails[6]).contains(appointmentPageUtils.reschedule_appointmentDetails[1]));						
 			
 		}
-	@Then("^Check the appointment count based on reschedule date \"([^\"]*)\" and previous appointment date \"([^\"]*)\"$")
+	@Then("^Check the appointment count based on \"([^\"]*)\" and \"([^\"]*)\"$")
 	public void check_appointmentCount(String rescheduleDate,String existingAppointment) throws InterruptedException, ParseException {
 		
 		dashboard.dashboardField().click();
