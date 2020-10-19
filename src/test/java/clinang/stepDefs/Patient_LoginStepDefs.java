@@ -46,12 +46,12 @@ public class Patient_LoginStepDefs {
 	
 	@But("^It display Username or Password is Wrong alert message$")
 	public void checkValidation_invalidEmail() {		
-		assertTrue(loginPage.get_emailAlert().contains("Username or Password is Wrong"));
+		assertTrue(loginPage.get_emailAlert().equalsIgnoreCase("Username or Password is Wrong"));
 	}	
 	
 	@But("^It display Clinic code is invalid alert message$")
 	public void checkValidation_invalidCliniccode() {		
-		assertTrue(loginPage.get_emailAlert().contains("Clinic code is invalid"));
+		assertTrue(loginPage.get_emailAlert().equalsIgnoreCase("Clinic code is invalid"));
 	}	
 	@Then("^close the browser$")
 	public void close() {

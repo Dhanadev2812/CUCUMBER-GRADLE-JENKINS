@@ -213,11 +213,7 @@ public class Patient_DashboardPageUtils extends CustomDriver{
 		File profileImage = new File(File_path);
 		profile_img().sendKeys(profileImage.getAbsolutePath());
 	}
-	
-	public WebElement profileEditform() {
-		return findElement(DashboardLocators.profileEditform);
-	}
-	
+		
 	public WebElement clickSave() {
 		 return findElement(DashboardLocators.clickSave);
 	 }
@@ -229,6 +225,24 @@ public class Patient_DashboardPageUtils extends CustomDriver{
 	 private WebElement alertBox() {
 			return findElement(DashboardLocators.alertBox);		
 		}	 
+	 public WebElement mobileAlert() {
+		 return findElement(DashboardLocators.mobileAlert);
+	 }
+	 public WebElement addressAlert() {
+		 return findElement(DashboardLocators.addressAlert);
+	 }
+	 public WebElement streetAlert() {
+		 return findElement(DashboardLocators.streetAlert);
+	 }
+	 public WebElement cityAlert() {
+		 return findElement(DashboardLocators.cityAlert);
+	 }
+	 public WebElement stateAlert() {
+		 return findElement(DashboardLocators.stateAlert);
+	 }
+	 public WebElement pincodeAlert() {
+		 return findElement(DashboardLocators.pincodeAlert);
+	 }
 
 	public String passProfiledetails(DataTable inputs) throws InterruptedException  {
 		List<Map<String, String>> profileUpdate_input = inputs.asMaps(String.class, String.class);
@@ -275,11 +289,7 @@ public class Patient_DashboardPageUtils extends CustomDriver{
 		pincodeField().sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));	
 		clickSave().click();
 	}
-	
-	public String gettext_profileEditform() {
-		return(profileEditform().getText());
-	} 
-	
+		
 	public void get_editFormdata() {
 		String get_mobileNum =  mobileNumberField().getAttribute("value");
 		String get_address = addressField().getAttribute("value");

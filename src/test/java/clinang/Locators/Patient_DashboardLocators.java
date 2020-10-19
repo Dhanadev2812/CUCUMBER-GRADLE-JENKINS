@@ -33,9 +33,14 @@ public class Patient_DashboardLocators extends CustomDriver{
 	 public By click_countryDropdown = By.xpath("//div[@class='mat-select-value']");
 	 public By pincodeField = By.xpath("//input[@formcontrolname='pincode']");
 	 public By profile_imageUpload = By.xpath("//*[@id='imageUpload']");
-	 public By profileEditform = By.xpath("//mat-card[@class='section-space mat-card']");
 	 public By clickSave = By.xpath("//button[@class='reschedule-button mat-raised-button']");
 	 public By clickCancel = By.xpath("//button[@class='cancel-button mat-raised-button']");
 	 public By alertBox =By.xpath("//div[@class='msgtext']");
+	 public By mobileAlert = By.xpath("//form/div[2]/div[4]/div/mat-form-field//child::mat-error");
+	 public By addressAlert = By.xpath("//form/div[3]/div[2]/div/mat-form-field//child::mat-error");
+	 public By streetAlert = By.xpath("//form/div[3]/div[3]/div/mat-form-field//child::mat-error");
+	 public By cityAlert = By.xpath("//form/div[3]/div[4]/div/mat-form-field//child::mat-error");
+	 public By stateAlert = By.xpath("//form/div[3]/div[5]/div/mat-form-field//child::mat-error");
+	 public By pincodeAlert = By.xpath("//form/div[3]/div[7]/div/mat-form-field//child::mat-error");
 	 
 }

@@ -36,13 +36,13 @@ public class Patient_MedicalhistoryStepDefs {
 	
 	@Then("^Check validation message for successful medical history add$")
 	public void checkValidation_add() {
-		assertTrue(Medicalhistory.get_alertMessage().contains("Medical history saved successfully"));
+		assertTrue(Medicalhistory.get_alertMessage().equalsIgnoreCase("Medical history saved successfully"));
 		
 	}
 	
 	@Then("^Check validation message for successful medical history update$")
 	public void checkValidation_update()  {
-		assertTrue(Medicalhistory.get_alertMessage().contains("Medical history updated successfully"));		
+		assertTrue(Medicalhistory.get_alertMessage().equalsIgnoreCase("Medical history updated successfully"));		
 	}
 	
 	@Then("^Check the added details updated on patient dashboard$")
@@ -65,11 +65,11 @@ public class Patient_MedicalhistoryStepDefs {
 	@Then("^Check the validation message for medical history mandatory fields$")
 	public void checkValidation_mandatory_add() {
 		
-		assertTrue(Medicalhistory.get_medicalHistoryform().contains("Please Select Blood Group"));
-		assertTrue(Medicalhistory.get_medicalHistoryform().contains("Please Select Date of Birth"));
-		assertTrue(Medicalhistory.get_medicalHistoryform().contains("Please Enter Age"));
-		assertTrue(Medicalhistory.get_medicalHistoryform().contains("Please Enter the Weight"));
-		assertTrue(Medicalhistory.get_medicalHistoryform().contains("Please Enter the Height"));
+		assertTrue(Medicalhistory.get_medicalHistoryform().equalsIgnoreCase("Please Select Blood Group"));
+		assertTrue(Medicalhistory.get_medicalHistoryform().equalsIgnoreCase("Please Select Date of Birth"));
+		assertTrue(Medicalhistory.get_medicalHistoryform().equalsIgnoreCase("Please Enter Age"));
+		assertTrue(Medicalhistory.get_medicalHistoryform().equalsIgnoreCase("Please Enter the Weight"));
+		assertTrue(Medicalhistory.get_medicalHistoryform().equalsIgnoreCase("Please Enter the Height"));
 
 	}
 	
@@ -80,8 +80,8 @@ public class Patient_MedicalhistoryStepDefs {
 	
 	@Then("^Check the validation message on allergy and medical history field$")
 	public void checkValidation_allergy_medicalHistory() {
-		assertTrue(Medicalhistory.get_medicalHistoryform().contains("Please enter any allergies that needs to be known"));
-		assertTrue(Medicalhistory.get_medicalHistoryform().contains("Please enter your medical history that needs to be known"));
+		assertTrue(Medicalhistory.get_medicalHistoryform().equalsIgnoreCase("Please enter any allergies that needs to be known"));
+		assertTrue(Medicalhistory.get_medicalHistoryform().equalsIgnoreCase("Please enter your medical history that needs to be known"));
 	}
 	
 	@And("^Clear the mandatory fields on edit screen$")
@@ -91,9 +91,9 @@ public class Patient_MedicalhistoryStepDefs {
 	
 	@Then("^Check the validation message for medical history mandatory fields on edit$")
 	public void checkValidation_mandatory_edit() {
-		assertTrue(Medicalhistory.get_medicalHistoryform().contains("Please Enter Age"));
-		assertTrue(Medicalhistory.get_medicalHistoryform().contains("Please Enter the Weight"));
-		assertTrue(Medicalhistory.get_medicalHistoryform().contains("Please Enter the Height"));
+		assertTrue(Medicalhistory.get_medicalHistoryform().equalsIgnoreCase("Please Enter Age"));
+		assertTrue(Medicalhistory.get_medicalHistoryform().equalsIgnoreCase("Please Enter the Weight"));
+		assertTrue(Medicalhistory.get_medicalHistoryform().equalsIgnoreCase("Please Enter the Height"));
 		
 	}
 	
@@ -109,7 +109,7 @@ public class Patient_MedicalhistoryStepDefs {
 	
 	@But("^It display alert message - Weight and height must be number$")
 	public void checkValidation_add_invalid() {
-		assertTrue(Medicalhistory.get_medicalHistoryform().contains("Weight must be number"));
-		assertTrue(Medicalhistory.get_medicalHistoryform().contains("Height must be number"));
+		assertTrue(Medicalhistory.get_medicalHistoryform().equalsIgnoreCase("Weight must be number"));
+		assertTrue(Medicalhistory.get_medicalHistoryform().equalsIgnoreCase("Height must be number"));
 	}
 }

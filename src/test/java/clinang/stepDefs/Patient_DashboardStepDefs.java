@@ -49,7 +49,7 @@ public class Patient_DashboardStepDefs {
 	
 	@Then("^Check validation message for successful update$")
 	public void check_updatealert_success() {
-		assertTrue(dashboard.get_alertMessage().contains("Patient profile updated succesfully"));
+		assertTrue(dashboard.get_alertMessage().equalsIgnoreCase("Patient profile updated succesfully"));
 	}
 	
 	@Then("^Check the profile details updated on dashboard$")
@@ -67,12 +67,12 @@ public class Patient_DashboardStepDefs {
 	
 	@Then("^Check the validation message for mandatory fields$")
 	public void validation_message_mandatory()  {
-		assertTrue(dashboard.gettext_profileEditform().contains("Mobile Number is Required"));
-		assertTrue(dashboard.gettext_profileEditform().contains("Please Enter Address"));
-		assertTrue(dashboard.gettext_profileEditform().contains("Please enter Street"));
-		assertTrue(dashboard.gettext_profileEditform().contains("Please Enter City"));
-		assertTrue(dashboard.gettext_profileEditform().contains("Please Enter State"));
-		assertTrue(dashboard.gettext_profileEditform().contains("Please Enter Pincode"));
+		assertTrue(dashboard.mobileAlert().getText().replace(" ", "").equalsIgnoreCase(("Mobile Number is Required").replace(" ", "")));
+		assertTrue(dashboard.addressAlert().getText().replace(" ", "").equalsIgnoreCase(("Please Enter Address").replace(" ", "")));
+		assertTrue(dashboard.streetAlert().getText().replace(" ", "").equalsIgnoreCase(("Please enter Street").replace(" ", "")));
+		assertTrue(dashboard.cityAlert().getText().replace(" ", "").equalsIgnoreCase(("Please Enter City").replace(" ", "")));
+		assertTrue(dashboard.stateAlert().getText().replace(" ", "").equalsIgnoreCase(("Please Enter State").replace(" ", "")));
+		assertTrue(dashboard.pincodeAlert().getText().replace(" ", "").equalsIgnoreCase(("Please Enter Pincode").replace(" ", "")));
 	}
 	
 	@Then("^Check the save button is disabled or not$")
@@ -87,7 +87,7 @@ public class Patient_DashboardStepDefs {
 	
 	@Then("^Check the validation message for invalid data$") 
 		public void alert_invalidMobnum() {
-		assertTrue(dashboard.gettext_profileEditform().contentEquals("Mobile Number should be 10 digits"));
+		assertTrue(dashboard.mobileAlert().getText().replace(" ", "").equalsIgnoreCase(("Mobile Number should be 10 digits").replace(" ", "")));
 		}
 	}
 

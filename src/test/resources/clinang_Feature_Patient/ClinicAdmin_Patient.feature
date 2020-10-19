@@ -21,7 +21,7 @@ Feature: Feature to done patient functionaity
     And Click on register option
     Then Check the validation message for new patient creation
 
-  @CreatePatient-Mnadatory
+  @CreatePatient-Mandatory
   Scenario: Create new patients without mandatory inputs
     And Click on create patient button
     When Skip the mandatory inputs
@@ -40,4 +40,6 @@ Feature: Feature to done patient functionaity
     @Patientdetails
     Scenario: Verify patient details
     When get the patient details from "src\test\resources\ClinicAdmin_TestData\Watts Health Center\Patient-details.xlsx"
-    Then Validate patient personal details
+    #Then Verify patient personal details
+    #Then Verify medical history details
+    Then Verify the appointment details on patient module	

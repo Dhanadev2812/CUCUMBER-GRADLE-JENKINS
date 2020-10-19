@@ -4,6 +4,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
+import java.text.ParseException;
 
 import clinang.pageUtils.ClinicAdmin_PatientPageUtils;
 import io.cucumber.datatable.DataTable;
@@ -40,7 +41,7 @@ public class ClinicAdmin_PatientStepDefs {
 	}
 	@Then("^Check the validation message for new patient creation$")
 	public void check_validation_patient_create() {
-		assertTrue(C_Admin_patientpageUtils.messageBox().getText().replace(" ", "").equals(("Patient mapped to clinic successfully.").replace(" ", "")));
+		assertTrue(C_Admin_patientpageUtils.messageBox().getText().replace(" ", "").equalsIgnoreCase(("Patient mapped to clinic successfully.").replace(" ", "")));
 		C_Admin_patientpageUtils.click_close_messageBox();
 	}
 	@When("^Skip the mandatory inputs$")
@@ -53,10 +54,10 @@ public class ClinicAdmin_PatientStepDefs {
 	}
 	@Then("^Check the validation message for patient mandatory fields$")
 	public void check_validation_patient_mandatory() {
-		assertTrue(C_Admin_patientpageUtils.firstName_alert().getText().replace(" ", "").equals(("First Name is Required").replace(" ", "")));
-		assertTrue(C_Admin_patientpageUtils.lastName_alert().getText().replace(" ", "").equals(("Last Name is Required").replace(" ", "")));
-		assertTrue(C_Admin_patientpageUtils.email_alert().getText().replace(" ", "").equals(("Email is Required").replace(" ", "")));
-		assertTrue(C_Admin_patientpageUtils.password_alert().getText().replace(" ", "").equals(("Password is Required").replace(" ", "")));
+		assertTrue(C_Admin_patientpageUtils.firstName_alert().getText().replace(" ", "").equalsIgnoreCase(("First Name is Required").replace(" ", "")));
+		assertTrue(C_Admin_patientpageUtils.lastName_alert().getText().replace(" ", "").equalsIgnoreCase(("Last Name is Required").replace(" ", "")));
+		assertTrue(C_Admin_patientpageUtils.email_alert().getText().replace(" ", "").equalsIgnoreCase(("Email is Required").replace(" ", "")));
+		assertTrue(C_Admin_patientpageUtils.password_alert().getText().replace(" ", "").equalsIgnoreCase(("Password is Required").replace(" ", "")));
 	}
 	@When("^Enter invalid inputs$")
 	public void enter_invalid_inputs(DataTable inputs) {
@@ -65,10 +66,10 @@ public class ClinicAdmin_PatientStepDefs {
 	
 	@Then("^Check the validation message for invalid patient details$")
 	public void check_validation_invalidInput() {
-		assertTrue(C_Admin_patientpageUtils.firstName_alert().getText().replace(" ", "").equals(("First Name should be in alphabets & not allowed space").replace(" ", "")));
-		assertTrue(C_Admin_patientpageUtils.lastName_alert().getText().replace(" ", "").equals(("Last Name should be in alphabets & not allowed space").replace(" ", "")));
-		assertTrue(C_Admin_patientpageUtils.email_alert().getText().replace(" ", "").equals(("Enter a valid Email").replace(" ", "")));
-		assertTrue(C_Admin_patientpageUtils.password_alert().getText().replace(" ", "").equals(("Password must have atleast 6 characters with a mix of special character, digit, uppercase and lowercase").replace(" ", "")));
+		assertTrue(C_Admin_patientpageUtils.firstName_alert().getText().replace(" ", "").equalsIgnoreCase(("First Name should be in alphabets & not allowed space").replace(" ", "")));
+		assertTrue(C_Admin_patientpageUtils.lastName_alert().getText().replace(" ", "").equalsIgnoreCase(("Last Name should be in alphabets & not allowed space").replace(" ", "")));
+		assertTrue(C_Admin_patientpageUtils.email_alert().getText().replace(" ", "").equalsIgnoreCase(("Enter a valid Email").replace(" ", "")));
+		assertTrue(C_Admin_patientpageUtils.password_alert().getText().replace(" ", "").equalsIgnoreCase(("Password must have atleast 6 characters with a mix of special character, digit, uppercase and lowercase").replace(" ", "")));
 	}
 	
 	@When("^get the patient details from \"([^\"]*)\"$")
@@ -76,8 +77,17 @@ public class ClinicAdmin_PatientStepDefs {
 		C_Admin_patientpageUtils.get_patientFile(patient_details_file);
 		
 	}
-	@Then("^Validate patient personal details$")
+	@Then("^Verify patient personal details$")
 	public void validate_patient_personalDetails() throws IOException {
 		C_Admin_patientpageUtils.verify_patient_personalDetails();
+	}
+	@Then("^Verify medical history details$")
+	public void verify_medicalHistory_details() throws IOException  {
+		C_Admin_patientpageUtils.verifyMedicalhistory();
+	}
+	
+	@Then("^Verify the appointment details on patient module$")
+	public void verify_appointment_patientModule() throws IOException, ParseException {
+		C_Admin_patientpageUtils.verify_appointmentDetails();
 	}
 }

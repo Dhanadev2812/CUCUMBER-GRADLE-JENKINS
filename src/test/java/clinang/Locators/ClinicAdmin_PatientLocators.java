@@ -21,4 +21,9 @@ public class ClinicAdmin_PatientLocators {
 	public By patientTable = By.xpath("//table");
 	public By targetRow = By.xpath("//table[@class='mat-table']");
 	public By paginationNext = By.xpath("//button[@aria-label='Next page']");
+	public By allergy = By.xpath("//*[(normalize-space(text())='Allergy')]//following-sibling::p/p");
+	public By history = By.xpath("//*[(normalize-space(text())='History')]//following-sibling::p/p");
+	public By medicalHistory_table =By.xpath("//table[@class='table ng-star-inserted']");
+	public By backTopatient = By.xpath("//a[@href='/portal/admin-patient']");
+	
 }

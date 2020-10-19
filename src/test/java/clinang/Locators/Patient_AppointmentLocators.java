@@ -5,10 +5,10 @@ import org.openqa.selenium.By;
 public class Patient_AppointmentLocators{
 	
 	public By appointmentModule =By.xpath("//a[@href='/portal/appointmentlist/Today']");
-	public By appointmentList_today = By.id("Today");
-	public By appointmentList_upcoming = By.id("Upcoming");
-	public By appointmentList_past = By.id("Past");
-	public By appointmentList_cancelled =By.id("Cancelled");
+	public By appointmentList_today = By.xpath("//*[(normalize-space(text())='Today')]");
+	public By appointmentList_upcoming = By.xpath("//*[(normalize-space(text())='Upcoming')]");
+	public By appointmentList_past = By.xpath("//*[(normalize-space(text())='Past')]");
+	public By appointmentList_cancelled =By.xpath("//*[(normalize-space(text())='Cancelled')]");
 	public By appointment_Loader = By.xpath("//img[class='pl-3 loader']");
 	public By paginationNext = By.xpath("//button[@aria-label='Next page']");
 	public By appointmentTable = By.xpath("//table");
