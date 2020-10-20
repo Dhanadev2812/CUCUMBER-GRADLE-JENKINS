@@ -41,17 +41,20 @@ public class Patient_LoginStepDefs {
 	public void check_i_am_logged_in() throws InterruptedException {		
 		loginPage.wait_myProfileview();		
 		assertTrue(loginPage.get_currenturl().equals(vars.getEnvironmentUrl()+"portal/dashboard"));
-		//assertTrue(Arrays.asList(loginPage.loginarr).contains(Dashboard.profile_email().getText()));	
+		//assertTrue(Arrays.asList(loginPage.loginarr).contains(Dashboard.profile_email().getText()));
+		System.out.println("Patient Loggedin Successfully");
 	}
 	
 	@But("^It display Username or Password is Wrong alert message$")
 	public void checkValidation_invalidEmail() {		
 		assertTrue(loginPage.get_emailAlert().equalsIgnoreCase("Username or Password is Wrong"));
+		System.out.println("Username or Password is Wrong");
 	}	
 	
 	@But("^It display Clinic code is invalid alert message$")
 	public void checkValidation_invalidCliniccode() {		
 		assertTrue(loginPage.get_emailAlert().equalsIgnoreCase("Clinic code is invalid"));
+		System.out.println("Clinic code is invalid");
 	}	
 	@Then("^close the browser$")
 	public void close() {

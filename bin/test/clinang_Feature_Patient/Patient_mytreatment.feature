@@ -14,7 +14,7 @@ Feature: Feature to check my treatment functionaity
     And Move to my treatment
     Then Check the my treatment details with the help of "src\test\resources\Patient_TestData\Wilson-ID-5\Patient_Mytreatment\TreatmentDetails.xlsx"
 
-  @Download-prescription
+  @Download-prescription @patient-smokeTest
   Scenario: Download prescription
     And Move to my treatment
     When Validate and Download the prescription based on appointment id "70"

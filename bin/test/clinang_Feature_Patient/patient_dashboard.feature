@@ -11,7 +11,7 @@ Feature: Feature to done dashboard functionaity
     And Click on edit profile option
 
   #Ref Patient-Inputs text file before edit
-  @Editprofile-valid
+  @Editprofile-valid @patient-smokeTest
   Scenario: Update profile with valid details
     And Upload the image from "src\test\resources\Patient_TestData\Sandhiya-ID-1\Profile_img\women.jpg"
     When Enter mobile_number,address,street,city,state,country and pincode
@@ -22,7 +22,7 @@ Feature: Feature to done dashboard functionaity
     And Move to dashboard
     Then Check the profile details updated on dashboard
 
-  @Editprofile-Null-Check_mandatory
+  @Editprofile-Null-Check_mandatory @patient-smokeTest
   Scenario: Update profile with null details
     Then Clear all existing details
     Then Check the validation message for mandatory fields
@@ -30,7 +30,7 @@ Feature: Feature to done dashboard functionaity
     And Click on "cancel"
     And Move to dashboard
 
-  @Editprofile-Invaliddatas
+  @Editprofile-Invaliddatas @patient-smokeTest
   Scenario: Update profile with invalid details
     When Enter invalid mobile number
       | mobile_number | address                   | street          | city    | state     | country | pincode |

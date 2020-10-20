@@ -16,14 +16,15 @@ public class Hooks_Utils extends CustomDriver {
  public void beforeScenarioStart(){
 	 
      System.out.println("----------Start of Scenario----------"); 
-	 }  
+     System.out.println("                                   ");
+     }  
  
  @After(order=0)
     public void afterScenario(){	 
-        System.out.println("----------End of Scenario----------");
+        System.out.println("                                   ");
     } 
  
-@After(order=1)
+ /*@After(order=1)
  public void afterScenarioFinish(){
 	 
 	 //System.out.println("----------Deleting Browser Cookies----------");
@@ -31,7 +32,7 @@ public class Hooks_Utils extends CustomDriver {
 		
 	 }  
 
-/*@After(order=2)
+@After(order=2)
     public void afterScenario(){
         System.out.println("----------------Close The Browser-----------------");
         quit();

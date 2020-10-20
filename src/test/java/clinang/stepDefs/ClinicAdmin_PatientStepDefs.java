@@ -87,7 +87,7 @@ public class ClinicAdmin_PatientStepDefs {
 	}
 	
 	@Then("^Verify the appointment details on patient module$")
-	public void verify_appointment_patientModule() throws IOException, ParseException {
+	public void verify_appointment_patientModule() throws IOException, ParseException, InterruptedException {
 		C_Admin_patientpageUtils.verify_appointmentDetails();
 	}
 }

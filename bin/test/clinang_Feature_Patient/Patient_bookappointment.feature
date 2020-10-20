@@ -12,7 +12,7 @@ Feature: Feature to check book appointment functionaity
     And Go to book appointment screen
 
   #Ref Patient-Inputs text file before edit
-  @BookAppointment-Create
+  @BookAppointment-Create @patient-smokeTest
   Scenario Outline: Create new appointment
     When Enter the appointment details
       | mobile     | appointment_type | speciality      | doctor            | chief_complaint     |

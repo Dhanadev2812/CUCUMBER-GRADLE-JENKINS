@@ -10,7 +10,7 @@ Feature: Feature to check payment functionaity
     Then Check i am logged in
     And Go to payment screen
 
-  @Payment-Downloadinvoice
+  @Payment-Downloadinvoice @patient-smokeTest
   Scenario: Check payment for appointment
     And Click on "appointment" tab
     And Find the payment list based on appointment ID "70"

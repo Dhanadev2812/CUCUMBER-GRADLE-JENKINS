@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +14,7 @@ import org.openqa.selenium.WebElement;
 
 import clinang.Locators.ClinicAdmin_PatientLocators;
 import clinang.stepDefs.Patient_AppointmentStepDefs;
+import clinang.stepDefs.Patient_BookAppointmentStepDefs;
 import clinang.webDriverUtils.CustomDriver;
 import io.cucumber.datatable.DataTable;
 
@@ -20,9 +22,10 @@ public class ClinicAdmin_PatientPageUtils extends CustomDriver{
 	
 	ClinicAdmin_PatientLocators C_Admin_PatientLocators = new ClinicAdmin_PatientLocators();
 	Patient_AppointmentStepDefs appointmentStepdefs = new Patient_AppointmentStepDefs();
+	Patient_AppointmentPageUtils appointmentPageUtils = new Patient_AppointmentPageUtils();
 	private String patientFile;
-	private String newappointmentDate;
 	private String requireddate;
+	private String appointmentDateTime;
 	
 	public void wait_pageLoad_complate() {
 		 Loader(C_Admin_PatientLocators.pageLoader);
@@ -115,6 +118,9 @@ public class ClinicAdmin_PatientPageUtils extends CustomDriver{
 	}
 	private WebElement backTopatient_option() {
 		return findElement(C_Admin_PatientLocators.backTopatient);
+	}
+	private WebElement bactTopatientDetails() {
+		return findElement(C_Admin_PatientLocators.bactTopatientDetails);
 	}
 	public String passPatientdetails(DataTable inputs)   {
 		List<Map<String, String>> clinicPatient_input = inputs.asMaps(String.class, String.class);
@@ -243,10 +249,10 @@ public class ClinicAdmin_PatientPageUtils extends CustomDriver{
 		}	
 	}
 	
-	public void verify_appointmentDetails() throws IOException, ParseException {
+	public void verify_appointmentDetails() throws IOException, ParseException, InterruptedException {
 		int lastRow =rowSize(patientFile,"Appointments");
 		int lastCol = columnSize(patientFile, "Appointments");
-		
+		wait_pageLoad_complate();
 		if(wait_patientTable().isDisplayed()==true) {
 			WebElement TargetRows = findElement(C_Admin_PatientLocators.targetRow);
 			List<WebElement>TotalRowsList = TargetRows.findElements(By.tagName("tr"));			 	
@@ -271,15 +277,61 @@ public class ClinicAdmin_PatientPageUtils extends CustomDriver{
 						    break;
 						  case 2:
 							  String Zone = integerConverter_excel(patientFile,"Appointments",excelRow, excelCol);
-							  appointmentStepdefs.compare__date(requireddate, Zone); 
+							  appointmentStepdefs.compare__date(requireddate, Zone);
+							  if(integerConverter_excel(patientFile,"Appointments",excelRow, 13).contentEquals("Cancelled")) {
+								  appointmentPageUtils.Click_appointmentList_cancelled();
+							  }
 						    break;
 						  case 3: 
 							  appointmentStepdefs.find_appointmentID(integerConverter_excel(patientFile,"Appointments",excelRow, excelCol));
 							  break;
+						  case 4: 
+							  appointmentPageUtils.get_appointmentDetails_viewPage();
+							  String[] appointmentTime=integerConverter_excel(patientFile,"Appointments",excelRow, excelCol).split(" "); 
+							  if(appointmentTime[3].startsWith("0")) {
+									String[] appointmentTime_hr = appointmentTime[3].split(":");
+									String appointmentHr_replace = appointmentTime_hr[0].replace("0", " ");
+									String newAppointmenttime = appointmentHr_replace+":"+appointmentTime_hr[1]+" "+appointmentTime[4];
+									 appointmentDateTime = appointmentTime[0]+" " +appointmentTime[1]+" "+appointmentTime[2]+" "+newAppointmenttime;
+								}	
+								
+								else {
+									appointmentDateTime =  appointmentTime[0]+" " +appointmentTime[1]+" "+appointmentTime[2]+" "+" "+appointmentTime[3]+" "+appointmentTime[4];
+								}
+							  assertTrue(Arrays.asList(appointmentPageUtils.appointmentViewpage_getDetails[5]).contains(appointmentDateTime));
+							  break;
+						  case 5: 
+							  assertTrue(Arrays.asList(appointmentPageUtils.appointmentViewpage_getDetails[3]).contains(integerConverter_excel(patientFile,"Appointments",excelRow, excelCol)));
+							  break;
+						  case 6:
+							  assertTrue(Arrays.asList(appointmentPageUtils.appointmentViewpage_getDetails[1]).contains(integerConverter_excel(patientFile,"Appointments",excelRow, excelCol)));
+							  break;
+						  case 7:
+							  assertTrue(Arrays.asList(appointmentPageUtils.appointmentViewpage_getDetails[4]).contains(integerConverter_excel(patientFile,"Appointments",excelRow, excelCol)));
+							  break;
+						  case 9:
+							  assertTrue(Arrays.asList(appointmentPageUtils.appointmentViewpage_getDetails[2]).contains(integerConverter_excel(patientFile,"Appointments",excelRow, excelCol)));
+							  break;
+						  case 10:
+							  assertTrue(Arrays.asList(appointmentPageUtils.appointmentViewpage_getDetails[6]).contains(integerConverter_excel(patientFile,"Appointments",excelRow, excelCol)));
+							  break;
+						  case 11:
+							  if(integerConverter_excel(patientFile,"Appointments",excelRow, excelCol).equalsIgnoreCase("")) {
+								System.out.println("No Followup Comments Updated");  
+							  }
+							  else {
+								  appointmentPageUtils.get_followUpcomment_viewPage();
+								  assertTrue(Arrays.asList(appointmentPageUtils.followUpcomment_viewPage_get[1]).contains(integerConverter_excel(patientFile,"Appointments",excelRow, excelCol)));
+							  }
+							  break;
 						 }
 					 }
-					
+					 bactTopatientDetails().click();
+					 wait_pageLoad_complate();
+					 backTopatient_option().click();
+					 wait_pageLoad_complate();
 					break TABLElOOP;
+					
 				}
 				else if((paginationNext().isEnabled()==false)&&(tableRow==TotalRowsList.size()-1)){
 					assert false;
