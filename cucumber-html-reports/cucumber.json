@@ -1,0 +1,187 @@
+[
+  {
+    "line": 2,
+    "elements": [
+      {
+        "line": 4,
+        "name": "User is Logged In",
+        "description": "",
+        "type": "background",
+        "keyword": "Background",
+        "steps": [
+          {
+            "result": {
+              "duration": 18444000000,
+              "status": "passed"
+            },
+            "line": 5,
+            "name": "I open the app",
+            "match": {
+              "location": "clinang.stepDefs.Patient_LoginStepDefs.openTheApp()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 5547000000,
+              "status": "passed"
+            },
+            "line": 6,
+            "name": "Move to admin login page",
+            "match": {
+              "location": "clinang.stepDefs.ClinicAdmin_LoginStepDefs.admin_loginPage()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 6208000000,
+              "status": "passed"
+            },
+            "line": 7,
+            "name": "Enter clinic admin credentials",
+            "match": {
+              "location": "clinang.stepDefs.ClinicAdmin_LoginStepDefs.enter_credentials(io.cucumber.datatable.DataTable)"
+            },
+            "rows": [
+              {
+                "cells": [
+                  "UserName",
+                  "Password"
+                ]
+              },
+              {
+                "cells": [
+                  "watts@clinicadmin.com",
+                  "Password12#"
+                ]
+              }
+            ],
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 5292000000,
+              "status": "passed"
+            },
+            "line": 10,
+            "name": "Click on Login button",
+            "match": {
+              "location": "clinang.stepDefs.ClinicAdmin_LoginStepDefs.click_loginButton()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 5281000000,
+              "status": "passed"
+            },
+            "line": 11,
+            "name": "Check i am logged in as a clinic admin",
+            "match": {
+              "location": "clinang.stepDefs.ClinicAdmin_LoginStepDefs.check_loggedIn_clinicAdmin()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 118000000,
+              "status": "passed"
+            },
+            "line": 12,
+            "name": "Click on patient module",
+            "match": {
+              "location": "clinang.stepDefs.ClinicAdmin_PatientStepDefs.moveTo_patientModule()"
+            },
+            "keyword": "And "
+          }
+        ]
+      },
+      {
+        "start_timestamp": "2020-10-27T12:57:48.967Z",
+        "before": [
+          {
+            "result": {
+              "duration": 4000000,
+              "status": "passed"
+            },
+            "match": {
+              "location": "clinang.webDriverUtils.Hooks_Utils.beforeScenarioStart()"
+            }
+          }
+        ],
+        "line": 41,
+        "name": "Verify patient details",
+        "description": "",
+        "id": "feature-to-done-patient-functionaity;verify-patient-details",
+        "after": [
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "clinang.webDriverUtils.Hooks_Utils.afterScenario()"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 3000000,
+              "status": "passed"
+            },
+            "line": 42,
+            "name": "get the patient details from \"src\\test\\resources\\ClinicAdmin_TestData\\Watts Health Center\\Patient-details.xlsx\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "src\\test\\resources\\ClinicAdmin_TestData\\Watts Health Center\\Patient-details.xlsx",
+                  "offset": 30
+                }
+              ],
+              "location": "clinang.stepDefs.ClinicAdmin_PatientStepDefs.get_patient_details(java.lang.String)"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 6976000000,
+              "status": "passed"
+            },
+            "line": 44,
+            "name": "Verify medical history details",
+            "match": {
+              "location": "clinang.stepDefs.ClinicAdmin_PatientStepDefs.verify_medicalHistory_details()"
+            },
+            "keyword": "Then "
+          }
+        ],
+        "tags": [
+          {
+            "name": "@Clinic_patient"
+          },
+          {
+            "name": "@Patientdetails"
+          }
+        ]
+      }
+    ],
+    "name": "Feature to done patient functionaity",
+    "description": "",
+    "id": "feature-to-done-patient-functionaity",
+    "keyword": "Feature",
+    "uri": "file:src/test/resources/clinang_Feature_Patient/ClinicAdmin_Patient.feature",
+    "tags": [
+      {
+        "name": "@Clinic_patient",
+        "type": "Tag",
+        "location": {
+          "line": 1,
+          "column": 1
+        }
+      }
+    ]
+  }
+]

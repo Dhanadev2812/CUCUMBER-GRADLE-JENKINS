@@ -9,6 +9,8 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+
+import org.apache.poi.ss.usermodel.CellType;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -17,6 +19,7 @@ import clinang.stepDefs.Patient_AppointmentStepDefs;
 import clinang.stepDefs.Patient_BookAppointmentStepDefs;
 import clinang.webDriverUtils.CustomDriver;
 import io.cucumber.datatable.DataTable;
+import io.cucumber.messages.internal.com.google.common.collect.Table.Cell;
 
 public class ClinicAdmin_PatientPageUtils extends CustomDriver{
 	
@@ -26,6 +29,7 @@ public class ClinicAdmin_PatientPageUtils extends CustomDriver{
 	private String patientFile;
 	private String requireddate;
 	private String appointmentDateTime;
+	private String nextRow;
 	
 	public void wait_pageLoad_complate() {
 		 Loader(C_Admin_PatientLocators.pageLoader);
@@ -119,9 +123,10 @@ public class ClinicAdmin_PatientPageUtils extends CustomDriver{
 	private WebElement backTopatient_option() {
 		return findElement(C_Admin_PatientLocators.backTopatient);
 	}
-	private WebElement bactTopatientDetails() {
-		return findElement(C_Admin_PatientLocators.bactTopatientDetails);
+	private WebElement backTopatientDetails(String AppointmentID) {
+		return findElement(By.xpath("//a[@href='/portal/admin-patient/"+AppointmentID+"']"));
 	}
+	
 	public String passPatientdetails(DataTable inputs)   {
 		List<Map<String, String>> clinicPatient_input = inputs.asMaps(String.class, String.class);
 		  for (Map<String, String> data : clinicPatient_input) {
@@ -212,11 +217,13 @@ public class ClinicAdmin_PatientPageUtils extends CustomDriver{
 			List<WebElement>TotalRowsList = TargetRows.findElements(By.tagName("tr"));			 	
 			int excelRow=1;
 			while(excelRow<=lastRow) {
-				
+				System.out.println("excel row"+excelRow);
+				System.out.println("last row"+lastRow);
 			TABLElOOP:
 			for(int tableRow=1;tableRow<=TotalRowsList.size()-1;tableRow++) {
 					
 				if(integerConverter_excel(patientFile,"MedicalHistory",excelRow,0).replace(" ", "").equalsIgnoreCase(grid_appointmentID(tableRow).getText().replace(" ", ""))) {
+					System.out.println("current"+integerConverter_excel(patientFile,"MedicalHistory",excelRow, 0));
 					grid_viewpatient(integerConverter_excel(patientFile,"MedicalHistory",excelRow, 0)).click();
 					wait_pageLoad_complate();
 					for(int excelCol = 1; excelCol<=lastCol;excelCol++) {
@@ -248,11 +255,183 @@ public class ClinicAdmin_PatientPageUtils extends CustomDriver{
 			}
 		}	
 	}
-	
-	public void verify_appointmentDetails() throws IOException, ParseException, InterruptedException {
+	public void patientAppointmentread(int excelRow,int lastCol) throws IOException, ParseException {
+		 for(int excelCol=1;excelCol<=lastCol;excelCol++) {
+			 int columnCount = excelCol;
+			 switch (columnCount) {
+			  case 1:		
+				  String appointmentDate = integerConverter_excel(patientFile,"Appointments",excelRow, excelCol);
+				  final String givenDateFormat = "dd/MM/yyyy";
+				  SimpleDateFormat old_format = new SimpleDateFormat("MMM dd, yyyy");
+				  Date new_format = old_format.parse(appointmentDate);
+				  old_format.applyPattern("dd/MM/yyyy");
+				  requireddate = old_format.format(new_format);
+				  break;
+			  case 2:
+				  String Zone = integerConverter_excel(patientFile,"Appointments",excelRow, excelCol);
+				  appointmentStepdefs.compare__date(requireddate, Zone);
+				  if(integerConverter_excel(patientFile,"Appointments",excelRow, 13).contentEquals("Cancelled")) {
+					  appointmentPageUtils.Click_appointmentList_cancelled();
+				  }
+			    break;
+			  case 3: 
+				  appointmentStepdefs.find_appointmentID(integerConverter_excel(patientFile,"Appointments",excelRow, excelCol));
+				  break;
+			  case 4: 
+				  appointmentPageUtils.get_appointmentDetails_viewPage();
+				  String[] appointmentTime=integerConverter_excel(patientFile,"Appointments",excelRow, excelCol).split(" "); 
+				  if(appointmentTime[3].startsWith("0")) {
+						String[] appointmentTime_hr = appointmentTime[3].split(":");
+						String appointmentHr_replace = appointmentTime_hr[0].replace("0", " ");
+						String newAppointmenttime = appointmentHr_replace+":"+appointmentTime_hr[1]+" "+appointmentTime[4];
+						 appointmentDateTime = appointmentTime[0]+" " +appointmentTime[1]+" "+appointmentTime[2]+" "+newAppointmenttime;
+					}	
+					
+					else {
+						appointmentDateTime =  appointmentTime[0]+" " +appointmentTime[1]+" "+appointmentTime[2]+" "+" "+appointmentTime[3]+" "+appointmentTime[4];
+					}
+				  assertTrue(Arrays.asList(appointmentPageUtils.appointmentViewpage_getDetails[5]).contains(appointmentDateTime));
+				  break;
+			  case 5: 
+				  wait_pageLoad_complate();
+				  assertTrue(Arrays.asList(appointmentPageUtils.appointmentViewpage_getDetails[3]).contains(integerConverter_excel(patientFile,"Appointments",excelRow, excelCol)));
+				  break;
+			  case 6:
+				  assertTrue(Arrays.asList(appointmentPageUtils.appointmentViewpage_getDetails[1]).contains(integerConverter_excel(patientFile,"Appointments",excelRow, excelCol)));
+				  break;
+			  case 7:
+				  assertTrue(Arrays.asList(appointmentPageUtils.appointmentViewpage_getDetails[4]).contains(integerConverter_excel(patientFile,"Appointments",excelRow, excelCol)));
+				  break;
+			  case 9:
+				  assertTrue(Arrays.asList(appointmentPageUtils.appointmentViewpage_getDetails[2]).contains(integerConverter_excel(patientFile,"Appointments",excelRow, excelCol)));
+				  break;
+			  case 10:
+				  assertTrue(Arrays.asList(appointmentPageUtils.appointmentViewpage_getDetails[6]).contains(integerConverter_excel(patientFile,"Appointments",excelRow, excelCol)));
+				  break;
+			  case 11:
+				  if(integerConverter_excel(patientFile,"Appointments",excelRow, excelCol).equalsIgnoreCase("")) {
+					System.out.println("No Followup Comments Updated");  
+				  }
+				  else {
+					  appointmentPageUtils.get_followUpcomment_viewPage();
+					  assertTrue(Arrays.asList(appointmentPageUtils.followUpcomment_viewPage_get[0]).contains(integerConverter_excel(patientFile,"Appointments",excelRow, excelCol)));
+				  }
+				  break;
+			 }
+		 }
+	}
+	public void verify_appointmentDetails() throws IOException, ParseException, InterruptedException {	
 		int lastRow =rowSize(patientFile,"Appointments");
 		int lastCol = columnSize(patientFile, "Appointments");
+		int excelRow=1;
+		
 		wait_pageLoad_complate();
+		if(wait_patientTable().isDisplayed()==true) {
+			WebElement TargetRows = findElement(C_Admin_PatientLocators.targetRow);
+			List<WebElement>TotalRowsList = TargetRows.findElements(By.tagName("tr"));	
+			System.out.println(TotalRowsList.size()-1);
+		EXCELOOP:
+		while(excelRow<=lastRow) {		
+			String previousRow = integerConverter_excel(patientFile,"Appointments",excelRow-1, 0);
+			String currentRow =  integerConverter_excel(patientFile,"Appointments",excelRow, 0);
+			if(!(excelRow==lastRow)) {
+				nextRow =  integerConverter_excel(patientFile,"Appointments",excelRow+1, 0);
+			}
+			
+			TABLElOOP:
+			for(int tableRow=1;tableRow<=TotalRowsList.size()-1;tableRow++) {
+				wait_pageLoad_complate();	
+				
+				if((previousRow.contentEquals(currentRow)) && (excelRow==lastRow)){
+					patientAppointmentread(excelRow, lastCol);
+					backTopatientDetails(integerConverter_excel(patientFile,"Appointments",excelRow, 0)).click();
+					wait_pageLoad_complate();
+					backTopatient_option().click();
+					wait_pageLoad_complate();
+					break EXCELOOP;				
+				}
+				else if(!(previousRow.contentEquals(currentRow)) && (excelRow==lastRow)) {
+					if(integerConverter_excel(patientFile,"Appointments",excelRow,0).replace(" ", "").equalsIgnoreCase(grid_appointmentID(tableRow).getText().replace(" ", ""))) {
+						grid_viewpatient(integerConverter_excel(patientFile,"Appointments",excelRow, 0)).click();
+						patientAppointmentread(excelRow, lastCol);
+						backTopatientDetails(integerConverter_excel(patientFile,"Appointments",excelRow, 0)).click();
+						wait_pageLoad_complate();
+						backTopatient_option().click();
+						wait_pageLoad_complate();
+						excelRow++;
+						break EXCELOOP;
+					 }
+					else if((paginationNext().isEnabled()==false)&&(tableRow==TotalRowsList.size()-1)){
+						assert false;
+					}
+				}
+				else if(!(previousRow.contentEquals(currentRow)) && !(nextRow.contentEquals(currentRow))) {
+					
+					if(integerConverter_excel(patientFile,"Appointments",excelRow,0).replace(" ", "").equalsIgnoreCase(grid_appointmentID(tableRow).getText().replace(" ", ""))) {
+						grid_viewpatient(integerConverter_excel(patientFile,"Appointments",excelRow, 0)).click();
+						wait_pageLoad_complate();
+						patientAppointmentread(excelRow, lastCol);
+						backTopatientDetails(integerConverter_excel(patientFile,"Appointments",excelRow, 0)).click();
+						wait_pageLoad_complate();
+						backTopatient_option().click();
+						wait_pageLoad_complate();
+						excelRow++;
+						break TABLElOOP;			
+					}
+					else if((paginationNext().isEnabled()==false)&&(tableRow==TotalRowsList.size()-1)){
+						assert false;
+					}		 
+				}							 
+					 					 
+				else if((previousRow.contentEquals(currentRow)) && !(nextRow.contentEquals(currentRow))) {
+					wait_pageLoad_complate();
+					patientAppointmentread(excelRow, lastCol);
+					backTopatientDetails(integerConverter_excel(patientFile,"Appointments",excelRow, 0)).click();
+					wait_pageLoad_complate();
+					backTopatient_option().click();
+					wait_pageLoad_complate();
+					excelRow++;
+					break TABLElOOP;
+					}
+					
+				else if(!(previousRow.contentEquals(currentRow)) && (nextRow.contentEquals(currentRow))) {
+		
+					if(integerConverter_excel(patientFile,"Appointments",excelRow,0).replace(" ", "").equalsIgnoreCase(grid_appointmentID(tableRow).getText().replace(" ", ""))) {
+						grid_viewpatient(integerConverter_excel(patientFile,"Appointments",excelRow, 0)).click();
+						patientAppointmentread(excelRow, lastCol);
+						backTopatientDetails(integerConverter_excel(patientFile,"Appointments",excelRow, 0)).click();
+						wait_pageLoad_complate();
+						excelRow++;
+						break TABLElOOP;
+					 }
+					
+					else if((paginationNext().isEnabled()==false)&&(tableRow==TotalRowsList.size()-1)){
+						assert false;
+					}		
+				}
+				
+				else if((previousRow.contentEquals(currentRow)) && (nextRow.contentEquals(currentRow))) {
+					patientAppointmentread(excelRow, lastCol);
+					backTopatientDetails(integerConverter_excel(patientFile,"Appointments",excelRow, 0)).click();
+					wait_pageLoad_complate();
+					excelRow++;
+					break TABLElOOP;
+				}
+				
+				if((paginationNext().isEnabled()==true)&&(tableRow==TotalRowsList.size()-1)) {
+					paginationNext().click();
+					int currentExcelrow = excelRow;
+					excelRow = currentExcelrow;
+						}
+					}	
+				}
+			}
+		}
+	
+	public void verify_medicalReport() throws IOException, ParseException {
+		int lastRow =rowSize(patientFile,"MedicalRecord");
+		int lastCol = columnSize(patientFile, "MedicalRecord");
+		
 		if(wait_patientTable().isDisplayed()==true) {
 			WebElement TargetRows = findElement(C_Admin_PatientLocators.targetRow);
 			List<WebElement>TotalRowsList = TargetRows.findElements(By.tagName("tr"));			 	
@@ -261,77 +440,11 @@ public class ClinicAdmin_PatientPageUtils extends CustomDriver{
 				
 			TABLElOOP:
 			for(int tableRow=1;tableRow<=TotalRowsList.size()-1;tableRow++) {
-				 if(integerConverter_excel(patientFile,"Appointments",excelRow,0).replace(" ", "").equalsIgnoreCase(grid_appointmentID(tableRow).getText().replace(" ", ""))) {
-					 grid_viewpatient(integerConverter_excel(patientFile,"Appointments",excelRow, 0)).click();
-					 wait_pageLoad_complate();
-					 for(int excelCol=1;excelCol<=lastCol;excelCol++) {
-						 int columnCount = excelCol;
-						 switch (columnCount) {
-						  case 1:		
-							String appointmentDate = integerConverter_excel(patientFile,"Appointments",excelRow, excelCol);
-							final String givenDateFormat = "dd/MM/yyyy";
-						    SimpleDateFormat old_format = new SimpleDateFormat("MMM dd, yyyy");
-							Date new_format = old_format.parse(appointmentDate);
-							old_format.applyPattern("dd/MM/yyyy");
-							requireddate = old_format.format(new_format);
-						    break;
-						  case 2:
-							  String Zone = integerConverter_excel(patientFile,"Appointments",excelRow, excelCol);
-							  appointmentStepdefs.compare__date(requireddate, Zone);
-							  if(integerConverter_excel(patientFile,"Appointments",excelRow, 13).contentEquals("Cancelled")) {
-								  appointmentPageUtils.Click_appointmentList_cancelled();
-							  }
-						    break;
-						  case 3: 
-							  appointmentStepdefs.find_appointmentID(integerConverter_excel(patientFile,"Appointments",excelRow, excelCol));
-							  break;
-						  case 4: 
-							  appointmentPageUtils.get_appointmentDetails_viewPage();
-							  String[] appointmentTime=integerConverter_excel(patientFile,"Appointments",excelRow, excelCol).split(" "); 
-							  if(appointmentTime[3].startsWith("0")) {
-									String[] appointmentTime_hr = appointmentTime[3].split(":");
-									String appointmentHr_replace = appointmentTime_hr[0].replace("0", " ");
-									String newAppointmenttime = appointmentHr_replace+":"+appointmentTime_hr[1]+" "+appointmentTime[4];
-									 appointmentDateTime = appointmentTime[0]+" " +appointmentTime[1]+" "+appointmentTime[2]+" "+newAppointmenttime;
-								}	
-								
-								else {
-									appointmentDateTime =  appointmentTime[0]+" " +appointmentTime[1]+" "+appointmentTime[2]+" "+" "+appointmentTime[3]+" "+appointmentTime[4];
-								}
-							  assertTrue(Arrays.asList(appointmentPageUtils.appointmentViewpage_getDetails[5]).contains(appointmentDateTime));
-							  break;
-						  case 5: 
-							  assertTrue(Arrays.asList(appointmentPageUtils.appointmentViewpage_getDetails[3]).contains(integerConverter_excel(patientFile,"Appointments",excelRow, excelCol)));
-							  break;
-						  case 6:
-							  assertTrue(Arrays.asList(appointmentPageUtils.appointmentViewpage_getDetails[1]).contains(integerConverter_excel(patientFile,"Appointments",excelRow, excelCol)));
-							  break;
-						  case 7:
-							  assertTrue(Arrays.asList(appointmentPageUtils.appointmentViewpage_getDetails[4]).contains(integerConverter_excel(patientFile,"Appointments",excelRow, excelCol)));
-							  break;
-						  case 9:
-							  assertTrue(Arrays.asList(appointmentPageUtils.appointmentViewpage_getDetails[2]).contains(integerConverter_excel(patientFile,"Appointments",excelRow, excelCol)));
-							  break;
-						  case 10:
-							  assertTrue(Arrays.asList(appointmentPageUtils.appointmentViewpage_getDetails[6]).contains(integerConverter_excel(patientFile,"Appointments",excelRow, excelCol)));
-							  break;
-						  case 11:
-							  if(integerConverter_excel(patientFile,"Appointments",excelRow, excelCol).equalsIgnoreCase("")) {
-								System.out.println("No Followup Comments Updated");  
-							  }
-							  else {
-								  appointmentPageUtils.get_followUpcomment_viewPage();
-								  assertTrue(Arrays.asList(appointmentPageUtils.followUpcomment_viewPage_get[1]).contains(integerConverter_excel(patientFile,"Appointments",excelRow, excelCol)));
-							  }
-							  break;
-						 }
-					 }
-					 bactTopatientDetails().click();
-					 wait_pageLoad_complate();
-					 backTopatient_option().click();
-					 wait_pageLoad_complate();
-					break TABLElOOP;
 					
+				if(integerConverter_excel(patientFile,"MedicalRecord",excelRow,0).replace(" ", "").equalsIgnoreCase(grid_appointmentID(tableRow).getText().replace(" ", ""))) {
+					grid_viewpatient(integerConverter_excel(patientFile,"MedicalRecord",excelRow, 0)).click();
+					wait_pageLoad_complate();
+					break TABLElOOP;
 				}
 				else if((paginationNext().isEnabled()==false)&&(tableRow==TotalRowsList.size()-1)){
 					assert false;
@@ -345,3 +458,4 @@ public class ClinicAdmin_PatientPageUtils extends CustomDriver{
 		}	
 	}
 }
+

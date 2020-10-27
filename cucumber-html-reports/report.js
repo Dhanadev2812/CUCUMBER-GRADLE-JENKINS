@@ -105,9 +105,16 @@ formatter.result({
   "status": "passed"
 });
 formatter.step({
-  "name": "Verify the appointment details on patient module",
+  "name": "Verify medical history details",
   "keyword": "Then "
 });
 formatter.match({
-  "location": "clinang.stepDefs.ClinicAdmin_PatientStepDefs.verify_appointment_patientModule()"
+  "location": "clinang.stepDefs.ClinicAdmin_PatientStepDefs.verify_medicalHistory_details()"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.after({
+  "status": "passed"
+});
 });
