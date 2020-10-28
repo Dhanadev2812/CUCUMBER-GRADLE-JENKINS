@@ -70,14 +70,14 @@ public class Patient_AppointmentPageUtils extends CustomDriver{
 		return findElement(appointmentLocators.paginationNext);
 	}
 	
-	private WebElement wait_appointmentTable() {
+	public WebElement wait_appointmentTable() {
 		return findElement(appointmentLocators.appointmentTable);
 	}
 	
 	private WebElement grid_appointmentID(int i) {
 		return findElement(By.xpath("//table/tbody/tr["+i+"]/td[1]"));
 	}
-	private WebElement grid_appointmentID_single() {
+	public WebElement grid_appointmentID_single() {
 		return findElement(By.xpath("//table/tbody/tr/td[1]"));
 	}
 	
@@ -197,10 +197,10 @@ public class Patient_AppointmentPageUtils extends CustomDriver{
 	private WebElement submit_medicalReport() {
 		return findElement(appointmentLocators.submit_medicalReport);
 	}
-	private WebElement get_medicalReport_reportName (int spanCount) {
+	public WebElement get_medicalReport_reportName (int spanCount) {
 		return findElement(By.xpath("//span/span["+spanCount+"]/div/div/div[1]//child::div[2]/p"));
 	}
-	private WebElement get_medicalReport_reportDescription(int spanCount) {
+	public WebElement get_medicalReport_reportDescription(int spanCount) {
 		return findElement(By.xpath("//span/span["+spanCount+"]/div/div/div[2]//child::p"));
 	}
 	
@@ -214,7 +214,7 @@ public class Patient_AppointmentPageUtils extends CustomDriver{
 	private WebElement medicalReport_delete(int spanCount) {
 		return findElement(By.xpath("//span/span["+spanCount+"]/div/div/div[1]/div/div[2]//child::p/a/span[(normalize-space(text())='Delete')]"));
 	}
-	private WebElement get_span_medicalReports() {
+	public WebElement get_span_medicalReports() {
 		return findElement(appointmentLocators.get_medicalReports_spans);	
 	}
 	private WebElement deleteReport_confirm()  {
@@ -367,17 +367,16 @@ public class Patient_AppointmentPageUtils extends CustomDriver{
 			loop02:
 			for(int j=1;j<numberOfrecord_medicalReport+1;j++) {	
 				check_patientUpload_empty();			
-				if(reportName.replace(" ", "").equals(get_medicalReport_reportName(j).getText().replace(" ", ""))) {
-					if(reportDescription.replace(" ", "").equals(get_medicalReport_reportDescription(j).getText().replace(" ", ""))) {
-						System.out.println(get_medicalReport_reportName(j).getText());
+				if(reportName.replaceAll("\\s+", "").equals(get_medicalReport_reportName(j).getText().replaceAll("\\s+", ""))) {
+					if(reportDescription.replaceAll("\\s+", "").equals(get_medicalReport_reportDescription(j).getText().replaceAll("\\s+", ""))) {
 						assert true;
 						break loop02;
 					}
 				}	
 				
 				if(j==numberOfrecord_medicalReport) {
-					if(reportName.replace(" ", "").equals(get_medicalReport_reportName(numberOfrecord_medicalReport).getText().replace(" ", ""))) {
-						if(reportDescription.replace(" ", "").equals(get_medicalReport_reportDescription(j).getText().replace(" ", ""))) {
+					if(reportName.replaceAll("\\s+", "").equals(get_medicalReport_reportName(numberOfrecord_medicalReport).getText().replaceAll("\\s+", ""))) {
+						if(reportDescription.replaceAll("\\s+", "").equals(get_medicalReport_reportDescription(j).getText().replaceAll("\\s+", ""))) {
 							assert true;
 							break loop02;
 						}
@@ -421,8 +420,8 @@ public class Patient_AppointmentPageUtils extends CustomDriver{
         {
             for (int j = report_id+1; j < numberOfrecord_medicalReport+1; j++)
             {           
-                if (((get_medicalReport_reportName(i).getText().replace(" ", "").equals(get_medicalReport_reportName(j).getText().replace(" ", ""))) && (i != j)) 
-                		&& get_medicalReport_reportDescription(i).getText().replace(" ", "").equals(get_medicalReport_reportDescription(j).getText().replace(" ", "")))
+                if (((get_medicalReport_reportName(i).getText().replaceAll("\\s+", "").equals(get_medicalReport_reportName(j).getText().replaceAll("\\s+", ""))) && (i != j)) 
+                		&& get_medicalReport_reportDescription(i).getText().replaceAll("\\s+", "").equals(get_medicalReport_reportDescription(j).getText().replaceAll("\\s+", "")))
                 {
                 	download_medicalReport(j);
                 }
@@ -444,8 +443,8 @@ public class Patient_AppointmentPageUtils extends CustomDriver{
 				loop02:
 				for(int j=1;j<numberOfrecord_medicalReport+1;j++) {	
 					check_patientUpload_empty();
-					if(reportName.replace(" ", "").equals(get_medicalReport_reportName(j).getText().replace(" ", "")) 
-							&& (reportDescription.replace(" ", "").equals(get_medicalReport_reportDescription(j).getText().replace(" ", "")))) {
+					if(reportName.replaceAll("\\s+", "").equals(get_medicalReport_reportName(j).getText().replaceAll("\\s+", "")) 
+							&& (reportDescription.replaceAll("\\s+", "").equals(get_medicalReport_reportDescription(j).getText().replaceAll("\\s+", "")))) {
 																	
 							download_medicalReport(j);
 							download_duplicate_report(j,fileCount);
@@ -453,8 +452,8 @@ public class Patient_AppointmentPageUtils extends CustomDriver{
 						}
 					
 					if(j==numberOfrecord_medicalReport+1) {
-						if(reportName.replace(" ", "").equals(get_medicalReport_reportName(numberOfrecord_medicalReport).getText().replace(" ", "")) 
-								&& (reportDescription.replace(" ", "").equals(get_medicalReport_reportDescription(j).getText().replace(" ", "")))) {
+						if(reportName.replaceAll("\\s+", "").equals(get_medicalReport_reportName(numberOfrecord_medicalReport).getText().replaceAll("\\s+", "")) 
+								&& (reportDescription.replaceAll("\\s+", "").equals(get_medicalReport_reportDescription(j).getText().replaceAll("\\s+", "")))) {
 							 
 							download_medicalReport(j);
 							break loop02;
@@ -501,23 +500,23 @@ public class Patient_AppointmentPageUtils extends CustomDriver{
 			loop02:
 			for(int j=1;j<numberOfrecord_medicalReport+1;j++) {	
 				check_patientUpload_empty();
-				if(reportName.replace(" ", "").equals(get_medicalReport_reportName(j).getText().replace(" ", "")) 
-						&& (reportDescription.replace(" ", "").equals(get_medicalReport_reportDescription(j).getText().replace(" ", "")))) {
+				if(reportName.replaceAll("\\s+", "").equals(get_medicalReport_reportName(j).getText().replaceAll("\\s+", "")) 
+						&& (reportDescription.replaceAll("\\s+", "").equals(get_medicalReport_reportDescription(j).getText().replaceAll("\\s+", "")))) {
 					deleteReport(j);											
 					break loop02;
 					}
 				
 				if(j==numberOfrecord_medicalReport+1) {
-					if(reportName.replace(" ", "").equals(get_medicalReport_reportName(numberOfrecord_medicalReport).getText().replace(" ", "")) 
-							&& (reportDescription.replace(" ", "").equals(get_medicalReport_reportDescription(j).getText().replace(" ", "")))) {
+					if(reportName.replaceAll("\\s+", "").equals(get_medicalReport_reportName(numberOfrecord_medicalReport).getText().replaceAll("\\s+", "")) 
+							&& (reportDescription.replaceAll("\\s+", "").equals(get_medicalReport_reportDescription(j).getText().replaceAll("\\s+", "")))) {
 						 
 						deleteReport(j);
 						break loop02;
 						}
 						else {
 							System.out.println("Invalid report name/report description");
-							System.out.println(reportName.replace(" ", ""));
-							System.out.println(get_medicalReport_reportName(numberOfrecord_medicalReport).getText().replace(" ", ""));
+							System.out.println(reportName.replaceAll("\\s+", ""));
+							System.out.println(get_medicalReport_reportName(numberOfrecord_medicalReport).getText().replaceAll("\\s+", ""));
 							assert false;
 						}
 					}						

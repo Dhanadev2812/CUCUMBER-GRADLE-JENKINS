@@ -41,6 +41,6 @@ Feature: Feature to done patient functionaity
     Scenario: Verify patient details
     When get the patient details from "src\test\resources\ClinicAdmin_TestData\Watts Health Center\Patient-details.xlsx"
     #Then Verify patient personal details
-    Then Verify medical history details
+    #Then Verify medical history details
     #Then Verify the appointment details on patient module
-    #Then Verify the medical report details
+    Then Verify the medical report details

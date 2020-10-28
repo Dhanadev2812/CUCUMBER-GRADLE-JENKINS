@@ -105,11 +105,11 @@ formatter.result({
   "status": "passed"
 });
 formatter.step({
-  "name": "Verify medical history details",
+  "name": "Verify the medical report details",
   "keyword": "Then "
 });
 formatter.match({
-  "location": "clinang.stepDefs.ClinicAdmin_PatientStepDefs.verify_medicalHistory_details()"
+  "location": "clinang.stepDefs.ClinicAdmin_PatientStepDefs.verify_medicalReport_details()"
 });
 formatter.result({
   "status": "passed"

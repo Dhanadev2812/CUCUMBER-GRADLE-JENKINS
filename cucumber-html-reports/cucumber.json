@@ -11,7 +11,7 @@
         "steps": [
           {
             "result": {
-              "duration": 18444000000,
+              "duration": 15800000000,
               "status": "passed"
             },
             "line": 5,
@@ -23,7 +23,7 @@
           },
           {
             "result": {
-              "duration": 5547000000,
+              "duration": 5312000000,
               "status": "passed"
             },
             "line": 6,
@@ -35,7 +35,7 @@
           },
           {
             "result": {
-              "duration": 6208000000,
+              "duration": 5740000000,
               "status": "passed"
             },
             "line": 7,
@@ -61,7 +61,7 @@
           },
           {
             "result": {
-              "duration": 5292000000,
+              "duration": 5335000000,
               "status": "passed"
             },
             "line": 10,
@@ -73,7 +73,7 @@
           },
           {
             "result": {
-              "duration": 5281000000,
+              "duration": 5179000000,
               "status": "passed"
             },
             "line": 11,
@@ -85,7 +85,7 @@
           },
           {
             "result": {
-              "duration": 118000000,
+              "duration": 123000000,
               "status": "passed"
             },
             "line": 12,
@@ -98,7 +98,7 @@
         ]
       },
       {
-        "start_timestamp": "2020-10-27T12:57:48.967Z",
+        "start_timestamp": "2020-10-28T12:42:40.357Z",
         "before": [
           {
             "result": {
@@ -147,13 +147,13 @@
           },
           {
             "result": {
-              "duration": 6976000000,
+              "duration": 72912000000,
               "status": "passed"
             },
-            "line": 44,
-            "name": "Verify medical history details",
+            "line": 46,
+            "name": "Verify the medical report details",
             "match": {
-              "location": "clinang.stepDefs.ClinicAdmin_PatientStepDefs.verify_medicalHistory_details()"
+              "location": "clinang.stepDefs.ClinicAdmin_PatientStepDefs.verify_medicalReport_details()"
             },
             "keyword": "Then "
           }
