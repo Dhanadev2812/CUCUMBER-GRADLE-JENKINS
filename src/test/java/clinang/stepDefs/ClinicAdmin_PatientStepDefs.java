@@ -91,7 +91,7 @@ public class ClinicAdmin_PatientStepDefs {
 		C_Admin_patientpageUtils.verify_appointmentDetails();
 	}
 	@Then("^Verify the medical report details$")
-	public void verify_medicalReport_details() throws IOException, ParseException {
+	public void verify_medicalReport_details() throws IOException, ParseException, InterruptedException {
 		C_Admin_patientpageUtils.verify_medicalReport();
 	}
 	

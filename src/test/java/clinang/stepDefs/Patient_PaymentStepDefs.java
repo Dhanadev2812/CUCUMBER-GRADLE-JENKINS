@@ -44,7 +44,8 @@ public void find_paymentList(String appointmentID) throws InterruptedException {
 public void validate_invoice() {
 	Payment_pageUtils.get_invoiceDetails();
 	assertTrue(Arrays.asList(Payment_pageUtils.listPage_doctor).equals(Payment_pageUtils.invoice_doctor));
-	assertTrue(Arrays.asList(Payment_pageUtils.listPage_amount).equals(Payment_pageUtils.invoice_fees));
+	assertTrue(Arrays.asList(Payment_pageUtils.listPage_amount).equals(Payment_pageUtils.invoice_fees));	
+	System.out.println("Validating doctor and fee details");
 }
 
 @Then("^Download the invoice$") 

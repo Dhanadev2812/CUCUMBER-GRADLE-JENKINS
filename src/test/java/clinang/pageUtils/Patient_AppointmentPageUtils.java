@@ -351,6 +351,7 @@ public class Patient_AppointmentPageUtils extends CustomDriver{
 			submit_medicalReport().click();
 			wait_pageLoadercomplate();
 			assertTrue(get_message().contains("Medical record uploaded successfully"));
+			System.out.println("Medical record uploaded successfully");
 			click_closeOption();
 		}
 	}
@@ -396,15 +397,16 @@ public class Patient_AppointmentPageUtils extends CustomDriver{
 	}
 	private void download_medicalReport(int report_id) {
 		String substring = get_medicalReport_reportName(report_id).getText().length() > 3 ? get_medicalReport_reportName(report_id).getText().substring(get_medicalReport_reportName(report_id).getText().length() - 3) : get_medicalReport_reportName(report_id).getText();
-		if(substring.equals("pdf")) {			
+		if(substring.equals("pdf")) {	
 			medicalReport_download(report_id).click();
 		}
-		else if(substring.equals("jpg")||substring.equals("png")) {
+		else if(substring.equals("jpg")||substring.equals("png")||substring.equals("xlsx")||substring.equals("xls")||substring.equals("docx")) {
 			medicalReport_view(report_id).click();
 		}
 	}
 	public void downloadAllreport() throws InterruptedException {
 		int numberOfrecord_medicalReport = Integer.parseInt(get_span_medicalReports().getAttribute("childElementCount")); 
+		System.out.println("Started downloading medical reports");
 		for (int i = 1; i<numberOfrecord_medicalReport+1; i++) {
 			check_patientUpload_empty();
 			download_medicalReport(i);
@@ -443,6 +445,7 @@ public class Patient_AppointmentPageUtils extends CustomDriver{
 				loop02:
 				for(int j=1;j<numberOfrecord_medicalReport+1;j++) {	
 					check_patientUpload_empty();
+					System.out.println("Started downloading medical report");
 					if(reportName.replaceAll("\\s+", "").equals(get_medicalReport_reportName(j).getText().replaceAll("\\s+", "")) 
 							&& (reportDescription.replaceAll("\\s+", "").equals(get_medicalReport_reportDescription(j).getText().replaceAll("\\s+", "")))) {
 																	
@@ -481,8 +484,10 @@ public class Patient_AppointmentPageUtils extends CustomDriver{
 		int i = 1;
 		while(i<=numberOfrecord_medicalReport){			
 			if(patientUploads().getText().contains("No documents uploaded")) {
+				System.out.println("No documents uploaded");
 				break;
 			}
+			System.out.println("Started deleting medical report");
 			deleteReport(i);
 		}
 	}
@@ -500,6 +505,7 @@ public class Patient_AppointmentPageUtils extends CustomDriver{
 			loop02:
 			for(int j=1;j<numberOfrecord_medicalReport+1;j++) {	
 				check_patientUpload_empty();
+				System.out.println("Started deleting medical report");
 				if(reportName.replaceAll("\\s+", "").equals(get_medicalReport_reportName(j).getText().replaceAll("\\s+", "")) 
 						&& (reportDescription.replaceAll("\\s+", "").equals(get_medicalReport_reportDescription(j).getText().replaceAll("\\s+", "")))) {
 					deleteReport(j);											

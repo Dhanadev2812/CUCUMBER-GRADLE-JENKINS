@@ -50,6 +50,7 @@ public class Patient_DashboardStepDefs {
 	@Then("^Check validation message for successful update$")
 	public void check_updatealert_success() {
 		assertTrue(dashboard.get_alertMessage().equalsIgnoreCase("Patient profile updated succesfully"));
+		System.out.println("Patient profile updated succesfully");
 	}
 	
 	@Then("^Check the profile details updated on dashboard$")
@@ -57,7 +58,7 @@ public class Patient_DashboardStepDefs {
 		dashboard.fluentWait_profileMail();
 		assertTrue(Arrays.asList(dashboard.editpageArr).contains(dashboard.profile_mob().getText()));
 		assertTrue(Arrays.asList(dashboard.editpageArr).contains(dashboard.profile_address().getText()));
-
+		System.out.println("Profile details successfully updated on dashboard");
 	}	
 	
 	@Then("^Clear all existing details$")
@@ -88,6 +89,7 @@ public class Patient_DashboardStepDefs {
 	@Then("^Check the validation message for invalid data$") 
 		public void alert_invalidMobnum() {
 		assertTrue(dashboard.mobileAlert().getText().replace(" ", "").equalsIgnoreCase(("Mobile Number should be 10 digits").replace(" ", "")));
+		System.out.println("Mobile Number should be 10 digits");
 		}
 	}
 

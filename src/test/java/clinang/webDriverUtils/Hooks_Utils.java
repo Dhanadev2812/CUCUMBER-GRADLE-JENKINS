@@ -32,8 +32,8 @@ public class Hooks_Utils extends CustomDriver {
 		
 	 }  
 
-@After(order=2)
-    public void afterScenario(){
+@After(order=1)
+    public void afterScenarioEnd(){
         System.out.println("----------------Close The Browser-----------------");
         quit();
     } */

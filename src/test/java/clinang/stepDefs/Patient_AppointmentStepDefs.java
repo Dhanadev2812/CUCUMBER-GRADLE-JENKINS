@@ -118,6 +118,7 @@ public class Patient_AppointmentStepDefs {
 	public void check_validation_message() throws ParseException {
 		
 		assertTrue(appointmentPageUtils.get_message().contains("Appointment rescheduled successfully"));
+		System.out.println("Appointment rescheduled successfully");
 		appointmentPageUtils.click_closeOption();
 		appointmentPageUtils.get_appointmentDetails_viewPage();
 	}
@@ -179,6 +180,7 @@ public class Patient_AppointmentStepDefs {
 	@Then("^Check the validation message for cancellation process$")
 	public void Check_validationMessage_cancel() {
 		assertTrue(appointmentPageUtils.get_message().contains("Appoinment cancelled successfully."));
+		System.out.println("Appoinment cancelled successfully.");
 		appointmentPageUtils.click_closeOption();
 	}
 	
@@ -198,10 +200,12 @@ public class Patient_AppointmentStepDefs {
 	    assertTrue((Arrays.asList(arr[2]+1).toString()).contains(dashboard.getCount_cancelledApp()));
 	    
 		if(cancelledAppointment.equals(Currentdate)) {
-			assertTrue((Arrays.asList(arr[0]-1).toString()).contains(dashboard.getCount_todayApp()));				
+			assertTrue((Arrays.asList(arr[0]-1).toString()).contains(dashboard.getCount_todayApp()));
+			System.out.println("Cancelled appointment count updated on dashboard");
 		}
 		else {
 			assertTrue((Arrays.asList(arr[1]-1).toString()).contains(dashboard.getCount_upcomingApp()));
+			System.out.println("Cancelled appointment count updated on dashboard");
 		}
 	}
 	
@@ -262,6 +266,7 @@ public class Patient_AppointmentStepDefs {
 	@And("^Accept the book followup$")
 	public void Accept_bookFollowup() {
 		appointmentPageUtils.accept_bookFollowup();
+		System.out.println("Starting to create followup appointment");
 	}
 	@When("^Enter the followup appointment details$")
 	public void followup_appointmentDetails(DataTable inputs) throws InterruptedException, ParseException {

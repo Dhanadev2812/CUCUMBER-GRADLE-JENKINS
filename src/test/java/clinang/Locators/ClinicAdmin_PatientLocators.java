@@ -28,4 +28,5 @@ public class ClinicAdmin_PatientLocators {
 	public By backTopatient = By.xpath("//a[@href='/portal/admin-patient']");
 	public By bactTopatientDetails = By.xpath("//a[@href='/portal/admin-patient/1']");
 	public By closeMedicalreport =By.xpath("//span[@class='mdi mdi-close']");
+	public By medicalReport_Norecord = By.xpath("//div[@class='norecord']");
 }

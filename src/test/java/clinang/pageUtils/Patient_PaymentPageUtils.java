@@ -173,5 +173,6 @@ public class Patient_PaymentPageUtils extends CustomDriver{
 	public void downloadInvoices() {
 		pageLoad();
 		downloadInvoice().click();
+		System.out.println("Downloading invoice");
 	}
 }

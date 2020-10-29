@@ -122,6 +122,7 @@ public class Patient_MytreatmentPageUtils extends CustomDriver{
 					while(i<=TotalRowsList.size()-1) {	
 						if(TotalRowsList.size()-1==1) {
 							assertFalse(appointmentId.contains(grid_appointmentID_single().getText()));
+							System.out.println("Cancelled appointment removed successfully on my tratment module");
 							break whileloop;
 						}
 						else if(appointmentId.contains(grid_appointmentID(i).getText())) {
@@ -131,6 +132,7 @@ public class Patient_MytreatmentPageUtils extends CustomDriver{
 						} 
 						else if(TotalRowsList.size()-1==0) {
 							assert false;
+							System.out.println("No record Found");
 							break whileloop;
 						}
 						else {
@@ -168,7 +170,7 @@ public class Patient_MytreatmentPageUtils extends CustomDriver{
 				assertTrue(clinicNote().getText().replace(" ", "").contentEquals(sheet.getRow(i).getCell(1).toString().replace(" ", "")));	
 				assertTrue(observation().getText().replace(" ", "").contentEquals(sheet.getRow(i).getCell(2).toString().replace(" ", "")));
 				assertTrue(diagnosis().getText().replace(" ", "").contentEquals(sheet.getRow(i).getCell(3).toString().replace(" ", "")));
-				
+				System.out.println("Validated my treatment details");
 				close_myTreatment().click();
 				wait_pageLoadercomplate();
 		}
@@ -180,7 +182,7 @@ public class Patient_MytreatmentPageUtils extends CustomDriver{
 		int fileCount = data.size();
 		grid_viewMytreatment(appointmentID).click();
 		wait_pageLoadercomplate();
-		
+		System.out.println("Downloading prescription");
 		for (int i = 1; i<fileCount; i++) {		
 			int numberOf_prescriptions = Integer.parseInt(prescripionTable().getAttribute("childElementCount"));
 			
@@ -237,7 +239,6 @@ public class Patient_MytreatmentPageUtils extends CustomDriver{
 					while(i<=TotalRowsList.size()-1) {
 						
 						if(TotalRowsList.size()-1==1) {
-							System.out.println("TotalRowsList==1");
 							assertTrue(appointmentId.contains(grid_appointmentID_single().getText()));
 							String appointmentDateTime01 = grid_dateTime_single().getText();
 							type = grid_type_single().getText();
@@ -261,7 +262,6 @@ public class Patient_MytreatmentPageUtils extends CustomDriver{
 						}
 						
 						else if(appointmentId.contains(grid_appointmentID(i).getText())) {
-							System.out.println("TotalRowsList!=1");
 							String appointmentDateTime01 = grid_dateTime(i).getText();
 							type = grid_type(i).getText();
 							speciality = grid_speciality(i).getText();

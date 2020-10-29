@@ -137,6 +137,9 @@ public class ClinicAdmin_PatientPageUtils extends CustomDriver{
 	private WebElement close_medicalReport() {
 		return findElement(C_Admin_PatientLocators.closeMedicalreport);
 	}
+	private WebElement medicalReport_noRecord() {
+		return findElement(C_Admin_PatientLocators.medicalReport_Norecord);
+	}
 	
 	public String passPatientdetails(DataTable inputs)   {
 		List<Map<String, String>> clinicPatient_input = inputs.asMaps(String.class, String.class);
@@ -199,9 +202,11 @@ public class ClinicAdmin_PatientPageUtils extends CustomDriver{
 						break whileLoop;															 			 
 					} 
 					else if((paginationNext().isEnabled()==false)&&(tableRow==TotalRowsList.size()-1)){
+						System.out.println("Appointment ID"+" "+appointmentID+" "+"not found");
 						assert false;
 					}
 					else if(TotalRowsList.size()-1==0) {
+						System.out.println("No records found");
 						assert false;
 					}
 					tableRow++;
@@ -415,6 +420,7 @@ public class ClinicAdmin_PatientPageUtils extends CustomDriver{
 						break EXCELOOP;
 					 }
 					else if((paginationNext().isEnabled()==false)&&(tableRow==TotalRowsList.size()-1)){
+						System.out.println("Appointment ID"+" "+integerConverter_excel(patientFile,"Appointments",excelRow,0)+" "+"not found");
 						assert false;
 					}
 				}
@@ -432,6 +438,7 @@ public class ClinicAdmin_PatientPageUtils extends CustomDriver{
 						break TABLElOOP;			
 					}
 					else if((paginationNext().isEnabled()==false)&&(tableRow==TotalRowsList.size()-1)){
+						System.out.println("Appointment ID"+" "+integerConverter_excel(patientFile,"Appointments",excelRow,0)+" "+"not found");
 						assert false;
 					}		 
 				}							 				 					 
@@ -456,6 +463,7 @@ public class ClinicAdmin_PatientPageUtils extends CustomDriver{
 						break TABLElOOP;
 					 }		
 					else if((paginationNext().isEnabled()==false)&&(tableRow==TotalRowsList.size()-1)){
+						System.out.println("Appointment ID"+" "+integerConverter_excel(patientFile,"Appointments",excelRow,0)+" "+"not found");
 						assert false;
 					}		
 				}		
@@ -475,12 +483,11 @@ public class ClinicAdmin_PatientPageUtils extends CustomDriver{
 				}
 			}
 		}
-	public void patientMedicalreportRead(int excelRow,int lastCol ) throws IOException, ParseException {
+	public void patientMedicalreportRead(int excelRow,int lastCol ) throws IOException, ParseException, InterruptedException {
 		for(int excelCol=1;excelCol<=lastCol;excelCol++) {
 			 int columnCount = excelCol;
 			 switch (columnCount) {
 			  case 1:	
-				  System.out.println("c1");
 				  String appointmentDate = integerConverter_excel(patientFile,"MedicalRecord",excelRow, excelCol);
 				  final String givenDateFormat = "dd/MM/yyyy";
 				  SimpleDateFormat old_format = new SimpleDateFormat("MMM dd, yyyy");
@@ -489,7 +496,6 @@ public class ClinicAdmin_PatientPageUtils extends CustomDriver{
 				  requireddate = old_format.format(new_format);
 				  break;
 			  case 2:
-				  System.out.println("c2");
 				  String Zone = integerConverter_excel(patientFile,"MedicalRecord",excelRow, excelCol);
 				  appointmentStepdefs.compare__date(requireddate, Zone);
 				  if(integerConverter_excel(patientFile,"MedicalRecord",excelRow, 13).contentEquals("Cancelled")) {
@@ -497,7 +503,6 @@ public class ClinicAdmin_PatientPageUtils extends CustomDriver{
 				  }
 			    break;
 			  case 3: 
-				  System.out.println("C3");
 				  findAppointment_medicalReport(integerConverter_excel(patientFile,"MedicalRecord",excelRow, excelCol));
 				  break;	
 			  case 4:
@@ -509,7 +514,7 @@ public class ClinicAdmin_PatientPageUtils extends CustomDriver{
 			 }  			 
 		}
 	}
-	public void validateMedicalreportDetails(String[] medicalReportname,String[] medicalReportdescription) {
+	public void validateMedicalreportDetails(String[] medicalReportname,String[] medicalReportdescription) throws InterruptedException {
 		wait_pageLoad_complate();
 		int numberOfrecord_medicalReport = Integer.parseInt(appointmentPageUtils.get_span_medicalReports().getAttribute("childElementCount"));   
 		int fileCount = medicalReportname.length;
@@ -519,18 +524,26 @@ public class ClinicAdmin_PatientPageUtils extends CustomDriver{
 			String reportDescription = medicalReportdescription[i];
 			loop02:
 			for(int j=1;j<numberOfrecord_medicalReport+1;j++) {	
-				appointmentPageUtils.check_patientUpload_empty();	
-				if(reportName.replaceAll("\\s+", "").equals(appointmentPageUtils.get_medicalReport_reportName(j).getText().replaceAll("\\s+", ""))) {
-					if(reportDescription.replaceAll("\\s+", "").equals(appointmentPageUtils.get_medicalReport_reportDescription(j).getText().replaceAll("\\s+", ""))) {
+				appointmentPageUtils.check_patientUpload_empty();
+				if(reportName.equalsIgnoreCase(("No Documents uploaded").replace("//s+",""))) {	
+					assertTrue(reportName.replaceAll("\\s+","").equalsIgnoreCase(medicalReport_noRecord().getText().replace(" ","")));
+					System.out.println("No Documents uploaded");
+					close_medicalReport().click();
+				}
+				else if(reportName.replaceAll("\\s+", "").equalsIgnoreCase(appointmentPageUtils.get_medicalReport_reportName(j).getText().replaceAll("\\s+", ""))) {
+					if(reportDescription.replaceAll("\\s+", "").equalsIgnoreCase(appointmentPageUtils.get_medicalReport_reportDescription(j).getText().replaceAll("\\s+", ""))) {
+						appointmentPageUtils.downloadAllreport();
 						close_medicalReport().click();
 						assert true;
 						break loop02;
 					}
 				}		
 				if(j==numberOfrecord_medicalReport) {
-					if(reportName.replaceAll("\\s+", "").equals(appointmentPageUtils.get_medicalReport_reportName(numberOfrecord_medicalReport).getText().replaceAll("\\s+", ""))) {
-						if(reportDescription.replaceAll("\\s+", "").equals(appointmentPageUtils.get_medicalReport_reportDescription(j).getText().replaceAll("\\s+", ""))) {
-							close_medicalReport().click();
+					if(reportName.equalsIgnoreCase(("No Documents uploaded").replace("//s+",""))) {
+						assert true;
+					}
+					else if(reportName.replaceAll("\\s+", "").equalsIgnoreCase(appointmentPageUtils.get_medicalReport_reportName(numberOfrecord_medicalReport).getText().replaceAll("\\s+", ""))) {
+						if(reportDescription.replaceAll("\\s+", "").equalsIgnoreCase(appointmentPageUtils.get_medicalReport_reportDescription(j).getText().replaceAll("\\s+", ""))) {
 							assert true;
 							break loop02;
 						}
@@ -549,7 +562,7 @@ public class ClinicAdmin_PatientPageUtils extends CustomDriver{
 			break loop1;
 		}
 	}
-	public void verify_medicalReport() throws IOException, ParseException {
+	public void verify_medicalReport() throws IOException, ParseException, InterruptedException {
 		int lastRow =rowSize(patientFile,"MedicalRecord");
 		int lastCol = columnSize(patientFile, "MedicalRecord");
 		int excelRow=1;
@@ -573,62 +586,63 @@ public class ClinicAdmin_PatientPageUtils extends CustomDriver{
 				if((previousRow.contentEquals(currentRow)) && (excelRow==lastRow)){
 					patientMedicalreportRead(excelRow, lastCol);
 					wait_pageLoad_complate();
-					//backTopatient_option().click();
-					//wait_pageLoad_complate();
+					backTopatient_option().click();
+					wait_pageLoad_complate();
 					break EXCELOOP;				
 				}
 				else if(!(previousRow.contentEquals(currentRow)) && (excelRow==lastRow)) {
 					if(integerConverter_excel(patientFile,"MedicalRecord",excelRow,0).replace(" ", "").equalsIgnoreCase(grid_appointmentID(tableRow).getText().replace(" ", ""))) {
 						grid_viewpatient(integerConverter_excel(patientFile,"MedicalRecord",excelRow, 0)).click();
 						patientMedicalreportRead(excelRow, lastCol);
-						//backTopatient_option().click();
-						//wait_pageLoad_complate();
+						backTopatient_option().click();
+						wait_pageLoad_complate();
 						excelRow++;
 						break EXCELOOP;
 					 }
 					else if((paginationNext().isEnabled()==false)&&(tableRow==TotalRowsList.size()-1)){
+						System.out.println("Appointment ID"+" "+integerConverter_excel(patientFile,"MedicalRecord",excelRow,0).replace(" ", "")+" "+"not found");
 						assert false;
 					}
 				}
 				else if(!(previousRow.contentEquals(currentRow)) && !(nextRow.contentEquals(currentRow))) {
-					
 					if(integerConverter_excel(patientFile,"MedicalRecord",excelRow,0).replace(" ", "").equalsIgnoreCase(grid_appointmentID(tableRow).getText().replace(" ", ""))) {
 						grid_viewpatient(integerConverter_excel(patientFile,"MedicalRecord",excelRow, 0)).click();
 						wait_pageLoad_complate();
 						patientMedicalreportRead(excelRow, lastCol);
-						//backTopatient_option().click();
-						//wait_pageLoad_complate();
+						backTopatient_option().click();
+						wait_pageLoad_complate();
 						excelRow++;
 						break TABLElOOP;			
 					}
 					else if((paginationNext().isEnabled()==false)&&(tableRow==TotalRowsList.size()-1)){
+						System.out.println("Appointment ID"+" "+integerConverter_excel(patientFile,"MedicalRecord",excelRow,0).replace(" ", "")+" "+"not found");
 						assert false;
 					}		 
 				}							 				 					 
 				else if((previousRow.contentEquals(currentRow)) && !(nextRow.contentEquals(currentRow))) {
 					wait_pageLoad_complate();
 					patientMedicalreportRead(excelRow, lastCol);
-					//backTopatient_option().click();
-					//wait_pageLoad_complate();
+					backTopatient_option().click();
+					wait_pageLoad_complate();
 					excelRow++;
 					break TABLElOOP;
 					}		
 				else if(!(previousRow.contentEquals(currentRow)) && (nextRow.contentEquals(currentRow))) {
-		
 					if(integerConverter_excel(patientFile,"MedicalRecord",excelRow,0).replace(" ", "").equalsIgnoreCase(grid_appointmentID(tableRow).getText().replace(" ", ""))) {
 						grid_viewpatient(integerConverter_excel(patientFile,"MedicalRecord",excelRow, 0)).click();
 						patientMedicalreportRead(excelRow, lastCol);
-						//wait_pageLoad_complate();
+						wait_pageLoad_complate();
 						excelRow++;
 						break TABLElOOP;
 					 }		
 					else if((paginationNext().isEnabled()==false)&&(tableRow==TotalRowsList.size()-1)){
+						System.out.println("Appointment ID"+" "+integerConverter_excel(patientFile,"MedicalRecord",excelRow,0).replace(" ", "")+" "+"not found");
 						assert false;
 					}		
 				}		
 				else if((previousRow.contentEquals(currentRow)) && (nextRow.contentEquals(currentRow))) {
 					patientMedicalreportRead(excelRow, lastCol);
-					//wait_pageLoad_complate();
+					wait_pageLoad_complate();
 					excelRow++;
 					break TABLElOOP;
 				}		

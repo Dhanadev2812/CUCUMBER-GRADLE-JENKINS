@@ -1,4 +1,4 @@
-@Bookappointment
+@patient:Bookappointment
 Feature: Feature to check book appointment functionaity
 
   Background: User is Logged In
@@ -12,7 +12,7 @@ Feature: Feature to check book appointment functionaity
     And Go to book appointment screen
 
   #Ref Patient-Inputs text file before edit
-  @BookAppointment-Create @patient-smokeTest
+  @patient:BookAppointment-Create @patient-smokeTest
   Scenario Outline: Create new appointment
     When Enter the appointment details
       | mobile     | appointment_type | speciality      | doctor            | chief_complaint     |
@@ -37,4 +37,4 @@ Feature: Feature to check book appointment functionaity
 
     Examples: 
       | AppointmentDate | TimeZone     | Slot    | PaymentMethod |
-      | 22/10/2020      | Asia/Kolkata | 1:30 PM | netbanking    |
+      | 30/10/2020      | Asia/Kolkata | 2:00 PM | netbanking    |

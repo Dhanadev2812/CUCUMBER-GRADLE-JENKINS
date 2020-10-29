@@ -20,7 +20,7 @@ move to the project file
 run-single tag : gradle cucumber -Dcucumber.options="--tags @alogin"
 
 for multiple tags :
-gradle cucumber -Dtags=@sanitytest,@loginfun
+gradle cucumber -Dcucumber.options="--tags %tagName01% --tags %tagName02%"
 ---------------------------------------------------------------------------------------------
 Find report output :
 

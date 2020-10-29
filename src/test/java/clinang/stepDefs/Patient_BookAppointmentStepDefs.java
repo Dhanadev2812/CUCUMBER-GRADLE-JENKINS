@@ -117,6 +117,7 @@ public class Patient_BookAppointmentStepDefs extends CustomDriver {
 	@Then("^validate the appointment details on payment success screen$")
 	public void validate_appointment_details()  {
 		B_appointment.get_successForm_appointmentID();
+		System.out.println("Appointment Booked Successfully");
 		assertTrue(Arrays.asList(B_appointment.bookAppointment_details).contains(B_appointment.appointmentSuccessform_clinic().getText()));
 		assertTrue(Arrays.asList(B_appointment.bookAppointment_details).contains(B_appointment.appointmentSuccessform_speciality().getText()));
 		assertTrue(Arrays.asList(B_appointment.bookAppointment_details).contains(B_appointment.appointmentSuccessform_doctor().getText()));
@@ -135,6 +136,7 @@ public class Patient_BookAppointmentStepDefs extends CustomDriver {
 		assertTrue(Arrays.asList(B_appointment.bookAppointment_details[6]).equals(Arrays.asList(payment.listPage_doctor)));
 		assertTrue(Arrays.asList(B_appointment.bookAppointment_details[7]).equals(Arrays.asList(payment.listPage_clinic)));
 		assertTrue(Arrays.asList(B_appointment.consultationFee_appointmentBooking).equals(Arrays.asList(payment.listPage_amount)));
+		System.out.println("Payment details stored on payment module");
 	}
 	
 	@Then("^Check the appointment count from dashboard module$")
@@ -152,10 +154,12 @@ public class Patient_BookAppointmentStepDefs extends CustomDriver {
 		if(providedDate.equals(Currentdate)) {	
 				
 				assertTrue((Arrays.asList(arr[0]+1).toString()).contains(dashboard.getCount_todayApp()));
+				System.out.println("Appointment count updated on dashboard");
 		   }
 			
 		else {
 			assertTrue((Arrays.asList(arr[1]+1).toString()).contains(dashboard.getCount_upcomingApp()));
+			System.out.println("Appointment count updated on dashboard");
 		}
 	}
 	
@@ -192,6 +196,6 @@ public class Patient_BookAppointmentStepDefs extends CustomDriver {
 		assertTrue(Arrays.asList(B_appointment.bookAppointment_details[5].replace(" ", "")).equals(Arrays.asList(myTreatment.myTreatment_gridDetails[2].replace(" ", ""))));
 		assertTrue(Arrays.asList(B_appointment.bookAppointment_details[6].replace(" ", "")).equals(Arrays.asList(myTreatment.myTreatment_gridDetails[3].replace(" ", ""))));
 		assertTrue(Arrays.asList(B_appointment.bookAppointment_details[7].replace(" ", "")).equals(Arrays.asList(myTreatment.myTreatment_gridDetails[4].replace(" ", ""))));
-
+		System.out.println("Appointment details stored on my treatment module");
 	}
 }

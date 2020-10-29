@@ -1,15 +1,15 @@
-@Appointment
+@patient:Appointment
 Feature: Feature to done appointment functionaity
 
   Background: User is Logged In
     Given I open the app
     When Enter the email,password and clinic code
-      | email                   | password    | clinic_code |
-      | sandhiya.2894@gmail.com | Password12# | LAT002      |
+      | email              | password    | clinic_code |
+      | wilson@patient.com | Password12# | LAT002      |
     And click on login button
     Then Check i am logged in
 
-  @Reschedule @patient-smokeTest
+  @Patient:Reschedule @patient-smokeTest
   Scenario Outline: Reschedule the appointment
     And Go to appointment module
     When Move to appointment list page based on date "<AppointmentDate>" and zoneid "<TimeZone>"
@@ -25,9 +25,9 @@ Feature: Feature to done appointment functionaity
 
     Examples: 
       | AppointmentID | AppointmentDate | RescheduleDate | TimeZone     | RescheduleSlot | RescheduleComplaint |
-      |            71 | 22/10/2020      | 23/10/2020     | Asia/Kolkata | 1:30 PM        | general appointment |
+      |            74 | 30/10/2020      | 31/10/2020     | Asia/Kolkata | 1:00 PM        | general appointment |
 
-  @Cancel @patient-smokeTest
+  @Patient:Cancel @patient-smokeTest
   Scenario Outline: Cancel the appointment
     And Go to appointment module
     When Move to appointment list page based on date "<AppointmentDate>" and zoneid "<TimeZone>"
@@ -40,9 +40,9 @@ Feature: Feature to done appointment functionaity
 
     Examples: 
       | AppointmentID | AppointmentDate | TimeZone     |
-      |            71 | 23/10/2020      | Asia/Kolkata |
+      |            74 | 31/10/2020      | Asia/Kolkata |
 
-  @Addfollowup @patient-smokeTest
+  @Patient:Addfollowup @patient-smokeTest
   Scenario Outline: Add followup
     And Get the patient country
     And Move to dashboard
@@ -89,10 +89,10 @@ Feature: Feature to done appointment functionaity
     Then Validate the uploaded medical reports
       | PDF.pdf     | Pdf-Medical report |
       | JPG-1MB.jpg | Scean image        |
-      
-    Examples:
-      | AppointmentID | AppointmentDate | TimeZone     | 
-      |             1 | 22/10/2020      | Asia/Kolkata | 
+
+    Examples: 
+      | AppointmentID | AppointmentDate | TimeZone     |
+      |             1 | 22/10/2020      | Asia/Kolkata |
 
   @Downloadall-Medicalreport
   Scenario Outline: Download all the medical report
@@ -100,10 +100,10 @@ Feature: Feature to done appointment functionaity
     When Move to appointment list page based on date "<AppointmentDate>" and zoneid "<TimeZone>"
     And Find the appointment using the appointment ID "<AppointmentID>"
     When download all the uploaded report
-    
-     Examples:
-      | AppointmentID | AppointmentDate | TimeZone     | 
-      |             1 | 22/10/2020      | Asia/Kolkata | 
+
+    Examples: 
+      | AppointmentID | AppointmentDate | TimeZone     |
+      |             1 | 22/10/2020      | Asia/Kolkata |
 
   @DownloadSpecific-Medicalreport @patient-smokeTest
   Scenario Outline: Download specific medical report
@@ -113,10 +113,10 @@ Feature: Feature to done appointment functionaity
     When Download specific uploaded report based on report name and description
       | PDF.pdf  | Pdf-Medical report |
       | test.png | test des           |
-      
-       Examples:
-      | AppointmentID | AppointmentDate | TimeZone     | 
-      |             1 | 22/10/2020      | Asia/Kolkata | 
+
+    Examples: 
+      | AppointmentID | AppointmentDate | TimeZone     |
+      |             1 | 22/10/2020      | Asia/Kolkata |
 
   @Deleteall-Medicalreport
   Scenario Outline: Delete all the medical report
@@ -124,10 +124,10 @@ Feature: Feature to done appointment functionaity
     When Move to appointment list page based on date "<AppointmentDate>" and zoneid "<TimeZone>"
     And Find the appointment using the appointment ID "<AppointmentID>"
     When delete all the uploaded report
-    
-     Examples:
-      | AppointmentID | AppointmentDate | TimeZone     | 
-      |             1 | 22/10/2020      | Asia/Kolkata | 
+
+    Examples: 
+      | AppointmentID | AppointmentDate | TimeZone     |
+      |             1 | 22/10/2020      | Asia/Kolkata |
 
   @DeleteSpecific-Medicalreport @patient-smokeTest
   Scenario Outline: Delete specific  medical report
@@ -136,7 +136,7 @@ Feature: Feature to done appointment functionaity
     And Find the appointment using the appointment ID "<AppointmentID>"
     When Delete specific uploaded report based on report name and description
       | 1.1 (8).png | Test |
-      
-      Examples:
-      | AppointmentID | AppointmentDate | TimeZone     | 
-      |             1 | 22/10/2020      | Asia/Kolkata | 
+
+    Examples: 
+      | AppointmentID | AppointmentDate | TimeZone     |
+      |             1 | 22/10/2020      | Asia/Kolkata |

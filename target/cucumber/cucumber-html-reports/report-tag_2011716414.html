@@ -74,7 +74,7 @@ $(document).ready(function() {
   <tbody>
     <tr class="info">
       <td>No Name (add projectName to cucumber-reporting.properties)</td>
-      <td>12 Oct 2020, 13:26</td>
+      <td>29 Oct 2020, 12:54</td>
     </tr>
   </tbody>
 </table>
@@ -127,18 +127,18 @@ $(document).ready(function() {
         <tbody>
         <tr>
           <td class="tagname">@Appointment</td>
-          <td      class="passed"    >4</td>
+          <td      class="passed"    >8</td>
           <td >0</td>
           <td >0</td>
           <td >0</td>
           <td >0</td>
-          <td class="total">4</td>
+          <td class="total">8</td>
 
           <td  class="passed"    >1</td>
           <td >0</td>
           <td class="total">1</td>
 
-          <td class="duration" data-value="39151000000">39.151</td>
+          <td class="duration" data-value="56357000000">56.357</td>
           <td class="passed">Passed</td>
         </tr>
         </tbody>
@@ -171,25 +171,26 @@ $(document).ready(function() {
 <div class="element">
     <div class="indention">
       <b>Feature:</b>
-      <a href="report-feature_1960035944.html">Feature to appointment functionaity</a>
+      <a href="report-feature_1960035944.html">Feature to done appointment functionaity</a>
     </div>
 
 
 <div class="tags indention">
     <b>Tags:</b>
        <a href="report-tag_2011716414.html">@Appointment</a>
-       <a href="report-tag_1563962320.html">@Downloadall-Medicalreport</a>
+       <a href="report-tag_378370318.html">@Patient:Cancel</a>
+       <a href="report-tag_348276120.html">@patient-smokeTest</a>
 </div>
 
 
-  <span class="lead-duration duration">39.151</span>
+  <span class="lead-duration duration">56.357</span>
 
 
   <span data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#element-1">
 
 <div class="brief passed">
-  <span class="keyword indention">Scenario</span>
-  <span class="name">Download all the medical report</span>
+  <span class="keyword indention">Scenario Outline</span>
+  <span class="name">Cancel the appointment</span>
 
 
      <i class="chevron fa fa-fw"></i>
@@ -257,7 +258,7 @@ $(document).ready(function() {
   <span class="keyword indention">And</span>
   <span class="name">Go to appointment module</span>
 
-  <span class="lead-duration duration">8.147</span>
+  <span class="lead-duration duration">8.181</span>
 
 </div>
 
@@ -282,9 +283,9 @@ $(document).ready(function() {
 
 <div class="brief step-name-When passed">
   <span class="keyword indention">When</span>
-  <span class="name">Move to appointment list page based on date &quot;<span class="argument">13/10/2020</span>&quot; and zoneid &quot;<span class="argument">Asia/Kolkata</span>&quot;</span>
+  <span class="name">Move to appointment list page based on date &quot;<span class="argument">30/10/2020</span>&quot; and zoneid &quot;<span class="argument">Asia/Kolkata</span>&quot;</span>
 
-  <span class="lead-duration duration">5.631</span>
+  <span class="lead-duration duration">5.623</span>
 
 </div>
 
@@ -309,9 +310,9 @@ $(document).ready(function() {
 
 <div class="brief step-name-And passed">
   <span class="keyword indention">And</span>
-  <span class="name">Find the appointment using the appointment ID &quot;<span class="argument">26</span>&quot;</span>
+  <span class="name">Find the appointment using the appointment ID &quot;<span class="argument">73</span>&quot;</span>
 
-  <span class="lead-duration duration">12.017</span>
+  <span class="lead-duration duration">11.499</span>
 
 </div>
 
@@ -334,11 +335,119 @@ $(document).ready(function() {
       <div class="step">
 
 
-<div class="brief step-name-When passed">
-  <span class="keyword indention">When</span>
-  <span class="name">download all the uploaded report</span>
+<div class="brief step-name-Then passed">
+  <span class="keyword indention">Then</span>
+  <span class="name">Check wheather the appointment date-&quot;<span class="argument">30/10/2020</span>&quot; is a past date or not,Based on zoneid &quot;<span class="argument">Asia/Kolkata</span>&quot;</span>
 
-  <span class="lead-duration duration">13.356</span>
+  <span class="lead-duration duration">0.029</span>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+      <div class="step">
+
+
+<div class="brief step-name-And passed">
+  <span class="keyword indention">And</span>
+  <span class="name">Cancel the appointment</span>
+
+  <span class="lead-duration duration">6.796</span>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+      <div class="step">
+
+
+<div class="brief step-name-Then passed">
+  <span class="keyword indention">Then</span>
+  <span class="name">Check the validation message for cancellation process</span>
+
+  <span class="lead-duration duration">1.345</span>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+      <div class="step">
+
+
+<div class="brief step-name-Then passed">
+  <span class="keyword indention">Then</span>
+  <span class="name">Check the appointment count based on cancelled appointment date &quot;<span class="argument">30/10/2020</span>&quot;</span>
+
+  <span class="lead-duration duration">5.670</span>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+      <div class="step">
+
+
+<div class="brief step-name-Then passed">
+  <span class="keyword indention">Then</span>
+  <span class="name">Check the appointment id &quot;<span class="argument">73</span>&quot; should removed from my treatment list</span>
+
+  <span class="lead-duration duration">17.214</span>
 
 </div>
 
@@ -381,9 +490,9 @@ $(document).ready(function() {
         <div class="hook">
           <div class="brief passed">
             <span class="keyword indention">After</span>
-              <span class="location name">clinang.webDriverUtils.Hooks_Utils.afterScenarioFinish()</span>
+              <span class="location name">clinang.webDriverUtils.Hooks_Utils.afterScenarioEnd()</span>
 
-  <span class="lead-duration duration">0.000</span>
+  <span class="lead-duration duration">1.123</span>
 
           </div>
 
@@ -399,7 +508,7 @@ $(document).ready(function() {
             <span class="keyword indention">After</span>
               <span class="location name">clinang.webDriverUtils.Hooks_Utils.afterScenario()</span>
 
-  <span class="lead-duration duration">0.000</span>
+  <span class="lead-duration duration">0.001</span>
 
           </div>
 

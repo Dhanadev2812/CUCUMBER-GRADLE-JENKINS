@@ -37,12 +37,13 @@ public class Patient_MedicalhistoryStepDefs {
 	@Then("^Check validation message for successful medical history add$")
 	public void checkValidation_add() {
 		assertTrue(Medicalhistory.get_alertMessage().equalsIgnoreCase("Medical history saved successfully"));
-		
+		System.out.println("Medical history saved successfully");
 	}
 	
 	@Then("^Check validation message for successful medical history update$")
 	public void checkValidation_update()  {
-		assertTrue(Medicalhistory.get_alertMessage().equalsIgnoreCase("Medical history updated successfully"));		
+		assertTrue(Medicalhistory.get_alertMessage().equalsIgnoreCase("Medical history updated successfully"));	
+		System.out.println("Medical history updated successfully");
 	}
 	
 	@Then("^Check the added details updated on patient dashboard$")
@@ -54,7 +55,7 @@ public class Patient_MedicalhistoryStepDefs {
 		assertTrue(Arrays.asList(Medicalhistory.charArr).contains(Dashboard.profile_gender().getText()));
 		assertTrue(Arrays.asList(Medicalhistory.charArr).contains(Dashboard.profile_bloodGroup().getText()));
 		assertTrue(Arrays.asList(Medicalhistory.charArr).contains(Dashboard.dob_changedformat()));
-
+		System.out.println("Added details updated on patient dashboard");
 	}
 	
 	@And("^Clear the mandatory fields$") 
@@ -70,7 +71,7 @@ public class Patient_MedicalhistoryStepDefs {
 		assertTrue(Medicalhistory.get_medicalHistoryform().equalsIgnoreCase("Please Enter Age"));
 		assertTrue(Medicalhistory.get_medicalHistoryform().equalsIgnoreCase("Please Enter the Weight"));
 		assertTrue(Medicalhistory.get_medicalHistoryform().equalsIgnoreCase("Please Enter the Height"));
-
+		System.out.println("Validation message exhibits for invalid inouts");
 	}
 	
 	@When("^Enter the details except allergy and medical history$")
@@ -82,6 +83,7 @@ public class Patient_MedicalhistoryStepDefs {
 	public void checkValidation_allergy_medicalHistory() {
 		assertTrue(Medicalhistory.get_medicalHistoryform().equalsIgnoreCase("Please enter any allergies that needs to be known"));
 		assertTrue(Medicalhistory.get_medicalHistoryform().equalsIgnoreCase("Please enter your medical history that needs to be known"));
+		System.out.println("Validation message exhibits for invalid inouts");
 	}
 	
 	@And("^Clear the mandatory fields on edit screen$")
@@ -94,6 +96,7 @@ public class Patient_MedicalhistoryStepDefs {
 		assertTrue(Medicalhistory.get_medicalHistoryform().equalsIgnoreCase("Please Enter Age"));
 		assertTrue(Medicalhistory.get_medicalHistoryform().equalsIgnoreCase("Please Enter the Weight"));
 		assertTrue(Medicalhistory.get_medicalHistoryform().equalsIgnoreCase("Please Enter the Height"));
+		System.out.println("Validation message exhibits for invalid inouts");
 		
 	}
 	
@@ -111,5 +114,6 @@ public class Patient_MedicalhistoryStepDefs {
 	public void checkValidation_add_invalid() {
 		assertTrue(Medicalhistory.get_medicalHistoryform().equalsIgnoreCase("Weight must be number"));
 		assertTrue(Medicalhistory.get_medicalHistoryform().equalsIgnoreCase("Height must be number"));
+		System.out.println("Validation message exhibits for invalid inouts");
 	}
 }
