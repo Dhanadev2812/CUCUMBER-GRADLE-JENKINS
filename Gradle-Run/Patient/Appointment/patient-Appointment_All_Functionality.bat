@@ -1,8 +1,7 @@
 set projectLocation=D:\Testing workspace\ClinaNG
-set tagName01=@patient:Appointment
-set tagName02=@patient-smokeTest
+set tagName01=@Bookappointment
+set tagName02=@Appointment
 d:
 cd %projectLocation%
-//cmd /k gradle cucumber -Dcucumber.options="--tags %tagName01%,%tagName02%"
-cmd /k gradle cucumber -Dcucumber.options="--tags %tagName01%"
+cmd /k gradle cucumber -Dtags=%tagName01%,%tagName02%
 pause

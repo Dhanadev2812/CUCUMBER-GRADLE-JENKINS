@@ -79,20 +79,24 @@ public class ClinicAdmin_PatientStepDefs {
 	}
 	@Then("^Verify patient personal details$")
 	public void validate_patient_personalDetails() throws IOException {
-		C_Admin_patientpageUtils.verify_patient_personalDetails();
+		C_Admin_patientpageUtils.validate_patient_personalDetails();
 	}
 	@Then("^Verify medical history details$")
 	public void verify_medicalHistory_details() throws IOException  {
-		C_Admin_patientpageUtils.verifyMedicalhistory();
+		C_Admin_patientpageUtils.validateMedicalhistory();
 	}
 	
 	@Then("^Verify the appointment details on patient module$")
 	public void verify_appointment_patientModule() throws IOException, ParseException, InterruptedException {
-		C_Admin_patientpageUtils.verify_appointmentDetails();
+		C_Admin_patientpageUtils.validate_appointmentDetails();
 	}
 	@Then("^Verify the medical report details$")
 	public void verify_medicalReport_details() throws IOException, ParseException, InterruptedException {
-		C_Admin_patientpageUtils.verify_medicalReport();
+		C_Admin_patientpageUtils.validate_medicalReport();
+	}
+	@Then("^Verify the medical treatment details$")
+	public void verify_medicalTreatment_details() throws IOException, ParseException, InterruptedException {
+		C_Admin_patientpageUtils.validate_Medicaltreatment();
 	}
 	
 }

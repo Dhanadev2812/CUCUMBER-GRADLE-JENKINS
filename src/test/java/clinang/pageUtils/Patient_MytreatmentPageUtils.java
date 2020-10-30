@@ -46,25 +46,25 @@ public class Patient_MytreatmentPageUtils extends CustomDriver{
 	private WebElement close_myTreatment() {
 		return findElement(myTreatment_Locator.close_myTreatment_popup);
 	}
-	private WebElement clinicNote() {
+	public WebElement clinicNote() {
 		return findElement(myTreatment_Locator.clinicalNote);
 	}
-	private WebElement observation() {
+	public WebElement observation() {
 		return findElement(myTreatment_Locator.observation);
 	}
-	private WebElement diagnosis() {
+	public WebElement diagnosis() {
 		return findElement(myTreatment_Locator.diagnosis);
 	}
-	private WebElement prescriptionDetails_single(int column) {
+	public WebElement prescriptionDetails_single(int column) {
 		return findElement(By.xpath("//div[@class='patient-report-download']//child::table/tbody/tr/td["+column+"]"));
 	}
-	private WebElement prescriptionDetails_multiple(int row,int column) {
+	public WebElement prescriptionDetails_multiple(int row,int column) {
 		return findElement(By.xpath("//div[@class='patient-report-download']//child::table/tbody/tr["+row+"]/td["+column+"]"));
 	}
-	private WebElement eprescription() {
+	public WebElement eprescription() {
 		return findElement(myTreatment_Locator.eprescription);
 	}
-	private WebElement prescripionTable() {
+	public WebElement prescripionTable() {
 		return findElement(myTreatment_Locator.prescriptionTable);
 	}
 	private WebElement grid_appointmentID_single() {
@@ -167,9 +167,9 @@ public class Patient_MytreatmentPageUtils extends CustomDriver{
 				grid_viewMytreatment(formatter.formatCellValue(ID)).click();
 				wait_pageLoadercomplate();
 				
-				assertTrue(clinicNote().getText().replace(" ", "").contentEquals(sheet.getRow(i).getCell(1).toString().replace(" ", "")));	
-				assertTrue(observation().getText().replace(" ", "").contentEquals(sheet.getRow(i).getCell(2).toString().replace(" ", "")));
-				assertTrue(diagnosis().getText().replace(" ", "").contentEquals(sheet.getRow(i).getCell(3).toString().replace(" ", "")));
+				assertTrue(clinicNote().getText().replaceAll("\\s+", "").contentEquals(sheet.getRow(i).getCell(1).toString().replaceAll("\\s+", "")));	
+				assertTrue(observation().getText().replaceAll("\\s+", "").contentEquals(sheet.getRow(i).getCell(2).toString().replaceAll("\\s+", "")));
+				assertTrue(diagnosis().getText().replaceAll("\\s+", "").contentEquals(sheet.getRow(i).getCell(3).toString().replaceAll("\\s+", "")));
 				System.out.println("Validated my treatment details");
 				close_myTreatment().click();
 				wait_pageLoadercomplate();
@@ -191,20 +191,20 @@ public class Patient_MytreatmentPageUtils extends CustomDriver{
 				Loop3:
 				for(int k=1;k<=5;k++) {
 					if(numberOf_prescriptions==1) {
-						assertTrue(data.get(i).get(0).replace(" ", "").contentEquals(prescriptionDetails_single(1).getText().replace(" ", "")));
-						assertTrue(data.get(i).get(k-1).replace(" ", "").contentEquals(prescriptionDetails_single(k).getText().replace(" ", "")));
+						assertTrue(data.get(i).get(0).replaceAll("\\s+", "").contentEquals(prescriptionDetails_single(1).getText().replaceAll("\\s+", "")));
+						assertTrue(data.get(i).get(k-1).replaceAll("\\s+", "").contentEquals(prescriptionDetails_single(k).getText().replaceAll("\\s+", "")));
 						break Loop2;
 					}
-					else if(data.get(i).get(0).replace(" ", "").contentEquals(prescriptionDetails_multiple(j,1).getText().replace(" ", ""))) {
-						assertTrue(data.get(i).get(k-1).replace(" ", "").contentEquals(prescriptionDetails_multiple(j,k).getText().replace(" ", "")));
+					else if(data.get(i).get(0).replaceAll("\\s+", "").contentEquals(prescriptionDetails_multiple(j,1).getText().replaceAll("\\s+", ""))) {
+						assertTrue(data.get(i).get(k-1).replaceAll("\\s+", "").contentEquals(prescriptionDetails_multiple(j,k).getText().replaceAll("\\s+", "")));
 						if(k==5) {
 							break Loop2;
 						}
 					}
 					
 					else if(j==numberOf_prescriptions) {
-						if(data.get(i).get(0).replace(" ", "").contentEquals(prescriptionDetails_multiple(j,1).getText().replace(" ", ""))) {	
-							assertTrue(data.get(i).get(k-1).replace(" ", "").contentEquals(prescriptionDetails_multiple(j,k).getText().replace(" ", "")));
+						if(data.get(i).get(0).replaceAll("\\s+", "").contentEquals(prescriptionDetails_multiple(j,1).getText().replaceAll("\\s+", ""))) {	
+							assertTrue(data.get(i).get(k-1).replaceAll("\\s+", "").contentEquals(prescriptionDetails_multiple(j,k).getText().replaceAll("\\s+", "")));
 							break Loop2;
 						}	
 						else {

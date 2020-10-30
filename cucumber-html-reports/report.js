@@ -114,6 +114,16 @@ formatter.match({
 formatter.result({
   "status": "passed"
 });
+formatter.step({
+  "name": "Verify the medical treatment details",
+  "keyword": "Then "
+});
+formatter.match({
+  "location": "clinang.stepDefs.ClinicAdmin_PatientStepDefs.verify_medicalTreatment_details()"
+});
+formatter.result({
+  "status": "passed"
+});
 formatter.after({
   "status": "passed"
 });
