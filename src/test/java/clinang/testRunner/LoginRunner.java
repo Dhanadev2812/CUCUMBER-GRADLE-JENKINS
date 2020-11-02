@@ -6,9 +6,9 @@ import io.cucumber.junit.CucumberOptions;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(plugin = {"pretty","html:cucumber-html-reports","json: cucumber-html-reports/cucumber.json" },
-features= {"src/test/resources/clinang_Feature_Patient/ClinicAdmin_Patient.feature"},
+features= {"src/test/resources/clinang_Feature_Patient/ClinicAdmin_invoice.feature"},
 glue= {"clinang.webDriverUtils","clinang.stepDefs"},
-tags = {"@Patientdetails"},
+tags = {"@Validateinvoice"},
 monochrome = true,
 strict=true)
 public class LoginRunner {

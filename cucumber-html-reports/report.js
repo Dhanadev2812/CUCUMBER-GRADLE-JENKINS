@@ -1,11 +1,11 @@
-$(document).ready(function() {var formatter = new CucumberHTML.DOMFormatter($('.cucumber-report'));formatter.uri("file:src/test/resources/clinang_Feature_Patient/ClinicAdmin_Patient.feature");
+$(document).ready(function() {var formatter = new CucumberHTML.DOMFormatter($('.cucumber-report'));formatter.uri("file:src/test/resources/clinang_Feature_Patient/ClinicAdmin_invoice.feature");
 formatter.feature({
-  "name": "Feature to done patient functionaity",
+  "name": "Feature to validate invoice details",
   "description": "",
   "keyword": "Feature",
   "tags": [
     {
-      "name": "@Clinic_patient"
+      "name": "@ClinicAdmin:Invoice"
     }
   ]
 });
@@ -71,55 +71,45 @@ formatter.match({
 formatter.result({
   "status": "passed"
 });
-formatter.step({
-  "name": "Click on patient module",
-  "keyword": "And "
-});
-formatter.match({
-  "location": "clinang.stepDefs.ClinicAdmin_PatientStepDefs.moveTo_patientModule()"
-});
-formatter.result({
-  "status": "passed"
-});
 formatter.scenario({
-  "name": "Verify patient details",
+  "name": "Validate invoice details",
   "description": "",
   "keyword": "Scenario",
   "tags": [
     {
-      "name": "@Clinic_patient"
+      "name": "@ClinicAdmin:Invoice"
     },
     {
-      "name": "@Patientdetails"
+      "name": "@Validateinvoice"
     }
   ]
 });
 formatter.step({
-  "name": "get the patient details from \"src\\test\\resources\\ClinicAdmin_TestData\\Watts Health Center\\Patient-details.xlsx\"",
+  "name": "Go to invoice module",
+  "keyword": "And "
+});
+formatter.match({
+  "location": "clinang.stepDefs.ClinicAdmin_InvoiceStepDefs.goTo_invoice_module()"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "Get the invoice details from \"src\\test\\resources\\ClinicAdmin_TestData\\Watts Health Center\\Patient-details.xlsx\"",
   "keyword": "When "
 });
 formatter.match({
-  "location": "clinang.stepDefs.ClinicAdmin_PatientStepDefs.get_patient_details(java.lang.String)"
+  "location": "clinang.stepDefs.ClinicAdmin_InvoiceStepDefs.get_invoice_details(java.lang.String)"
 });
 formatter.result({
   "status": "passed"
 });
 formatter.step({
-  "name": "Verify the medical report details",
+  "name": "Validate invoice details from list page",
   "keyword": "Then "
 });
 formatter.match({
-  "location": "clinang.stepDefs.ClinicAdmin_PatientStepDefs.verify_medicalReport_details()"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "Verify the medical treatment details",
-  "keyword": "Then "
-});
-formatter.match({
-  "location": "clinang.stepDefs.ClinicAdmin_PatientStepDefs.verify_medicalTreatment_details()"
+  "location": "clinang.stepDefs.ClinicAdmin_InvoiceStepDefs.validate_invoice_listPage()"
 });
 formatter.result({
   "status": "passed"

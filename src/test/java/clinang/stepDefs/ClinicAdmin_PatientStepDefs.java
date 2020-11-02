@@ -74,8 +74,7 @@ public class ClinicAdmin_PatientStepDefs {
 	
 	@When("^get the patient details from \"([^\"]*)\"$")
 	public void get_patient_details(String patient_details_file) throws IOException {
-		C_Admin_patientpageUtils.get_patientFile(patient_details_file);
-		
+		C_Admin_patientpageUtils.get_patientFile(patient_details_file);	
 	}
 	@Then("^Verify patient personal details$")
 	public void validate_patient_personalDetails() throws IOException {

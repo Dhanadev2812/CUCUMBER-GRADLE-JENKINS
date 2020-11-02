@@ -11,7 +11,7 @@
         "steps": [
           {
             "result": {
-              "duration": 20469000000,
+              "duration": 17999000000,
               "status": "passed"
             },
             "line": 5,
@@ -23,7 +23,7 @@
           },
           {
             "result": {
-              "duration": 5490000000,
+              "duration": 5456000000,
               "status": "passed"
             },
             "line": 6,
@@ -35,7 +35,7 @@
           },
           {
             "result": {
-              "duration": 7059000000,
+              "duration": 6402000000,
               "status": "passed"
             },
             "line": 7,
@@ -61,7 +61,7 @@
           },
           {
             "result": {
-              "duration": 5626000000,
+              "duration": 10906000000,
               "status": "passed"
             },
             "line": 10,
@@ -73,7 +73,7 @@
           },
           {
             "result": {
-              "duration": 5535000000,
+              "duration": 5726000000,
               "status": "passed"
             },
             "line": 11,
@@ -82,27 +82,15 @@
               "location": "clinang.stepDefs.ClinicAdmin_LoginStepDefs.check_loggedIn_clinicAdmin()"
             },
             "keyword": "Then "
-          },
-          {
-            "result": {
-              "duration": 469000000,
-              "status": "passed"
-            },
-            "line": 12,
-            "name": "Click on patient module",
-            "match": {
-              "location": "clinang.stepDefs.ClinicAdmin_PatientStepDefs.moveTo_patientModule()"
-            },
-            "keyword": "And "
           }
         ]
       },
       {
-        "start_timestamp": "2020-10-30T11:43:52.014Z",
+        "start_timestamp": "2020-11-02T13:22:37.231Z",
         "before": [
           {
             "result": {
-              "duration": 5000000,
+              "duration": 2000000,
               "status": "passed"
             },
             "match": {
@@ -110,13 +98,14 @@
             }
           }
         ],
-        "line": 41,
-        "name": "Verify patient details",
+        "line": 14,
+        "name": "Validate invoice details",
         "description": "",
-        "id": "feature-to-done-patient-functionaity;verify-patient-details",
+        "id": "feature-to-validate-invoice-details;validate-invoice-details",
         "after": [
           {
             "result": {
+              "duration": 1000000,
               "status": "passed"
             },
             "match": {
@@ -129,11 +118,23 @@
         "steps": [
           {
             "result": {
-              "duration": 8000000,
+              "duration": 459000000,
               "status": "passed"
             },
-            "line": 42,
-            "name": "get the patient details from \"src\\test\\resources\\ClinicAdmin_TestData\\Watts Health Center\\Patient-details.xlsx\"",
+            "line": 15,
+            "name": "Go to invoice module",
+            "match": {
+              "location": "clinang.stepDefs.ClinicAdmin_InvoiceStepDefs.goTo_invoice_module()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 3000000,
+              "status": "passed"
+            },
+            "line": 16,
+            "name": "Get the invoice details from \"src\\test\\resources\\ClinicAdmin_TestData\\Watts Health Center\\Patient-details.xlsx\"",
             "match": {
               "arguments": [
                 {
@@ -141,53 +142,41 @@
                   "offset": 30
                 }
               ],
-              "location": "clinang.stepDefs.ClinicAdmin_PatientStepDefs.get_patient_details(java.lang.String)"
+              "location": "clinang.stepDefs.ClinicAdmin_InvoiceStepDefs.get_invoice_details(java.lang.String)"
             },
             "keyword": "When "
           },
           {
             "result": {
-              "duration": 306146000000,
+              "duration": 213792000000,
               "status": "passed"
             },
-            "line": 46,
-            "name": "Verify the medical report details",
+            "line": 17,
+            "name": "Validate invoice details from list page",
             "match": {
-              "location": "clinang.stepDefs.ClinicAdmin_PatientStepDefs.verify_medicalReport_details()"
-            },
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "duration": 136484000000,
-              "status": "passed"
-            },
-            "line": 47,
-            "name": "Verify the medical treatment details",
-            "match": {
-              "location": "clinang.stepDefs.ClinicAdmin_PatientStepDefs.verify_medicalTreatment_details()"
+              "location": "clinang.stepDefs.ClinicAdmin_InvoiceStepDefs.validate_invoice_listPage()"
             },
             "keyword": "Then "
           }
         ],
         "tags": [
           {
-            "name": "@Clinic_patient"
+            "name": "@ClinicAdmin:Invoice"
           },
           {
-            "name": "@Patientdetails"
+            "name": "@Validateinvoice"
           }
         ]
       }
     ],
-    "name": "Feature to done patient functionaity",
+    "name": "Feature to validate invoice details",
     "description": "",
-    "id": "feature-to-done-patient-functionaity",
+    "id": "feature-to-validate-invoice-details",
     "keyword": "Feature",
-    "uri": "file:src/test/resources/clinang_Feature_Patient/ClinicAdmin_Patient.feature",
+    "uri": "file:src/test/resources/clinang_Feature_Patient/ClinicAdmin_invoice.feature",
     "tags": [
       {
-        "name": "@Clinic_patient",
+        "name": "@ClinicAdmin:Invoice",
         "type": "Tag",
         "location": {
           "line": 1,

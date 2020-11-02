@@ -1,7 +1,6 @@
 package clinang.pageUtils;
 
 import static org.junit.Assert.assertTrue;
-
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -9,18 +8,12 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-
-import org.apache.poi.ss.usermodel.CellType;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-
 import clinang.Locators.ClinicAdmin_PatientLocators;
 import clinang.stepDefs.Patient_AppointmentStepDefs;
-import clinang.stepDefs.Patient_BookAppointmentStepDefs;
 import clinang.webDriverUtils.CustomDriver;
 import io.cucumber.datatable.DataTable;
-import io.cucumber.messages.internal.com.google.common.collect.Table.Cell;
-import net.bytebuddy.agent.builder.AgentBuilder.InitializationStrategy.SelfInjection.Split;
 
 public class ClinicAdmin_PatientPageUtils extends CustomDriver{
 	
@@ -28,9 +21,9 @@ public class ClinicAdmin_PatientPageUtils extends CustomDriver{
 	Patient_AppointmentStepDefs appointmentStepdefs = new Patient_AppointmentStepDefs();
 	Patient_AppointmentPageUtils appointmentPageUtils = new Patient_AppointmentPageUtils();
 	Patient_MytreatmentPageUtils myTreatmentPageUtils = new Patient_MytreatmentPageUtils();
-	private String patientFile;
-	private String requireddate;
-	private String appointmentDateTime;
+	public String patientFile;
+	public String requireddate;
+	public String appointmentDateTime;
 	private String nextRow;
 	private String[] medicalReportname;
 	private String[] drugName;
@@ -144,7 +137,7 @@ public class ClinicAdmin_PatientPageUtils extends CustomDriver{
 	private WebElement close_medicalReport() {
 		return findElement(C_Admin_PatientLocators.closeMedicalreport);
 	}
-	private WebElement medicalReport_noRecord() {
+	public WebElement medicalReport_noRecord() {
 		return findElement(C_Admin_PatientLocators.medicalReport_Norecord);
 	}
 	private WebElement close_medicalTreatment() {
@@ -497,6 +490,7 @@ public class ClinicAdmin_PatientPageUtils extends CustomDriver{
 	public void patientMedicalreport_ReadExcel(int excelRow,int lastCol ) throws IOException, ParseException, InterruptedException {
 		for(int excelCol=1;excelCol<=lastCol;excelCol++) {
 			 int columnCount = excelCol;
+			 wait_pageLoad_complate();
 			 switch (columnCount) {
 			  case 1:	
 				  String appointmentDate = integerConverter_excel(patientFile,"MedicalRecord",excelRow, excelCol);
@@ -532,7 +526,6 @@ public class ClinicAdmin_PatientPageUtils extends CustomDriver{
 			String reportDescription = medicalReportdescription[i];
 			loop02:
 			for(int j=1;j<numberOfrecord_medicalReport+1;j++) {	
-				appointmentPageUtils.check_patientUpload_empty();
 				if(reportName.equalsIgnoreCase(("No Documents uploaded").replace("//s+",""))) {	
 					assertTrue(reportName.replaceAll("\\s+","").equalsIgnoreCase(medicalReport_noRecord().getText().replace(" ","")));
 					System.out.println("No Documents uploaded");

@@ -30,7 +30,8 @@ public class ClinicAdmin_LoginPageUtils extends CustomDriver {
 		return findElement(Admin_loginLocator.clinicAdmin_loginButton);
 	}
 	public void click_login() {
-		loginButton().click();
+		wait_pageLoad_complate();
+		loginButton().click();	
 	}
 	public void wait_pageLoad_complate() {
 		 Loader(Admin_loginLocator.pageLoader);

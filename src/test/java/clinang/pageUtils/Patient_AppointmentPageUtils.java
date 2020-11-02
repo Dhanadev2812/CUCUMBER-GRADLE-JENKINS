@@ -334,7 +334,7 @@ public class Patient_AppointmentPageUtils extends CustomDriver{
 	}
 	public void check_patientUpload_empty() {
 		wait_pageLoadercomplate();
-		if(patientUploads().getText().contains("No documents uploaded")) {
+		if(patientUploads().getText().contentEquals("No documents uploaded")) {
 			System.out.println("No documents uploaded");
 			assert false;
 		}

@@ -1,5 +1,5 @@
 @Clinic_patient
-Feature: Feature to done patient functionaity
+Feature: Feature to validate patient details and check the functionaity
 
   Background: User is Logged In
     Given I open the app
