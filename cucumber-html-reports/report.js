@@ -1,11 +1,11 @@
-$(document).ready(function() {var formatter = new CucumberHTML.DOMFormatter($('.cucumber-report'));formatter.uri("file:src/test/resources/clinang_Feature_Patient/ClinicAdmin_invoice.feature");
+$(document).ready(function() {var formatter = new CucumberHTML.DOMFormatter($('.cucumber-report'));formatter.uri("file:src/test/resources/clinang_Feature_Patient/ClinicAdmin_Doctor.feature");
 formatter.feature({
-  "name": "Feature to validate invoice details",
+  "name": "Feature to validate and create new doctor",
   "description": "",
   "keyword": "Feature",
   "tags": [
     {
-      "name": "@ClinicAdmin:Invoice"
+      "name": "@Clinic_doctor"
     }
   ]
 });
@@ -72,47 +72,82 @@ formatter.result({
   "status": "passed"
 });
 formatter.scenario({
-  "name": "Validate invoice details",
+  "name": "Create new doctor",
   "description": "",
   "keyword": "Scenario",
   "tags": [
     {
-      "name": "@ClinicAdmin:Invoice"
+      "name": "@Clinic_doctor"
     },
     {
-      "name": "@Validateinvoice"
+      "name": "@createdoctor"
     }
   ]
 });
 formatter.step({
-  "name": "Go to invoice module",
+  "name": "Go to doctor module",
   "keyword": "And "
 });
 formatter.match({
-  "location": "clinang.stepDefs.ClinicAdmin_InvoiceStepDefs.goTo_invoice_module()"
+  "location": "clinang.stepDefs.ClinicAdmin_DoctorStepDefs.goTo_doctor_module()"
 });
 formatter.result({
   "status": "passed"
 });
 formatter.step({
-  "name": "Get the invoice details from \"src\\test\\resources\\ClinicAdmin_TestData\\Watts Health Center\\Patient-details.xlsx\"",
+  "name": "Click on create doctor",
+  "keyword": "And "
+});
+formatter.match({
+  "location": "clinang.stepDefs.ClinicAdmin_DoctorStepDefs.click_createDoctor()"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "Enter doctor details",
+  "rows": [
+    {},
+    {}
+  ],
   "keyword": "When "
 });
 formatter.match({
-  "location": "clinang.stepDefs.ClinicAdmin_InvoiceStepDefs.get_invoice_details(java.lang.String)"
+  "location": "clinang.stepDefs.ClinicAdmin_DoctorStepDefs.passDoctorDetails(io.cucumber.datatable.DataTable)"
 });
 formatter.result({
   "status": "passed"
 });
 formatter.step({
-  "name": "Validate invoice details from list page",
-  "keyword": "Then "
+  "name": "Submit the form",
+  "keyword": "And "
 });
 formatter.match({
-  "location": "clinang.stepDefs.ClinicAdmin_InvoiceStepDefs.validate_invoice_listPage()"
+  "location": "clinang.stepDefs.ClinicAdmin_DoctorStepDefs.submit_form()"
 });
 formatter.result({
   "status": "passed"
+});
+formatter.step({
+  "name": "Verify the success message for doctor registration",
+  "keyword": "Then "
+});
+formatter.match({
+  "location": "clinang.stepDefs.ClinicAdmin_DoctorStepDefs.Verify_successMessage()"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "Validate the new doctor details on doctor without profile screen",
+  "keyword": "Then "
+});
+formatter.match({
+  "location": "clinang.stepDefs.ClinicAdmin_DoctorStepDefs.validate_newDoctor_details()"
+});
+formatter.result({
+  "error_message": "java.lang.AssertionError\r\n\tat org.junit.Assert.fail(Assert.java:87)\r\n\tat org.junit.Assert.assertTrue(Assert.java:42)\r\n\tat org.junit.Assert.assertTrue(Assert.java:53)\r\n\tat clinang.stepDefs.ClinicAdmin_DoctorStepDefs.validate_newDoctor_details(ClinicAdmin_DoctorStepDefs.java:49)\r\n\tat ✽.Validate the new doctor details on doctor without profile screen(file:///D:/Testing%20workspace/ClinaNG/src/test/resources/clinang_Feature_Patient/ClinicAdmin_Doctor.feature:22)\r\n",
+  "status": "failed"
 });
 formatter.after({
   "status": "passed"

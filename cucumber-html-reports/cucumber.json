@@ -11,7 +11,7 @@
         "steps": [
           {
             "result": {
-              "duration": 17999000000,
+              "duration": 45291000000,
               "status": "passed"
             },
             "line": 5,
@@ -23,7 +23,7 @@
           },
           {
             "result": {
-              "duration": 5456000000,
+              "duration": 5233000000,
               "status": "passed"
             },
             "line": 6,
@@ -35,7 +35,7 @@
           },
           {
             "result": {
-              "duration": 6402000000,
+              "duration": 6663000000,
               "status": "passed"
             },
             "line": 7,
@@ -61,7 +61,7 @@
           },
           {
             "result": {
-              "duration": 10906000000,
+              "duration": 10603000000,
               "status": "passed"
             },
             "line": 10,
@@ -73,7 +73,7 @@
           },
           {
             "result": {
-              "duration": 5726000000,
+              "duration": 5400000000,
               "status": "passed"
             },
             "line": 11,
@@ -86,11 +86,11 @@
         ]
       },
       {
-        "start_timestamp": "2020-11-02T13:22:37.231Z",
+        "start_timestamp": "2020-11-03T12:30:42.206Z",
         "before": [
           {
             "result": {
-              "duration": 2000000,
+              "duration": 3000000,
               "status": "passed"
             },
             "match": {
@@ -99,13 +99,12 @@
           }
         ],
         "line": 14,
-        "name": "Validate invoice details",
+        "name": "Create new doctor",
         "description": "",
-        "id": "feature-to-validate-invoice-details;validate-invoice-details",
+        "id": "feature-to-validate-and-create-new-doctor;create-new-doctor",
         "after": [
           {
             "result": {
-              "duration": 1000000,
               "status": "passed"
             },
             "match": {
@@ -118,65 +117,124 @@
         "steps": [
           {
             "result": {
-              "duration": 459000000,
+              "duration": 184000000,
               "status": "passed"
             },
             "line": 15,
-            "name": "Go to invoice module",
+            "name": "Go to doctor module",
             "match": {
-              "location": "clinang.stepDefs.ClinicAdmin_InvoiceStepDefs.goTo_invoice_module()"
+              "location": "clinang.stepDefs.ClinicAdmin_DoctorStepDefs.goTo_doctor_module()"
             },
             "keyword": "And "
           },
           {
             "result": {
-              "duration": 3000000,
+              "duration": 12650000000,
               "status": "passed"
             },
             "line": 16,
-            "name": "Get the invoice details from \"src\\test\\resources\\ClinicAdmin_TestData\\Watts Health Center\\Patient-details.xlsx\"",
+            "name": "Click on create doctor",
             "match": {
-              "arguments": [
-                {
-                  "val": "src\\test\\resources\\ClinicAdmin_TestData\\Watts Health Center\\Patient-details.xlsx",
-                  "offset": 30
-                }
-              ],
-              "location": "clinang.stepDefs.ClinicAdmin_InvoiceStepDefs.get_invoice_details(java.lang.String)"
+              "location": "clinang.stepDefs.ClinicAdmin_DoctorStepDefs.click_createDoctor()"
             },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 14526000000,
+              "status": "passed"
+            },
+            "line": 17,
+            "name": "Enter doctor details",
+            "match": {
+              "location": "clinang.stepDefs.ClinicAdmin_DoctorStepDefs.passDoctorDetails(io.cucumber.datatable.DataTable)"
+            },
+            "rows": [
+              {
+                "cells": [
+                  "FirstName",
+                  "LastName",
+                  "EmailID",
+                  "Speciality",
+                  "DomesticConsultingFee",
+                  "OverseasConsultingFee",
+                  "DomesticFollowupFee",
+                  "OverseasFollowupFee",
+                  "Password"
+                ]
+              },
+              {
+                "cells": [
+                  "Richard",
+                  "Kims",
+                  "richard15@doctor.com",
+                  "Cardiologist",
+                  "1000",
+                  "2000",
+                  "500",
+                  "1000",
+                  "Password12#"
+                ]
+              }
+            ],
             "keyword": "When "
           },
           {
             "result": {
-              "duration": 213792000000,
+              "duration": 273000000,
               "status": "passed"
             },
-            "line": 17,
-            "name": "Validate invoice details from list page",
+            "line": 20,
+            "name": "Submit the form",
             "match": {
-              "location": "clinang.stepDefs.ClinicAdmin_InvoiceStepDefs.validate_invoice_listPage()"
+              "location": "clinang.stepDefs.ClinicAdmin_DoctorStepDefs.submit_form()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 5731000000,
+              "status": "passed"
+            },
+            "line": 21,
+            "name": "Verify the success message for doctor registration",
+            "match": {
+              "location": "clinang.stepDefs.ClinicAdmin_DoctorStepDefs.Verify_successMessage()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "error_message": "java.lang.AssertionError\r\n\tat org.junit.Assert.fail(Assert.java:87)\r\n\tat org.junit.Assert.assertTrue(Assert.java:42)\r\n\tat org.junit.Assert.assertTrue(Assert.java:53)\r\n\tat clinang.stepDefs.ClinicAdmin_DoctorStepDefs.validate_newDoctor_details(ClinicAdmin_DoctorStepDefs.java:49)\r\n\tat ✽.Validate the new doctor details on doctor without profile screen(file:///D:/Testing%20workspace/ClinaNG/src/test/resources/clinang_Feature_Patient/ClinicAdmin_Doctor.feature:22)\r\n",
+              "duration": 6005000000,
+              "status": "failed"
+            },
+            "line": 22,
+            "name": "Validate the new doctor details on doctor without profile screen",
+            "match": {
+              "location": "clinang.stepDefs.ClinicAdmin_DoctorStepDefs.validate_newDoctor_details()"
             },
             "keyword": "Then "
           }
         ],
         "tags": [
           {
-            "name": "@ClinicAdmin:Invoice"
+            "name": "@Clinic_doctor"
           },
           {
-            "name": "@Validateinvoice"
+            "name": "@createdoctor"
           }
         ]
       }
     ],
-    "name": "Feature to validate invoice details",
+    "name": "Feature to validate and create new doctor",
     "description": "",
-    "id": "feature-to-validate-invoice-details",
+    "id": "feature-to-validate-and-create-new-doctor",
     "keyword": "Feature",
-    "uri": "file:src/test/resources/clinang_Feature_Patient/ClinicAdmin_invoice.feature",
+    "uri": "file:src/test/resources/clinang_Feature_Patient/ClinicAdmin_Doctor.feature",
     "tags": [
       {
-        "name": "@ClinicAdmin:Invoice",
+        "name": "@Clinic_doctor",
         "type": "Tag",
         "location": {
           "line": 1,
