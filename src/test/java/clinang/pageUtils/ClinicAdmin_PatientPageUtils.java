@@ -98,7 +98,7 @@ public class ClinicAdmin_PatientPageUtils extends CustomDriver{
 	private WebElement wait_patientTable() {
 		return waitForElementPresent(C_Admin_PatientLocators.patientTable);
 	}
-	private WebElement grid_appointmentID(int i) {
+	private WebElement grid_ID(int i) {
 		return findElement(By.xpath("//table/tbody/tr["+i+"]/td[1]"));
 	}
 	private WebElement paginationNext() {
@@ -209,7 +209,7 @@ public class ClinicAdmin_PatientPageUtils extends CustomDriver{
 						excelRow++;
 						break TABLElOOP;
 					}	
-					else if(integerConverter_excel(patientFile,"PersonalDetails",excelRow,0).replaceAll("\\s+", "").equalsIgnoreCase(grid_appointmentID(tableRow).getText().replaceAll("\\s+", ""))) {
+					else if(integerConverter_excel(patientFile,"PersonalDetails",excelRow,0).replaceAll("\\s+", "").equalsIgnoreCase(grid_ID(tableRow).getText().replaceAll("\\s+", ""))) {
 						for(int tableCol = 2; tableCol<=5;tableCol++) {
 							assertTrue(grid_patient_personalDetails(tableRow,tableCol).getText().replaceAll("\\s+", "").equalsIgnoreCase(integerConverter_excel(patientFile,"PersonalDetails",excelRow,tableCol-1).replaceAll("\\s+", "")));	
 						}
@@ -246,7 +246,7 @@ public class ClinicAdmin_PatientPageUtils extends CustomDriver{
 			while(excelRow<=lastRow) {	
 				TABLElOOP:
 				for(int tableRow=1;tableRow<=TotalRowsList.size()-1;tableRow++) {
-					if(integerConverter_excel(patientFile,"MedicalHistory",excelRow,0).replaceAll("\\s+", "").equalsIgnoreCase(grid_appointmentID(tableRow).getText().replaceAll("\\s+", ""))) {
+					if(integerConverter_excel(patientFile,"MedicalHistory",excelRow,0).replaceAll("\\s+", "").equalsIgnoreCase(grid_ID(tableRow).getText().replaceAll("\\s+", ""))) {
 						grid_viewpatient(integerConverter_excel(patientFile,"MedicalHistory",excelRow, 0)).click();
 						wait_pageLoad_complate();
 						for(int excelCol = 1; excelCol<=lastCol;excelCol++) {
@@ -377,7 +377,7 @@ public class ClinicAdmin_PatientPageUtils extends CustomDriver{
 					break EXCELOOP;				
 				}
 				else if(!(previousRow.contentEquals(currentRow)) && (excelRow==lastRow)) {
-					if(integerConverter_excel(patientFile,"Appointments",excelRow,0).replaceAll("\\s+", "").equalsIgnoreCase(grid_appointmentID(tableRow).getText().replaceAll("\\s+", ""))) {
+					if(integerConverter_excel(patientFile,"Appointments",excelRow,0).replaceAll("\\s+", "").equalsIgnoreCase(grid_ID(tableRow).getText().replaceAll("\\s+", ""))) {
 						grid_viewpatient(integerConverter_excel(patientFile,"Appointments",excelRow, 0)).click();
 						patientAppointment_ReadExcel(excelRow, lastCol);
 						backTopatientDetails(integerConverter_excel(patientFile,"Appointments",excelRow, 0)).click();
@@ -394,7 +394,7 @@ public class ClinicAdmin_PatientPageUtils extends CustomDriver{
 				}
 				else if(!(previousRow.contentEquals(currentRow)) && !(nextRow.contentEquals(currentRow))) {
 					
-					if(integerConverter_excel(patientFile,"Appointments",excelRow,0).replaceAll("\\s+", "").equalsIgnoreCase(grid_appointmentID(tableRow).getText().replaceAll("\\s+", ""))) {
+					if(integerConverter_excel(patientFile,"Appointments",excelRow,0).replaceAll("\\s+", "").equalsIgnoreCase(grid_ID(tableRow).getText().replaceAll("\\s+", ""))) {
 						grid_viewpatient(integerConverter_excel(patientFile,"Appointments",excelRow, 0)).click();
 						wait_pageLoad_complate();
 						patientAppointment_ReadExcel(excelRow, lastCol);
@@ -422,7 +422,7 @@ public class ClinicAdmin_PatientPageUtils extends CustomDriver{
 					}		
 				else if(!(previousRow.contentEquals(currentRow)) && (nextRow.contentEquals(currentRow))) {
 		
-					if(integerConverter_excel(patientFile,"Appointments",excelRow,0).replaceAll("\\s+", "").equalsIgnoreCase(grid_appointmentID(tableRow).getText().replaceAll("\\s+", ""))) {
+					if(integerConverter_excel(patientFile,"Appointments",excelRow,0).replaceAll("\\s+", "").equalsIgnoreCase(grid_ID(tableRow).getText().replaceAll("\\s+", ""))) {
 						grid_viewpatient(integerConverter_excel(patientFile,"Appointments",excelRow, 0)).click();
 						patientAppointment_ReadExcel(excelRow, lastCol);
 						backTopatientDetails(integerConverter_excel(patientFile,"Appointments",excelRow, 0)).click();
@@ -451,7 +451,7 @@ public class ClinicAdmin_PatientPageUtils extends CustomDriver{
 				}
 			}
 		}
-	private void findAppointment_medicalReport(String appointmentID) {
+	public void findAppointment_medicalReport(String appointmentID) {
 		wait_pageLoad_complate();
 		whileLoop:
 		while(true) {
@@ -466,7 +466,7 @@ public class ClinicAdmin_PatientPageUtils extends CustomDriver{
 						wait_pageLoad_complate();
 						break whileLoop;		
 					}
-					else if(appointmentID.contentEquals(grid_appointmentID(tableRow).getText())) {
+					else if(appointmentID.contentEquals(grid_ID(tableRow).getText())) {
 						medicalReportedit(appointmentID).click();
 						wait_pageLoad_complate();
 						break whileLoop;															 			 
@@ -592,7 +592,7 @@ public class ClinicAdmin_PatientPageUtils extends CustomDriver{
 					break EXCELOOP;				
 				}
 				else if(!(previousRow.contentEquals(currentRow)) && (excelRow==lastRow)) {
-					if(integerConverter_excel(patientFile,"MedicalRecord",excelRow,0).replaceAll("\\s+", "").equalsIgnoreCase(grid_appointmentID(tableRow).getText().replaceAll("\\s+", ""))) {
+					if(integerConverter_excel(patientFile,"MedicalRecord",excelRow,0).replaceAll("\\s+", "").equalsIgnoreCase(grid_ID(tableRow).getText().replaceAll("\\s+", ""))) {
 						grid_viewpatient(integerConverter_excel(patientFile,"MedicalRecord",excelRow, 0)).click();
 						patientMedicalreport_ReadExcel(excelRow, lastCol);
 						backTopatient_option().click();
@@ -606,7 +606,7 @@ public class ClinicAdmin_PatientPageUtils extends CustomDriver{
 					}
 				}
 				else if(!(previousRow.contentEquals(currentRow)) && !(nextRow.contentEquals(currentRow))) {
-					if(integerConverter_excel(patientFile,"MedicalRecord",excelRow,0).replaceAll("\\s+", "").equalsIgnoreCase(grid_appointmentID(tableRow).getText().replaceAll("\\s+", ""))) {
+					if(integerConverter_excel(patientFile,"MedicalRecord",excelRow,0).replaceAll("\\s+", "").equalsIgnoreCase(grid_ID(tableRow).getText().replaceAll("\\s+", ""))) {
 						grid_viewpatient(integerConverter_excel(patientFile,"MedicalRecord",excelRow, 0)).click();
 						wait_pageLoad_complate();
 						patientMedicalreport_ReadExcel(excelRow, lastCol);
@@ -629,7 +629,7 @@ public class ClinicAdmin_PatientPageUtils extends CustomDriver{
 					break TABLElOOP;
 					}		
 				else if(!(previousRow.contentEquals(currentRow)) && (nextRow.contentEquals(currentRow))) {
-					if(integerConverter_excel(patientFile,"MedicalRecord",excelRow,0).replaceAll("\\s+", "").equalsIgnoreCase(grid_appointmentID(tableRow).getText().replaceAll("\\s+", ""))) {
+					if(integerConverter_excel(patientFile,"MedicalRecord",excelRow,0).replaceAll("\\s+", "").equalsIgnoreCase(grid_ID(tableRow).getText().replaceAll("\\s+", ""))) {
 						grid_viewpatient(integerConverter_excel(patientFile,"MedicalRecord",excelRow, 0)).click();
 						patientMedicalreport_ReadExcel(excelRow, lastCol);
 						wait_pageLoad_complate();
@@ -656,7 +656,7 @@ public class ClinicAdmin_PatientPageUtils extends CustomDriver{
 				}
 			}
 		}
-	private void findAppointment_myTreatment(String appointmentID) {
+	public void findAppointment_myTreatment(String appointmentID) {
 		wait_pageLoad_complate();
 		whileLoop:
 		while(true) {
@@ -671,7 +671,7 @@ public class ClinicAdmin_PatientPageUtils extends CustomDriver{
 						wait_pageLoad_complate();
 						break whileLoop;		
 					}
-					else if(appointmentID.contentEquals(grid_appointmentID(tableRow).getText())) {
+					else if(appointmentID.contentEquals(grid_ID(tableRow).getText())) {
 						medicalTreatmentedit(appointmentID).click();
 						wait_pageLoad_complate();
 						break whileLoop;															 			 
@@ -760,6 +760,8 @@ public class ClinicAdmin_PatientPageUtils extends CustomDriver{
 					assertTrue(Arrays.asList(dosage[i].equalsIgnoreCase(myTreatmentPageUtils.prescriptionDetails_multiple(j,2).getText().replaceAll("//s+", ""))) != null);
 					assertTrue(Arrays.asList(frequency[i].equalsIgnoreCase(myTreatmentPageUtils.prescriptionDetails_multiple(j,3).getText().replaceAll("//s+", ""))) != null);
 					assertTrue(Arrays.asList(drug_days[i].equalsIgnoreCase(myTreatmentPageUtils.prescriptionDetails_multiple(j,4).getText().replaceAll("//s+", ""))) != null);
+					System.out.println(Arrays.asList(beforeOrafter[i]));
+					System.out.println(myTreatmentPageUtils.prescriptionDetails_multiple(j,5).getText().replaceAll("//s+", ""));
 					assertTrue(Arrays.asList(beforeOrafter[i].equalsIgnoreCase(myTreatmentPageUtils.prescriptionDetails_multiple(j,5).getText().replaceAll("//s+", ""))) != null);
 					break Loop2;
 				}
@@ -809,7 +811,7 @@ public class ClinicAdmin_PatientPageUtils extends CustomDriver{
 					break EXCELOOP;				
 				}
 				else if(!(previousRow.contentEquals(currentRow)) && (excelRow==lastRow)) {
-					if(integerConverter_excel(patientFile,"MedicalTreatments",excelRow,0).replaceAll("\\s+", "").equalsIgnoreCase(grid_appointmentID(tableRow).getText().replaceAll("\\s+", ""))) {
+					if(integerConverter_excel(patientFile,"MedicalTreatments",excelRow,0).replaceAll("\\s+", "").equalsIgnoreCase(grid_ID(tableRow).getText().replaceAll("\\s+", ""))) {
 						grid_viewpatient(integerConverter_excel(patientFile,"MedicalTreatments",excelRow, 0)).click();
 						Medicaltreatment_ReadExcel(excelRow, lastCol);
 						backTopatient_option().click();
@@ -823,7 +825,7 @@ public class ClinicAdmin_PatientPageUtils extends CustomDriver{
 					}
 				}
 				else if(!(previousRow.contentEquals(currentRow)) && !(nextRow.contentEquals(currentRow))) {
-					if(integerConverter_excel(patientFile,"MedicalTreatments",excelRow,0).replaceAll("\\s+", "").equalsIgnoreCase(grid_appointmentID(tableRow).getText().replaceAll("\\s+", ""))) {
+					if(integerConverter_excel(patientFile,"MedicalTreatments",excelRow,0).replaceAll("\\s+", "").equalsIgnoreCase(grid_ID(tableRow).getText().replaceAll("\\s+", ""))) {
 						grid_viewpatient(integerConverter_excel(patientFile,"MedicalTreatments",excelRow, 0)).click();
 						wait_pageLoad_complate();
 						Medicaltreatment_ReadExcel(excelRow, lastCol);
@@ -846,7 +848,7 @@ public class ClinicAdmin_PatientPageUtils extends CustomDriver{
 					break TABLElOOP;
 					}		
 				else if(!(previousRow.contentEquals(currentRow)) && (nextRow.contentEquals(currentRow))) {
-					if(integerConverter_excel(patientFile,"MedicalTreatments",excelRow,0).replaceAll("\\s+", "").equalsIgnoreCase(grid_appointmentID(tableRow).getText().replaceAll("\\s+", ""))) {
+					if(integerConverter_excel(patientFile,"MedicalTreatments",excelRow,0).replaceAll("\\s+", "").equalsIgnoreCase(grid_ID(tableRow).getText().replaceAll("\\s+", ""))) {
 						grid_viewpatient(integerConverter_excel(patientFile,"MedicalTreatments",excelRow, 0)).click();
 						Medicaltreatment_ReadExcel(excelRow, lastCol);
 						wait_pageLoad_complate();

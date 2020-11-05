@@ -492,9 +492,9 @@ public class Patient_BookAppointmentPageUtils extends CustomDriver {
 		CurrentTime_newTimeformat = extraTime.format(formatTime);
 		
 		String[] current_date_split = date.split("/"); 	
-		current_date=Integer.valueOf(current_date_split[0].replaceAll(" ", ""));
-		current_month = Integer.valueOf(current_date_split[1].replaceAll(" ", ""));
-		current_year = Integer.valueOf(current_date_split[2].replaceAll(" ", ""));
+		current_date=Integer.valueOf(current_date_split[0].replaceAll("//s+", ""));
+		current_month = Integer.valueOf(current_date_split[1].replaceAll("//s+", ""));
+		current_year = Integer.valueOf(current_date_split[2].replaceAll("//s+", ""));
 	}
 	
 	public void compare_date() {
