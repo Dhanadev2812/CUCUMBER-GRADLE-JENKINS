@@ -38,8 +38,21 @@ Feature: Feature to validate and create new doctor
    @verifyDoctordetails
    Scenario: Verify doctor details
    When get the doctor details from "src\test\resources\ClinicAdmin_TestData\Watts Health Center\Doctor-details.xlsx"
-   #Then Verify doctor details on list page
+   Then Verify doctor details on list page
    #Then Verify the appointment details on doctor module
    #Then Verify doctor personal details on view profile
    #Then Verify medical report details on doctor module
-   Then Verify my treatment details on doctor module
+   #Then Verify my treatment details on doctor module
+   
+   @Updatefees-valid
+   Scenario: Update doctor fee details
+   When get the doctor details from "src\test\resources\ClinicAdmin_TestData\Watts Health Center\Doctor-details.xlsx"
+   When Update the doctor fee details
+   Then Check the success message for fee update process
+   Then Validate the updated details on payment edit screen
+   
+   @UpdateFee-invalid
+   Scenario: update invalid doctor fee details
+   When get the doctor details from "src\test\resources\ClinicAdmin_TestData\Watts Health Center\Doctor-details.xlsx"
+   When Update the payment details with invalid inputs
+   

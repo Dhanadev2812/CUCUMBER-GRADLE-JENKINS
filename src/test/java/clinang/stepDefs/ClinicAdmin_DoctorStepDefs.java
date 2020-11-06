@@ -136,4 +136,21 @@ public class ClinicAdmin_DoctorStepDefs {
 	public void verify_myTreatment_doctorModule() throws IOException, ParseException, InterruptedException {
 		C_Admin_doctorPageUtils.validate_Medicaltreatment();
 	}
+	@When("^Update the doctor fee details$")
+	public void update_doctorFee() throws IOException {
+		C_Admin_doctorPageUtils.doctor_editPayment_valid();
+	}
+	@Then("^Check the success message for fee update process$")
+	public void check_successMessage_editFee() {
+		assertTrue(C_Admin_doctorPageUtils.alertBox().getText().replaceAll("\\s+", "").contentEquals(("Consultation fee updated successfully.").replaceAll("\\s+", "")));
+		C_Admin_doctorPageUtils.close_alertBox();
+	}
+	@Then("^Validate the updated details on payment edit screen$")
+	public void validate_updatedDetails_editPayment() throws IOException {
+		C_Admin_doctorPageUtils.validate_doctorFees_editPayment();
+	}
+	@When("^Update the payment details with invalid inputs$")
+	public void update_payment_invalid() {
+		
+	}
 }

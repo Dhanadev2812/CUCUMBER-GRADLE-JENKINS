@@ -289,6 +289,5 @@ public class CustomDriver extends WebDriverImplemented {
 		DataFormatter formatter = new DataFormatter();
 		String result = formatter.formatCellValue(ID);
 		return result;
-	}	
-	
+	}		
 }

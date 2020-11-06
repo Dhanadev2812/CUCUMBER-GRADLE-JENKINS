@@ -42,4 +42,14 @@ public class ClinicAdmin_DoctorLocator {
 	public By medicalReport_Norecord = By.xpath("//div[@class='norecord']");
 	public By closeMedicalreport =By.xpath("//span[@class='mdi mdi-close']");
 	public By closeMedicaltreatment = By.xpath("//span[@class='mdi mdi-close']");
+	public By edit_doemsticConsultingFee = By.xpath("//input[@formcontrolname='domesticfees']");
+	public By edit_overseasConsultingFee = By.xpath("//input[@formcontrolname='overseasfees']");
+	public By edit_domesticFollowupFee =By.xpath("//input[@formcontrolname='domesticfollowfees']");
+	public By edit_overseasFollowupFee =By.xpath("//input[@formcontrolname='overseasfollowfees']");
+	public By close_doctorFeeupdate = By.xpath("//span[@class='mdi mdi-close']");
+	public By submit_doctorFeeupdate = By.xpath("//span[(normalize-space(text())='Submit')]/ancestor::button");
+	public By alert_edit_domesticConsultingfee = By.xpath("//form/div[1]/mat-form-field//child::mat-error");
+	public By alert_edit_overseasConsultingfee = By.xpath("//form/div[2]/mat-form-field//child::mat-error");
+	
+	
 }

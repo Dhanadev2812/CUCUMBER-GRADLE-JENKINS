@@ -740,7 +740,7 @@ public class ClinicAdmin_PatientPageUtils extends CustomDriver{
 			 }  			 
 		}
 	}
-	public void validate_and_download_Prescription(String[] drugName,String[] dosage,String[] frequency,String[] drug_days,String[] brforeOrfter) {
+	public void validate_and_download_Prescription(String[] drugName,String[] dosage,String[] frequency,String[] drug_days,String[] beforeOrafter) {
 		wait_pageLoad_complate();
 		int fileCount = drugName.length;
 		System.out.println("Validate and Downloading prescription");
@@ -760,8 +760,6 @@ public class ClinicAdmin_PatientPageUtils extends CustomDriver{
 					assertTrue(Arrays.asList(dosage[i].equalsIgnoreCase(myTreatmentPageUtils.prescriptionDetails_multiple(j,2).getText().replaceAll("//s+", ""))) != null);
 					assertTrue(Arrays.asList(frequency[i].equalsIgnoreCase(myTreatmentPageUtils.prescriptionDetails_multiple(j,3).getText().replaceAll("//s+", ""))) != null);
 					assertTrue(Arrays.asList(drug_days[i].equalsIgnoreCase(myTreatmentPageUtils.prescriptionDetails_multiple(j,4).getText().replaceAll("//s+", ""))) != null);
-					System.out.println(Arrays.asList(beforeOrafter[i]));
-					System.out.println(myTreatmentPageUtils.prescriptionDetails_multiple(j,5).getText().replaceAll("//s+", ""));
 					assertTrue(Arrays.asList(beforeOrafter[i].equalsIgnoreCase(myTreatmentPageUtils.prescriptionDetails_multiple(j,5).getText().replaceAll("//s+", ""))) != null);
 					break Loop2;
 				}

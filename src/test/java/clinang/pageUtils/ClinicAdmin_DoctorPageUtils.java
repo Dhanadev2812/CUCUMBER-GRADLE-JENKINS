@@ -35,6 +35,7 @@ public class ClinicAdmin_DoctorPageUtils extends CustomDriver {
 	private String[] frequency;
 	private String[] drug_days;
 	private String[] beforeOrafter;
+	private String[] existingDoctorfee;
 	
 	private WebElement doctorModule() {
 		return findElement(C_Admin_doctorLocator.doctorModule);
@@ -162,6 +163,9 @@ public class ClinicAdmin_DoctorPageUtils extends CustomDriver {
 	private WebElement grid_viewdoctor(String doctorID) {
 		return findElement(By.xpath("//td[(normalize-space(text())='"+doctorID+"')]//following-sibling::td[contains(@role,'gridcell')]//*[@matTooltip='View']"));
 	}
+	private WebElement grid_editPayment(String doctorID) {
+		return findElement(By.xpath("//td[(normalize-space(text())='"+doctorID+"')]//following-sibling::td[contains(@role,'gridcell')]//*[@matTooltip='Edit Payment']"));
+	}
 	private WebElement wait_viewProfiletable() {
 		return fluentWait(C_Admin_doctorLocator.viewProfile_table);
 	}
@@ -182,6 +186,24 @@ public class ClinicAdmin_DoctorPageUtils extends CustomDriver {
 	}
 	private WebElement close_medicalReport() {
 		return findElement(C_Admin_doctorLocator.closeMedicalreport);
+	}
+	private WebElement edit_domesticConsultingFee() {
+		return findElement(C_Admin_doctorLocator.edit_doemsticConsultingFee);
+	}
+	private WebElement edit_overseasConsultingFee() {
+		return findElement(C_Admin_doctorLocator.edit_overseasConsultingFee);
+	}
+	private WebElement edit_domesticFollowupFee() {
+		return findElement(C_Admin_doctorLocator.edit_domesticFollowupFee);
+	}
+	private WebElement edit_overseasFollowupFee() {
+		return findElement(C_Admin_doctorLocator.edit_overseasFollowupFee);
+	}
+	private WebElement close_doctorFeeupdate() {
+		return findElement(C_Admin_doctorLocator.close_doctorFeeupdate);
+	}
+	private WebElement submit_doctorFeeupdate() {
+		return findElement(C_Admin_doctorLocator.submit_doctorFeeupdate);
 	}
 	public void getLatestdoctorID() {
 		doctorWithoutprofile_tab().click();
@@ -224,7 +246,7 @@ public class ClinicAdmin_DoctorPageUtils extends CustomDriver {
 	}
 	public void validate_doctor_details_listPage() throws IOException  {
 		int lastRow =rowSize(doctorFile,"Doctordetails");
-		
+		System.out.println(lastRow);
 		if(wait_doctorTable().isDisplayed()==true) {
 			wait_pageLoad_complate();
 			WebElement TargetRows = findElement(C_Admin_doctorLocator.targetRow);
@@ -251,7 +273,7 @@ public class ClinicAdmin_DoctorPageUtils extends CustomDriver {
 						break TABLElOOP;
 					}
 					else if((paginationNext().isEnabled()==false)&&(tableRow==TotalRowsList.size()-1)){
-						System.out.println("Appoointment ID not found");
+						System.out.println("Doctor ID not found");
 						assert false;
 						break EXCELLOOP;
 					}
@@ -471,7 +493,7 @@ public class ClinicAdmin_DoctorPageUtils extends CustomDriver {
 						break TABLElOOP;
 					}
 					else if((paginationNext().isEnabled()==false)&&(tableRow==TotalRowsList.size()-1)){
-						System.out.println("Appoointment ID not found");
+						System.out.println("Doctor ID not found");
 						assert false;
 						break EXCELLOOP;
 					}
@@ -651,7 +673,6 @@ public class ClinicAdmin_DoctorPageUtils extends CustomDriver {
 				  break;
 			  case 11:
 				  beforeOrafter = (integerConverter_excel(doctorFile,"MedicalTreatments",excelRow, excelCol)).replaceAll("\\s+", "").split("/");  
-				  System.out.println(Arrays.asList(beforeOrafter));
 				  C_Admin_patientPageUtils.validate_and_download_Prescription(drugName,dosage,frequency,drug_days,beforeOrafter);
 				  break;
 			 }  			 
@@ -749,4 +770,177 @@ public class ClinicAdmin_DoctorPageUtils extends CustomDriver {
 				}
 			}
 		}
+	public void doctor_editPayment_valid() throws IOException {
+		int lastRow =rowSize(doctorFile,"Doctordetails");
+		int lastCol = columnSize(doctorFile, "Doctordetails");
+		
+		if(wait_doctorTable().isDisplayed()==true) {
+			wait_pageLoad_complate();
+			WebElement TargetRows = findElement(C_Admin_doctorLocator.targetRow);
+			List<WebElement>TotalRowsList = TargetRows.findElements(By.tagName("tr"));			 	
+			int excelRow=1;
+			
+			EXCELLOOP:
+			while(excelRow<=lastRow) {	
+				TABLElOOP:
+				for(int tableRow=1;tableRow<=TotalRowsList.size()-1;tableRow++) {
+					wait_pageLoad_complate();
+					if(integerConverter_excel(doctorFile,"Doctordetails",excelRow,0).replaceAll("\\s+", "").equalsIgnoreCase(grid_ID(tableRow).getText().replaceAll("\\s+", ""))) {
+						grid_editPayment(integerConverter_excel(doctorFile,"Doctordetails",excelRow, 0)).click();
+						wait_pageLoad_complate();
+						for(int excelCol = 5; excelCol<=lastCol;excelCol++) {
+							int excelColcount = excelCol;
+							switch(excelColcount) {
+								case 5:
+									edit_domesticConsultingFee().sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
+									edit_domesticConsultingFee().sendKeys(integerConverter_excel(doctorFile,"Doctordetails",excelRow, 5));
+									
+									break;
+								case 6:
+									edit_overseasConsultingFee().sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
+									edit_overseasConsultingFee().sendKeys(integerConverter_excel(doctorFile,"Doctordetails",excelRow, 6));
+									break;
+								case 7:
+									edit_domesticFollowupFee().sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
+									edit_domesticFollowupFee().sendKeys(integerConverter_excel(doctorFile,"Doctordetails",excelRow, 7));
+									break;
+								case 8:
+									edit_overseasFollowupFee().sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
+									edit_overseasFollowupFee().sendKeys(integerConverter_excel(doctorFile,"Doctordetails",excelRow, 8));
+									break;
+							}	
+						}
+						submit_doctorFeeupdate().click();
+						close_alertBox();
+						wait_pageLoad_complate();
+						excelRow++;
+						break TABLElOOP;
+					}
+					else if((paginationNext().isEnabled()==false)&&(tableRow==TotalRowsList.size()-1)){
+						System.out.println("Doctor ID not found");
+						assert false;
+						break EXCELLOOP;
+					}
+					if((paginationNext().isEnabled()==true)&&(tableRow==TotalRowsList.size()-1)) {
+						paginationNext().click();
+						int currentExcelrow = excelRow;
+						excelRow = currentExcelrow;
+					}
+				}
+			}
+		}	
+	}
+	public void validate_doctorFees_editPayment() throws IOException {
+		int lastRow =rowSize(doctorFile,"Doctordetails");
+		int lastCol = columnSize(doctorFile, "Doctordetails");
+		
+		if(wait_doctorTable().isDisplayed()==true) {
+			wait_pageLoad_complate();
+			WebElement TargetRows = findElement(C_Admin_doctorLocator.targetRow);
+			List<WebElement>TotalRowsList = TargetRows.findElements(By.tagName("tr"));			 	
+			int excelRow=1;
+			
+			EXCELLOOP:
+			while(excelRow<=lastRow) {	
+				TABLElOOP:
+				for(int tableRow=1;tableRow<=TotalRowsList.size()-1;tableRow++) {
+					wait_pageLoad_complate();
+					if(integerConverter_excel(doctorFile,"Doctordetails",excelRow,0).replaceAll("\\s+", "").equalsIgnoreCase(grid_ID(tableRow).getText().replaceAll("\\s+", ""))) {
+						grid_editPayment(integerConverter_excel(doctorFile,"Doctordetails",excelRow, 0)).click();
+						wait_pageLoad_complate();
+						for(int excelCol = 5; excelCol<=lastCol;excelCol++) {
+							int excelColcount = excelCol;
+							switch(excelColcount) {
+								case 5:
+									assertTrue(edit_domesticConsultingFee().getAttribute("value").replaceAll("\\s+", "").contentEquals((integerConverter_excel(doctorFile,"Doctordetails",excelRow, 5).replaceAll("\\s+", ""))));
+									break;
+								case 6:
+									assertTrue(edit_overseasConsultingFee().getAttribute("value").replaceAll("\\s+", "").contentEquals((integerConverter_excel(doctorFile,"Doctordetails",excelRow, 6).replaceAll("\\s+", ""))));
+									break;
+								case 7:
+									assertTrue(edit_domesticFollowupFee().getAttribute("value").replaceAll("\\s+", "").contentEquals((integerConverter_excel(doctorFile,"Doctordetails",excelRow, 7).replaceAll("\\s+", ""))));
+									break;
+								case 8:
+									assertTrue(edit_overseasFollowupFee().getAttribute("value").replaceAll("\\s+", "").contentEquals((integerConverter_excel(doctorFile,"Doctordetails",excelRow, 8).replaceAll("\\s+", ""))));
+									break;
+							}	
+						}
+						close_doctorFeeupdate().click();
+						wait_pageLoad_complate();
+						excelRow++;
+						break TABLElOOP;
+					}
+					else if((paginationNext().isEnabled()==false)&&(tableRow==TotalRowsList.size()-1)){
+						System.out.println("Doctor ID not found");
+						assert false;
+						break EXCELLOOP;
+					}
+					if((paginationNext().isEnabled()==true)&&(tableRow==TotalRowsList.size()-1)) {
+						paginationNext().click();
+						int currentExcelrow = excelRow;
+						excelRow = currentExcelrow;
+					}
+				}
+			}
+		}		
+	}
+	public void doctor_editPayment_invalid() throws IOException {
+		int lastRow =rowSize(doctorFile,"Doctordetails");
+		int lastCol = columnSize(doctorFile, "Doctordetails");
+		
+		if(wait_doctorTable().isDisplayed()==true) {
+			wait_pageLoad_complate();
+			WebElement TargetRows = findElement(C_Admin_doctorLocator.targetRow);
+			List<WebElement>TotalRowsList = TargetRows.findElements(By.tagName("tr"));			 	
+			int excelRow=1;
+			
+			EXCELLOOP:
+			while(excelRow<=lastRow) {	
+				TABLElOOP:
+				for(int tableRow=1;tableRow<=TotalRowsList.size()-1;tableRow++) {
+					wait_pageLoad_complate();
+					if(integerConverter_excel(doctorFile,"Doctordetails",excelRow,0).replaceAll("\\s+", "").equalsIgnoreCase(grid_ID(tableRow).getText().replaceAll("\\s+", ""))) {
+						grid_editPayment(integerConverter_excel(doctorFile,"Doctordetails",excelRow, 0)).click();
+						wait_pageLoad_complate();
+						for(int excelCol = 5; excelCol<=lastCol;excelCol++) {
+							int excelColcount = excelCol;
+							switch(excelColcount) {
+								case 5:
+									edit_domesticConsultingFee().sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
+									edit_domesticConsultingFee().sendKeys(integerConverter_excel(doctorFile,"Doctordetails",excelRow, 5));
+									break;
+								case 6:
+									edit_overseasConsultingFee().sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
+									edit_overseasConsultingFee().sendKeys(integerConverter_excel(doctorFile,"Doctordetails",excelRow, 6));
+									break;
+								case 7:
+									edit_domesticFollowupFee().sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
+									edit_domesticFollowupFee().sendKeys(integerConverter_excel(doctorFile,"Doctordetails",excelRow, 7));
+									break;
+								case 8:
+									edit_overseasFollowupFee().sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
+									edit_overseasFollowupFee().sendKeys(integerConverter_excel(doctorFile,"Doctordetails",excelRow, 8));
+									break;
+							}	
+						}
+						submit_doctorFeeupdate().click();
+						close_alertBox();
+						wait_pageLoad_complate();
+						excelRow++;
+						break TABLElOOP;
+					}
+					else if((paginationNext().isEnabled()==false)&&(tableRow==TotalRowsList.size()-1)){
+						System.out.println("Doctor ID not found");
+						assert false;
+						break EXCELLOOP;
+					}
+					if((paginationNext().isEnabled()==true)&&(tableRow==TotalRowsList.size()-1)) {
+						paginationNext().click();
+						int currentExcelrow = excelRow;
+						excelRow = currentExcelrow;
+					}
+				}
+			}
+		}	
+	}
 }
