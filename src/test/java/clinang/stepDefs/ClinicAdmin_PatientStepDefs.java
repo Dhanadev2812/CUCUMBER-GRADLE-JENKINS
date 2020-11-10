@@ -5,7 +5,10 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.Arrays;
 
+import clinang.pageUtils.ClinicAdmin_DashboardPageUtils;
+import clinang.pageUtils.ClinicAdmin_LoginPageUtils;
 import clinang.pageUtils.ClinicAdmin_PatientPageUtils;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
@@ -14,6 +17,7 @@ import io.cucumber.java.en.When;
 
 public class ClinicAdmin_PatientStepDefs {
 	ClinicAdmin_PatientPageUtils C_Admin_patientpageUtils = new ClinicAdmin_PatientPageUtils();
+	ClinicAdmin_DashboardPageUtils C_Admin_DashboardPageUtils = new ClinicAdmin_DashboardPageUtils();
 	
 	@And("^Click on patient module$")
 	public void moveTo_patientModule() {
@@ -78,24 +82,50 @@ public class ClinicAdmin_PatientStepDefs {
 	}
 	@Then("^Verify patient personal details$")
 	public void validate_patient_personalDetails() throws IOException {
+		C_Admin_patientpageUtils.verify_tableIsempty();
 		C_Admin_patientpageUtils.validate_patient_personalDetails();
 	}
 	@Then("^Verify medical history details$")
 	public void verify_medicalHistory_details() throws IOException  {
+		C_Admin_patientpageUtils.verify_tableIsempty();
 		C_Admin_patientpageUtils.validateMedicalhistory();
 	}
-	
 	@Then("^Verify the appointment details on patient module$")
 	public void verify_appointment_patientModule() throws IOException, ParseException, InterruptedException {
+		C_Admin_patientpageUtils.verify_tableIsempty();
 		C_Admin_patientpageUtils.validate_appointmentDetails();
 	}
 	@Then("^Verify the medical report details$")
 	public void verify_medicalReport_details() throws IOException, ParseException, InterruptedException {
+		C_Admin_patientpageUtils.verify_tableIsempty();
 		C_Admin_patientpageUtils.validate_medicalReport();
 	}
 	@Then("^Verify the medical treatment details$")
 	public void verify_medicalTreatment_details() throws IOException, ParseException, InterruptedException {
+		C_Admin_patientpageUtils.verify_tableIsempty();
 		C_Admin_patientpageUtils.validate_Medicaltreatment();
 	}
+	@Then("^Check the total patient count with dashboard$")
+	public void Check_patientCount_dashboard() throws InterruptedException {
+		if(C_Admin_patientpageUtils.patient_tbody().getText().isEmpty()==true) {
+			System.out.println("No record found");
+			String[] patientCount =new String[] {"0"};
+			C_Admin_DashboardPageUtils.dashboardModule().click();
+			C_Admin_DashboardPageUtils.wait_dashboard_calender();
+			C_Admin_patientpageUtils.wait_pageLoad_complate();
+			C_Admin_DashboardPageUtils.get_dashboardCount();
+			assertTrue(Arrays.asList(C_Admin_DashboardPageUtils.dashboard_counts[1]).equals(Arrays.asList(patientCount[0])));
+		}
+		else {
+			C_Admin_patientpageUtils.wait_pageLoad_complate();
+			C_Admin_patientpageUtils.wait_patientTable();
+			C_Admin_patientpageUtils.get_totalPatientcount();
+			C_Admin_DashboardPageUtils.dashboardModule().click();
+			C_Admin_DashboardPageUtils.wait_dashboard_calender();
+			C_Admin_patientpageUtils.wait_pageLoad_complate();
+			C_Admin_DashboardPageUtils.get_dashboardCount();
+			assertTrue(Arrays.asList(C_Admin_DashboardPageUtils.dashboard_counts[1]).equals(Arrays.asList(C_Admin_patientpageUtils.patient_totalCount)));
+			}
+		}
 	
 }

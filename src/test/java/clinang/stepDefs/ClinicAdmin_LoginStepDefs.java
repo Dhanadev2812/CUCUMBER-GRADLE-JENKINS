@@ -34,7 +34,7 @@ public class ClinicAdmin_LoginStepDefs {
 	}
 	
 	@Then("^Check i am logged in as a clinic admin$")
-	public void check_loggedIn_clinicAdmin() {
+	public void check_loggedIn_clinicAdmin() throws InterruptedException {
 		clinicAdmin_login.wait_pageLoad_complate();
 		ClinicAdmin_dashboard.wait_dashboard_calender();
 		assertTrue(clinicAdmin_login.get_currenturl().equals(vars.getEnvironmentUrl()+"portal/admin-dashboard"));

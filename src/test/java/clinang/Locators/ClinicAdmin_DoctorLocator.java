@@ -50,6 +50,9 @@ public class ClinicAdmin_DoctorLocator {
 	public By submit_doctorFeeupdate = By.xpath("//span[(normalize-space(text())='Submit')]/ancestor::button");
 	public By alert_edit_domesticConsultingfee = By.xpath("//form/div[1]/mat-form-field//child::mat-error");
 	public By alert_edit_overseasConsultingfee = By.xpath("//form/div[2]/mat-form-field//child::mat-error");
+	public By alert_edit_domesticFollowupfee = By.xpath("//form/div[3]/mat-form-field//child::mat-error");
+	public By alert_edit_overseasFollowupfee = By.xpath("//form/div[4]/mat-form-field//child::mat-error");
+
 	
 	
 }

@@ -1,11 +1,11 @@
-$(document).ready(function() {var formatter = new CucumberHTML.DOMFormatter($('.cucumber-report'));formatter.uri("file:src/test/resources/clinang_Feature_Patient/ClinicAdmin_Doctor.feature");
+$(document).ready(function() {var formatter = new CucumberHTML.DOMFormatter($('.cucumber-report'));formatter.uri("file:src/test/resources/clinang_Feature_Patient/ClinicAdmin_Appointment.feature");
 formatter.feature({
-  "name": "Feature to validate and create new doctor",
+  "name": "Feature to validate appointment details on appointment module",
   "description": "",
   "keyword": "Feature",
   "tags": [
     {
-      "name": "@Clinic_doctor"
+      "name": "@Clinic_appointment"
     }
   ]
 });
@@ -72,64 +72,54 @@ formatter.result({
   "status": "passed"
 });
 formatter.step({
-  "name": "Go to doctor module",
+  "name": "Click on appointment module",
   "keyword": "And "
 });
 formatter.match({
-  "location": "clinang.stepDefs.ClinicAdmin_DoctorStepDefs.goTo_doctor_module()"
+  "location": "clinang.stepDefs.ClinicAdmin_AppointmentStepDefs.click_appointmentModule()"
 });
 formatter.result({
   "status": "passed"
 });
 formatter.scenario({
-  "name": "Add fee details",
+  "name": "Validate appointment details",
   "description": "",
   "keyword": "Scenario",
   "tags": [
     {
-      "name": "@Clinic_doctor"
+      "name": "@Clinic_appointment"
     },
     {
-      "name": "@Addfees"
+      "name": "@validateAppointment"
     }
   ]
 });
 formatter.step({
-  "name": "get the doctor details from \"src\\test\\resources\\ClinicAdmin_TestData\\Watts Health Center\\Doctor-details.xlsx\"",
+  "name": "Get the details from \"src\\test\\resources\\ClinicAdmin_TestData\\Watts Health Center\\Patient-details.xlsx\"",
   "keyword": "When "
 });
 formatter.match({
-  "location": "clinang.stepDefs.ClinicAdmin_DoctorStepDefs.get_doctor_details(java.lang.String)"
+  "location": "clinang.stepDefs.ClinicAdmin_AppointmentStepDefs.get_appointment_details(java.lang.String)"
 });
 formatter.result({
   "status": "passed"
 });
 formatter.step({
-  "name": "Update the doctor fee details",
-  "keyword": "When "
-});
-formatter.match({
-  "location": "clinang.stepDefs.ClinicAdmin_DoctorStepDefs.update_doctorFee()"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "Check the success message for fee update process",
+  "name": "Validate the appointment details",
   "keyword": "Then "
 });
 formatter.match({
-  "location": "clinang.stepDefs.ClinicAdmin_DoctorStepDefs.check_successMessage_editFee()"
+  "location": "clinang.stepDefs.ClinicAdmin_AppointmentStepDefs.validate_appointmentDetails()"
 });
 formatter.result({
   "status": "passed"
 });
 formatter.step({
-  "name": "Validate the updated details on payment edit screen",
+  "name": "Check the total appointment count with dashboard",
   "keyword": "Then "
 });
 formatter.match({
-  "location": "clinang.stepDefs.ClinicAdmin_DoctorStepDefs.validate_updatedDetails_editPayment()"
+  "location": "clinang.stepDefs.ClinicAdmin_AppointmentStepDefs.check_total_appointment_count()"
 });
 formatter.result({
   "status": "passed"

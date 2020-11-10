@@ -33,7 +33,9 @@ public class Patient_AppointmentPageUtils extends CustomDriver{
 	public void Click_appointmentModule() {
 		appointmentModule().click();
 	}
-	
+	public WebElement appointment_tbody() {
+		return findElement(appointmentLocators.appointment_tbody);
+	}
 	private WebElement appointmentList_today() {
 		return findElement(appointmentLocators.appointmentList_today);
 	}

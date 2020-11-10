@@ -15,6 +15,7 @@ Feature: Feature to validate appointment details on appointment module
     Scenario: Validate appointment details
     When Get the details from "src\test\resources\ClinicAdmin_TestData\Watts Health Center\Patient-details.xlsx"
     Then Validate the appointment details
+    Then Check the total appointment count with dashboard
     
     @validatemedicalreport
     Scenario: Validate and download medical report details

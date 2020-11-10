@@ -41,4 +41,5 @@ public class Patient_AppointmentLocators{
 	public By bookFollowup_fee = By.xpath("//mat-dialog-content[@class='mat-dialog-content']//child::tbody/tr[1]/td");
 	public By bookFollowup_comment =By.xpath("//mat-dialog-content[@class='mat-dialog-content']//child::tbody/tr[2]/td");
 	public By accept_bookFollowup = By.xpath("//mat-dialog-content[@class='mat-dialog-content']//child::button/span[(normalize-space(text())='Book Follow Up')]");
+	public By appointment_tbody = By.xpath("//table[@class='mat-table']//child::tbody");
 }

@@ -5,8 +5,8 @@ Feature: Feature to validate patient details and check the functionaity
     Given I open the app
     And Move to admin login page
     When Enter clinic admin credentials
-      | UserName              | Password    |
-      | watts@clinicadmin.com | Password12# |
+      | UserName       | Password    |
+      | zara@admin.com | Password12# |
     And Click on Login button
     Then Check i am logged in as a clinic admin
     And Click on patient module
@@ -15,8 +15,8 @@ Feature: Feature to validate patient details and check the functionaity
   Scenario: Create new patients
     And Click on create patient button
     When Enter the new patient details
-      | firstName | lastName | email                | password    |
-      | Kiran     | Rao      | kiran.rt@patient.com | Password12# |
+      | firstName | lastName | email                 | password    |
+      | Kiran     | Rao      | kiran.rt7@patient.com | Password12# |
     Then Check the register button is in enable state
     And Click on register option
     Then Check the validation message for new patient creation
@@ -36,12 +36,13 @@ Feature: Feature to validate patient details and check the functionaity
       |         1 |        1 | kiran | Password |
     Then Check the register button is in disable state
     Then Check the validation message for invalid patient details
-    
-    @Patientdetails
-    Scenario: Verify patient details
+
+  @Patientdetails
+  Scenario: Verify patient details
     When get the patient details from "src\test\resources\ClinicAdmin_TestData\Watts Health Center\Patient-details.xlsx"
-    Then Verify patient personal details
-    Then Verify medical history details
-    Then Verify the appointment details on patient module
-    Then Verify the medical report details
-		Then Verify the medical treatment details
+    #Then Verify patient personal details
+    #Then Verify medical history details
+    #Then Verify the appointment details on patient module
+    #Then Verify the medical report details
+    #Then Verify the medical treatment details
+    Then Check the total patient count with dashboard

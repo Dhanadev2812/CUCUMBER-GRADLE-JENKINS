@@ -31,6 +31,7 @@ public class ClinicAdmin_PatientPageUtils extends CustomDriver{
 	private String[] frequency;
 	private String[] drug_days;
 	private String[] beforeOrafter;
+	public String patient_totalCount;
 	
 	public void wait_pageLoad_complate() {
 		 Loader(C_Admin_PatientLocators.pageLoader);
@@ -40,6 +41,9 @@ public class ClinicAdmin_PatientPageUtils extends CustomDriver{
 	}
 	public void click_patientModule() {
 		patientModule().click();
+	}
+	public WebElement patient_tbody() {
+		return findElement(C_Admin_PatientLocators.patientTbody);
 	}
 	private WebElement createPatient() {
 		return findElement(C_Admin_PatientLocators.create);
@@ -95,7 +99,7 @@ public class ClinicAdmin_PatientPageUtils extends CustomDriver{
 	private WebElement grid_patient_personalDetails_single(int col) {
 		return findElement(By.xpath("//table/tbody/tr/td["+col+"]"));
 	}
-	private WebElement wait_patientTable() {
+	public WebElement wait_patientTable() {
 		return waitForElementPresent(C_Admin_PatientLocators.patientTable);
 	}
 	private WebElement grid_ID(int i) {
@@ -143,7 +147,13 @@ public class ClinicAdmin_PatientPageUtils extends CustomDriver{
 	private WebElement close_medicalTreatment() {
 		return findElement(C_Admin_PatientLocators.closeMedicaltreatment);
 	}
-	
+	private WebElement totalPatientcount() {
+		return findElement(C_Admin_PatientLocators.totalPatientcount);
+	}
+	public void get_totalPatientcount() {
+		String[] countList = totalPatientcount().getText().split("of");
+		this.patient_totalCount = countList[1].replaceAll("\\s+", "");
+	}
 	public String passPatientdetails(DataTable inputs)   {
 		List<Map<String, String>> clinicPatient_input = inputs.asMaps(String.class, String.class);
 		  for (Map<String, String> data : clinicPatient_input) {
@@ -873,5 +883,9 @@ public class ClinicAdmin_PatientPageUtils extends CustomDriver{
 				}
 			}
 		}
+	public void verify_tableIsempty()  {
+		assertTrue(patient_tbody().getText().isEmpty()==false);
+		System.out.println("Patient table is not empty");
+	}
 	}
 

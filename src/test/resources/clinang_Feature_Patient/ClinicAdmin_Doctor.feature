@@ -16,7 +16,7 @@ Feature: Feature to validate and create new doctor
     And Click on create doctor
     When Enter doctor details
       | FirstName | LastName | EmailID             | Speciality   | DomesticConsultingFee | OverseasConsultingFee | DomesticFollowupFee | OverseasFollowupFee | Password    |
-      | Sara      | Sri      | sarasri3@doctor.com | Cardiologist |                  1000 |                  2000 |                 500 |                1000 | Password12# |
+      | Sara      | Sri      | sarasri6@doctor.com | Cardiologist |                  1000 |                  2000 |                 500 |                1000 | Password12# |
     And Submit the form
     Then Verify the success message for doctor registration
     Then Validate the new doctor details on doctor without profile screen
@@ -37,22 +37,24 @@ Feature: Feature to validate and create new doctor
    
    @verifyDoctordetails
    Scenario: Verify doctor details
-   When get the doctor details from "src\test\resources\ClinicAdmin_TestData\Watts Health Center\Doctor-details.xlsx"
+   When Get the doctor details from "src\test\resources\ClinicAdmin_TestData\Watts Health Center\Doctor-details.xlsx"
    Then Verify doctor details on list page
-   #Then Verify the appointment details on doctor module
-   #Then Verify doctor personal details on view profile
-   #Then Verify medical report details on doctor module
-   #Then Verify my treatment details on doctor module
+   Then Verify the appointment details on doctor module
+   Then Verify doctor personal details on view profile
+   Then Verify medical report details on doctor module
+   Then Verify my treatment details on doctor module
    
    @Updatefees-valid
    Scenario: Update doctor fee details
-   When get the doctor details from "src\test\resources\ClinicAdmin_TestData\Watts Health Center\Doctor-details.xlsx"
+   When Get the doctor details from "src\test\resources\ClinicAdmin_TestData\Watts Health Center\Doctor-details.xlsx"
    When Update the doctor fee details
    Then Check the success message for fee update process
    Then Validate the updated details on payment edit screen
    
    @UpdateFee-invalid
-   Scenario: update invalid doctor fee details
-   When get the doctor details from "src\test\resources\ClinicAdmin_TestData\Watts Health Center\Doctor-details.xlsx"
+   Scenario: Update invalid doctor fee details
+   When Get the doctor details from "src\test\resources\ClinicAdmin_TestData\Watts Health Center\Doctor-details.xlsx"
    When Update the payment details with invalid inputs
+   Then Validate the validation message for invalid inputs
+   
    

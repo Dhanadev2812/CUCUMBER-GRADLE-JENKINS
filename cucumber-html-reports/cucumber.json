@@ -11,7 +11,7 @@
         "steps": [
           {
             "result": {
-              "duration": 19868000000,
+              "duration": 15566000000,
               "status": "passed"
             },
             "line": 5,
@@ -23,7 +23,7 @@
           },
           {
             "result": {
-              "duration": 5775000000,
+              "duration": 5351000000,
               "status": "passed"
             },
             "line": 6,
@@ -35,7 +35,7 @@
           },
           {
             "result": {
-              "duration": 6824000000,
+              "duration": 5745000000,
               "status": "passed"
             },
             "line": 7,
@@ -61,7 +61,7 @@
           },
           {
             "result": {
-              "duration": 11190000000,
+              "duration": 10580000000,
               "status": "passed"
             },
             "line": 10,
@@ -73,7 +73,7 @@
           },
           {
             "result": {
-              "duration": 5468000000,
+              "duration": 5272000000,
               "status": "passed"
             },
             "line": 11,
@@ -85,24 +85,24 @@
           },
           {
             "result": {
-              "duration": 409000000,
+              "duration": 456000000,
               "status": "passed"
             },
             "line": 12,
-            "name": "Go to doctor module",
+            "name": "Click on appointment module",
             "match": {
-              "location": "clinang.stepDefs.ClinicAdmin_DoctorStepDefs.goTo_doctor_module()"
+              "location": "clinang.stepDefs.ClinicAdmin_AppointmentStepDefs.click_appointmentModule()"
             },
             "keyword": "And "
           }
         ]
       },
       {
-        "start_timestamp": "2020-11-06T11:58:35.922Z",
+        "start_timestamp": "2020-11-10T11:33:46.999Z",
         "before": [
           {
             "result": {
-              "duration": 2000000,
+              "duration": 3000000,
               "status": "passed"
             },
             "match": {
@@ -110,10 +110,10 @@
             }
           }
         ],
-        "line": 48,
-        "name": "Add fee details",
+        "line": 15,
+        "name": "Validate appointment details",
         "description": "",
-        "id": "feature-to-validate-and-create-new-doctor;add-fee-details",
+        "id": "feature-to-validate-appointment-details-on-appointment-module;validate-appointment-details",
         "after": [
           {
             "result": {
@@ -132,74 +132,62 @@
               "duration": 8000000,
               "status": "passed"
             },
-            "line": 49,
-            "name": "get the doctor details from \"src\\test\\resources\\ClinicAdmin_TestData\\Watts Health Center\\Doctor-details.xlsx\"",
+            "line": 16,
+            "name": "Get the details from \"src\\test\\resources\\ClinicAdmin_TestData\\Watts Health Center\\Patient-details.xlsx\"",
             "match": {
               "arguments": [
                 {
-                  "val": "src\\test\\resources\\ClinicAdmin_TestData\\Watts Health Center\\Doctor-details.xlsx",
-                  "offset": 29
+                  "val": "src\\test\\resources\\ClinicAdmin_TestData\\Watts Health Center\\Patient-details.xlsx",
+                  "offset": 22
                 }
               ],
-              "location": "clinang.stepDefs.ClinicAdmin_DoctorStepDefs.get_doctor_details(java.lang.String)"
+              "location": "clinang.stepDefs.ClinicAdmin_AppointmentStepDefs.get_appointment_details(java.lang.String)"
             },
             "keyword": "When "
           },
           {
             "result": {
-              "duration": 29964000000,
+              "duration": 762855000000,
               "status": "passed"
             },
-            "line": 50,
-            "name": "Update the doctor fee details",
+            "line": 17,
+            "name": "Validate the appointment details",
             "match": {
-              "location": "clinang.stepDefs.ClinicAdmin_DoctorStepDefs.update_doctorFee()"
-            },
-            "keyword": "When "
-          },
-          {
-            "result": {
-              "duration": 255000000,
-              "status": "passed"
-            },
-            "line": 51,
-            "name": "Check the success message for fee update process",
-            "match": {
-              "location": "clinang.stepDefs.ClinicAdmin_DoctorStepDefs.check_successMessage_editFee()"
+              "location": "clinang.stepDefs.ClinicAdmin_AppointmentStepDefs.validate_appointmentDetails()"
             },
             "keyword": "Then "
           },
           {
             "result": {
-              "duration": 24950000000,
+              "duration": 17485000000,
               "status": "passed"
             },
-            "line": 52,
-            "name": "Validate the updated details on payment edit screen",
+            "line": 18,
+            "name": "Check the total appointment count with dashboard",
             "match": {
-              "location": "clinang.stepDefs.ClinicAdmin_DoctorStepDefs.validate_updatedDetails_editPayment()"
+              "location": "clinang.stepDefs.ClinicAdmin_AppointmentStepDefs.check_total_appointment_count()"
             },
             "keyword": "Then "
           }
         ],
         "tags": [
           {
-            "name": "@Clinic_doctor"
+            "name": "@Clinic_appointment"
           },
           {
-            "name": "@Addfees"
+            "name": "@validateAppointment"
           }
         ]
       }
     ],
-    "name": "Feature to validate and create new doctor",
+    "name": "Feature to validate appointment details on appointment module",
     "description": "",
-    "id": "feature-to-validate-and-create-new-doctor",
+    "id": "feature-to-validate-appointment-details-on-appointment-module",
     "keyword": "Feature",
-    "uri": "file:src/test/resources/clinang_Feature_Patient/ClinicAdmin_Doctor.feature",
+    "uri": "file:src/test/resources/clinang_Feature_Patient/ClinicAdmin_Appointment.feature",
     "tags": [
       {
-        "name": "@Clinic_doctor",
+        "name": "@Clinic_appointment",
         "type": "Tag",
         "location": {
           "line": 1,

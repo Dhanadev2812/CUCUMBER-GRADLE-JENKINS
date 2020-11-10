@@ -6,4 +6,5 @@ public class ClinicAdmin_AppointmentLocators {
 	public By appointmentModule = By.xpath("//a[@href='/portal/appointmentlist/Today']");
 	public By pageLoader = By.xpath("//img[class='pl-3 loader']");
 	public By backToappointment = By.xpath("//mat-icon[(normalize-space(text())='chevron_left')]");
+	public By totalAppointmentcount = By.xpath("//div[@class='mat-paginator-range-label']");
 }

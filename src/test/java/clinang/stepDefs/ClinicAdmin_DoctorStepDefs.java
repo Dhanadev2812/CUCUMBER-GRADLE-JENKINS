@@ -6,6 +6,8 @@ import static org.junit.Assert.assertTrue;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.Arrays;
+
+import clinang.Locators.ClinicAdmin_DoctorLocator;
 import clinang.pageUtils.ClinicAdmin_DoctorPageUtils;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
@@ -112,7 +114,7 @@ public class ClinicAdmin_DoctorStepDefs {
 		assertTrue(C_Admin_doctorPageUtils.alert_overseasFollowupfees().getText().replaceAll("\\s+", "").contentEquals(("Overseas Follow up Fee is Required").replaceAll("\\s+", "")));
 		assertTrue(C_Admin_doctorPageUtils.alert_password().getText().replaceAll("\\s+", "").contentEquals(("Password is Required").replaceAll("\\s+", "")));	
 	}
-	@When("^get the doctor details from \"([^\"]*)\"$")
+	@When("^Get the doctor details from \"([^\"]*)\"$")
 	public void get_doctor_details(String doctor_details_file) throws IOException {
 		C_Admin_doctorPageUtils.get_doctorFile(doctor_details_file);	
 	}
@@ -138,7 +140,7 @@ public class ClinicAdmin_DoctorStepDefs {
 	}
 	@When("^Update the doctor fee details$")
 	public void update_doctorFee() throws IOException {
-		C_Admin_doctorPageUtils.doctor_editPayment_valid();
+		C_Admin_doctorPageUtils.doctor_editPayment();
 	}
 	@Then("^Check the success message for fee update process$")
 	public void check_successMessage_editFee() {
@@ -147,10 +149,52 @@ public class ClinicAdmin_DoctorStepDefs {
 	}
 	@Then("^Validate the updated details on payment edit screen$")
 	public void validate_updatedDetails_editPayment() throws IOException {
-		C_Admin_doctorPageUtils.validate_doctorFees_editPayment();
+		C_Admin_doctorPageUtils.validate_doctorFees_editPayment_valid();
 	}
 	@When("^Update the payment details with invalid inputs$")
-	public void update_payment_invalid() {
-		
+	public void update_payment_invalid() throws IOException {
+		C_Admin_doctorPageUtils.doctor_editPayment();
+		C_Admin_doctorPageUtils.submit_doctorFeeupdate().click();	
+	}
+	@Then("^Validate the validation message for invalid inputs$")
+	public void validate_validationMessage_invalidInputs( ) {
+		if((C_Admin_doctorPageUtils.alert_edit_domesticConsultingfee().getText().replaceAll("\\s+", "").contentEquals(("Domestic Consulting Fee should be in number").replaceAll("\\s+", "")))) {
+			assert true;
+		}
+		else if((C_Admin_doctorPageUtils.alert_edit_domesticConsultingfee().getText().replaceAll("\\s+", "").contentEquals(("Domestic Consulting Fee Minimum required is ₹ 1").replaceAll("\\s+", "")))) {
+			assert true;
+		}
+		else {
+			assert false;
+		}
+		if((C_Admin_doctorPageUtils.alert_edit_overseasConsultingfee().getText().replaceAll("\\s+", "").contentEquals(("Overseas Consulting Fee should be in number").replaceAll("\\s+", "")))) {
+			assert true;
+		}
+		else if((C_Admin_doctorPageUtils.alert_edit_overseasConsultingfee().getText().replaceAll("\\s+", "").contentEquals(("Overseas Consulting Fee Minimum required is ₹ 1").replaceAll("\\s+", "")))) {
+			assert true;
+		}
+		else {
+			assert false;
+		}
+		if((C_Admin_doctorPageUtils.alert_edit_domesticFollowupfee().getText().replaceAll("\\s+", "").contentEquals(("Domestic Follow up Fee should be in number").replaceAll("\\s+", "")))) {
+			assert true;
+		}
+		else if((C_Admin_doctorPageUtils.alert_edit_domesticFollowupfee().getText().replaceAll("\\s+", "").contentEquals(("Domestic Follow up Fee Minimum required is ₹ 1").replaceAll("\\s+", "")))) {
+			assert true;
+		}
+		else {
+			assert false;
+		}
+		if((C_Admin_doctorPageUtils.alert_edit_overseasFollowupfee().getText().replaceAll("\\s+", "").contentEquals(("Overseas Follow up Fee should be in number").replaceAll("\\s+", "")))) {
+			assert true;
+		}
+		else if((C_Admin_doctorPageUtils.alert_edit_overseasFollowupfee().getText().replaceAll("\\s+", "").contentEquals(("Overseas Follow up Fee Minimum required is ₹ 1").replaceAll("\\s+", "")))) {
+			assert true;
+		}
+		else {
+			assert false;
+		}
+		assertFalse(C_Admin_doctorPageUtils.submit_doctorFeeupdate().isEnabled()==true);
+		C_Admin_doctorPageUtils.close_doctorFeeupdate().click();
 	}
 }

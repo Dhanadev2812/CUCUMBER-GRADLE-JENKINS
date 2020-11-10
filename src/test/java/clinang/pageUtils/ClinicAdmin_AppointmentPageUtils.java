@@ -6,6 +6,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
+
 import org.openqa.selenium.WebElement;
 import clinang.Locators.ClinicAdmin_AppointmentLocators;
 import clinang.stepDefs.Patient_AppointmentStepDefs;
@@ -20,6 +22,7 @@ public class ClinicAdmin_AppointmentPageUtils extends CustomDriver{
 	private String appointmentDateTime;
 	private String requireddate;
 	private String[] medicalReportname;
+	public String totalAppointmentcount;
 	
 	private WebElement appointmentModule() {
 		return findElement(C_Admin_appointmentLocator.appointmentModule);
@@ -33,7 +36,14 @@ public class ClinicAdmin_AppointmentPageUtils extends CustomDriver{
 	private WebElement backToappointment() {
 		return findElement(C_Admin_appointmentLocator.backToappointment);
 	}
-	
+	private WebElement totalAppointmentcount() {
+		return findElement(C_Admin_appointmentLocator.totalAppointmentcount);
+	}
+	public String get_totalAppointmentcount() {
+		String[] countList = totalAppointmentcount().getText().split("of");
+		String totalAppointmentcount = countList[1].replaceAll("\\s+", "");
+		return totalAppointmentcount;
+	}
 	public void get_patientFile(String patient_details_file) {
 		patientFile = patient_details_file;	
 	}
