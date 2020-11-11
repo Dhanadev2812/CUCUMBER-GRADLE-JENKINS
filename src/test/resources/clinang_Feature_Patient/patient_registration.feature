@@ -1,7 +1,7 @@
 @patientregister
 Feature: Feature to done patient registration
 
-  @register-valid @patient-smokeTest
+  @Register-valid @patient @smokeTest
   Scenario: Register with valid details
     Given I open the app
     When Click on registration link
@@ -11,7 +11,7 @@ Feature: Feature to done patient registration
     And Click on register button
     Then Check the validation message for success registration
 
-  @register-existingdetails @patient-smokeTest
+  @Register-existingdetails @patient @smokeTest
   Scenario: Register with existing details
     Given I open the app
     When Click on registration link
@@ -21,7 +21,7 @@ Feature: Feature to done patient registration
     And Click on register button
     Then Check the validation message for existing details
 
-  @register-invaliddetails @patient-smokeTest
+  @Register-invaliddetails @patient @smokeTest
   Scenario: Register with invalid details
     Given I open the app
     When Click on registration link

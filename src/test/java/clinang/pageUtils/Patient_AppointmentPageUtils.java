@@ -353,9 +353,9 @@ public class Patient_AppointmentPageUtils extends CustomDriver{
 			submit_medicalReport().click();
 			wait_pageLoadercomplate();
 			assertTrue(get_message().contains("Medical record uploaded successfully"));
-			System.out.println("Medical record uploaded successfully");
 			click_closeOption();
 		}
+		System.out.println("Medical record uploaded successfully");
 	}
 	
 	public void validate_uploadedReport(DataTable uploaded_medicalReport) {	
@@ -396,6 +396,7 @@ public class Patient_AppointmentPageUtils extends CustomDriver{
 				
 			}				
 		}
+		System.out.println("Validated uploaded medical reports");
 	}
 	private void download_medicalReport(int report_id) {
 		String substring = get_medicalReport_reportName(report_id).getText().length() > 3 ? get_medicalReport_reportName(report_id).getText().substring(get_medicalReport_reportName(report_id).getText().length() - 3) : get_medicalReport_reportName(report_id).getText();

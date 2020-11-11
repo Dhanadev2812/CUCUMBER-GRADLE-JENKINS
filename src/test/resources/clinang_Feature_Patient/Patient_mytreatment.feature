@@ -9,12 +9,12 @@ Feature: Feature to check my treatment functionaity
     And click on login button
     Then Check i am logged in
 
-  @Check-Mytreatmentdetails
+  @Check-Mytreatmentdetails @patient
   Scenario: Check my treatment details
     And Move to my treatment
     Then Check the my treatment details with the help of "src\test\resources\Patient_TestData\Wilson-ID-5\Patient_Mytreatment\TreatmentDetails.xlsx"
 
-  @Download-prescription @patient-smokeTest
+  @Download-prescription @patient
   Scenario: Download prescription
     And Move to my treatment
     When Validate and Download the prescription based on appointment id "70"

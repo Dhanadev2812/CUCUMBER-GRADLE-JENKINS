@@ -124,6 +124,7 @@ public class Patient_BookAppointmentStepDefs extends CustomDriver {
 		assertTrue(Arrays.asList(B_appointment.bookAppointment_details).contains(B_appointment.appointmentSuccessform_date().getText()));
 		assertTrue(Arrays.asList(B_appointment.bookAppointment_details[10].replace(" ", "")).contains(B_appointment.get_appointmentSuccessform_time().replace(" ", "")));
 		assertTrue(Arrays.asList(B_appointment.bookAppointment_details).contains(B_appointment.appointmentSuccessform_type().getText()));
+		System.out.println("Validated appointment details on payment screen");
 		B_appointment.pageLoader();	
 	}
 	
@@ -182,6 +183,7 @@ public class Patient_BookAppointmentStepDefs extends CustomDriver {
 			else if((Arrays.asList(B_appointment.bookAppointment_details[4].replace(" ", "")).toString().contains(("Clinic Visit").replace(" ", "")))) {
 				assertFalse(B_appointment.appointmentView_videoCall().getText().equalsIgnoreCase("Video Call"));
 				}
+			System.out.println("validated the appointment details on appointment view page");
 			}
 	
 	@Then("^Check the appointment details from my treatment module$")

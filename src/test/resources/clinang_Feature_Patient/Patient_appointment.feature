@@ -1,4 +1,4 @@
-@patient:Appointment
+@Appointment @patient
 Feature: Feature to done appointment functionaity
 
   Background: User is Logged In
@@ -9,7 +9,7 @@ Feature: Feature to done appointment functionaity
     And click on login button
     Then Check i am logged in
 
-  @Patient:Reschedule @patient-smokeTest
+  @Reschedule @patient
   Scenario Outline: Reschedule the appointment
     And Go to appointment module
     When Move to appointment list page based on date "<AppointmentDate>" and zoneid "<TimeZone>"
@@ -25,9 +25,9 @@ Feature: Feature to done appointment functionaity
 
     Examples: 
       | AppointmentID | AppointmentDate | RescheduleDate | TimeZone     | RescheduleSlot | RescheduleComplaint |
-      |            74 | 30/10/2020      | 31/10/2020     | Asia/Kolkata | 1:00 PM        | general appointment |
+      |            82 | 12/11/2020      | 12/11/2020     | Asia/Kolkata | 1:00 PM        | general appointment |
 
-  @Patient:Cancel @patient-smokeTest
+  @Cancel @patient
   Scenario Outline: Cancel the appointment
     And Go to appointment module
     When Move to appointment list page based on date "<AppointmentDate>" and zoneid "<TimeZone>"
@@ -42,7 +42,7 @@ Feature: Feature to done appointment functionaity
       | AppointmentID | AppointmentDate | TimeZone     |
       |            74 | 31/10/2020      | Asia/Kolkata |
 
-  @Patient:Addfollowup @patient-smokeTest
+  @Addfollowup @patient
   Scenario Outline: Add followup
     And Get the patient country
     And Move to dashboard
@@ -53,7 +53,7 @@ Feature: Feature to done appointment functionaity
     Then Check the appointment have an option to book a followup
     Then Validate the followup fees
       | Domestic Followup Fee | Overseas Followup Fee |
-      |                  1000 |                  1500 |
+      |                  1000 |                  2000 |
     And Accept the book followup
     When Enter the followup appointment details
       | mobile     | appointment_type    | chief_complaint              |
@@ -76,9 +76,9 @@ Feature: Feature to done appointment functionaity
 
     Examples: 
       | AppointmentID | AppointmentDate | TimeZone     | FollowupAppointmentDate | FollowupSlot | PaymentMethod |
-      |             1 | 22/10/2020      | Asia/Kolkata | 25/10/2020              | 1:30 PM      | netbanking    |
+      |            83 | 11/11/2020      | Asia/Kolkata | 25/11/2020              | 1:30 PM      | netbanking    |
 
-  @Add-Medicalreport @patient-smokeTest
+  @Add-Medicalreport @patient
   Scenario Outline: Add medical report
     And Go to appointment module
     When Move to appointment list page based on date "<AppointmentDate>" and zoneid "<TimeZone>"
@@ -92,9 +92,9 @@ Feature: Feature to done appointment functionaity
 
     Examples: 
       | AppointmentID | AppointmentDate | TimeZone     |
-      |             1 | 22/10/2020      | Asia/Kolkata |
+      |            83 | 11/11/2020      | Asia/Kolkata |
 
-  @Downloadall-Medicalreport
+  @Downloadall-Medicalreport @patient
   Scenario Outline: Download all the medical report
     And Go to appointment module
     When Move to appointment list page based on date "<AppointmentDate>" and zoneid "<TimeZone>"
@@ -103,9 +103,9 @@ Feature: Feature to done appointment functionaity
 
     Examples: 
       | AppointmentID | AppointmentDate | TimeZone     |
-      |             1 | 22/10/2020      | Asia/Kolkata |
+      |            83 | 11/11/2020      | Asia/Kolkata |
 
-  @DownloadSpecific-Medicalreport @patient-smokeTest
+  @DownloadSpecific-Medicalreport @patient
   Scenario Outline: Download specific medical report
     And Go to appointment module
     When Move to appointment list page based on date "<AppointmentDate>" and zoneid "<TimeZone>"
@@ -116,9 +116,9 @@ Feature: Feature to done appointment functionaity
 
     Examples: 
       | AppointmentID | AppointmentDate | TimeZone     |
-      |             1 | 22/10/2020      | Asia/Kolkata |
+      |            83 | 11/11/2020      | Asia/Kolkata |
 
-  @Deleteall-Medicalreport
+  @Deleteall-Medicalreport @patient
   Scenario Outline: Delete all the medical report
     And Go to appointment module
     When Move to appointment list page based on date "<AppointmentDate>" and zoneid "<TimeZone>"
@@ -129,7 +129,7 @@ Feature: Feature to done appointment functionaity
       | AppointmentID | AppointmentDate | TimeZone     |
       |             1 | 22/10/2020      | Asia/Kolkata |
 
-  @DeleteSpecific-Medicalreport @patient-smokeTest
+  @DeleteSpecific-Medicalreport @patient
   Scenario Outline: Delete specific  medical report
     And Go to appointment module
     When Move to appointment list page based on date "<AppointmentDate>" and zoneid "<TimeZone>"

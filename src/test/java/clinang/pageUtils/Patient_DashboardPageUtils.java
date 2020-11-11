@@ -27,7 +27,9 @@ public class Patient_DashboardPageUtils extends CustomDriver{
 	public WebElement dashboardField() {
 		return findElement(DashboardLocators.dashboardField);		
 	 }
-	
+	public  List<WebElement> isLogoutpresent() {
+		return findElement_list(DashboardLocators.wait_logoutView);
+	}
 	private WebElement wait_logoutView() {
 		return waitForElementDisplayed(DashboardLocators.wait_logoutView);
 	}

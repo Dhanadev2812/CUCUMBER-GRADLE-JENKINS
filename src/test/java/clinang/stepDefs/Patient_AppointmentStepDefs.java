@@ -127,7 +127,7 @@ public class Patient_AppointmentStepDefs {
 	public void Validate_rescheduleDetails()  {
 		assertTrue(Arrays.asList(appointmentPageUtils.appointmentViewpage_getDetails[5].replace(" ", "")).contains(appointmentPageUtils.reschedule_appointmentDetails[0].replace(" ", "")));
 		assertTrue(Arrays.asList(appointmentPageUtils.appointmentViewpage_getDetails[6]).contains(appointmentPageUtils.reschedule_appointmentDetails[1]));						
-			
+		System.out.println("Validated rescheduled appointment details");	
 		}
 	@Then("^Check the appointment count based on \"([^\"]*)\" and \"([^\"]*)\"$")
 	public void check_appointmentCount(String rescheduleDate,String existingAppointment) throws InterruptedException, ParseException {
@@ -166,7 +166,8 @@ public class Patient_AppointmentStepDefs {
 				//System.out.println("upcoming - upcoming");
 				assertTrue((Arrays.asList(arr[1]).toString()).contains(dashboard.getCount_upcomingApp()));
 			}					
-		}				
+		}
+		System.out.println("Validated appointment counts on dashboard based on rescheduled appointment date");
 	}
 	
 	@And("^Cancel the appointment$")
@@ -276,6 +277,7 @@ public class Patient_AppointmentStepDefs {
 	@Then("^Validate the payment amount with followup fee details$")
 	public void Validate_followUp_fee() {
 		assertTrue((Arrays.asList(appointmentPageUtils.appointmentView_followupDetails[0]).contains(bookAppointment_PageUtils.get_consultationFee())));
+		System.out.println("Payment amount validated with followup fee");
 	}
 	@Then("^Check the appointment id \"([^\"]*)\" should removed from my treatment list$") 
 	public void check_appointmentID_mytreatment(String appointmentId) throws InterruptedException {
@@ -308,5 +310,6 @@ public class Patient_AppointmentStepDefs {
 		else if((Arrays.asList(bookAppointment_PageUtils.bookAppointment_details[4].replace(" ", "")).toString().contains(("Clinic Visit").replace(" ", "")))) {
 			assertFalse(bookAppointment_PageUtils.appointmentView_videoCall().getText().equalsIgnoreCase("Video Call"));
 			}
+		System.out.println("Followup appointment details validated on appointment view page");
 	}
 }

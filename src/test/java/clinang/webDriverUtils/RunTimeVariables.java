@@ -1,9 +1,5 @@
 package clinang.webDriverUtils;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
-
 public class RunTimeVariables {
 
 	private String environmentUrl;
@@ -29,29 +25,7 @@ public class RunTimeVariables {
 	public RunTimeVariables() {
 		setEnvironmentUrl("https://latlontech.com/");
 		setBrowser("chrome");
-		
-		
-//		InputStream input = this.getClass().getClassLoader().getResourceAsStream("RunTime.properties");
-//		Properties prop = new Properties();
-//		try {
-//			prop.load(input);
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-		
-//		if (System.getProperty("EnvironmentUrl") != null)
-//			setEnvironmentUrl(System.getProperty("EnvironmentUrl"));
-//		else
-//			setEnvironmentUrl(prop.getProperty("EnvironmentUrl"));
-		
-		
-		
-//		if (System.getProperty("Browser") != null)
-//			setEnvironmentUrl(System.getProperty("Browser"));
-//		else
-//			setBrowser(prop.getProperty("Browser"));
-		
-		
+	
 	}
 
 }

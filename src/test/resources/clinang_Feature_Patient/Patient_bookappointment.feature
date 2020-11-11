@@ -1,4 +1,4 @@
-@patient:Bookappointment
+@Bookappointment @patient @smokeTest
 Feature: Feature to check book appointment functionaity
 
   Background: User is Logged In
@@ -12,7 +12,7 @@ Feature: Feature to check book appointment functionaity
     And Go to book appointment screen
 
   #Ref Patient-Inputs text file before edit
-  @patient:BookAppointment-Create @patient-smokeTest
+  @Create_new_appointment @patient @smokeTest
   Scenario Outline: Create new appointment
     When Enter the appointment details
       | mobile     | appointment_type | speciality      | doctor            | chief_complaint     |
@@ -24,7 +24,7 @@ Feature: Feature to check book appointment functionaity
     Then Check the paynow option is enabled or not
     Then Check the fee details based on country
       | Domestic Consulting Fee | Overseas Consulting Fee |
-      |                    2000 |                    4000 |
+      |                    6000 |                    8000 |
     And Click on paynow
     Then Done a payment process via "<PaymentMethod>"
       | card_number      | card_expiry-MM/YY | card_holder | card_cvv | netbanking_bankname | bank_type |
@@ -37,4 +37,4 @@ Feature: Feature to check book appointment functionaity
 
     Examples: 
       | AppointmentDate | TimeZone     | Slot    | PaymentMethod |
-      | 30/10/2020      | Asia/Kolkata | 2:00 PM | netbanking    |
+      | 11/11/2020      | Asia/Kolkata | 6:30 PM | netbanking    |

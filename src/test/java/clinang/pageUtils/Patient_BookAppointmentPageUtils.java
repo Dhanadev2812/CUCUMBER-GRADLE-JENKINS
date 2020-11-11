@@ -166,6 +166,7 @@ public class Patient_BookAppointmentPageUtils extends CustomDriver {
 	}
 	
 	public void clickSlot(String slot) {
+		System.out.println("Finding provided slots");
 		slot(slot).click();
 	}
 	
@@ -578,7 +579,7 @@ public class Patient_BookAppointmentPageUtils extends CustomDriver {
 					Date date = parseFormat.parse(slot.getAttribute("innerHTML"));
 					String slotTime = displayFormat.format(date);
 					
-					int compareTime = slotTime.compareTo(CurrentTime_newTimeformat);					
+					int compareTime = slotTime.compareTo(CurrentTime_newTimeformat);
 						if(compareTime<0) {
 							System.out.println("slot time is lessthan the current time");
 							assert false;
