@@ -29,5 +29,6 @@ public class ClinicAdmin_ProfileupdateLocators {
 	public By clinicPincode_alert = By.xpath("//form/div[2]/div[7]//child::mat-error[@role='alert']/p");
 	public By clinicEmail_alert = By.xpath("//form/div[2]/div[8]//child::mat-error[@role='alert']/p");
 	public By clinicphone_alert = By.xpath("//form/div[2]/div[9]//child::mat-error[@role='alert']/p");
+	public By close_clinicUpdate = By.xpath("//span[@class='mdi mdi-close']");
 
 }

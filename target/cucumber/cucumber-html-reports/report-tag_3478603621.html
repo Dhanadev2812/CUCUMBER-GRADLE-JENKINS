@@ -74,7 +74,7 @@ $(document).ready(function() {
   <tbody>
     <tr class="info">
       <td>No Name (add projectName to cucumber-reporting.properties)</td>
-      <td>11 Nov 2020, 13:31</td>
+      <td>12 Nov 2020, 10:22</td>
     </tr>
   </tbody>
 </table>
@@ -127,18 +127,18 @@ $(document).ready(function() {
         <tbody>
         <tr>
           <td class="tagname">@login_valid</td>
-          <td      class="passed"    >3</td>
+          <td      class="passed"    >5</td>
           <td >0</td>
           <td >0</td>
           <td >0</td>
           <td >0</td>
-          <td class="total">3</td>
+          <td class="total">5</td>
 
           <td  class="passed"    >1</td>
           <td >0</td>
           <td class="total">1</td>
 
-          <td class="duration" data-value="5200000000">5.200</td>
+          <td class="duration" data-value="47799000000">47.799</td>
           <td class="passed">Passed</td>
         </tr>
         </tbody>
@@ -171,29 +171,29 @@ $(document).ready(function() {
 <div class="element">
     <div class="indention">
       <b>Feature:</b>
-      <a href="report-feature_2371667629.html">Feature to test login functionality</a>
+      <a href="report-feature_92222507.html">Feature to done login process</a>
     </div>
 
 
 <div class="tags indention">
     <b>Tags:</b>
        <a href="report-tag_244994560.html">@loginfunction</a>
-       <a href="report-tag_1226777284.html">@patient</a>
+       <a href="report-tag_1190575878.html">@Clinicadmin</a>
        <a href="report-tag_337345120.html">@smokeTest</a>
        <a href="report-tag_3478603621.html">@login_valid</a>
-       <a href="report-tag_1226777284.html">@patient</a>
+       <a href="report-tag_1190575878.html">@Clinicadmin</a>
        <a href="report-tag_337345120.html">@smokeTest</a>
 </div>
 
 
-  <span class="lead-duration duration">5.200</span>
+  <span class="lead-duration duration">47.799</span>
 
 
   <span data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#element-1">
 
 <div class="brief passed">
   <span class="keyword indention">Scenario</span>
-  <span class="name">Login as a patient with valid credentials</span>
+  <span class="name">Login with valid credentials</span>
 
 
      <i class="chevron fa fa-fw"></i>
@@ -224,7 +224,7 @@ $(document).ready(function() {
             <span class="keyword indention">Before</span>
               <span class="location name">clinang.webDriverUtils.Hooks_Utils.beforeScenarioStart()</span>
 
-  <span class="lead-duration duration">0.009</span>
+  <span class="lead-duration duration">0.012</span>
 
           </div>
 
@@ -257,11 +257,65 @@ $(document).ready(function() {
       <div class="step">
 
 
+<div class="brief step-name-Given passed">
+  <span class="keyword indention">Given</span>
+  <span class="name">I open the app</span>
+
+  <span class="lead-duration duration">19.702</span>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+      <div class="step">
+
+
+<div class="brief step-name-And passed">
+  <span class="keyword indention">And</span>
+  <span class="name">Move to admin login page</span>
+
+  <span class="lead-duration duration">5.313</span>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+      <div class="step">
+
+
 <div class="brief step-name-When passed">
   <span class="keyword indention">When</span>
-  <span class="name">Enter the email,password and clinic code</span>
+  <span class="name">Enter clinic admin credentials</span>
 
-  <span class="lead-duration duration">1.760</span>
+  <span class="lead-duration duration">6.601</span>
 
 </div>
 
@@ -273,14 +327,12 @@ $(document).ready(function() {
 
           <table class="step-arguments">
               <tr>
-                  <td>email</td>
-                  <td>password</td>
-                  <td>clinic_code</td>
+                  <td>UserName</td>
+                  <td>Password</td>
               </tr>
               <tr>
-                  <td>sandhiya.2894@gmail.com</td>
+                  <td>watts@clinicadmin.com</td>
                   <td>Password12#</td>
-                  <td>LAT002</td>
               </tr>
           </table>
 
@@ -298,9 +350,9 @@ $(document).ready(function() {
 
 <div class="brief step-name-And passed">
   <span class="keyword indention">And</span>
-  <span class="name">click on login button</span>
+  <span class="name">Click on Login button</span>
 
-  <span class="lead-duration duration">0.514</span>
+  <span class="lead-duration duration">11.068</span>
 
 </div>
 
@@ -325,9 +377,9 @@ $(document).ready(function() {
 
 <div class="brief step-name-Then passed">
   <span class="keyword indention">Then</span>
-  <span class="name">Check i am logged in</span>
+  <span class="name">Check i am logged in as a clinic admin</span>
 
-  <span class="lead-duration duration">2.926</span>
+  <span class="lead-duration duration">5.115</span>
 
 </div>
 
@@ -372,7 +424,7 @@ $(document).ready(function() {
             <span class="keyword indention">After</span>
               <span class="location name">clinang.webDriverUtils.Hooks_Utils.afterscenario()</span>
 
-  <span class="lead-duration duration">0.876</span>
+  <span class="lead-duration duration">0.460</span>
 
           </div>
 

@@ -46,6 +46,7 @@ public class ClinicAdmin_PatientStepDefs {
 	@Then("^Check the validation message for new patient creation$")
 	public void check_validation_patient_create() {
 		assertTrue(C_Admin_patientpageUtils.messageBox().getText().replace(" ", "").equalsIgnoreCase(("Patient mapped to clinic successfully.").replace(" ", "")));
+		System.out.println("Patient mapped to clinic successfully.");
 		C_Admin_patientpageUtils.click_close_messageBox();
 	}
 	@When("^Skip the mandatory inputs$")
@@ -55,13 +56,18 @@ public class ClinicAdmin_PatientStepDefs {
 	@Then("^Check the register button is in disable state$")
 	public void check_register_button_disable() {
 		assertFalse(C_Admin_patientpageUtils.register().isEnabled());
+		System.out.println("Register button is in disable state");
 	}
 	@Then("^Check the validation message for patient mandatory fields$")
 	public void check_validation_patient_mandatory() {
 		assertTrue(C_Admin_patientpageUtils.firstName_alert().getText().replace(" ", "").equalsIgnoreCase(("First Name is Required").replace(" ", "")));
+		System.out.println("First Name is Required");
 		assertTrue(C_Admin_patientpageUtils.lastName_alert().getText().replace(" ", "").equalsIgnoreCase(("Last Name is Required").replace(" ", "")));
+		System.out.println("Last Name is Required");
 		assertTrue(C_Admin_patientpageUtils.email_alert().getText().replace(" ", "").equalsIgnoreCase(("Email is Required").replace(" ", "")));
+		System.out.println("Email is Required");
 		assertTrue(C_Admin_patientpageUtils.password_alert().getText().replace(" ", "").equalsIgnoreCase(("Password is Required").replace(" ", "")));
+		System.out.println("Password is Required");
 	}
 	@When("^Enter invalid inputs$")
 	public void enter_invalid_inputs(DataTable inputs) {
@@ -71,9 +77,13 @@ public class ClinicAdmin_PatientStepDefs {
 	@Then("^Check the validation message for invalid patient details$")
 	public void check_validation_invalidInput() {
 		assertTrue(C_Admin_patientpageUtils.firstName_alert().getText().replace(" ", "").equalsIgnoreCase(("First Name should be in alphabets & not allowed space").replace(" ", "")));
+		System.out.println("First Name should be in alphabets & not allowed space");
 		assertTrue(C_Admin_patientpageUtils.lastName_alert().getText().replace(" ", "").equalsIgnoreCase(("Last Name should be in alphabets & not allowed space").replace(" ", "")));
+		System.out.println("Last Name should be in alphabets & not allowed space");
 		assertTrue(C_Admin_patientpageUtils.email_alert().getText().replace(" ", "").equalsIgnoreCase(("Enter a valid Email").replace(" ", "")));
+		System.out.println("Enter a valid Email");
 		assertTrue(C_Admin_patientpageUtils.password_alert().getText().replace(" ", "").equalsIgnoreCase(("Password must have atleast 6 characters with a mix of special character, digit, uppercase and lowercase").replace(" ", "")));
+		System.out.println("Password must have atleast 6 characters with a mix of special character, digit, uppercase and lowercase");
 	}
 	
 	@When("^get the patient details from \"([^\"]*)\"$")

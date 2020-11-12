@@ -74,7 +74,7 @@ $(document).ready(function() {
   <tbody>
     <tr class="info">
       <td>No Name (add projectName to cucumber-reporting.properties)</td>
-      <td>11 Nov 2020, 13:31</td>
+      <td>12 Nov 2020, 10:28</td>
     </tr>
   </tbody>
 </table>
@@ -127,18 +127,18 @@ $(document).ready(function() {
         <tbody>
         <tr>
           <td class="tagname">@loginfunction</td>
-          <td      class="passed"    >9</td>
+          <td      class="passed"    >5</td>
           <td >0</td>
           <td >0</td>
           <td >0</td>
           <td >0</td>
-          <td class="total">9</td>
+          <td class="total">5</td>
 
-          <td  class="passed"    >3</td>
+          <td  class="passed"    >1</td>
           <td >0</td>
-          <td class="total">3</td>
+          <td class="total">1</td>
 
-          <td class="duration" data-value="9476000000">9.476</td>
+          <td class="duration" data-value="45966000000">45.966</td>
           <td class="passed">Passed</td>
         </tr>
         </tbody>
@@ -171,29 +171,29 @@ $(document).ready(function() {
 <div class="element">
     <div class="indention">
       <b>Feature:</b>
-      <a href="report-feature_2371667629.html">Feature to test login functionality</a>
+      <a href="report-feature_92222507.html">Feature to done login process</a>
     </div>
 
 
 <div class="tags indention">
     <b>Tags:</b>
        <a href="report-tag_244994560.html">@loginfunction</a>
-       <a href="report-tag_1226777284.html">@patient</a>
+       <a href="report-tag_1190575878.html">@Clinicadmin</a>
        <a href="report-tag_337345120.html">@smokeTest</a>
-       <a href="report-tag_3478603621.html">@login_valid</a>
-       <a href="report-tag_1226777284.html">@patient</a>
+       <a href="report-tag_3182065376.html">@login_invalid</a>
+       <a href="report-tag_1190575878.html">@Clinicadmin</a>
        <a href="report-tag_337345120.html">@smokeTest</a>
 </div>
 
 
-  <span class="lead-duration duration">5.200</span>
+  <span class="lead-duration duration">45.966</span>
 
 
   <span data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#element-1">
 
 <div class="brief passed">
   <span class="keyword indention">Scenario</span>
-  <span class="name">Login as a patient with valid credentials</span>
+  <span class="name">Login with invalid credentials</span>
 
 
      <i class="chevron fa fa-fw"></i>
@@ -224,7 +224,7 @@ $(document).ready(function() {
             <span class="keyword indention">Before</span>
               <span class="location name">clinang.webDriverUtils.Hooks_Utils.beforeScenarioStart()</span>
 
-  <span class="lead-duration duration">0.009</span>
+  <span class="lead-duration duration">0.007</span>
 
           </div>
 
@@ -257,11 +257,65 @@ $(document).ready(function() {
       <div class="step">
 
 
+<div class="brief step-name-Given passed">
+  <span class="keyword indention">Given</span>
+  <span class="name">I open the app</span>
+
+  <span class="lead-duration duration">22.247</span>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+      <div class="step">
+
+
+<div class="brief step-name-And passed">
+  <span class="keyword indention">And</span>
+  <span class="name">Move to admin login page</span>
+
+  <span class="lead-duration duration">5.420</span>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+      <div class="step">
+
+
 <div class="brief step-name-When passed">
   <span class="keyword indention">When</span>
-  <span class="name">Enter the email,password and clinic code</span>
+  <span class="name">Enter clinic admin credentials</span>
 
-  <span class="lead-duration duration">1.760</span>
+  <span class="lead-duration duration">6.845</span>
 
 </div>
 
@@ -273,14 +327,12 @@ $(document).ready(function() {
 
           <table class="step-arguments">
               <tr>
-                  <td>email</td>
-                  <td>password</td>
-                  <td>clinic_code</td>
+                  <td>UserName</td>
+                  <td>Password</td>
               </tr>
               <tr>
-                  <td>sandhiya.2894@gmail.com</td>
+                  <td>watts1@clinicadmin.com</td>
                   <td>Password12#</td>
-                  <td>LAT002</td>
               </tr>
           </table>
 
@@ -298,9 +350,9 @@ $(document).ready(function() {
 
 <div class="brief step-name-And passed">
   <span class="keyword indention">And</span>
-  <span class="name">click on login button</span>
+  <span class="name">Click on Login button</span>
 
-  <span class="lead-duration duration">0.514</span>
+  <span class="lead-duration duration">11.155</span>
 
 </div>
 
@@ -323,11 +375,11 @@ $(document).ready(function() {
       <div class="step">
 
 
-<div class="brief step-name-Then passed">
-  <span class="keyword indention">Then</span>
-  <span class="name">Check i am logged in</span>
+<div class="brief step-name-But passed">
+  <span class="keyword indention">But</span>
+  <span class="name">It display Username or Password is Wrong alert message</span>
 
-  <span class="lead-duration duration">2.926</span>
+  <span class="lead-duration duration">0.299</span>
 
 </div>
 
@@ -372,483 +424,7 @@ $(document).ready(function() {
             <span class="keyword indention">After</span>
               <span class="location name">clinang.webDriverUtils.Hooks_Utils.afterscenario()</span>
 
-  <span class="lead-duration duration">0.876</span>
-
-          </div>
-
-
-
-
-
-
-
-        </div>
-        <div class="hook">
-          <div class="brief passed">
-            <span class="keyword indention">After</span>
-              <span class="location name">clinang.webDriverUtils.Hooks_Utils.afterScenarioFinish()</span>
-
-  <span class="lead-duration duration">0.000</span>
-
-          </div>
-
-
-
-
-
-
-
-        </div>
-    </div>
-  </div>
-
-  </div>
-</div>
-
-
-<div class="element">
-    <div class="indention">
-      <b>Feature:</b>
-      <a href="report-feature_2371667629.html">Feature to test login functionality</a>
-    </div>
-
-
-<div class="tags indention">
-    <b>Tags:</b>
-       <a href="report-tag_244994560.html">@loginfunction</a>
-       <a href="report-tag_1226777284.html">@patient</a>
-       <a href="report-tag_337345120.html">@smokeTest</a>
-       <a href="report-tag_2083566253.html">@login_invalidEmail_invalidPassword</a>
-       <a href="report-tag_1226777284.html">@patient</a>
-       <a href="report-tag_337345120.html">@smokeTest</a>
-</div>
-
-
-  <span class="lead-duration duration">1.503</span>
-
-
-  <span data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#element-5">
-
-<div class="brief passed">
-  <span class="keyword indention">Scenario</span>
-  <span class="name">Login as a patient with invalid email id/Password</span>
-
-
-     <i class="chevron fa fa-fw"></i>
-</div>
-
-  </span>
-  <div class="description indention"></div>
-
-  <div id="element-5" class="collapse collapsable-details ">
-
-
-  <div class="inner-level hooks-element-before">
-    <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#before-6">
-
-<div class="brief passed">
-  <span class="keyword indention">Hooks</span>
-  <span class="name"></span>
-
-
-     <i class="chevron fa fa-fw"></i>
-</div>
-
-    </div>
-
-    <div id="before-6" class="inner-level collapse collapsable-details ">
-        <div class="hook">
-          <div class="brief passed">
-            <span class="keyword indention">Before</span>
-              <span class="location name">clinang.webDriverUtils.Hooks_Utils.beforeScenarioStart()</span>
-
-  <span class="lead-duration duration">0.001</span>
-
-          </div>
-
-
-
-
-
-
-
-        </div>
-    </div>
-  </div>
-
-
-
-<div class="steps inner-level">
-  <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#steps-7">
-
-<div class="brief passed">
-  <span class="keyword indention">Steps</span>
-  <span class="name"></span>
-
-
-     <i class="chevron fa fa-fw"></i>
-</div>
-
-  </div>
-
-  <div id="steps-7" class="inner-level collapse collapsable-details ">
-      <div class="step">
-
-
-<div class="brief step-name-When passed">
-  <span class="keyword indention">When</span>
-  <span class="name">Enter the email,password and clinic code</span>
-
-  <span class="lead-duration duration">0.689</span>
-
-</div>
-
-
-
-
-
-
-
-          <table class="step-arguments">
-              <tr>
-                  <td>email</td>
-                  <td>password</td>
-                  <td>clinic_code</td>
-              </tr>
-              <tr>
-                  <td>sandhiya.2894@gmail.com</td>
-                  <td>Password112#</td>
-                  <td>LAT002</td>
-              </tr>
-          </table>
-
-
-
-
-
-
-
-
-
-      </div>
-      <div class="step">
-
-
-<div class="brief step-name-And passed">
-  <span class="keyword indention">And</span>
-  <span class="name">click on login button</span>
-
-  <span class="lead-duration duration">0.234</span>
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      </div>
-      <div class="step">
-
-
-<div class="brief step-name-But passed">
-  <span class="keyword indention">But</span>
-  <span class="name">It display Username or Password is Wrong alert message</span>
-
-  <span class="lead-duration duration">0.580</span>
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      </div>
-  </div>
-</div>
-
-
-
-
-  <div class="inner-level hooks-element-after">
-    <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#after-8">
-
-<div class="brief passed">
-  <span class="keyword indention">Hooks</span>
-  <span class="name"></span>
-
-
-     <i class="chevron fa fa-fw"></i>
-</div>
-
-    </div>
-
-    <div id="after-8" class="inner-level collapse collapsable-details ">
-        <div class="hook">
-          <div class="brief passed">
-            <span class="keyword indention">After</span>
-              <span class="location name">clinang.webDriverUtils.Hooks_Utils.afterscenario()</span>
-
-  <span class="lead-duration duration">0.005</span>
-
-          </div>
-
-
-
-
-
-
-
-        </div>
-        <div class="hook">
-          <div class="brief passed">
-            <span class="keyword indention">After</span>
-              <span class="location name">clinang.webDriverUtils.Hooks_Utils.afterScenarioFinish()</span>
-
-  <span class="lead-duration duration">0.000</span>
-
-          </div>
-
-
-
-
-
-
-
-        </div>
-    </div>
-  </div>
-
-  </div>
-</div>
-
-
-<div class="element">
-    <div class="indention">
-      <b>Feature:</b>
-      <a href="report-feature_2371667629.html">Feature to test login functionality</a>
-    </div>
-
-
-<div class="tags indention">
-    <b>Tags:</b>
-       <a href="report-tag_244994560.html">@loginfunction</a>
-       <a href="report-tag_1226777284.html">@patient</a>
-       <a href="report-tag_337345120.html">@smokeTest</a>
-       <a href="report-tag_3871714949.html">@login_invalid_clinic_code</a>
-       <a href="report-tag_1226777284.html">@patient</a>
-       <a href="report-tag_337345120.html">@smokeTest</a>
-</div>
-
-
-  <span class="lead-duration duration">2.773</span>
-
-
-  <span data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#element-9">
-
-<div class="brief passed">
-  <span class="keyword indention">Scenario</span>
-  <span class="name">Login as a patient with invalid email id/Password</span>
-
-
-     <i class="chevron fa fa-fw"></i>
-</div>
-
-  </span>
-  <div class="description indention"></div>
-
-  <div id="element-9" class="collapse collapsable-details ">
-
-
-  <div class="inner-level hooks-element-before">
-    <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#before-10">
-
-<div class="brief passed">
-  <span class="keyword indention">Hooks</span>
-  <span class="name"></span>
-
-
-     <i class="chevron fa fa-fw"></i>
-</div>
-
-    </div>
-
-    <div id="before-10" class="inner-level collapse collapsable-details ">
-        <div class="hook">
-          <div class="brief passed">
-            <span class="keyword indention">Before</span>
-              <span class="location name">clinang.webDriverUtils.Hooks_Utils.beforeScenarioStart()</span>
-
-  <span class="lead-duration duration">0.000</span>
-
-          </div>
-
-
-
-
-
-
-
-        </div>
-    </div>
-  </div>
-
-
-
-<div class="steps inner-level">
-  <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#steps-11">
-
-<div class="brief passed">
-  <span class="keyword indention">Steps</span>
-  <span class="name"></span>
-
-
-     <i class="chevron fa fa-fw"></i>
-</div>
-
-  </div>
-
-  <div id="steps-11" class="inner-level collapse collapsable-details ">
-      <div class="step">
-
-
-<div class="brief step-name-When passed">
-  <span class="keyword indention">When</span>
-  <span class="name">Enter the email,password and clinic code</span>
-
-  <span class="lead-duration duration">1.246</span>
-
-</div>
-
-
-
-
-
-
-
-          <table class="step-arguments">
-              <tr>
-                  <td>email</td>
-                  <td>password</td>
-                  <td>clinic_code</td>
-              </tr>
-              <tr>
-                  <td>sandhiya.2894@gmail.com</td>
-                  <td>Password12#</td>
-                  <td>LAT012</td>
-              </tr>
-          </table>
-
-
-
-
-
-
-
-
-
-      </div>
-      <div class="step">
-
-
-<div class="brief step-name-And passed">
-  <span class="keyword indention">And</span>
-  <span class="name">click on login button</span>
-
-  <span class="lead-duration duration">0.366</span>
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      </div>
-      <div class="step">
-
-
-<div class="brief step-name-But passed">
-  <span class="keyword indention">But</span>
-  <span class="name">It display Clinic code is invalid alert message</span>
-
-  <span class="lead-duration duration">1.161</span>
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      </div>
-  </div>
-</div>
-
-
-
-
-  <div class="inner-level hooks-element-after">
-    <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#after-12">
-
-<div class="brief passed">
-  <span class="keyword indention">Hooks</span>
-  <span class="name"></span>
-
-
-     <i class="chevron fa fa-fw"></i>
-</div>
-
-    </div>
-
-    <div id="after-12" class="inner-level collapse collapsable-details ">
-        <div class="hook">
-          <div class="brief passed">
-            <span class="keyword indention">After</span>
-              <span class="location name">clinang.webDriverUtils.Hooks_Utils.afterscenario()</span>
-
-  <span class="lead-duration duration">0.015</span>
+  <span class="lead-duration duration">0.044</span>
 
           </div>
 

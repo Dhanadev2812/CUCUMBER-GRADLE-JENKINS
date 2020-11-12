@@ -209,6 +209,7 @@ public class ClinicAdmin_PatientPageUtils extends CustomDriver{
 			int excelRow=1;
 		    EXCELLOOP:
 			while(excelRow<=lastRow) {
+				System.out.println("Start validating patient personal details for patient ID:"+" "+integerConverter_excel(patientFile,"PersonalDetails",excelRow,0));
 				TABLElOOP:
 				for(int tableRow=1;tableRow<=TotalRowsList.size()-1;tableRow++) {
 					if(TotalRowsList.size()-1==1) {
@@ -254,6 +255,7 @@ public class ClinicAdmin_PatientPageUtils extends CustomDriver{
 			
 			EXCELLOOP:
 			while(excelRow<=lastRow) {	
+				System.out.println("Start validation medical history details for patient ID:"+" "+integerConverter_excel(patientFile,"MedicalHistory",excelRow,0));
 				TABLElOOP:
 				for(int tableRow=1;tableRow<=TotalRowsList.size()-1;tableRow++) {
 					if(integerConverter_excel(patientFile,"MedicalHistory",excelRow,0).replaceAll("\\s+", "").equalsIgnoreCase(grid_ID(tableRow).getText().replaceAll("\\s+", ""))) {
@@ -313,6 +315,7 @@ public class ClinicAdmin_PatientPageUtils extends CustomDriver{
 			    break;
 			  case 3: 
 				  appointmentStepdefs.find_appointmentID(integerConverter_excel(patientFile,"Appointments",excelRow, excelCol));
+				  System.out.println("Appointment ID:"+" "+integerConverter_excel(patientFile,"Appointments",excelRow, excelCol));
 				  break;
 			  case 4: 
 				  appointmentPageUtils.get_appointmentDetails_viewPage();
@@ -328,22 +331,28 @@ public class ClinicAdmin_PatientPageUtils extends CustomDriver{
 						appointmentDateTime =  appointmentTime[0]+" " +appointmentTime[1]+" "+appointmentTime[2]+" "+" "+appointmentTime[3]+" "+appointmentTime[4];
 					}
 				  assertTrue(Arrays.asList(appointmentPageUtils.appointmentViewpage_getDetails[5]).contains(appointmentDateTime));
+				  System.out.println("Appointment date:"+" "+Arrays.asList(appointmentPageUtils.appointmentViewpage_getDetails[5]));
 				  break;
 			  case 5: 
 				  wait_pageLoad_complate();
 				  assertTrue(Arrays.asList(appointmentPageUtils.appointmentViewpage_getDetails[3]).contains(integerConverter_excel(patientFile,"Appointments",excelRow, excelCol)));
+				  System.out.println("Appointment type:"+" "+Arrays.asList(appointmentPageUtils.appointmentViewpage_getDetails[3]));
 				  break;
 			  case 6:
 				  assertTrue(Arrays.asList(appointmentPageUtils.appointmentViewpage_getDetails[1]).contains(integerConverter_excel(patientFile,"Appointments",excelRow, excelCol)));
+				  System.out.println("Speciality :"+" "+Arrays.asList(appointmentPageUtils.appointmentViewpage_getDetails[1]));
 				  break;
 			  case 7:
 				  assertTrue(Arrays.asList(appointmentPageUtils.appointmentViewpage_getDetails[4]).contains(integerConverter_excel(patientFile,"Appointments",excelRow, excelCol)));
+				  System.out.println("Doctor Name:"+" "+Arrays.asList(appointmentPageUtils.appointmentViewpage_getDetails[4]));
 				  break;
 			  case 9:
 				  assertTrue(Arrays.asList(appointmentPageUtils.appointmentViewpage_getDetails[2]).contains(integerConverter_excel(patientFile,"Appointments",excelRow, excelCol)));
+				  System.out.println("Clinic name:"+" "+Arrays.asList(appointmentPageUtils.appointmentViewpage_getDetails[2]));
 				  break;
 			  case 10:
 				  assertTrue(Arrays.asList(appointmentPageUtils.appointmentViewpage_getDetails[6]).contains(integerConverter_excel(patientFile,"Appointments",excelRow, excelCol)));
+				  System.out.println("Chief complaints:"+" "+Arrays.asList(appointmentPageUtils.appointmentViewpage_getDetails[6]));
 				  break;
 			  case 11:
 				  if(integerConverter_excel(patientFile,"Appointments",excelRow, excelCol).equalsIgnoreCase("")) {
@@ -352,6 +361,7 @@ public class ClinicAdmin_PatientPageUtils extends CustomDriver{
 				  else {
 					  appointmentPageUtils.get_followUpcomment_viewPage();
 					  assertTrue(Arrays.asList(appointmentPageUtils.followUpcomment_viewPage_get[0]).contains(integerConverter_excel(patientFile,"Appointments",excelRow, excelCol)));
+					  System.out.println("Followup:"+" "+ Arrays.asList(appointmentPageUtils.followUpcomment_viewPage_get[0]));
 				  }
 				  break;
 			 }
@@ -367,7 +377,8 @@ public class ClinicAdmin_PatientPageUtils extends CustomDriver{
 			WebElement TargetRows = findElement(C_Admin_PatientLocators.targetRow);
 			List<WebElement>TotalRowsList = TargetRows.findElements(By.tagName("tr"));	
 		EXCELOOP:
-		while(excelRow<=lastRow) {		
+		while(excelRow<=lastRow) {	
+			System.out.println("Start validating patient appointment details for patient ID"+" "+integerConverter_excel(patientFile,"Appointments",excelRow, 0));
 			String previousRow = integerConverter_excel(patientFile,"Appointments",excelRow-1, 0);
 			String currentRow =  integerConverter_excel(patientFile,"Appointments",excelRow, 0);
 			if(!(excelRow==lastRow)) {
@@ -470,6 +481,7 @@ public class ClinicAdmin_PatientPageUtils extends CustomDriver{
 				List<WebElement>TotalRowsList = TargetRows.findElements(By.tagName("tr"));
 				int tableRow = 1;					
 				while(tableRow<=TotalRowsList.size()-1) {
+					System.out.println("Started downloading medical report for:"+" "+appointmentID);
 					if(TotalRowsList.size()-1==1) {
 						assertTrue(appointmentPageUtils.grid_appointmentID_single().getText().contentEquals(appointmentID));
 						medicalReportedit(appointmentID).click();
@@ -675,6 +687,7 @@ public class ClinicAdmin_PatientPageUtils extends CustomDriver{
 				List<WebElement>TotalRowsList = TargetRows.findElements(By.tagName("tr"));
 				int tableRow = 1;					
 				while(tableRow<=TotalRowsList.size()-1) {
+					System.out.println("Start Validating medical report for appointment ID:"+" "+appointmentID);
 					if(TotalRowsList.size()-1==1) {
 						assertTrue(appointmentPageUtils.grid_appointmentID_single().getText().contentEquals(appointmentID));
 						medicalTreatmentedit(appointmentID).click();
@@ -760,17 +773,27 @@ public class ClinicAdmin_PatientPageUtils extends CustomDriver{
 			for(int j=1; j<=numberOf_prescriptions; j++) {
 				if(numberOf_prescriptions==1) {
 					assertTrue(Arrays.asList(drugName[0].equalsIgnoreCase(myTreatmentPageUtils.prescriptionDetails_single(1).getText().replaceAll("//s+", ""))) != null);
+					System.out.println("Validated drug name");
 					assertTrue(Arrays.asList(dosage[0].equalsIgnoreCase(myTreatmentPageUtils.prescriptionDetails_single(2).getText().replaceAll("//s+", ""))) != null);
+					System.out.println("Validated drug dosage");
 					assertTrue(Arrays.asList(frequency[0].equalsIgnoreCase(myTreatmentPageUtils.prescriptionDetails_single(3).getText().replaceAll("//s+", ""))) != null);
+					System.out.println("Validated drug frequency");
 					assertTrue(Arrays.asList(drug_days[0].equalsIgnoreCase(myTreatmentPageUtils.prescriptionDetails_single(4).getText().replaceAll("//s+", ""))) != null);
+					System.out.println("Vaalidated drug days");
 					assertTrue(Arrays.asList(beforeOrafter[0].equalsIgnoreCase(myTreatmentPageUtils.prescriptionDetails_single(5).getText().replaceAll("//s+", ""))) != null);
+					System.out.println("Vaalidate drug taken before/after");
 					break Loop2;
 				}
 				else if(Arrays.asList(drugName[i]).contains(myTreatmentPageUtils.prescriptionDetails_multiple(j,1).getText().replaceAll("\\s+", ""))) {
+					System.out.println("Validated drug name");
 					assertTrue(Arrays.asList(dosage[i].equalsIgnoreCase(myTreatmentPageUtils.prescriptionDetails_multiple(j,2).getText().replaceAll("//s+", ""))) != null);
+					System.out.println("Validated drug dosage");
 					assertTrue(Arrays.asList(frequency[i].equalsIgnoreCase(myTreatmentPageUtils.prescriptionDetails_multiple(j,3).getText().replaceAll("//s+", ""))) != null);
+					System.out.println("Validated drug frequency");
 					assertTrue(Arrays.asList(drug_days[i].equalsIgnoreCase(myTreatmentPageUtils.prescriptionDetails_multiple(j,4).getText().replaceAll("//s+", ""))) != null);
+					System.out.println("Vaalidated drug days");
 					assertTrue(Arrays.asList(beforeOrafter[i].equalsIgnoreCase(myTreatmentPageUtils.prescriptionDetails_multiple(j,5).getText().replaceAll("//s+", ""))) != null);
+					System.out.println("Vaalidate drug taken before/after");
 					break Loop2;
 				}
 				else if(j==numberOf_prescriptions) {

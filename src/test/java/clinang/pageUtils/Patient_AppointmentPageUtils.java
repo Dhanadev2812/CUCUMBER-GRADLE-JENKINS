@@ -402,14 +402,15 @@ public class Patient_AppointmentPageUtils extends CustomDriver{
 		String substring = get_medicalReport_reportName(report_id).getText().length() > 3 ? get_medicalReport_reportName(report_id).getText().substring(get_medicalReport_reportName(report_id).getText().length() - 3) : get_medicalReport_reportName(report_id).getText();
 		if(substring.equals("pdf")) {	
 			medicalReport_download(report_id).click();
+			System.out.println("Downloaded report:"+" "+report_id);
 		}
 		else if(substring.equals("jpg")||substring.equals("png")||substring.equals("xlsx")||substring.equals("xls")||substring.equals("docx")) {
 			medicalReport_view(report_id).click();
+			System.out.println("Downloaded report:"+" "+report_id);
 		}
 	}
 	public void downloadAllreport() throws InterruptedException {
 		int numberOfrecord_medicalReport = Integer.parseInt(get_span_medicalReports().getAttribute("childElementCount")); 
-		System.out.println("Started downloading medical reports");
 		for (int i = 1; i<numberOfrecord_medicalReport+1; i++) {
 			check_patientUpload_empty();
 			download_medicalReport(i);

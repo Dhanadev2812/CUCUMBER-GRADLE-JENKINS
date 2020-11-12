@@ -1,7 +1,7 @@
 
 Setup :
 
-Install cucumber and gradle
+Install cucumber and gradle-6.7
 create gradle project (File-new-other)
 open build.gradle : ClinaNG\build.gradle
 copy : dependencies,configurations,task cucumber()

@@ -15,7 +15,7 @@ public class Hooks_Utils extends CustomDriver {
  
  @After(order=1)
  public void afterscenario(){	
-	if(getCurrentUrl().contentEquals("https://latlontech.com/")) {
+	if((getCurrentUrl().contentEquals("https://latlontech.com/"))||(getCurrentUrl().contentEquals("https://latlontech.com/user-login"))) {
 		System.out.println("Your are in login screen");
 	} 
 	else {
@@ -41,6 +41,6 @@ public class Hooks_Utils extends CustomDriver {
 	 //System.out.println("----------Deleting Browser Cookies----------");
 	 //deleteAllCookies();	 
 		
-	 }   */
+	}   */
  
 }

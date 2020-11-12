@@ -35,10 +35,13 @@ public class ClinicAdmin_AppointmentStepDefs {
 	@Then("^Validate the appointment details$")
 	public void validate_appointmentDetails() throws IOException, ParseException, InterruptedException {
 		C_admin_appointmentPageUtils.validate_appointmentDetails();
+		System.out.println("Appointment details validated");
 	}
 	@Then("^Validate and download the medical report details on appointment module$")
 	public void validate_medicalReport_details() throws IOException, ParseException, InterruptedException {
 		C_admin_appointmentPageUtils.validate_medicalReport();
+		System.out.println("Validated medical report details on appointment module");
+		System.out.println("Downloaded medical report details on appointment module");
 	}
 	@Then("^Check the total appointment count with dashboard$")
 	public void check_total_appointment_count() {
@@ -72,7 +75,8 @@ public class ClinicAdmin_AppointmentStepDefs {
 		C_admin_appointmentPageUtils.wait_pageLoad_complate();
 		C_Admin_DashboardPageUtils.get_dashboardCount();
 		assertTrue(Arrays.asList(C_Admin_DashboardPageUtils.dashboard_counts[0]).equals(Arrays.asList(totalTodayappointment)));
+		System.out.println("Validated today appointment count");
 		assertTrue(Arrays.asList(C_Admin_DashboardPageUtils.dashboard_counts[2]).equals(Arrays.asList(totalUpcomingappointment)));
-
+		System.out.println("Validated upcominig appointment count");	
 	}
 }

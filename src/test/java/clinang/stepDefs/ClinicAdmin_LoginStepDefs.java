@@ -38,5 +38,6 @@ public class ClinicAdmin_LoginStepDefs {
 		clinicAdmin_login.wait_pageLoad_complate();
 		ClinicAdmin_dashboard.wait_dashboard_calender();
 		assertTrue(clinicAdmin_login.get_currenturl().equals(vars.getEnvironmentUrl()+"portal/admin-dashboard"));
+		System.out.println("Clinic admin logged in successfully");
 	}
 }

@@ -1,7 +1,7 @@
-@clinicadmin:loginfunction
+@loginfunction @Clinicadmin @smokeTest
 Feature: Feature to done login process
 
-  @clinicadmin:login_valid
+  @login_valid @Clinicadmin @smokeTest
   Scenario: Login with valid credentials
     Given I open the app
     And Move to admin login page
@@ -10,9 +10,8 @@ Feature: Feature to done login process
       | watts@clinicadmin.com | Password12# |
     And Click on Login button
     Then Check i am logged in as a clinic admin
-    And click on logout button
 
-  @clinicadmin:login_invalid
+  @login_invalid @Clinicadmin @smokeTest
   Scenario: Login with invalid credentials
     Given I open the app
     And Move to admin login page

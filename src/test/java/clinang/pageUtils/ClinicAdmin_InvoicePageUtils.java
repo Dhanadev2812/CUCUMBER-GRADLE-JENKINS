@@ -117,8 +117,8 @@ public class ClinicAdmin_InvoicePageUtils extends CustomDriver {
 							assertTrue((appointmentId.replaceAll("\\s+", "")).contentEquals(invoice_appointmentID));	
 							assertTrue((doctorName.replaceAll("\\s+", "")).contentEquals(invoice_doctorName));
 							assertTrue((fees.replaceAll("\\s+", "")).contentEquals(table_invoiceFee.replaceAll("\\s+", "")));
-							System.out.println("Successfully validated invoice details");
-							System.out.println("Started downloading invoice");
+							System.out.println("Successfully validated invoice details for ID:"+" "+appointmentId);
+							System.out.println("Started downloading invoice"+invoice_appointmentID);
 							downloadInvoice().click();
 							wait_pageLoad_complate();
 							click_invoiceModule();
@@ -145,8 +145,8 @@ public class ClinicAdmin_InvoicePageUtils extends CustomDriver {
 							assertTrue((appointmentId.replaceAll("\\s+", "")).contentEquals(invoice_appointmentID));	
 							assertTrue((doctorName.replaceAll("\\s+", "")).contentEquals(invoice_doctorName));
 							assertTrue((fees.replaceAll("\\s+", "")).contentEquals(table_invoiceFee.replaceAll("\\s+", "")));
-							System.out.println("Successfully validated invoice details");
-							System.out.println("Started downloading invoice");
+							System.out.println("Successfully validated invoice details for ID:"+" "+appointmentId);
+							System.out.println("Started downloading invoice"+" "+invoice_appointmentID);
 							downloadInvoice().click();
 							wait_pageLoad_complate();
 							click_invoiceModule();

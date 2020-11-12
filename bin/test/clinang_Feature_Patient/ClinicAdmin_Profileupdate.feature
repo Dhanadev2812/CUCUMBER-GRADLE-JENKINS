@@ -1,4 +1,4 @@
-@ClinicUpdate
+@ClinicUpdate @Clinicadmin @smokeTest
 Feature: Feature to done clinic update functionaity
 
   Background: User is Logged In
@@ -11,7 +11,7 @@ Feature: Feature to done clinic update functionaity
     Then Check i am logged in as a clinic admin
     And Go to clinic admin module
 
-  @Clincupdate
+  @Clincupdate-valid @Clinicadmin @smokeTest
   Scenario: Update clinic details 
     And Click on edit option
     And Upload the clinic logo from "src/test/resources/ClinicAdmin_TestData/Watts Health Center/Clinic-Logo.png"
@@ -22,14 +22,14 @@ Feature: Feature to done clinic update functionaity
     Then Validation clinic update message
     Then Validate the updated clinic name on grid
     
-   @Clinicupdate-mandatory
+   @Clinicupdate-mandatory @Clinicadmin @smokeTest
    Scenario: Check the mandatory fields
     And Click on edit option
     When Remove the inputs from mandatory fields
     And Submit the clinic updates
     But It display the alerts for mandatory fields
     
-    @Clinicupdate-Invalidemail
+    @Clinicupdate-Invalidemail @Clinicadmin @smokeTest
     Scenario: Check the mandatory fields
     And Click on edit option
     When enter invalid email "@test.com"

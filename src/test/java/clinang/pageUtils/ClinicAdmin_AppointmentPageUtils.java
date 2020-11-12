@@ -48,6 +48,8 @@ public class ClinicAdmin_AppointmentPageUtils extends CustomDriver{
 		patientFile = patient_details_file;	
 	}
 	public void Appointment_ReadExcel(int excelRow,int lastCol) throws IOException, ParseException, InterruptedException {
+		System.out.println("                                                     ");
+		System.out.println("Start validating appointment ID :"+" "+ integerConverter_excel(patientFile,"Appointments",excelRow, 3));
 		 for(int excelCol=1;excelCol<=lastCol;excelCol++) {
 			 int columnCount = excelCol;
 			 switch (columnCount) {
@@ -58,6 +60,7 @@ public class ClinicAdmin_AppointmentPageUtils extends CustomDriver{
 				  Date new_format = old_format.parse(appointmentDate);
 				  old_format.applyPattern("dd/MM/yyyy");
 				  C_Admin_patientPageUtils.requireddate = old_format.format(new_format);
+				  System.out.println("Patient ID :"+" "+ integerConverter_excel(patientFile,"Appointments",excelRow, 0));
 				  break;
 			  case 2:
 				  String Zone = integerConverter_excel(patientFile,"Appointments",excelRow, excelCol);
@@ -69,6 +72,7 @@ public class ClinicAdmin_AppointmentPageUtils extends CustomDriver{
 			  case 3:
 				  wait_pageLoad_complate();
 				  appointmentStepdefs.find_appointmentID(integerConverter_excel(patientFile,"Appointments",excelRow, excelCol));
+				  System.out.println("Appointment ID:"+" "+integerConverter_excel(patientFile,"Appointments",excelRow, excelCol));
 				  break;
 			  case 4: 
 				  wait_pageLoad_complate();
@@ -85,29 +89,37 @@ public class ClinicAdmin_AppointmentPageUtils extends CustomDriver{
 						appointmentDateTime =  appointmentTime[0]+" " +appointmentTime[1]+" "+appointmentTime[2]+" "+" "+appointmentTime[3]+" "+appointmentTime[4];
 					}
 				  assertTrue(Arrays.asList(appointmentPageUtils.appointmentViewpage_getDetails[5]).contains(appointmentDateTime));
+				  System.out.println("Appointment Date:"+" "+Arrays.asList(appointmentPageUtils.appointmentViewpage_getDetails[5]));
 				  break;
 			  case 5: 
 				  assertTrue(Arrays.asList(appointmentPageUtils.appointmentViewpage_getDetails[3]).contains(integerConverter_excel(patientFile,"Appointments",excelRow, excelCol)));
+				  System.out.println("Appointment type:"+" "+Arrays.asList(appointmentPageUtils.appointmentViewpage_getDetails[3]));
 				  break;
 			  case 6:
 				  assertTrue(Arrays.asList(appointmentPageUtils.appointmentViewpage_getDetails[1]).contains(integerConverter_excel(patientFile,"Appointments",excelRow, excelCol)));
+				  System.out.println("Appointment speciality:"+" "+Arrays.asList(appointmentPageUtils.appointmentViewpage_getDetails[1]));
 				  break;
 			  case 7:
 				  assertTrue(Arrays.asList(appointmentPageUtils.appointmentViewpage_getDetails[4]).contains(integerConverter_excel(patientFile,"Appointments",excelRow, excelCol)));
+				  System.out.println("Doctor Name:"+" "+Arrays.asList(appointmentPageUtils.appointmentViewpage_getDetails[4]));
 				  break;
 			  case 9:
 				  assertTrue(Arrays.asList(appointmentPageUtils.appointmentViewpage_getDetails[2]).contains(integerConverter_excel(patientFile,"Appointments",excelRow, excelCol)));
+				  System.out.println("Clinic Name:"+" "+Arrays.asList(appointmentPageUtils.appointmentViewpage_getDetails[2]));
 				  break;
 			  case 10:
 				  assertTrue(Arrays.asList(appointmentPageUtils.appointmentViewpage_getDetails[6]).contains(integerConverter_excel(patientFile,"Appointments",excelRow, excelCol)));
+				  System.out.println("Chief complaint:"+" "+Arrays.asList(appointmentPageUtils.appointmentViewpage_getDetails[6]));
 				  break;
 			  case 11:
 				  if(integerConverter_excel(patientFile,"Appointments",excelRow, excelCol).equalsIgnoreCase("")) {
-					System.out.println("No Followup Comments Updated");  
+					  String appointmentID = integerConverter_excel(patientFile,"Appointments",excelRow, 3);
+					  System.out.println("No Followup Comments Updated for"+" appointment ID:"+" "+ appointmentID );  
 				  }
 				  else {
 					  appointmentPageUtils.get_followUpcomment_viewPage();
 					  assertTrue(Arrays.asList(appointmentPageUtils.followUpcomment_viewPage_get[0]).contains(integerConverter_excel(patientFile,"Appointments",excelRow, excelCol)));
+					  System.out.println("Followup :"+" "+Arrays.asList(appointmentPageUtils.followUpcomment_viewPage_get[0]));
 				  }
 				  break;
 			 }
@@ -126,6 +138,9 @@ public class ClinicAdmin_AppointmentPageUtils extends CustomDriver{
 	}
 	
 	public void Medicalreport_ReadExcel(int excelRow,int lastCol ) throws IOException, ParseException, InterruptedException {
+		System.out.println("                                      ");
+		System.out.println("Start validating medical report details for appointment ID"+" "+integerConverter_excel(patientFile,"MedicalRecord",excelRow, 3));
+		System.out.println("Patient ID :"+" "+integerConverter_excel(patientFile,"MedicalRecord",excelRow, 0));
 		for(int excelCol=1;excelCol<=lastCol;excelCol++) {
 			 int columnCount = excelCol;
 			 wait_pageLoad_complate();
@@ -137,6 +152,7 @@ public class ClinicAdmin_AppointmentPageUtils extends CustomDriver{
 				  Date new_format = old_format.parse(appointmentDate);
 				  old_format.applyPattern("dd/MM/yyyy");
 				  requireddate = old_format.format(new_format);
+				  System.out.println("Appointment Date is :"+" "+integerConverter_excel(patientFile,"MedicalRecord",excelRow, excelCol));
 				  break;
 			  case 2:
 				  String Zone = integerConverter_excel(patientFile,"MedicalRecord",excelRow, excelCol);
@@ -145,9 +161,11 @@ public class ClinicAdmin_AppointmentPageUtils extends CustomDriver{
 			  case 3: 
 				  wait_pageLoad_complate();
 				  appointmentStepdefs.find_appointmentID(integerConverter_excel(patientFile,"MedicalRecord",excelRow, excelCol));
+				  System.out.println("Appointment ID :"+" "+integerConverter_excel(patientFile,"MedicalRecord",excelRow, excelCol));
 				  break;	
 			  case 4:
 				  medicalReportname = integerConverter_excel(patientFile,"MedicalRecord",excelRow, excelCol).split(",");
+				  System.out.println("Started downloading medical report"+" "+Arrays.asList(medicalReportname));
 				  break;
 			  case 5:
 				  String[] medicalReportdescription = integerConverter_excel(patientFile,"MedicalRecord",excelRow, excelCol).split(",");

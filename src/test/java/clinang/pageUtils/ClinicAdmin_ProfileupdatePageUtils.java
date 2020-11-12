@@ -116,6 +116,9 @@ public class ClinicAdmin_ProfileupdatePageUtils extends CustomDriver {
 	public WebElement clinicPhone_alert() {
 		return findElement(C_Admin_profileUpdate_Locators.clinicphone_alert);
 	}
+	public WebElement close_clinicUpdate() {
+		return findElement(C_Admin_profileUpdate_Locators.close_clinicUpdate);
+	}
 	public String passClinicdetails(DataTable inputs)   {
 		List<Map<String, String>> clinicUpdate_input = inputs.asMaps(String.class, String.class);
 		  for (Map<String, String> data : clinicUpdate_input) {

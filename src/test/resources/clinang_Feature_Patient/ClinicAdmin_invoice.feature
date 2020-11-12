@@ -1,4 +1,4 @@
-@ClinicAdmin:Invoice
+@Invoice @Clinicadmin
 Feature: Feature to validate invoice details
 
   Background: User is Logged In
@@ -10,7 +10,7 @@ Feature: Feature to validate invoice details
     And Click on Login button
     Then Check i am logged in as a clinic admin
     
-    @Validateinvoice
+    @Validateinvoice @Clinicadmin
     Scenario: Validate invoice details
     And Go to invoice module
     When Get the invoice details from "src\test\resources\ClinicAdmin_TestData\Watts Health Center\Patient-details.xlsx"

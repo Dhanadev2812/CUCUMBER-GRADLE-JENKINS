@@ -41,14 +41,14 @@ public class ClinicAdmin_ProfileupdateStepDefs {
 	@Then("^Validation clinic update message$")
 	public void validate_update_clinic() {
 		assertTrue(C_Admin_Profileupdate_PageUtils.messageBox().getText().equalsIgnoreCase("Clinic details updated successfully"));
+		System.out.println("Clinic details updated successfully");
 		C_Admin_Profileupdate_PageUtils.click_closeMesagebox();
 	}
 	
 	@Then("^Validate the updated clinic name on grid$")
 	public void validate_clinicName() {
-		System.out.println(C_Admin_Profileupdate_PageUtils.grid_clinicName().getText());
-		System.out.println(Arrays.asList(C_Admin_Profileupdate_PageUtils.given_clinicName[0]));
 		assertTrue((Arrays.asList(C_Admin_Profileupdate_PageUtils.given_clinicName[0].replace(" ", ""))).contains(C_Admin_Profileupdate_PageUtils.grid_clinicName().getText().replace(" ", "")));
+		System.out.println("Vaalidated updated clinic name on grid");
 	}
 	
 	@When("^Remove the inputs from mandatory fields$")
@@ -56,16 +56,25 @@ public class ClinicAdmin_ProfileupdateStepDefs {
 		C_Admin_Profileupdate_PageUtils.clear_mandatoryInputs();
 	}
 	
-	@But("^t display the alerts for mandatory fields$")
+	@But("^It display the alerts for mandatory fields$")
 	public void clinic_alert() {
 		assertTrue(C_Admin_Profileupdate_PageUtils.clinicName_alert().getText().equalsIgnoreCase("Please Enter Clinic Name"));
+		System.out.println("Please Enter Clinic Name");
 		assertTrue(C_Admin_Profileupdate_PageUtils.clinicAddress_alert().getText().equalsIgnoreCase("Please Enter Address"));
+		System.out.println("Please Enter Address");
 		assertTrue(C_Admin_Profileupdate_PageUtils.clinicStreet_alert().getText().equalsIgnoreCase("Please enter Street"));
+		System.out.println("Please enter Street");
 		assertTrue(C_Admin_Profileupdate_PageUtils.clinicCity_alert().getText().equalsIgnoreCase("Please Enter City"));
+		System.out.println("Please Enter City");
 		assertTrue(C_Admin_Profileupdate_PageUtils.clinicState_alert().getText().equalsIgnoreCase("Please Enter State"));
+		System.out.println("Please Enter State");
 		assertTrue(C_Admin_Profileupdate_PageUtils.clinicPincode_alert().getText().equalsIgnoreCase("Please Enter Pincode"));
+		System.out.println("Please Enter Pincode");
 		assertTrue(C_Admin_Profileupdate_PageUtils.clinicEmail_alert().getText().equalsIgnoreCase("Clinic Email is Required"));
+		System.out.println("Clinic Email is Required");
 		assertTrue(C_Admin_Profileupdate_PageUtils.clinicPhone_alert().getText().equalsIgnoreCase("Clinic Phone Number is Required"));
+		System.out.println("Clinic Phone Number is Required");
+		C_Admin_Profileupdate_PageUtils.close_clinicUpdate().click();
 	}
 	
 	@When("^enter invalid email \"([^\"]*)\"$")
@@ -77,5 +86,7 @@ public class ClinicAdmin_ProfileupdateStepDefs {
 	@But("^It display invalid email alert$")
 	public void invalid_email_alert() {
 		assertTrue(C_Admin_Profileupdate_PageUtils.clinicEmail_alert().getText().equalsIgnoreCase("Enter a valid Clinic Email"));
+		System.out.println("Enter a valid Clinic Email");
+		C_Admin_Profileupdate_PageUtils.close_clinicUpdate().click();
 	}
 }
