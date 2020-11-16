@@ -5,18 +5,19 @@ Feature: Feature to validate patient details and check the functionaity
     Given I open the app
     And Move to admin login page
     When Enter clinic admin credentials
-      | UserName       | Password    |
-      | zara@admin.com | Password12# |
+      | UserName              | Password    |
+      | watts@clinicadmin.com | Password12# |
     And Click on Login button
     Then Check i am logged in as a clinic admin
     And Click on patient module
+    Then Verify if the table is empty
 
   @CreatePatient @Clinicadmin @smokeTest
   Scenario: Create new patients
     And Click on create patient button
     When Enter the new patient details
-      | firstName | lastName | email                 | password    |
-      | Kiran     | Rao      | kiran.rt9@patient.com | Password12# |
+      | firstName | lastName | email                  | password    |
+      | Kiran     | Rao      | kiran.rt13@patient.com | Password12# |
     Then Check the register button is in enable state
     And Click on register option
     Then Check the validation message for new patient creation

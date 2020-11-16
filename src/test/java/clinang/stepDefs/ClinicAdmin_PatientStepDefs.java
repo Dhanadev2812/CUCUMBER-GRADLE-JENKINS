@@ -68,6 +68,7 @@ public class ClinicAdmin_PatientStepDefs {
 		System.out.println("Email is Required");
 		assertTrue(C_Admin_patientpageUtils.password_alert().getText().replace(" ", "").equalsIgnoreCase(("Password is Required").replace(" ", "")));
 		System.out.println("Password is Required");
+		C_Admin_patientpageUtils.close_popUp().click();
 	}
 	@When("^Enter invalid inputs$")
 	public void enter_invalid_inputs(DataTable inputs) {
@@ -84,6 +85,7 @@ public class ClinicAdmin_PatientStepDefs {
 		System.out.println("Enter a valid Email");
 		assertTrue(C_Admin_patientpageUtils.password_alert().getText().replace(" ", "").equalsIgnoreCase(("Password must have atleast 6 characters with a mix of special character, digit, uppercase and lowercase").replace(" ", "")));
 		System.out.println("Password must have atleast 6 characters with a mix of special character, digit, uppercase and lowercase");
+		C_Admin_patientpageUtils.close_popUp().click();
 	}
 	
 	@When("^get the patient details from \"([^\"]*)\"$")
@@ -102,7 +104,6 @@ public class ClinicAdmin_PatientStepDefs {
 	}
 	@Then("^Verify the appointment details on patient module$")
 	public void verify_appointment_patientModule() throws IOException, ParseException, InterruptedException {
-		C_Admin_patientpageUtils.verify_tableIsempty();
 		C_Admin_patientpageUtils.validate_appointmentDetails();
 	}
 	@Then("^Verify the medical report details$")
@@ -137,5 +138,9 @@ public class ClinicAdmin_PatientStepDefs {
 			assertTrue(Arrays.asList(C_Admin_DashboardPageUtils.dashboard_counts[1]).equals(Arrays.asList(C_Admin_patientpageUtils.patient_totalCount)));
 			}
 		}
-	
+	@Then("^Verify if the table is empty$")
+	public void verify_table_empty() {
+		C_Admin_patientpageUtils.wait_pageLoad_complate();
+		C_Admin_patientpageUtils.verify_tableIsempty();
+	}
 }

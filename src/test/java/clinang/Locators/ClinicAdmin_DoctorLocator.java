@@ -40,7 +40,7 @@ public class ClinicAdmin_DoctorLocator {
 	public By viewProfile_table =By.xpath("//table[@class='table ng-star-inserted']");
 	public By aboutMe = By.xpath("//div[@class='col-lg-12 col-md-12 col-sm-12 col-xs-12']//child::p");
 	public By medicalReport_Norecord = By.xpath("//div[@class='norecord']");
-	public By closeMedicalreport =By.xpath("//span[@class='mdi mdi-close']");
+	public By closepopUp =By.xpath("//span[@class='mdi mdi-close']");
 	public By closeMedicaltreatment = By.xpath("//span[@class='mdi mdi-close']");
 	public By edit_doemsticConsultingFee = By.xpath("//input[@formcontrolname='domesticfees']");
 	public By edit_overseasConsultingFee = By.xpath("//input[@formcontrolname='overseasfees']");
@@ -52,7 +52,5 @@ public class ClinicAdmin_DoctorLocator {
 	public By alert_edit_overseasConsultingfee = By.xpath("//form/div[2]/mat-form-field//child::mat-error");
 	public By alert_edit_domesticFollowupfee = By.xpath("//form/div[3]/mat-form-field//child::mat-error");
 	public By alert_edit_overseasFollowupfee = By.xpath("//form/div[4]/mat-form-field//child::mat-error");
-
-	
 	
 }

@@ -9,5 +9,6 @@ public class ClinicAdmin_LoginLocators {
 	public By clinicAdmin_passwordField = By.xpath("//input[@formcontrolname='password']");
 	public By clinicAdmin_loginButton = By.cssSelector("[class='form-subbtn mat-raised-button'][type='submit']");
 	public By pageLoader = By.xpath("//img[class='pl-3 loader']");
+	public By clinicTitle = By.xpath("//h2[contains(text(), 'Clinic Login')]");
 			
 }

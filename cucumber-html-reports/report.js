@@ -1,11 +1,17 @@
-$(document).ready(function() {var formatter = new CucumberHTML.DOMFormatter($('.cucumber-report'));formatter.uri("file:src/test/resources/clinang_Feature_Patient/Patient_mytreatment.feature");
+$(document).ready(function() {var formatter = new CucumberHTML.DOMFormatter($('.cucumber-report'));formatter.uri("file:src/test/resources/clinang_Feature_Patient/ClinicAdmin_Doctor.feature");
 formatter.feature({
-  "name": "Feature to check my treatment functionaity",
+  "name": "Feature to validate and create new doctor",
   "description": "",
   "keyword": "Feature",
   "tags": [
     {
-      "name": "@Mytreatment"
+      "name": "@Clinic_doctor"
+    },
+    {
+      "name": "@Clinicadmin"
+    },
+    {
+      "name": "@smokeTest"
     }
   ]
 });
@@ -28,7 +34,17 @@ formatter.result({
   "status": "passed"
 });
 formatter.step({
-  "name": "Enter the email,password and clinic code",
+  "name": "Move to admin login page",
+  "keyword": "And "
+});
+formatter.match({
+  "location": "clinang.stepDefs.ClinicAdmin_LoginStepDefs.admin_loginPage()"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "Enter clinic admin credentials",
   "rows": [
     {},
     {}
@@ -36,69 +52,105 @@ formatter.step({
   "keyword": "When "
 });
 formatter.match({
-  "location": "clinang.stepDefs.Patient_LoginStepDefs.login(io.cucumber.datatable.DataTable)"
+  "location": "clinang.stepDefs.ClinicAdmin_LoginStepDefs.enter_credentials(io.cucumber.datatable.DataTable)"
 });
 formatter.result({
   "status": "passed"
 });
 formatter.step({
-  "name": "click on login button",
+  "name": "Click on Login button",
   "keyword": "And "
 });
 formatter.match({
-  "location": "clinang.stepDefs.Patient_LoginStepDefs.clickLogin()"
+  "location": "clinang.stepDefs.ClinicAdmin_LoginStepDefs.click_loginButton()"
 });
 formatter.result({
   "status": "passed"
 });
 formatter.step({
-  "name": "Check i am logged in",
+  "name": "Check i am logged in as a clinic admin",
   "keyword": "Then "
 });
 formatter.match({
-  "location": "clinang.stepDefs.Patient_LoginStepDefs.check_i_am_logged_in()"
+  "location": "clinang.stepDefs.ClinicAdmin_LoginStepDefs.check_loggedIn_clinicAdmin()"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "Go to doctor module",
+  "keyword": "And "
+});
+formatter.match({
+  "location": "clinang.stepDefs.ClinicAdmin_DoctorStepDefs.goTo_doctor_module()"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "Verify if the table is empty",
+  "keyword": "Then "
+});
+formatter.match({
+  "location": "clinang.stepDefs.ClinicAdmin_PatientStepDefs.verify_table_empty()"
 });
 formatter.result({
   "status": "passed"
 });
 formatter.scenario({
-  "name": "Download prescription",
+  "name": "Update invalid doctor fee details",
   "description": "",
   "keyword": "Scenario",
   "tags": [
     {
-      "name": "@Mytreatment"
+      "name": "@Clinic_doctor"
     },
     {
-      "name": "@Download-prescription"
+      "name": "@Clinicadmin"
+    },
+    {
+      "name": "@smokeTest"
+    },
+    {
+      "name": "@UpdateFee-invalid"
+    },
+    {
+      "name": "@Clinicadmin"
+    },
+    {
+      "name": "@smokeTest"
     }
   ]
 });
 formatter.step({
-  "name": "Move to my treatment",
-  "keyword": "And "
+  "name": "Get the doctor details from \"src\\test\\resources\\ClinicAdmin_TestData\\Watts Health Center\\Doctor-details.xlsx\"",
+  "keyword": "When "
 });
 formatter.match({
-  "location": "clinang.stepDefs.Patient_MytreatmentStepDefs.moveTo_myTreatment()"
+  "location": "clinang.stepDefs.ClinicAdmin_DoctorStepDefs.get_doctor_details(java.lang.String)"
 });
 formatter.result({
   "status": "passed"
 });
 formatter.step({
-  "name": "Validate and Download the prescription based on appointment id \"2\"",
-  "rows": [
-    {},
-    {},
-    {}
-  ],
+  "name": "Update the payment details with invalid inputs",
   "keyword": "When "
 });
 formatter.match({
-  "location": "clinang.stepDefs.Patient_MytreatmentStepDefs.find_appointment(java.lang.String,io.cucumber.datatable.DataTable)"
+  "location": "clinang.stepDefs.ClinicAdmin_DoctorStepDefs.update_payment_invalid()"
 });
 formatter.result({
-  "error_message": "java.lang.AssertionError\r\n\tat org.junit.Assert.fail(Assert.java:87)\r\n\tat org.junit.Assert.assertTrue(Assert.java:42)\r\n\tat org.junit.Assert.assertTrue(Assert.java:53)\r\n\tat clinang.pageUtils.Patient_MytreatmentPageUtils.downloadPrescription(Patient_MytreatmentPageUtils.java:110)\r\n\tat clinang.stepDefs.Patient_MytreatmentStepDefs.find_appointment(Patient_MytreatmentStepDefs.java:29)\r\n\tat ✽.Validate and Download the prescription based on appointment id \"2\"(file:///D:/Testing%20workspace/ClinaNG/src/test/resources/clinang_Feature_Patient/Patient_mytreatment.feature:20)\r\n",
-  "status": "failed"
+  "status": "passed"
+});
+formatter.step({
+  "name": "Validate the validation message for invalid inputs",
+  "keyword": "Then "
+});
+formatter.match({
+  "location": "clinang.stepDefs.ClinicAdmin_DoctorStepDefs.validate_validationMessage_invalidInputs()"
+});
+formatter.result({
+  "status": "passed"
 });
 formatter.after({
   "status": "passed"

@@ -42,11 +42,15 @@ public class ClinicAdmin_LoginPageUtils extends CustomDriver {
 	public void passLoginDetails(DataTable inputs) {
 		List<Map<String, String>> clinicAdmin_credentials = inputs.asMaps(String.class, String.class);
 		  for (Map<String, String> data : clinicAdmin_credentials) {
-			  wait_pageLoad_complate();
 			  usernameField().click();
 			  usernameField().sendKeys(data.get("UserName"));  
 			  passwordField().click();
 			  passwordField().sendKeys(data.get("Password")); 
 		  }	 
 	}
+	public WebElement clinicTitle() {
+		return waitForElementDisplayed(Admin_loginLocator.clinicTitle);
+		
+	}
+
 }

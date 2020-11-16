@@ -41,7 +41,7 @@ $(document).ready(function() {
 
 
 
-<title>Cucumber Reports  - Tag: @Clinicadmin</title>
+<title>Cucumber Reports  - Tag: @Validate_Patientdetails</title>
 
 </head>
 <body>
@@ -74,7 +74,7 @@ $(document).ready(function() {
   <tbody>
     <tr class="info">
       <td>No Name (add projectName to cucumber-reporting.properties)</td>
-      <td>16 Nov 2020, 14:40</td>
+      <td>16 Nov 2020, 09:38</td>
     </tr>
   </tbody>
 </table>
@@ -126,20 +126,20 @@ $(document).ready(function() {
 
         <tbody>
         <tr>
-          <td class="tagname">@Clinicadmin</td>
-          <td      class="passed"    >3</td>
+          <td class="tagname">@Validate_Patientdetails</td>
+          <td      class="passed"    >1</td>
+          <td      class="failed"    >1</td>
+          <td     class="skipped"   >5</td>
           <td >0</td>
           <td >0</td>
-          <td >0</td>
-          <td >0</td>
-          <td class="total">3</td>
+          <td class="total">7</td>
 
-          <td  class="passed"    >1</td>
           <td >0</td>
+          <td  class="failed"    >1</td>
           <td class="total">1</td>
 
-          <td class="duration" data-value="25018000000">25.018</td>
-          <td class="passed">Passed</td>
+          <td class="duration" data-value="2014000000">2.014</td>
+          <td class="failed">Failed</td>
         </tr>
         </tbody>
 
@@ -171,29 +171,29 @@ $(document).ready(function() {
 <div class="element">
     <div class="indention">
       <b>Feature:</b>
-      <a href="report-feature_2029790914.html">Feature to validate and create new doctor</a>
+      <a href="report-feature_1859074800.html">Feature to validate patient details and check the functionaity</a>
     </div>
 
 
 <div class="tags indention">
     <b>Tags:</b>
-       <a href="report-tag_4203756533.html">@Clinic_doctor</a>
+       <a href="report-tag_3142097677.html">@Clinic_patient</a>
        <a href="report-tag_1190575878.html">@Clinicadmin</a>
        <a href="report-tag_337345120.html">@smokeTest</a>
-       <a href="report-tag_902531526.html">@UpdateFee-invalid</a>
+       <a href="report-tag_1978345893.html">@Validate_Patientdetails</a>
        <a href="report-tag_1190575878.html">@Clinicadmin</a>
        <a href="report-tag_337345120.html">@smokeTest</a>
 </div>
 
 
-  <span class="lead-duration duration">25.018</span>
+  <span class="lead-duration duration">2.014</span>
 
 
-  <span data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#element-1">
+  <span data-toggle="collapse" class=" collapsable-control" data-target="#element-1">
 
-<div class="brief passed">
+<div class="brief failed">
   <span class="keyword indention">Scenario</span>
-  <span class="name">Update invalid doctor fee details</span>
+  <span class="name">Verify patient details</span>
 
 
      <i class="chevron fa fa-fw"></i>
@@ -202,7 +202,7 @@ $(document).ready(function() {
   </span>
   <div class="description indention"></div>
 
-  <div id="element-1" class="collapse collapsable-details ">
+  <div id="element-1" class="collapse collapsable-details  in ">
 
 
   <div class="inner-level hooks-element-before">
@@ -224,7 +224,7 @@ $(document).ready(function() {
             <span class="keyword indention">Before</span>
               <span class="location name">clinang.webDriverUtils.Hooks_Utils.beforeScenarioStart()</span>
 
-  <span class="lead-duration duration">0.011</span>
+  <span class="lead-duration duration">0.010</span>
 
           </div>
 
@@ -241,9 +241,9 @@ $(document).ready(function() {
 
 
 <div class="steps inner-level">
-  <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#steps-3">
+  <div data-toggle="collapse" class=" collapsable-control" data-target="#steps-3">
 
-<div class="brief passed">
+<div class="brief failed">
   <span class="keyword indention">Steps</span>
   <span class="name"></span>
 
@@ -253,13 +253,13 @@ $(document).ready(function() {
 
   </div>
 
-  <div id="steps-3" class="inner-level collapse collapsable-details ">
+  <div id="steps-3" class="inner-level collapse collapsable-details  in ">
       <div class="step">
 
 
 <div class="brief step-name-When passed">
   <span class="keyword indention">When</span>
-  <span class="name">Get the doctor details from &quot;<span class="argument">src\test\resources\ClinicAdmin_TestData\Watts Health Center\Doctor-details.xlsx</span>&quot;</span>
+  <span class="name">get the patient details from &quot;<span class="argument">src\test\resources\ClinicAdmin_TestData\Watts Health Center\Patient-details.xlsx</span>&quot;</span>
 
   <span class="lead-duration duration">0.001</span>
 
@@ -284,11 +284,56 @@ $(document).ready(function() {
       <div class="step">
 
 
-<div class="brief step-name-When passed">
-  <span class="keyword indention">When</span>
-  <span class="name">Update the payment details with invalid inputs</span>
+<div class="brief step-name-Then failed">
+  <span class="keyword indention">Then</span>
+  <span class="name">Verify patient personal details</span>
 
-  <span class="lead-duration duration">24.563</span>
+  <span class="lead-duration duration">2.013</span>
+
+</div>
+
+
+
+
+
+
+  <div class="inner-level">
+    <div class="message indention">
+      <div data-toggle="collapse" class=" collapsable-control" data-target="#msg-4">
+          <a>java.lang.AssertionError</a>
+      </div>
+      <div id="msg-4" class="collapse collapsable-details  in ">
+        <pre>java.lang.AssertionError
+	at org.junit.Assert.fail(Assert.java:87)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at org.junit.Assert.assertTrue(Assert.java:53)
+	at clinang.pageUtils.ClinicAdmin_PatientPageUtils.verify_tableIsempty(ClinicAdmin_PatientPageUtils.java:910)
+	at clinang.stepDefs.ClinicAdmin_PatientStepDefs.validate_patient_personalDetails(ClinicAdmin_PatientStepDefs.java:97)
+	at &#10045;.Verify patient personal details(file:///D:/Testing%20workspace/ClinaNG/src/test/resources/clinang_Feature_Patient/ClinicAdmin_Patient.feature:43)
+</pre>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+      <div class="step">
+
+
+<div class="brief step-name-Then skipped">
+  <span class="keyword indention">Then</span>
+  <span class="name">Verify medical history details</span>
+
+  <span class="lead-duration duration">0.000</span>
 
 </div>
 
@@ -311,11 +356,92 @@ $(document).ready(function() {
       <div class="step">
 
 
-<div class="brief step-name-Then passed">
+<div class="brief step-name-Then skipped">
   <span class="keyword indention">Then</span>
-  <span class="name">Validate the validation message for invalid inputs</span>
+  <span class="name">Verify the appointment details on patient module</span>
 
-  <span class="lead-duration duration">0.454</span>
+  <span class="lead-duration duration">0.000</span>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+      <div class="step">
+
+
+<div class="brief step-name-Then skipped">
+  <span class="keyword indention">Then</span>
+  <span class="name">Verify the medical report details</span>
+
+  <span class="lead-duration duration">0.000</span>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+      <div class="step">
+
+
+<div class="brief step-name-Then skipped">
+  <span class="keyword indention">Then</span>
+  <span class="name">Verify the medical treatment details</span>
+
+  <span class="lead-duration duration">0.000</span>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+      <div class="step">
+
+
+<div class="brief step-name-Then skipped">
+  <span class="keyword indention">Then</span>
+  <span class="name">Check the total patient count with dashboard</span>
+
+  <span class="lead-duration duration">0.000</span>
 
 </div>
 
@@ -342,7 +468,7 @@ $(document).ready(function() {
 
 
   <div class="inner-level hooks-element-after">
-    <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#after-4">
+    <div data-toggle="collapse" class=" collapsed  collapsable-control" data-target="#after-5">
 
 <div class="brief passed">
   <span class="keyword indention">Hooks</span>
@@ -354,13 +480,13 @@ $(document).ready(function() {
 
     </div>
 
-    <div id="after-4" class="inner-level collapse collapsable-details ">
+    <div id="after-5" class="inner-level collapse collapsable-details ">
         <div class="hook">
           <div class="brief passed">
             <span class="keyword indention">After</span>
               <span class="location name">clinang.webDriverUtils.Hooks_Utils.afterscenario()</span>
 
-  <span class="lead-duration duration">0.344</span>
+  <span class="lead-duration duration">0.709</span>
 
           </div>
 

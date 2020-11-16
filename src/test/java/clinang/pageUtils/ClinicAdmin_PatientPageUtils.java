@@ -138,8 +138,8 @@ public class ClinicAdmin_PatientPageUtils extends CustomDriver{
 	private WebElement medicalTreatmentedit(String appointmentID) {
 		return findElement(By.xpath("//td[contains(text(),'"+ appointmentID +"')]//following-sibling::td[contains(@role,'gridcell')]//*[@matTooltip='Medical Treatment']"));
 	}
-	private WebElement close_medicalReport() {
-		return findElement(C_Admin_PatientLocators.closeMedicalreport);
+	public WebElement close_popUp() {
+		return findElement(C_Admin_PatientLocators.closePopUp);
 	}
 	public WebElement medicalReport_noRecord() {
 		return findElement(C_Admin_PatientLocators.medicalReport_Norecord);
@@ -551,12 +551,12 @@ public class ClinicAdmin_PatientPageUtils extends CustomDriver{
 				if(reportName.equalsIgnoreCase(("No Documents uploaded").replace("//s+",""))) {	
 					assertTrue(reportName.replaceAll("\\s+","").equalsIgnoreCase(medicalReport_noRecord().getText().replace(" ","")));
 					System.out.println("No Documents uploaded");
-					close_medicalReport().click();
+					close_popUp().click();
 				}
 				else if(reportName.replaceAll("\\s+", "").equalsIgnoreCase(appointmentPageUtils.get_medicalReport_reportName(j).getText().replaceAll("\\s+", ""))) {
 					if(reportDescription.replaceAll("\\s+", "").equalsIgnoreCase(appointmentPageUtils.get_medicalReport_reportDescription(j).getText().replaceAll("\\s+", ""))) {
 						appointmentPageUtils.downloadAllreport();
-						close_medicalReport().click();
+						close_popUp().click();
 						assert true;
 						break loop02;
 					}
@@ -907,8 +907,14 @@ public class ClinicAdmin_PatientPageUtils extends CustomDriver{
 			}
 		}
 	public void verify_tableIsempty()  {
-		assertTrue(patient_tbody().getText().isEmpty()==false);
-		System.out.println("Patient table is not empty");
+		if(patient_tbody().getText().isEmpty()==false) {
+			assert true;
+		}
+		else {
+			System.out.println("Table is empty,No data available");
+			assert false;
+		}
+		
 	}
 	}
 

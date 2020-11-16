@@ -27,7 +27,7 @@ public class ClinicAdmin_PatientLocators {
 	public By medicalHistory_table =By.xpath("//table[@class='table ng-star-inserted']");
 	public By backTopatient = By.xpath("//a[@href='/portal/admin-patient']");
 	public By bactTopatientDetails = By.xpath("//a[@href='/portal/admin-patient/1']");
-	public By closeMedicalreport =By.xpath("//span[@class='mdi mdi-close']");
+	public By closePopUp =By.xpath("//span[@class='mdi mdi-close']");
 	public By medicalReport_Norecord = By.xpath("//div[@class='norecord']");
 	public By closeMedicaltreatment = By.xpath("//span[@class='mdi mdi-close']");
 	public By totalPatientcount = By.xpath("//div[@class='mat-paginator-range-label']");

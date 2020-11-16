@@ -9,6 +9,7 @@ Feature: Feature to validate invoice details
       | watts@clinicadmin.com | Password12# |
     And Click on Login button
     Then Check i am logged in as a clinic admin
+    Then Verify if the table is empty
     
     @Validateinvoice @Clinicadmin
     Scenario: Validate invoice details

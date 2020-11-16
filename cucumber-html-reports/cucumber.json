@@ -11,7 +11,7 @@
         "steps": [
           {
             "result": {
-              "duration": 29676000000,
+              "duration": 16539000000,
               "status": "passed"
             },
             "line": 5,
@@ -23,27 +23,37 @@
           },
           {
             "result": {
-              "duration": 1179000000,
+              "duration": 5472000000,
               "status": "passed"
             },
             "line": 6,
-            "name": "Enter the email,password and clinic code",
+            "name": "Move to admin login page",
             "match": {
-              "location": "clinang.stepDefs.Patient_LoginStepDefs.login(io.cucumber.datatable.DataTable)"
+              "location": "clinang.stepDefs.ClinicAdmin_LoginStepDefs.admin_loginPage()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 568000000,
+              "status": "passed"
+            },
+            "line": 7,
+            "name": "Enter clinic admin credentials",
+            "match": {
+              "location": "clinang.stepDefs.ClinicAdmin_LoginStepDefs.enter_credentials(io.cucumber.datatable.DataTable)"
             },
             "rows": [
               {
                 "cells": [
-                  "email",
-                  "password",
-                  "clinic_code"
+                  "UserName",
+                  "Password"
                 ]
               },
               {
                 "cells": [
-                  "wilson@patient.com",
-                  "Password12#",
-                  "LAT002"
+                  "watts@clinicadmin.com",
+                  "Password12#"
                 ]
               }
             ],
@@ -51,60 +61,60 @@
           },
           {
             "result": {
-              "duration": 394000000,
+              "duration": 10887000000,
               "status": "passed"
             },
-            "line": 9,
-            "name": "click on login button",
+            "line": 10,
+            "name": "Click on Login button",
             "match": {
-              "location": "clinang.stepDefs.Patient_LoginStepDefs.clickLogin()"
+              "location": "clinang.stepDefs.ClinicAdmin_LoginStepDefs.click_loginButton()"
             },
             "keyword": "And "
           },
           {
             "result": {
-              "duration": 3678000000,
+              "duration": 5470000000,
               "status": "passed"
             },
-            "line": 10,
-            "name": "Check i am logged in",
+            "line": 11,
+            "name": "Check i am logged in as a clinic admin",
             "match": {
-              "location": "clinang.stepDefs.Patient_LoginStepDefs.check_i_am_logged_in()"
+              "location": "clinang.stepDefs.ClinicAdmin_LoginStepDefs.check_loggedIn_clinicAdmin()"
             },
             "keyword": "Then "
           },
           {
             "result": {
-              "duration": 6373000000,
+              "duration": 372000000,
               "status": "passed"
             },
-            "line": 11,
-            "name": "Get the patient country",
+            "line": 12,
+            "name": "Go to doctor module",
             "match": {
-              "location": "clinang.stepDefs.Patient_BookAppointmentStepDefs.get_country()"
+              "location": "clinang.stepDefs.ClinicAdmin_DoctorStepDefs.goTo_doctor_module()"
             },
             "keyword": "And "
           },
           {
             "result": {
-              "duration": 202000000,
+              "duration": 5592000000,
               "status": "passed"
             },
-            "line": 12,
-            "name": "Go to book appointment screen",
+            "line": 13,
+            "name": "Verify if the table is empty",
             "match": {
-              "location": "clinang.stepDefs.Patient_BookAppointmentStepDefs.Goto_bookAppointment()"
+              "location": "clinang.stepDefs.ClinicAdmin_PatientStepDefs.verify_table_empty()"
             },
-            "keyword": "And "
+            "keyword": "Then "
           }
         ]
       },
       {
-        "start_timestamp": "2020-11-11T09:46:32.747Z",
+        "start_timestamp": "2020-11-16T09:06:23.088Z",
         "before": [
           {
             "result": {
-              "duration": 13000000,
+              "duration": 14000000,
               "status": "passed"
             },
             "match": {
@@ -112,14 +122,14 @@
             }
           }
         ],
-        "line": 40,
-        "name": "Create new appointment",
+        "line": 56,
+        "name": "Update invalid doctor fee details",
         "description": "",
-        "id": "feature-to-check-book-appointment-functionaity;create-new-appointment;;2",
+        "id": "feature-to-validate-and-create-new-doctor;update-invalid-doctor-fee-details",
         "after": [
           {
             "result": {
-              "duration": 945000000,
+              "duration": 219000000,
               "status": "passed"
             },
             "match": {
@@ -136,277 +146,66 @@
           }
         ],
         "type": "scenario",
-        "keyword": "Scenario Outline",
+        "keyword": "Scenario",
         "steps": [
           {
             "result": {
-              "duration": 14902000000,
+              "duration": 2000000,
               "status": "passed"
             },
-            "line": 17,
-            "name": "Enter the appointment details",
+            "line": 57,
+            "name": "Get the doctor details from \"src\\test\\resources\\ClinicAdmin_TestData\\Watts Health Center\\Doctor-details.xlsx\"",
             "match": {
-              "location": "clinang.stepDefs.Patient_BookAppointmentStepDefs.Enter_appointment_details(io.cucumber.datatable.DataTable)"
+              "arguments": [
+                {
+                  "val": "src\\test\\resources\\ClinicAdmin_TestData\\Watts Health Center\\Doctor-details.xlsx",
+                  "offset": 29
+                }
+              ],
+              "location": "clinang.stepDefs.ClinicAdmin_DoctorStepDefs.get_doctor_details(java.lang.String)"
             },
-            "rows": [
-              {
-                "cells": [
-                  "mobile",
-                  "appointment_type",
-                  "speciality",
-                  "doctor",
-                  "chief_complaint"
-                ]
-              },
-              {
-                "cells": [
-                  "9090909091",
-                  "Clinic Visit",
-                  "Physiotherapist",
-                  "Dr. Eritriya Drud",
-                  "General appointment"
-                ]
-              }
-            ],
             "keyword": "When "
           },
           {
             "result": {
-              "duration": 8000000,
+              "duration": 19667000000,
               "status": "passed"
             },
-            "line": 20,
-            "name": "Check wheather the appointment date-\"11/11/2020\" is a past date or not,Based on zoneid \"Asia/Kolkata\"",
+            "line": 58,
+            "name": "Update the payment details with invalid inputs",
             "match": {
-              "arguments": [
-                {
-                  "val": "11/11/2020",
-                  "offset": 37
-                },
-                {
-                  "val": "Asia/Kolkata",
-                  "offset": 88
-                }
-              ],
-              "location": "clinang.stepDefs.Patient_BookAppointmentStepDefs.validation_appointmentDate(java.lang.String,java.lang.String)"
+              "location": "clinang.stepDefs.ClinicAdmin_DoctorStepDefs.update_payment_invalid()"
             },
-            "keyword": "Then "
+            "keyword": "When "
           },
           {
             "result": {
-              "duration": 1374000000,
+              "duration": 353000000,
               "status": "passed"
             },
-            "line": 21,
-            "name": "Select the appointment date \"11/11/2020\"",
+            "line": 59,
+            "name": "Validate the validation message for invalid inputs",
             "match": {
-              "arguments": [
-                {
-                  "val": "11/11/2020",
-                  "offset": 29
-                }
-              ],
-              "location": "clinang.stepDefs.Patient_BookAppointmentStepDefs.select_appointment_Date(java.lang.String)"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 30519000000,
-              "status": "passed"
-            },
-            "line": 22,
-            "name": "Check the slot time is 2hrs\u003ecurrent time,if the appointment booked on today date and check the slot availability",
-            "match": {
-              "location": "clinang.stepDefs.Patient_BookAppointmentStepDefs.compare_slot()"
-            },
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "error_message": "org.openqa.selenium.TimeoutException: Expected condition failed: waiting for presence of any elements located by By.xpath: //*[(normalize-space(text())\u003d\u00272:30 PM\u0027)] (tried for 80 second(s) with 500 milliseconds interval)\nBuild info: version: \u00273.141.59\u0027, revision: \u0027e82be7d358\u0027, time: \u00272018-11-14T08:17:03\u0027\nSystem info: host: \u0027COMP\u0027, ip: \u0027192.168.43.207\u0027, os.name: \u0027Windows 10\u0027, os.arch: \u0027amd64\u0027, os.version: \u002710.0\u0027, java.version: \u00271.8.0_241\u0027\nDriver info: org.openqa.selenium.chrome.ChromeDriver\nCapabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 86.0.4240.183, chrome: {chromedriverVersion: 86.0.4240.22 (398b0743353ff..., userDataDir: C:\\Users\\DELL\\AppData\\Local...}, goog:chromeOptions: {debuggerAddress: localhost:50744}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:virtualAuthenticators: true}\nSession ID: 925a9c4039a254632e8abb5d11cf38fc\r\n\tat org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:95)\r\n\tat org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:272)\r\n\tat clinang.webDriverUtils.CustomDriver.findElement_list(CustomDriver.java:215)\r\n\tat clinang.pageUtils.Patient_BookAppointmentPageUtils.slotList(Patient_BookAppointmentPageUtils.java:165)\r\n\tat clinang.pageUtils.Patient_BookAppointmentPageUtils.clickSlot(Patient_BookAppointmentPageUtils.java:172)\r\n\tat clinang.stepDefs.Patient_BookAppointmentStepDefs.select_slot(Patient_BookAppointmentStepDefs.java:71)\r\n\tat ✽.Select the slot \"2:30 PM\"(file:///D:/Testing%20workspace/ClinaNG/src/test/resources/clinang_Feature_Patient/Patient_bookappointment.feature:23)\r\n",
-              "duration": 80097000000,
-              "status": "failed"
-            },
-            "line": 23,
-            "name": "Select the slot \"2:30 PM\"",
-            "match": {
-              "arguments": [
-                {
-                  "val": "2:30 PM",
-                  "offset": 17
-                }
-              ],
-              "location": "clinang.stepDefs.Patient_BookAppointmentStepDefs.select_slot(java.lang.String)"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 2000000,
-              "status": "skipped"
-            },
-            "line": 24,
-            "name": "Check the paynow option is enabled or not",
-            "match": {
-              "location": "clinang.stepDefs.Patient_BookAppointmentStepDefs.check_payNow_enable()"
-            },
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "duration": 3000000,
-              "status": "skipped"
-            },
-            "line": 25,
-            "name": "Check the fee details based on country",
-            "match": {
-              "location": "clinang.stepDefs.Patient_BookAppointmentStepDefs.check_patient_currentCountry(io.cucumber.datatable.DataTable)"
-            },
-            "rows": [
-              {
-                "cells": [
-                  "Domestic Consulting Fee",
-                  "Overseas Consulting Fee"
-                ]
-              },
-              {
-                "cells": [
-                  "6000",
-                  "8000"
-                ]
-              }
-            ],
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "duration": 2000000,
-              "status": "skipped"
-            },
-            "line": 28,
-            "name": "Click on paynow",
-            "match": {
-              "location": "clinang.stepDefs.Patient_BookAppointmentStepDefs.click_on_payNow()"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 3000000,
-              "status": "skipped"
-            },
-            "line": 29,
-            "name": "Done a payment process via \"netbanking\"",
-            "match": {
-              "arguments": [
-                {
-                  "val": "netbanking",
-                  "offset": 28
-                }
-              ],
-              "location": "clinang.stepDefs.Patient_BookAppointmentStepDefs.payment_process(java.lang.String,io.cucumber.datatable.DataTable)"
-            },
-            "rows": [
-              {
-                "cells": [
-                  "card_number",
-                  "card_expiry-MM/YY",
-                  "card_holder",
-                  "card_cvv",
-                  "netbanking_bankname",
-                  "bank_type"
-                ]
-              },
-              {
-                "cells": [
-                  "4111111111111111",
-                  "1228",
-                  "Sandhiya",
-                  "123",
-                  "SBI",
-                  "Retail"
-                ]
-              }
-            ],
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "duration": 2000000,
-              "status": "skipped"
-            },
-            "line": 32,
-            "name": "validate the appointment details on payment success screen",
-            "match": {
-              "location": "clinang.stepDefs.Patient_BookAppointmentStepDefs.validate_appointment_details()"
-            },
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "duration": 2000000,
-              "status": "skipped"
-            },
-            "line": 33,
-            "name": "validate the appointment details from appointment view page",
-            "match": {
-              "location": "clinang.stepDefs.Patient_BookAppointmentStepDefs.validate_appointmentDetails_viewPage()"
-            },
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "duration": 1000000,
-              "status": "skipped"
-            },
-            "line": 34,
-            "name": "Check payment details from payment module",
-            "match": {
-              "location": "clinang.stepDefs.Patient_BookAppointmentStepDefs.check_payment_details()"
-            },
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "duration": 2000000,
-              "status": "skipped"
-            },
-            "line": 35,
-            "name": "Check the appointment count from dashboard module",
-            "match": {
-              "location": "clinang.stepDefs.Patient_BookAppointmentStepDefs.check_dashboard_appointmentCount()"
-            },
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "duration": 2000000,
-              "status": "skipped"
-            },
-            "line": 36,
-            "name": "Check the appointment details from my treatment module",
-            "match": {
-              "location": "clinang.stepDefs.Patient_BookAppointmentStepDefs.check_myTreatment_appointmentDetails()"
+              "location": "clinang.stepDefs.ClinicAdmin_DoctorStepDefs.validate_validationMessage_invalidInputs()"
             },
             "keyword": "Then "
           }
         ],
         "tags": [
           {
-            "name": "@Bookappointment"
+            "name": "@Clinic_doctor"
           },
           {
-            "name": "@patient"
+            "name": "@Clinicadmin"
           },
           {
             "name": "@smokeTest"
           },
           {
-            "name": "@Create_new_appointment"
+            "name": "@UpdateFee-invalid"
           },
           {
-            "name": "@patient"
+            "name": "@Clinicadmin"
           },
           {
             "name": "@smokeTest"
@@ -414,14 +213,14 @@
         ]
       }
     ],
-    "name": "Feature to check book appointment functionaity",
+    "name": "Feature to validate and create new doctor",
     "description": "",
-    "id": "feature-to-check-book-appointment-functionaity",
+    "id": "feature-to-validate-and-create-new-doctor",
     "keyword": "Feature",
-    "uri": "file:src/test/resources/clinang_Feature_Patient/Patient_bookappointment.feature",
+    "uri": "file:src/test/resources/clinang_Feature_Patient/ClinicAdmin_Doctor.feature",
     "tags": [
       {
-        "name": "@Bookappointment",
+        "name": "@Clinic_doctor",
         "type": "Tag",
         "location": {
           "line": 1,
@@ -429,11 +228,11 @@
         }
       },
       {
-        "name": "@patient",
+        "name": "@Clinicadmin",
         "type": "Tag",
         "location": {
           "line": 1,
-          "column": 18
+          "column": 16
         }
       },
       {
@@ -441,7 +240,7 @@
         "type": "Tag",
         "location": {
           "line": 1,
-          "column": 27
+          "column": 29
         }
       }
     ]

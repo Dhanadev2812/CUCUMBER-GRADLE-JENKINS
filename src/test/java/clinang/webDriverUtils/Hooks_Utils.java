@@ -6,6 +6,7 @@ import io.cucumber.java.Before;
 
 public class Hooks_Utils extends CustomDriver {
 	Patient_DashboardPageUtils Dashboard = new Patient_DashboardPageUtils();
+	RunTimeVariables vars = new RunTimeVariables();
  
  @Before(order=0)
  public void beforeScenarioStart(){
@@ -15,7 +16,7 @@ public class Hooks_Utils extends CustomDriver {
  
  @After(order=1)
  public void afterscenario(){	
-	if((getCurrentUrl().contentEquals("https://latlontech.com/"))||(getCurrentUrl().contentEquals("https://latlontech.com/user-login"))) {
+	if((getCurrentUrl().contentEquals(vars.getEnvironmentUrl()))||(getCurrentUrl().contentEquals(vars.getEnvironmentUrl()+"user-login"))) {
 		System.out.println("Your are in login screen");
 	} 
 	else {

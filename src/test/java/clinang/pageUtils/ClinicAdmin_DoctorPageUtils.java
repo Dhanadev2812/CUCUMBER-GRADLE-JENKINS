@@ -184,8 +184,8 @@ public class ClinicAdmin_DoctorPageUtils extends CustomDriver {
 	public WebElement medicalReport_noRecord() {
 		return findElement(C_Admin_doctorLocator.medicalReport_Norecord);
 	}
-	private WebElement close_medicalReport() {
-		return findElement(C_Admin_doctorLocator.closeMedicalreport);
+	public  WebElement close_popUp() {
+		return findElement(C_Admin_doctorLocator.closepopUp);
 	}
 	private WebElement edit_domesticConsultingFee() {
 		return findElement(C_Admin_doctorLocator.edit_doemsticConsultingFee);
@@ -258,7 +258,6 @@ public class ClinicAdmin_DoctorPageUtils extends CustomDriver {
 	}
 	public void validate_doctor_details_listPage() throws IOException  {
 		int lastRow =rowSize(doctorFile,"Doctordetails");
-		System.out.println(lastRow);
 		if(wait_doctorTable().isDisplayed()==true) {
 			wait_pageLoad_complate();
 			WebElement TargetRows = findElement(C_Admin_doctorLocator.targetRow);
@@ -320,6 +319,7 @@ public class ClinicAdmin_DoctorPageUtils extends CustomDriver {
 			    break;
 			  case 3: 
 				  appointmentStepdefs.find_appointmentID(integerConverter_excel(doctorFile,"Appointments",excelRow, excelCol));
+				  System.out.println("Appointment ID :"+integerConverter_excel(doctorFile,"Appointments",excelRow, excelCol));
 				  break;
 			  case 4: 
 				  appointmentPageUtils.get_appointmentDetails_viewPage();
@@ -335,22 +335,28 @@ public class ClinicAdmin_DoctorPageUtils extends CustomDriver {
 						appointmentDateTime =  appointmentTime[0]+" " +appointmentTime[1]+" "+appointmentTime[2]+" "+" "+appointmentTime[3]+" "+appointmentTime[4];
 					}
 				  assertTrue(Arrays.asList(appointmentPageUtils.appointmentViewpage_getDetails[5]).contains(appointmentDateTime));
+				  System.out.println("Appointment date :"+Arrays.asList(appointmentPageUtils.appointmentViewpage_getDetails[5]));
 				  break;
 			  case 5: 
 				  wait_pageLoad_complate();
 				  assertTrue(Arrays.asList(appointmentPageUtils.appointmentViewpage_getDetails[3]).contains(integerConverter_excel(doctorFile,"Appointments",excelRow, excelCol)));
+				  System.out.println("Appointment type:"+Arrays.asList(appointmentPageUtils.appointmentViewpage_getDetails[3]));
 				  break;
 			  case 6:
 				  assertTrue(Arrays.asList(appointmentPageUtils.appointmentViewpage_getDetails[1]).contains(integerConverter_excel(doctorFile,"Appointments",excelRow, excelCol)));
+				  System.out.println("Speciality:"+Arrays.asList(appointmentPageUtils.appointmentViewpage_getDetails[1]));
 				  break;
 			  case 7:
 				  assertTrue(Arrays.asList(appointmentPageUtils.appointmentViewpage_getDetails[4]).contains(integerConverter_excel(doctorFile,"Appointments",excelRow, excelCol)));
+				  System.out.println("Doctor name:"+Arrays.asList(appointmentPageUtils.appointmentViewpage_getDetails[4]));
 				  break;
 			  case 9:
 				  assertTrue(Arrays.asList(appointmentPageUtils.appointmentViewpage_getDetails[2]).contains(integerConverter_excel(doctorFile,"Appointments",excelRow, excelCol)));
+				  System.out.println("Clinic name"+Arrays.asList(appointmentPageUtils.appointmentViewpage_getDetails[2]));
 				  break;
 			  case 10:
 				  assertTrue(Arrays.asList(appointmentPageUtils.appointmentViewpage_getDetails[6]).contains(integerConverter_excel(doctorFile,"Appointments",excelRow, excelCol)));
+				  System.out.println("Chief complaints"+Arrays.asList(appointmentPageUtils.appointmentViewpage_getDetails[6]));
 				  break;
 			  case 11:
 				  if(integerConverter_excel(doctorFile,"Appointments",excelRow, excelCol).equalsIgnoreCase("")) {
@@ -359,6 +365,7 @@ public class ClinicAdmin_DoctorPageUtils extends CustomDriver {
 				  else {
 					  appointmentPageUtils.get_followUpcomment_viewPage();
 					  assertTrue(Arrays.asList(appointmentPageUtils.followUpcomment_viewPage_get[0]).contains(integerConverter_excel(doctorFile,"Appointments",excelRow, excelCol)));
+					  System.out.println("Followup complaints:"+Arrays.asList(appointmentPageUtils.followUpcomment_viewPage_get[0]));
 				  }
 				  break;
 			 }
@@ -375,7 +382,8 @@ public class ClinicAdmin_DoctorPageUtils extends CustomDriver {
 			WebElement TargetRows = findElement(C_Admin_doctorLocator.targetRow);
 			List<WebElement>TotalRowsList = TargetRows.findElements(By.tagName("tr"));	
 		EXCELOOP:
-		while(excelRow<=lastRow) {		
+		while(excelRow<=lastRow) {	
+			System.out.println("Start validating appointment details for Doctor ID:"+integerConverter_excel(doctorFile,"Appointments",excelRow, 0));
 			String previousRow = integerConverter_excel(doctorFile,"Appointments",excelRow-1, 0);
 			String currentRow =  integerConverter_excel(doctorFile,"Appointments",excelRow, 0);
 			if(!(excelRow==lastRow)) {
@@ -482,6 +490,7 @@ public class ClinicAdmin_DoctorPageUtils extends CustomDriver {
 			
 			EXCELLOOP:
 			while(excelRow<=lastRow) {	
+				System.out.println("Start validating doctor personal details, Doctor ID: "+integerConverter_excel(doctorFile,"Doctor-personaldetails",excelRow, 0));
 				TABLElOOP:
 				for(int tableRow=1;tableRow<=TotalRowsList.size()-1;tableRow++) {
 					wait_pageLoad_complate();
@@ -558,7 +567,8 @@ public class ClinicAdmin_DoctorPageUtils extends CustomDriver {
 			WebElement TargetRows = findElement(C_Admin_doctorLocator.targetRow);
 			List<WebElement>TotalRowsList = TargetRows.findElements(By.tagName("tr"));	
 		EXCELOOP:
-		while(excelRow<=lastRow) {		
+		while(excelRow<=lastRow) {	
+			System.out.println("Start validating medical reports"+integerConverter_excel(doctorFile,"MedicalRecord",excelRow, 0));
 			String previousRow = integerConverter_excel(doctorFile,"MedicalRecord",excelRow-1, 0);
 			String currentRow =  integerConverter_excel(doctorFile,"MedicalRecord",excelRow, 0);
 			if(!(excelRow==lastRow)) {
@@ -701,6 +711,7 @@ public class ClinicAdmin_DoctorPageUtils extends CustomDriver {
 			List<WebElement>TotalRowsList = TargetRows.findElements(By.tagName("tr"));	
 		EXCELOOP:
 		while(excelRow<=lastRow) {		
+			System.out.println("Start validating medical treatment detils for appointment ID"+integerConverter_excel(doctorFile,"MedicalTreatments",excelRow, 0));
 			String previousRow = integerConverter_excel(doctorFile,"MedicalTreatments",excelRow-1, 0);
 			String currentRow =  integerConverter_excel(doctorFile,"MedicalTreatments",excelRow, 0);
 			if(!(excelRow==lastRow)) {
@@ -794,6 +805,7 @@ public class ClinicAdmin_DoctorPageUtils extends CustomDriver {
 			
 			EXCELLOOP:
 			while(excelRow<=lastRow) {	
+				System.out.println("Doctor ID : "+" "+integerConverter_excel(doctorFile,"Doctordetails",excelRow,0));
 				TABLElOOP:
 				for(int tableRow=1;tableRow<=TotalRowsList.size()-1;tableRow++) {
 					wait_pageLoad_complate();
@@ -805,8 +817,7 @@ public class ClinicAdmin_DoctorPageUtils extends CustomDriver {
 							switch(excelColcount) {
 								case 5:
 									edit_domesticConsultingFee().sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
-									edit_domesticConsultingFee().sendKeys(integerConverter_excel(doctorFile,"Doctordetails",excelRow, 5));
-									
+									edit_domesticConsultingFee().sendKeys(integerConverter_excel(doctorFile,"Doctordetails",excelRow, 5));	
 									break;
 								case 6:
 									edit_overseasConsultingFee().sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
@@ -867,15 +878,19 @@ public class ClinicAdmin_DoctorPageUtils extends CustomDriver {
 							switch(excelColcount) {
 								case 5:
 									assertTrue(edit_domesticConsultingFee().getAttribute("value").replaceAll("\\s+", "").contentEquals((integerConverter_excel(doctorFile,"Doctordetails",excelRow, 5).replaceAll("\\s+", ""))));
+									System.out.println("Validated domestic consultation fee");
 									break;
 								case 6:
 									assertTrue(edit_overseasConsultingFee().getAttribute("value").replaceAll("\\s+", "").contentEquals((integerConverter_excel(doctorFile,"Doctordetails",excelRow, 6).replaceAll("\\s+", ""))));
+									System.out.println("Validated overseas consultation fee");
 									break;
 								case 7:
 									assertTrue(edit_domesticFollowupFee().getAttribute("value").replaceAll("\\s+", "").contentEquals((integerConverter_excel(doctorFile,"Doctordetails",excelRow, 7).replaceAll("\\s+", ""))));
+									System.out.println("Validated domestic followup fee");
 									break;
 								case 8:
 									assertTrue(edit_overseasFollowupFee().getAttribute("value").replaceAll("\\s+", "").contentEquals((integerConverter_excel(doctorFile,"Doctordetails",excelRow, 8).replaceAll("\\s+", ""))));
+									System.out.println("Validated overseas followup fee");
 									break;
 							}	
 						}

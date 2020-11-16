@@ -20,6 +20,7 @@ public class ClinicAdmin_LoginStepDefs {
 	public void admin_loginPage() {
 		clinicAdmin_login.Click_clinicLogin();
 		clinicAdmin_login.wait_pageLoad_complate();
+		clinicAdmin_login.clinicTitle();
 	}
 	
 	@When("^Enter clinic admin credentials$")
