@@ -91,27 +91,33 @@ public class Patient_BookAppointmentStepDefs extends CustomDriver {
 	public void payment_process(String paymentMethod,DataTable inputs) throws ParseException, InterruptedException {
 		switch (paymentMethod) {
 	       case "card":
-	    	   B_appointment.paymentMethod_card(inputs);	   
+	    	   B_appointment.paymentMethod_card(inputs);
+	    	   switchTochildWindow();
+	   		   B_appointment.wait_razorPayForm();
+	   		   B_appointment.razorPay_clickSuccess();
+	   		   switchTomainWindow();
 	          break;  
 	       case "upi":  
 	    	   B_appointment.paymentMethod_upi(inputs);
-	          break;
+	           break;
 	       case "netbanking":
 	    	   B_appointment.paymentMethod_netbanking(inputs);
+	    	   switchTochildWindow();
+	   		   B_appointment.wait_razorPayForm();
+	   		   B_appointment.razorPay_clickSuccess();
+	   			switchTomainWindow();
 	    	   break;
 	       case "wallet" :
 	    	   B_appointment.paymentMethod_wallet(inputs);
+	    	   switchTochildWindow();
+	   		   B_appointment.wait_razorPayForm();
+	   		   B_appointment.razorPay_clickSuccess();
+	   		   switchTomainWindow();
 	    	   break;
 	       case "emi":
 	    	   B_appointment.paymentMethod_emi(inputs);
 	    	   break;
-	  }
-		
-		switchTochildWindow();
-		B_appointment.wait_razorPayForm();
-		B_appointment.razorPay_clickSuccess();
-		switchTomainWindow();
-		
+	  }			
 	}
 	
 	@Then("^validate the appointment details on payment success screen$")

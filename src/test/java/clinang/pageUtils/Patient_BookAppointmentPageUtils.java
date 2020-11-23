@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import clinang.Locators.Patient_BookAppointmentLocators;
 import clinang.webDriverUtils.CustomDriver;
 import io.cucumber.datatable.DataTable;
+
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -263,7 +265,30 @@ public class Patient_BookAppointmentPageUtils extends CustomDriver {
 	private WebElement cardRemember() {
 		return findElement(Bookappoinment_Locators.rememberCard);
 	}	
-	
+	private WebElement enterUPI() {
+		return findElement(Bookappoinment_Locators.enterUpi);
+	}
+	private WebElement upi_errorMessage() {
+		return findElement(Bookappoinment_Locators.upi_errorMessage);
+	}
+	private WebElement upiForm() {
+		return findElement(Bookappoinment_Locators.upiForm);
+	}
+	private WebElement wallet_mobikwik() {
+		return findElement(Bookappoinment_Locators.wallet_mobikwik);
+	}
+	private WebElement wallet_freecharger() {
+		return findElement(Bookappoinment_Locators.wallet_freecharger);
+	}
+	private WebElement wallet_airtelMoney() {
+		return findElement(Bookappoinment_Locators.wallet_airtelMoney);
+	}
+	private WebElement wallet_jioMoney() {
+		return findElement(Bookappoinment_Locators.wallet_jioMoney);
+	}
+	private WebElement wallet_payzapp() {
+		return findElement(Bookappoinment_Locators.wallet_payzapp);
+	}
 	private WebElement wait_netBankingform() {
 		return waitForElementDisplayed(Bookappoinment_Locators.wait_netBanking_form);
 	}
@@ -341,7 +366,6 @@ public class Patient_BookAppointmentPageUtils extends CustomDriver {
 	public  WebElement appointmentSuccessform_time() {
 		return waitForElementDisplayed(Bookappoinment_Locators.appointment_successForm_time);
 	}
-	
 	public String get_appointmentSuccessform_time() {
 		String[] appointmentTime=appointmentSuccessform_time().getText().split(":");
 		String appointmentTime_Hours = appointmentTime[0];
@@ -703,7 +727,7 @@ public class Patient_BookAppointmentPageUtils extends CustomDriver {
 				  card().click();
 			  }
 			  try {
-				  if(skipSavedcard().isDisplayed()) {
+				  if(skipSavedcard().isDisplayed()==true) {
 					  skipSavedcard().click();
 				  }
 			  }
@@ -746,8 +770,23 @@ public class Patient_BookAppointmentPageUtils extends CustomDriver {
 				  upi();
 				  upi().click();
 			  }
-			 
-		  }
+			  pageLoader();
+			  enterUPI().sendKeys((data.get("UPI_id")));
+			  payment_pay().click();
+			  
+			  if(upiForm().getText().contains("Please accept the request from Razorpay's VPA on your UPI app")) {
+				  System.out.println("Please accept the request from Razorpay's VPA on your UPI app");
+			  }
+			  else if(upiForm().getText().contains("Please enter a valid VPA of the form username@bank")) {
+				  System.out.println("Please enter a valid VPA of the form username@bank");
+				  assert false;
+			  }
+			  else if(upi_errorMessage().getText().contains("Invalid VPA") || (upi_errorMessage().getText().contains("Please enter a valid Virtual Payment Address"))) {
+					System.out.println("Invalid VPA.\r\n" + 
+					  		"Please enter a valid Virtual Payment Address");
+					assert false;
+				}
+			  }	  
 		 switch_frameOut();
 		return String.valueOf(paymentMethod);
 	}
@@ -813,6 +852,29 @@ public class Patient_BookAppointmentPageUtils extends CustomDriver {
 				  wallet();
 				  wallet().click();
 			  }
+			 String walletType = data.get("wallet_type");
+			 switch (walletType) {
+			 	case "Mobikwik" :
+			 		wallet_mobikwik().click();
+			 		payment_pay().click();
+			 		break;
+			 	case "Freecharger" :
+			 		wallet_freecharger().click();
+			 		payment_pay().click();
+			 		break;
+			 	case "Airtelmoney":
+			 		wallet_airtelMoney().click();
+			 		payment_pay().click();
+			 		break;
+			 	case "Jiomoney":
+			 		wallet_jioMoney().click();
+			 		payment_pay().click();
+			 		break;
+			 	case "Payzapp":
+			 		wallet_payzapp().click();
+			 		payment_pay().click();
+			 		break;
+			 }
 		  }
 		  switch_frameOut();
 		return String.valueOf(paymentMethod);

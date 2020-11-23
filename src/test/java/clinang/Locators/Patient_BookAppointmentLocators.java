@@ -43,6 +43,14 @@ public class Patient_BookAppointmentLocators  {
 	public By card_holderName = By.id("card_name");
 	public By card_cvv = By.id("card_cvv");
 	public By rememberCard = By.id("should-save-card");
+	public By enterUpi = By.id("vpa-upi");
+	public By upi_errorMessage = By.xpath("//div[@id='error-message']//child::div[2]");
+	public By upiForm =By.xpath("//form[@id='form']");
+	public By wallet_mobikwik = By.xpath("//div[@id='wallet-radio-mobikwik']");
+	public By wallet_freecharger =By.xpath("//div[@id='wallet-radio-freecharge']");
+	public By wallet_airtelMoney =By.xpath("//div[@id='wallet-radio-airtelmoney']");
+	public By wallet_jioMoney = By.xpath("//div[@id='wallet-radio-jiomoney']");
+	public By wallet_payzapp =By.xpath("//div[@id='wallet-radio-payzapp']");
 	public By paymentForm_pay = By.id("footer");
 	public By razorPay_form = By.xpath("//form[@method='post']");
 	public By razorPay_success = By.xpath("//button[@class='success']");

@@ -16,7 +16,7 @@ Feature: Feature to check book appointment functionaity
   Scenario Outline: Create new appointment
     When Enter the appointment details
       | mobile     | appointment_type | speciality      | doctor            | chief_complaint     |
-      | 9090909091 | Clinic Visit     | Physiotherapist | Dr. Eritriya Drud | General appointment |
+      | 9999999999 | Clinic Visit     | Physiotherapist | Dr. Eritriya Drud | General appointment |
     Then Check wheather the appointment date-"<AppointmentDate>" is a past date or not,Based on zoneid "<TimeZone>"
     And Select the appointment date "<AppointmentDate>"
     Then Check the slot time is 2hrs>current time,if the appointment booked on today date and check the slot availability
@@ -24,11 +24,11 @@ Feature: Feature to check book appointment functionaity
     Then Check the paynow option is enabled or not
     Then Check the fee details based on country
       | Domestic Consulting Fee | Overseas Consulting Fee |
-      |                    6000 |                    8000 |
+      |                    1000 |                    2000 |
     And Click on paynow
     Then Done a payment process via "<PaymentMethod>"
-      | card_number      | card_expiry-MM/YY | card_holder | card_cvv | netbanking_bankname | bank_type |
-      | 4111111111111111 |              1228 | Sandhiya    |      123 | SBI                 | Retail    |
+      | card_number      | card_expiry-MM/YY | card_holder | card_cvv | netbanking_bankname | bank_type | UPI_id   | wallet_type |
+      | 4111111111111111 |              1228 | Sandhiya    |      123 | SBI                 | Retail    | user@sbi | Payzapp     |
     Then validate the appointment details on payment success screen
     Then validate the appointment details from appointment view page
     Then Check payment details from payment module
@@ -37,4 +37,4 @@ Feature: Feature to check book appointment functionaity
 
     Examples: 
       | AppointmentDate | TimeZone     | Slot    | PaymentMethod |
-      | 11/11/2020      | Asia/Kolkata | 6:30 PM | netbanking    |
+      | 21/11/2020      | Asia/Kolkata | 2:30 PM | wallet        |
