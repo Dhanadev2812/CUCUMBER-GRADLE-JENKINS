@@ -5,7 +5,7 @@ import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 
 @RunWith(Cucumber.class)
-@CucumberOptions(plugin = {"pretty","html:cucumber-html-reports","json: cucumber-html-reports/cucumber.json" },
+@CucumberOptions(plugin = {"pretty","html:cucumber-html-reports","json: JenkinsReport/cucumber.json" },
 features= {"src/test/resources/clinang_Feature_Patient/ClinicAdmin_alogin.feature"},
 glue= {"clinang.webDriverUtils","clinang.stepDefs"},
 tags = {"@Create_new_appointment"},
