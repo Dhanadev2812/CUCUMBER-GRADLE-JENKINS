@@ -1,21 +1,17 @@
 pipeline {
   agent any 
-    stages {
-    stage("build") {
-      steps {
-        echo 'building the application'  
-        }
-    }
 	stage("Unit & Integration Tests") {
         steps {
-          echo 'testing the application..'
-          bat 'gradlew cucumber --no-daemon' //run a gradle task
+          echo 'Started Stage one : Unit & Integration Tests ..'
+          bat 'gradle cucumber'
           }
-
 	}
-        stage("deploy") {
+        stage("Generate Cucumber report") {
           steps {
-            echo 'deploying the application..'
+		 echo 'Generating Cucumber report..'  
+           	 cucumber buildStatus:"UNSTABLE",
+			 fileIncludePattern: "**/cucumber.json",
+			 jsonReportDirectory:'target\cucumber'
             }
            }
          }
