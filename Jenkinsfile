@@ -15,11 +15,11 @@ pipeline {
         	stage("Generate Cucumber report") {
           		steps {
 		 		echo 'Generating Cucumber report..'  
-           	 		finally {
+           	 		
                            cucumber buildStatus: "UNSTABLE", 
                            fileIncludePattern: "**/cucumber.json",
                            jsonReportDirectory: 'target'
-                            }
+                           
             }
            }
 		stage("Deploy") {
