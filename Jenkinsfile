@@ -16,8 +16,8 @@ pipeline {
           		steps {
 		 		echo 'Generating Cucumber report..'  
            	 		cucumber buildStatus:"UNSTABLE",
-			 	fileIncludePattern: "Report/JenkinsRepot/cucumberReports.html",
-			 	jsonReportDirectory:'Report/JenkinsRepot/cucumberReports/cucumber.json' 
+			 	fileIncludePattern: "Report/JenkinsReport/cucumberReports.html",
+			 	jsonReportDirectory:'Report/JenkinsReport/cucumberReports/cucumber.json' 
             }
            }
 		stage("Deploy") {
