@@ -11,7 +11,7 @@ pipeline {
 		 echo 'Generating Cucumber report..'  
            	 cucumber buildStatus:"UNSTABLE",
 			 fileIncludePattern: "**/cucumber.json",
-			 jsonReportDirectory:"target\cucumber"
+			 jsonReportDirectory:'target'
             }
            }
          }
