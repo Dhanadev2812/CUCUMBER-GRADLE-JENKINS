@@ -67,7 +67,7 @@ task cucumber() {
             main = "io.cucumber.core.cli.Main"
             classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
              systemProperty "cucumber.options", System.getProperty("cucumber.options")
-            args = ['--strict', '--monochrome', '--plugin', 'de.monochromata.cucumber.report.PrettyReports:Report/JenkinsRepot','--glue', 'clinang.webDriverUtils', '--glue', 'clinang.stepDefs', 'src/test/resources']
+            args = ['--strict', '--monochrome', '--plugin', 'de.monochromata.cucumber.report.PrettyReports:Report/JenkinsReport','--glue', 'clinang.webDriverUtils', '--glue', 'clinang.stepDefs', 'src/test/resources']
         }
     }
 }
