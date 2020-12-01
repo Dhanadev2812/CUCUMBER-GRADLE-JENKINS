@@ -1,6 +1,11 @@
 pipeline {
   agent any 
 	stages {
+		stage("Build") {
+        		steps {
+          			echo 'Build'
+          		}
+		}
 		stage("Unit & Integration Tests") {
         		steps {
           			echo 'Started Stage one : Unit & Integration Tests ..'
@@ -15,6 +20,11 @@ pipeline {
 			 	jsonReportDirectory:'target'
             }
            }
+		stage("Deploy") {
+        		steps {
+          			echo 'Deploy'
+          		}
+		}
          }
 
 }
