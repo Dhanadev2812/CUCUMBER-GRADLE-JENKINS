@@ -5,6 +5,10 @@ pipeline {
             customWorkspace "D:/work/${BRANCH_NAME}"
         }
     }
+	options {
+        // When we have test-fails e.g. we don't need to run the remaining steps
+        skipStagesAfterUnstable()
+    }
 	stages {
 		stage("Build") {
         		steps {
