@@ -36,10 +36,12 @@ pipeline {
             		}
           		steps {
 		 		echo 'Generating Cucumber report..'          
-				//cucumber fileIncludePattern:"D:/work/${BRANCH_NAME}/Report/JenkinsReport/JSON/cucumber.json",
-                    		//jsonReportDirectory:"D:/work/${BRANCH_NAME}/Report/JenkinsReport/JSON",
+				
+                    		
 				//buildStatus: 'FAILURE'
-				cucumber fileIncludePattern: '**/cucumber.json', buildStatus: 'FAILURE'
+				cucumber fileIncludePattern: '**/cucumber.json', 
+					jsonReportDirectory:'JSON',
+					buildStatus: 'FAILURE'
             }
            }
 		stage("Deploy") {
