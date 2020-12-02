@@ -22,8 +22,13 @@ pipeline {
 		 		echo 'Generating Cucumber report..'  
            	 		
                            cucumber buildStatus: "UNSTABLE", 
-                           fileIncludePattern: "**/cucumber.json",
-                           jsonReportDirectory: 'target/cucumber.json'
+                           publishHTML([allowMissing: false,
+     				alwaysLinkToLastBuild: true,
+     				keepAll: true,
+     				reportDir: "D:/work/${BRANCH_NAME}",
+     				reportFiles: 'index.html',
+     				reportName: 'Docs Loadtest Dashboard'
+     ])
                            
             }
            }
