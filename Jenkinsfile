@@ -19,14 +19,7 @@ pipeline {
 		}
         	stage("Generate Cucumber report") {
           		steps {
-		 		echo 'Generating Cucumber report..'  
-           	 		
-                                publishHTML([allowMissing: false,
-     				alwaysLinkToLastBuild: true,
-     				keepAll: true,
-     				reportDir: "D:/work/${BRANCH_NAME}",
-     				reportFiles: 'index.html',
-     				reportName: 'Docs Loadtest Dashboard'
+		 		echo 'Generating Cucumber report..'                             
      ])
                            
             }
@@ -36,6 +29,11 @@ pipeline {
           			echo 'Deploy'
           		}
 		}
+		 post {
+        always {
+            cucumber fileIncludePattern: '**/cucumber.json', buildStatus: 'FAILURE'
+        }
+    }
          }
 
 }
