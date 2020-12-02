@@ -60,7 +60,7 @@ BUILD-FAILURE: Job '${env.JOB_NAME} [${env.BRANCH_NAME}] [${env.BUILD_NUMBER}]':
  
 Check console output at "<a href="${env.BUILD_URL}">${env.JOB_NAME} [${env.BRANCH_NAME}] [${env.BUILD_NUMBER}]</a>"
 """,
-                        to: "dhanalakshmi@latlontechnologies.com",
+                        to: "dhanadev728@gmail.com",
                         recipientProviders: [[$class: 'DevelopersRecipientProvider']]
                     )
                 }
@@ -78,7 +78,7 @@ BUILD-UNSTABLE: Job '${env.JOB_NAME} [${env.BRANCH_NAME}] [${env.BUILD_NUMBER}]'
  
 Check console output at "<a href="${env.BUILD_URL}">${env.JOB_NAME} [${env.BRANCH_NAME}] [${env.BUILD_NUMBER}]</a>"
 """,
-                        to: "dhanalakshmi@latlontechnologies.com",
+                        to: "dhanadev728@gmail.com",
                         recipientProviders: [[$class: 'DevelopersRecipientProvider']]
                     )
                 }
@@ -96,7 +96,7 @@ BUILD-STABLE: Job '${env.JOB_NAME} [${env.BRANCH_NAME}] [${env.BUILD_NUMBER}]':
  
 Is back to normal.
 """,
-                        to: "dhanalakshmi@latlontechnologies.com",
+                        to: "dhanadev728@gmail.com",
                         recipientProviders: [[$class: 'DevelopersRecipientProvider']]
                     )
                 }
@@ -113,7 +113,7 @@ COMMIT-TO-MASTER: A commit to the master branch was made:
  
 Check console output at "<a href="${env.BUILD_URL}">${env.JOB_NAME} [${env.BRANCH_NAME}] [${env.BUILD_NUMBER}]</a>"
 """,
-                        to: "dhanalakshmi@latlontechnologies.com",
+                        to: "dhanadev728@gmail.com",
                         recipientProviders: [[$class: 'DevelopersRecipientProvider']]
                     )
                 }
