@@ -1,8 +1,16 @@
-import cucumber.junit.Cucumber;
-	import org.junit.runner.RunWith;
+package clinang.testRunner;
+import org.junit.runner.RunWith;
 
-	@RunWith(Cucumber.class)
-	@Cucumber.Options(format = {"pretty", "html:target/cucumber", "json:target/cucumber.json"})
-	public class MyTest {
+import io.cucumber.junit.Cucumber;
+import io.cucumber.junit.CucumberOptions;
 
-	}
+@RunWith(Cucumber.class)
+@Cucumber.Options(format = {"pretty", "html:target/cucumber", "json:target/cucumber.json"}),
+features= {"src/test/resources/clinang_Feature_Patient/ClinicAdmin_01_alogin.feature"},
+glue= {"clinang.webDriverUtils","clinang.stepDefs"},
+tags = {"@login_valid"},
+monochrome = true,
+strict=true)
+public class LoginRunner {
+	
+}
