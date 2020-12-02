@@ -39,10 +39,9 @@ pipeline {
 				
                     		
 				//buildStatus: 'FAILURE'
-				cucumber 
-					reportTitle: 'cucumber',
-					fileIncludePattern: '**/cucumber.json', 
+				cucumber fileIncludePattern: '**/cucumber.json', 
 					jsonReportDirectory:'Report/JenkinsReport/JSON',
+					reportTitle: 'cucumber',
 					buildStatus: 'FAILURE'
             }
            }
