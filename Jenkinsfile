@@ -39,7 +39,8 @@ pipeline {
 				cucumber fileIncludePattern: '**/cucumber.json', 
 				jsonReportDirectory:'Report/JenkinsReport/JSON',
 				reportTitle: 'cucumber',
-				buildStatus: 'UNSTABLE'
+				buildStatus: 'UNSTABLE',
+				failedFeaturesPercentage,
 				classifications: [
                     	[
                         	'key': 'Browser',
