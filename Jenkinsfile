@@ -36,17 +36,10 @@ pipeline {
             		}
           		steps {
 		 		echo 'Generating Cucumber report..'          	
-				cucumber fileIncludePattern: '**/cucumber.json', 
+				cucumber fileIncludePattern:'**/cucumber.json', 
 				jsonReportDirectory:'Report/JenkinsReport/JSON',
 				reportTitle: 'cucumber',
-				buildStatus: 'UNSTABLE',
-				failedFeaturesPercentage,
-				classifications: [
-                    	[
-                        	'key': 'Browser',
-                        	'value': 'Chrome'
-                    	]
-                	]
+				buildStatus: 'UNSTABLE'			
             }
            }
 		stage("Deploy") {
