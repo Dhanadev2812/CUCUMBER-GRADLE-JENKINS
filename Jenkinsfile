@@ -12,16 +12,22 @@ pipeline {
           		}
 		}
 		stage("Unit & Integration Tests") {
+			when {
+                		branch 'dhana'
+            		}
         		steps {
           			echo 'Started Stage one : Unit & Integration Tests ..'
           			bat 'gradle cucumber -Dcucumber.options="--tags @login_valid and --tags @Clinicadmin'
           		}
 		}
         	stage("Generate Cucumber report") {
+			when {
+                		branch 'dhana'
+            		}
           		steps {
 		 		echo 'Generating Cucumber report..'          
-				cucumber 'glob'
-                           	//cucumber fileIncludePattern: '**/JenkinsReport/cucumber.json', buildStatus: 'FAILURE'
+				//cucumber 'glob'
+                           	cucumber fileIncludePattern: '**/JenkinsReport/cucumber.json', buildStatus: 'FAILURE'
             }
            }
 		stage("Deploy") {
