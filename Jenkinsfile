@@ -3,6 +3,7 @@ pipeline {
         label {
             label ""
             customWorkspace "D:/work/${BRANCH_NAME}"
+	    reportDir: "D:/work/report/${BRANCH_NAME}",
         }
     }
 	options {
