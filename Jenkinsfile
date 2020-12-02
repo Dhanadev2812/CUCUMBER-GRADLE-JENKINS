@@ -30,16 +30,16 @@ pipeline {
           			bat 'gradle cucumber -Dcucumber.options="--tags @login_valid and --tags @Clinicadmin'
           		}
 		}
-        	stage("Generate Cucumber report") {
+        	stage("Publishing Cucumber report") {
 			when {
                 		branch 'dhana'
             		}
           		steps {
 		 		echo 'Generating Cucumber report..'          
-				//cucumber 'glob'
-				cucumber fileIncludePattern:"D:/work/${BRANCH_NAME}/Report/JenkinsReport/JSON/cucumber.json",
-                    		jsonReportDirectory:"D:/work/${BRANCH_NAME}/Report/JenkinsReport/JSON",
-				buildStatus: 'FAILURE'
+				//cucumber fileIncludePattern:"D:/work/${BRANCH_NAME}/Report/JenkinsReport/JSON/cucumber.json",
+                    		//jsonReportDirectory:"D:/work/${BRANCH_NAME}/Report/JenkinsReport/JSON",
+				//buildStatus: 'FAILURE'
+				cucumber fileIncludePattern: '**/cucumber.json', buildStatus: 'FAILURE'
             }
            }
 		stage("Deploy") {
