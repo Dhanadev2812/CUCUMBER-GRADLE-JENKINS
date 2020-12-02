@@ -40,7 +40,7 @@ pipeline {
                     		
 				//buildStatus: 'FAILURE'
 				cucumber fileIncludePattern: '**/cucumber.json', 
-					jsonReportDirectory:'JSON',
+					jsonReportDirectory:'Report/JenkinsReport/JSON',
 					buildStatus: 'FAILURE'
             }
            }
