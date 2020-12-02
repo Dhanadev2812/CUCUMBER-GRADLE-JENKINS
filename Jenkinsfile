@@ -1,5 +1,10 @@
 pipeline {
-  agent any 
+  agent {
+    node {
+      label 'my-defined-label'
+      customWorkspace 'D:\Software\jenkins\Myworkspace'
+    }
+  }
 	stages {
 		stage("Build") {
         		steps {
