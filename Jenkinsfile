@@ -37,8 +37,8 @@ pipeline {
           		steps {
 		 		echo 'Generating Cucumber report..'          
 				//cucumber 'glob'
-				fileIncludePattern: "**/cucumber.json",
-                    		jsonReportDirectory: 'target',
+				cucumber fileIncludePattern:"**/cucumber.json",
+                    		jsonReportDirectory: 'JenkinsReport',
 				buildStatus: 'FAILURE'
             }
            }
