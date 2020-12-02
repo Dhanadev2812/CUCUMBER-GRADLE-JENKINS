@@ -2,7 +2,7 @@ pipeline {
   agent {
         label {
             label ""
-            customWorkspace "D:\Software\jenkins\Myworkspace"
+            customWorkspace "D:/work/${BRANCH_NAME}"
         }
     }
 	stages {
