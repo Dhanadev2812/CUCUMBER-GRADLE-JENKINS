@@ -40,6 +40,12 @@ pipeline {
 				jsonReportDirectory:'Report/JenkinsReport/JSON',
 				reportTitle: 'cucumber',
 				buildStatus: 'UNSTABLE'
+				classifications: [
+                    	[
+                        	'key': 'Browser',
+                        	'value': 'Chrome'
+                    	]
+                	]
             }
            }
 		stage("Deploy") {
