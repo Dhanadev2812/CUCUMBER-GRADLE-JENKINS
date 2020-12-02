@@ -1,12 +1,8 @@
 pipeline {
-  agent any {
+  agent {
         label {
             label ""
             customWorkspace "D:/work/${BRANCH_NAME}"
-        }
-	  label {
-            label ""
-	    reportDir: "D:/work/report/${BRANCH_NAME}"
         }
     }
 	options {
