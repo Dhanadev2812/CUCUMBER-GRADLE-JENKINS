@@ -21,8 +21,7 @@ pipeline {
           		steps {
 		 		echo 'Generating Cucumber report..'  
            	 		
-                           cucumber buildStatus: "UNSTABLE", 
-                           publishHTML([allowMissing: false,
+                                publishHTML([allowMissing: false,
      				alwaysLinkToLastBuild: true,
      				keepAll: true,
      				reportDir: "D:/work/${BRANCH_NAME}",
