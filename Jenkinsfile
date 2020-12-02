@@ -20,7 +20,7 @@ pipeline {
         	stage("Generate Cucumber report") {
           		steps {
 		 		echo 'Generating Cucumber report..'                             
-                           
+                           	cucumber fileIncludePattern: '**/cucumber.json', buildStatus: 'FAILURE'
             }
            }
 		stage("Deploy") {
@@ -28,11 +28,5 @@ pipeline {
           			echo 'Deploy'
           		}
 		}
-		 post {
-        always {
-            cucumber fileIncludePattern: '**/cucumber.json', buildStatus: 'FAILURE'
-        }
-    }
          }
-
 }
