@@ -20,7 +20,6 @@ pipeline {
         	stage("Generate Cucumber report") {
           		steps {
 		 		echo 'Generating Cucumber report..'                             
-     ])
                            
             }
            }
