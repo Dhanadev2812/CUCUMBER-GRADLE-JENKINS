@@ -20,7 +20,7 @@ pipeline {
         	stage("Generate Cucumber report") {
           		steps {
 		 		echo 'Generating Cucumber report..'                             
-                           	cucumber fileIncludePattern: '**/cucumber.json', buildStatus: 'FAILURE'
+                           	cucumber fileIncludePattern: '**/JenkinsReport/cucumber.json', buildStatus: 'FAILURE'
             }
            }
 		stage("Deploy") {
