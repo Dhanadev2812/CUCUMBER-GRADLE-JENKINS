@@ -14,6 +14,12 @@ pipeline {
         		steps {
           			echo 'Build'
           		}
+			 post {
+                	always {
+                    	junit(testResults: '**/surefire-reports/*.xml', allowEmptyResults: true)
+                    	junit(testResults: '**/failsafe-reports/*.xml', allowEmptyResults: true)
+                }
+            }
 		}
 		stage("Unit & Integration Tests") {
 			when {
