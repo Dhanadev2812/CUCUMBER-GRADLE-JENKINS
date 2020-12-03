@@ -48,19 +48,17 @@ pipeline {
         //node('node1'){
 		echo "Test succeeded"
             script {
-		    def mailFrom ="sandhiya.2894@gmail.com"
-                   def mailRecipients = "dhanadev728@gmail.com"
-    		  def jobName = currentBuild.fullDisplayName
-			
-		    from: "${mailFrom}",
-   		 emailext body: '''${SCRIPT, template="groovy-html.template"}''',
-        		mimeType: 'text/html',
-        subject: "[Jenkins] ${jobName}",
-        to: "${mailRecipients}",
-        replyTo: "${mailRecipients}",
-        recipientProviders: [[$class: 'CulpritsRecipientProvider']]
-                	}
+            def mailRecipients = 'dhanadev728@gmail.com'
+            def jobName = currentBuild.fullDisplayName
+            emailext body: '''${SCRIPT, template="groovy-html.template"}''',
+            mimeType: 'text/html',
+            subject: "[Jenkins] ${jobName}",
+            to: "${mailRecipients}",
+            replyTo: "${mailRecipients}",
+            recipientProviders: [[$class: 'CulpritsRecipientProvider']]
+        }
              	}
+	}
   
 	failure {
             echo "Test failed"
