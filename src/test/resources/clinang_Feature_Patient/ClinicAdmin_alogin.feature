@@ -7,7 +7,7 @@ Feature: Feature to done login process
     And Move to admin login page
     When Enter clinic admin credentials
       | UserName              | Password    |
-      | watts1@clinicadmin.com | Password12# |
+      | watts@clinicadmin.com | Password12# |
     And Click on Login button
     Then Check i am logged in as a clinic admin
 
