@@ -55,7 +55,6 @@ pipeline {
         		recipientProviders: [[$class: 'CulpritsRecipientProvider']]
          }
                
-    
 	}
 
 }
