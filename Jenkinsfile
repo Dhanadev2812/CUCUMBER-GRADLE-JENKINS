@@ -40,29 +40,17 @@ pipeline {
 		stage("Deploy") {
         		steps {
           			echo 'Deploy'
+				bat "del index.html"
+               			zip zipFile: 'index.html', archive: false, dir:"D:/Software/jenkins/Myworkspace/Branches/${BRANCH_NAME}/Report/JenkinsReport/HTML"
           		}
 		}
 	}
 	post {
         success {
-        //node('node1'){
-		echo "Test succeeded"
-            script {
-                    mail(
-			attachmentsPattern:"**/D:/Software/jenkins/Myworkspace/Branches/${BRANCH_NAME}/Report/JenkinsReport/HTML/index.html",
-			bcc: '',
-                     	body: "Run ${JOB_NAME}-#${BUILD_NUMBER} succeeded. To get more details, visit the build results page: ${BUILD_URL}.",
-                     	//cc: '',
-                     	from: 'sandhiya.2894@gmail.com',
-                     	//replyTo: 'dhanadev728@gmail.com',
-                     	subject: "TEST SUCCESS :: ${JOB_NAME} ${BUILD_NUMBER}",
-                     	to: 'dhanadev728@gmail.com')
-                     	if (env.archive_war =='yes')
-                     	{
-                         	archiveArtifacts '**/Report/JenkinsReport-*-SNAPSHOT.jar'
-                      	}
-                	}
-             	}
+               emailext attachmentsPattern: 'index.html', body: '''${SCRIPT, template="groovy-html.template"}''', 
+                    subject: "${env.JOB_NAME} - Build # ${env.BUILD_NUMBER} - Successful", 
+                    mimeType: 'text/html',to: "email id"
+          }     
 	failure {
             echo "Test failed"
             mail(bcc: '',
