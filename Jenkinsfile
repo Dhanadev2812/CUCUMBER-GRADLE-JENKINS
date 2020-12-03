@@ -46,7 +46,7 @@ pipeline {
 	post {
 		success {  
              		echo 'This will run only if successful' 
-			emailext body: '''${SCRIPT, template="groovy-templates-2.5.1.template"}''',
+			emailext body: '''${SCRIPT, template="groovy-html.template"}''',
         		mimeType: 'text/html',
         		subject: "[Jenkins] ${currentBuild.fullDisplayName}",
 			from:'sandhiya.2894@gmail.com',
