@@ -41,13 +41,13 @@ pipeline {
         		steps {
           			echo 'Deploy'
 				bat "del index.html"
-               			zip zipFile: 'index.html', archive: false, dir:"D:/Software/jenkins/Myworkspace/Branches/${BRANCH_NAME}/Report/JenkinsReport/HTML"
+               			zip zipFile: 'index.zip', archive: false, dir:"D:/Software/jenkins/Myworkspace/Branches/${BRANCH_NAME}/Report/JenkinsReport/HTML"
           		}
 		}
 	}
 	post {
         success {
-               emailext attachmentsPattern: 'index.html', body: '''${SCRIPT, template="groovy-html.template"}''', 
+               emailext attachmentsPattern: 'index.zip', body: '''${SCRIPT, template="groovy-html.template"}''', 
                     subject: "${env.JOB_NAME} - Build # ${env.BUILD_NUMBER} - Successful", 
                     mimeType: 'text/html',to: "email id"
           }     
