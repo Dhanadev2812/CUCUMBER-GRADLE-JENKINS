@@ -71,8 +71,7 @@ pipeline {
                  subject: "${JOB_NAME} ${BUILD_NUMBER} failed",
                  to: 'dhanadev728@gmail.com')
                          }
-	}
-	unstable {
+	unstable  {
             echo "Test Unstable"
             mail(bcc: '',
                 body: "Run ${JOB_NAME}-#${BUILD_NUMBER} unstable. To get more details, visit the build results page: ${BUILD_URL}.",
