@@ -32,6 +32,7 @@ pipeline {
 		 		echo 'Generating Cucumber report..'          	
 				cucumber fileIncludePattern:'**/cucumber.json', 
 				jsonReportDirectory:'Report/JenkinsReport/JSON',
+				sortingMethod: 'ALPHABETICAL',
 				reportTitle: 'cucumber',
 				buildStatus: 'UNSTABLE'			
              		}
@@ -47,11 +48,7 @@ pipeline {
         //node('node1'){
 		echo "Test succeeded"
             script {
-    // configured from using gmail smtp Manage Jenkins-> Configure System -> Email Notification
-    // SMTP server: smtp.gmail.com
-    // Advanced: Gmail user and pass, use SSL and SMTP Port 465
-    // Capitalized variables are Jenkins variables – see https://wiki.jenkins.io/display/JENKINS/Building+a+software+project
-                mail(bcc: '',
+                    mail(bcc: '',
                      body: "Run ${JOB_NAME}-#${BUILD_NUMBER} succeeded. To get more details, visit the build results page: ${BUILD_URL}.",
                      //cc: '',
                      from: 'sandhiya.2894@gmail.com',
@@ -60,14 +57,9 @@ pipeline {
                      to: 'dhanadev728@gmail.com')
                      if (env.archive_war =='yes')
                      {
-             // ArchiveArtifact plugin
-                        archiveArtifacts '**/java-calculator-*-SNAPSHOT.jar'
+                         archiveArtifacts '**/Report/JenkinsReport-*-SNAPSHOT.jar'
                       }
-                       // Cucumber report plugin
-                      cucumber fileIncludePattern: '**/java-calculator/target/cucumber-report.json', sortingMethod: 'ALPHABETICAL'
-            //publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: '/home/reports', reportFiles: 'reports.html', reportName: 'Performance Test Report', reportTitles: ''])
-            }
-        //}
-        }
-}
+                }
+             }
+	}
 }
