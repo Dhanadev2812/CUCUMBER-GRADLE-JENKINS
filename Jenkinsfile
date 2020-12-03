@@ -31,7 +31,7 @@ pipeline {
           		steps {
 		 		echo 'Generating Cucumber report..'          	
 				cucumber fileIncludePattern:'**/cucumber.json', 
-				jsonReportDirectory:'Report/JenkinsReport1/JSON',
+				jsonReportDirectory:'Report/JenkinsReport/JSON',
 				sortingMethod: 'ALPHABETICAL',
 				reportTitle: 'cucumber',
 				buildStatus: 'UNSTABLE'			
@@ -74,7 +74,16 @@ pipeline {
         		replyTo: '',
         		recipientProviders: [[$class: 'CulpritsRecipientProvider']]
          }
-               
+               aborted {  
+             		echo 'This will run only if aborted' 
+			emailext body: "Run ${JOB_NAME}-#${BUILD_NUMBER} aborted. To get more details, visit the build results page: ${BUILD_URL}.",
+        		mimeType: 'text/html',
+        		subject: "ABORTED :: [Jenkins] ${currentBuild.fullDisplayName}",
+			from:'sandhiya.2894@gmail.com',
+        		to: "dhanadev728@gmail.com",
+        		replyTo: '',
+        		recipientProviders: [[$class: 'CulpritsRecipientProvider']]
+         }
 	}
 
 }
