@@ -78,7 +78,7 @@ pipeline {
                  cc: '',
                  from: 'sandhiya.2894@gmail.com',
                  replyTo: '',
-                 subject: "${JOB_NAME} ${BUILD_NUMBER} failed",
+                 subject: "${JOB_NAME} ${BUILD_NUMBER} Unstable",
                  to: 'dhanadev728@gmail.com')
                          }
 	}
