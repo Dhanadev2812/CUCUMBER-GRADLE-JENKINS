@@ -53,11 +53,11 @@ pipeline {
     // Capitalized variables are Jenkins variables – see https://wiki.jenkins.io/display/JENKINS/Building+a+software+project
                 mail(bcc: '',
                      body: "Run ${JOB_NAME}-#${BUILD_NUMBER} succeeded. To get more details, visit the build results page: ${BUILD_URL}.",
-                     cc: '',
+                     //cc: '',
                      from: 'sandhiya.2894@gmail.com',
-                     replyTo: 'dhanadev728@gmail.com',
+                     //replyTo: 'dhanadev728@gmail.com',
                      subject: "${JOB_NAME} ${BUILD_NUMBER} succeeded",
-                     to: env.notification_email)
+                     to: 'dhanadev728@gmail.com')
                      if (env.archive_war =='yes')
                      {
              // ArchiveArtifact plugin
