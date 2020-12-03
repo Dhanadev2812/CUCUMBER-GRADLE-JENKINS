@@ -29,7 +29,7 @@ pipeline {
                 		branch 'dhana'
             		}
           		steps {
-		 		echo 'Generating Cucumber report..'          	
+		 		echo 'Publishing Cucumber report..'          	
 				cucumber fileIncludePattern:'**/cucumber.json', 
 				jsonReportDirectory:'Report/JenkinsReport/JSON',
 				sortingMethod: 'ALPHABETICAL',
