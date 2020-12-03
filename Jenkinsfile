@@ -31,7 +31,7 @@ pipeline {
           		steps {
 		 		echo 'Generating Cucumber report..'          	
 				cucumber fileIncludePattern:'**/cucumber.json', 
-				jsonReportDirectory:'Report/JenkinsReport/JSON',
+				jsonReportDirectory:'Report/JenkinsReport1/JSON',
 				sortingMethod: 'ALPHABETICAL',
 				reportTitle: 'cucumber',
 				buildStatus: 'UNSTABLE'			
@@ -48,7 +48,27 @@ pipeline {
              		echo 'This will run only if successful' 
 			emailext body: "Run ${JOB_NAME}-#${BUILD_NUMBER} succeeded. To get more details, visit the build results page: ${BUILD_URL}.",
         		mimeType: 'text/html',
-        		subject: "[Jenkins] ${currentBuild.fullDisplayName}",
+        		subject: "SUCCESS :: [Jenkins] ${currentBuild.fullDisplayName}",
+			from:'sandhiya.2894@gmail.com',
+        		to: "dhanadev728@gmail.com",
+        		replyTo: '',
+        		recipientProviders: [[$class: 'CulpritsRecipientProvider']]
+         }
+		failure {  
+             		echo 'This will run only if failed' 
+			emailext body: "Run ${JOB_NAME}-#${BUILD_NUMBER} failed . To get more details, visit the build results page: ${BUILD_URL}.",
+        		mimeType: 'text/html',
+        		subject: "FAILED :: [Jenkins] ${currentBuild.fullDisplayName}",
+			from:'sandhiya.2894@gmail.com',
+        		to: "dhanadev728@gmail.com",
+        		replyTo: '',
+        		recipientProviders: [[$class: 'CulpritsRecipientProvider']]
+         }
+		unstable {  
+             		echo 'This will run only if unstable' 
+			emailext body: "Run ${JOB_NAME}-#${BUILD_NUMBER} unstable. To get more details, visit the build results page: ${BUILD_URL}.",
+        		mimeType: 'text/html',
+        		subject: "UNSTABLE :: [Jenkins] ${currentBuild.fullDisplayName}",
 			from:'sandhiya.2894@gmail.com',
         		to: "dhanadev728@gmail.com",
         		replyTo: '',
