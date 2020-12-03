@@ -48,19 +48,21 @@ pipeline {
         //node('node1'){
 		echo "Test succeeded"
             script {
-                    mail(bcc: '',
-                     body: "Run ${JOB_NAME}-#${BUILD_NUMBER} succeeded. To get more details, visit the build results page: ${BUILD_URL}.",
-                     //cc: '',
-                     from: 'sandhiya.2894@gmail.com',
-                     //replyTo: 'dhanadev728@gmail.com',
-                     subject: "TEST SUCCESS :: ${JOB_NAME} ${BUILD_NUMBER}",
-                     to: 'dhanadev728@gmail.com')
-                     if (env.archive_war =='yes')
-                     {
-                         archiveArtifacts '**/Report/JenkinsReport-*-SNAPSHOT.jar'
-                      }
-                }
-             }
+                    mail(
+			attachmentsPattern:D:\Software\jenkins\Myworkspace\Branches\dhana\Report\JenkinsReport\HTML\index.html,
+			bcc: '',
+                     	body: "Run ${JOB_NAME}-#${BUILD_NUMBER} succeeded. To get more details, visit the build results page: ${BUILD_URL}.",
+                     	//cc: '',
+                     	from: 'sandhiya.2894@gmail.com',
+                     	//replyTo: 'dhanadev728@gmail.com',
+                     	subject: "TEST SUCCESS :: ${JOB_NAME} ${BUILD_NUMBER}",
+                     	to: 'dhanadev728@gmail.com')
+                     	if (env.archive_war =='yes')
+                     	{
+                         	archiveArtifacts '**/Report/JenkinsReport-*-SNAPSHOT.jar'
+                      	}
+                	}
+             	}
 	failure {
             echo "Test failed"
             mail(bcc: '',
