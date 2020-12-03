@@ -53,7 +53,7 @@ pipeline {
                      //cc: '',
                      from: 'sandhiya.2894@gmail.com',
                      //replyTo: 'dhanadev728@gmail.com',
-                     subject: "${JOB_NAME} ${BUILD_NUMBER} succeeded",
+                     subject: "TEST SUCCESS :: ${JOB_NAME} ${BUILD_NUMBER}",
                      to: 'dhanadev728@gmail.com')
                      if (env.archive_war =='yes')
                      {
@@ -68,7 +68,7 @@ pipeline {
                  cc: '',
                  from: 'sandhiya.2894@gmail.com',
                  replyTo: '',
-                 subject: "${JOB_NAME} ${BUILD_NUMBER} failed",
+                 subject: "TEST FAILED :: ${JOB_NAME} ${BUILD_NUMBER}",
                  to: 'dhanadev728@gmail.com')
                          }
 	unstable  {
@@ -78,7 +78,7 @@ pipeline {
                  cc: '',
                  from: 'sandhiya.2894@gmail.com',
                  replyTo: '',
-                 subject: "${JOB_NAME} ${BUILD_NUMBER} Unstable",
+                 subject: "$TEST UNSTABLE :: {JOB_NAME} ${BUILD_NUMBER}",
                  to: 'dhanadev728@gmail.com')
                          }
 	}
