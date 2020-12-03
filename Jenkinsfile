@@ -48,19 +48,17 @@ pipeline {
         //node('node1'){
 		echo "Test succeeded"
             script {
-                    mail(
-			attachmentsPattern:"**/D:/Software/jenkins/Myworkspace/Branches/${BRANCH_NAME}/Report/JenkinsReport/HTML/index.html",
-			bcc: '',
-                     	body: "Run ${JOB_NAME}-#${BUILD_NUMBER} succeeded. To get more details, visit the build results page: ${BUILD_URL}.",
-                     	//cc: '',
-                     	from: 'sandhiya.2894@gmail.com',
-                     	//replyTo: 'dhanadev728@gmail.com',
-                     	subject: "TEST SUCCESS :: ${JOB_NAME} ${BUILD_NUMBER}",
-                     	to: 'dhanadev728@gmail.com')
-                     	if (env.archive_war =='yes')
-                     	{
-                         	archiveArtifacts '**/Report/JenkinsReport-*-SNAPSHOT.jar'
-                      	}
+		    def mailFrom ="sandhiya.2894@gmail.com"
+                   def mailRecipients = "dhanadev728@gmail.com"
+    		  def jobName = currentBuild.fullDisplayName
+			
+		    from: "${mailFrom}",
+   		 emailext body: '''${SCRIPT, template="groovy-html.template"}''',
+        		mimeType: 'text/html',
+        subject: "[Jenkins] ${jobName}",
+        to: "${mailRecipients}",
+        replyTo: "${mailRecipients}",
+        recipientProviders: [[$class: 'CulpritsRecipientProvider']]
                 	}
              	}
   
