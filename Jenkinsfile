@@ -70,8 +70,17 @@ pipeline {
                  replyTo: '',
                  subject: "${JOB_NAME} ${BUILD_NUMBER} failed",
                  to: 'dhanadev728@gmail.com')
-                 cucumber fileIncludePattern: '**/java-calculator/target/cucumber-report.json', sortingMethod: 'ALPHABETICAL'
-//publishHTML([allowMissing: true, alwaysLinkToLastBuild: false, keepAll: true, reportDir: '/home/tester/reports', reportFiles: 'reports.html', reportName: 'Performance Test Report', reportTitles: ''])
-        }
+                         }
+	}
+	unstable {
+            echo "Test Unstable"
+            mail(bcc: '',
+                body: "Run ${JOB_NAME}-#${BUILD_NUMBER} unstable. To get more details, visit the build results page: ${BUILD_URL}.",
+                 cc: '',
+                 from: 'sandhiya.2894@gmail.com',
+                 replyTo: '',
+                 subject: "${JOB_NAME} ${BUILD_NUMBER} failed",
+                 to: 'dhanadev728@gmail.com')
+                         }
 	}
 }
