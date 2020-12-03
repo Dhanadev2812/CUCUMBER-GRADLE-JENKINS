@@ -44,10 +44,9 @@ pipeline {
 		}
 	}
 	post {
-                success {
-        //node('node1'){
-		echo "Test succeeded"
-            script {
+                stage('Email') {
+    steps {
+        script {
             def mailRecipients = 'dhanadev728@gmail.com'
             def jobName = currentBuild.fullDisplayName
             emailext body: '''${SCRIPT, template="groovy-html.template"}''',
@@ -57,29 +56,8 @@ pipeline {
             replyTo: "${mailRecipients}",
             recipientProviders: [[$class: 'CulpritsRecipientProvider']]
         }
-             	}
-	}
-  
-	failure {
-            echo "Test failed"
-            mail(bcc: '',
-                body: "Run ${JOB_NAME}-#${BUILD_NUMBER} failed. To get more details, visit the build results page: ${BUILD_URL}.",
-                 cc: '',
-                 from: 'sandhiya.2894@gmail.com',
-                 replyTo: '',
-                 subject: "TEST FAILED :: ${JOB_NAME} ${BUILD_NUMBER}",
-                 to: 'dhanadev728@gmail.com')
-                         }
-	unstable  {
-            echo "Test Unstable"
-            mail(bcc: '',
-                body: "Run ${JOB_NAME}-#${BUILD_NUMBER} unstable. To get more details, visit the build results page: ${BUILD_URL}.",
-                 cc: '',
-                 from: 'sandhiya.2894@gmail.com',
-                 replyTo: '',
-                 subject: "$TEST UNSTABLE :: {JOB_NAME} ${BUILD_NUMBER}",
-                 to: 'dhanadev728@gmail.com')
-                         }
+    }
+}
 	}
 
-
+}
