@@ -41,58 +41,32 @@ pipeline {
           			echo 'Deploy'
           		}
 		}
-		post {
-        		failure {
-           			 script {
-                			if(env.BRANCH_NAME == "dhana") {
-                    				emailext(
-                        				subject: "[BUILD-FAILURE]: Job '${env.JOB_NAME} [${env.BRANCH_NAME}] [${env.BUILD_NUMBER}]'",
-                        				body: """
-							BUILD-FAILURE: Job '${env.JOB_NAME} [${env.BRANCH_NAME}] [${env.BUILD_NUMBER}]':
- 
-							Check console output at "<a href="${env.BUILD_URL}">${env.JOB_NAME} [${env.BRANCH_NAME}] [${env.BUILD_NUMBER}]</a>"
-							""",
-                        				to: "dhanadev728@gmail.com",
-                        				recipientProviders: [[$class: 'DevelopersRecipientProvider']]
-                    					)
-                				}
-            				}
-        			}
-        		unstable  {
-            			script {
-                			if(env.BRANCH_NAME == "dhana") {
-                    				emailext(
-                        				subject: "[BUILD-UNSTABLE]: Job '${env.JOB_NAME} [${env.BRANCH_NAME}] [${env.BUILD_NUMBER}]'",
-                        				body: """
-							BUILD-UNSTABLE: Job '${env.JOB_NAME} [${env.BRANCH_NAME}] [${env.BUILD_NUMBER}]':
- 
-							Check console output at "<a href="${env.BUILD_URL}">${env.JOB_NAME} [${env.BRANCH_NAME}] [${env.BUILD_NUMBER}]</a>"
-							""",
-                        				to: "dhanadev728@gmail.com",
-                        				recipientProviders: [[$class: 'DevelopersRecipientProvider']]
-                    					)
-                				}
-            				}
-        			}
- 
-        	success {
-            		script {
-                		if ((env.BRANCH_NAME == "dhana") && (currentBuild.previousBuild != null) && (currentBuild.previousBuild.result != 'SUCCESS')) {
-                    			emailext (
-                        			subject: "[BUILD-STABLE]: Job '${env.JOB_NAME} [${env.BRANCH_NAME}] [${env.BUILD_NUMBER}]'",
-                        			body: """
-						BUILD-STABLE: Job '${env.JOB_NAME} [${env.BRANCH_NAME}] [${env.BUILD_NUMBER}]':
- 
-						Is back to normal.
-						""",
-                        			to: "dhanadev728@gmail.com",
-                        			recipientProviders: [[$class: 'DevelopersRecipientProvider']]
-                    			)
-                		}
-            		}
-        	}
-    	}
- 
-         }
-	
+	}
+	post {
+        success {
+        //node('node1'){
+		echo "Test succeeded"
+            script {
+    // configured from using gmail smtp Manage Jenkins-> Configure System -> Email Notification
+    // SMTP server: smtp.gmail.com
+    // Advanced: Gmail user and pass, use SSL and SMTP Port 465
+    // Capitalized variables are Jenkins variables – see https://wiki.jenkins.io/display/JENKINS/Building+a+software+project
+                mail(bcc: '',
+                     body: "Run ${JOB_NAME}-#${BUILD_NUMBER} succeeded. To get more details, visit the build results page: ${BUILD_URL}.",
+                     cc: '',
+                     from: 'sandhiya.2894@gmail.com',
+                     replyTo: 'dhanadev728@gmail.com',
+                     subject: "${JOB_NAME} ${BUILD_NUMBER} succeeded",
+                     to: env.notification_email)
+                     if (env.archive_war =='yes')
+                     {
+             // ArchiveArtifact plugin
+                        archiveArtifacts '**/java-calculator-*-SNAPSHOT.jar'
+                      }
+                       // Cucumber report plugin
+                      cucumber fileIncludePattern: '**/java-calculator/target/cucumber-report.json', sortingMethod: 'ALPHABETICAL'
+            //publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: '/home/reports', reportFiles: 'reports.html', reportName: 'Performance Test Report', reportTitles: ''])
+            }
+        //}
+        }
 }
