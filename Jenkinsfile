@@ -2,7 +2,7 @@ pipeline {
   agent {
         label {
             label ""
-            customWorkspace "D:/Software/jenkins/Myworkspace${BRANCH_NAME}"
+            customWorkspace "D:/Software/jenkins/Myworkspace/Branches/${BRANCH_NAME}"
         }
     }
 	options {
@@ -14,12 +14,6 @@ pipeline {
         		steps {
           			echo 'Build'
           		}
-			// post {
-                	//always {
-                    	//junit(testResults: '**/surefire-reports/*.xml', allowEmptyResults: true)
-                    	//junit(testResults: '**/failsafe-reports/*.xml', allowEmptyResults: true)
-                //}
-            //}
 		}
 		stage("Unit & Integration Tests") {
 			when {
@@ -40,8 +34,8 @@ pipeline {
 				jsonReportDirectory:'Report/JenkinsReport/JSON',
 				reportTitle: 'cucumber',
 				buildStatus: 'UNSTABLE'			
-            }
-           }
+             		}
+           	}
 		stage("Deploy") {
         		steps {
           			echo 'Deploy'
@@ -49,35 +43,32 @@ pipeline {
 		}
          }
 	post {
-        // If this build failed, send an email to the list.
         failure {
             script {
                 if(env.BRANCH_NAME == "dhana") {
                     emailext(
                         subject: "[BUILD-FAILURE]: Job '${env.JOB_NAME} [${env.BRANCH_NAME}] [${env.BUILD_NUMBER}]'",
                         body: """
-BUILD-FAILURE: Job '${env.JOB_NAME} [${env.BRANCH_NAME}] [${env.BUILD_NUMBER}]':
+			BUILD-FAILURE: Job '${env.JOB_NAME} [${env.BRANCH_NAME}] [${env.BUILD_NUMBER}]':
  
-Check console output at "<a href="${env.BUILD_URL}">${env.JOB_NAME} [${env.BRANCH_NAME}] [${env.BUILD_NUMBER}]</a>"
-""",
+			Check console output at "<a href="${env.BUILD_URL}">${env.JOB_NAME} [${env.BRANCH_NAME}] [${env.BUILD_NUMBER}]</a>"
+			""",
                         to: "dhanadev728@gmail.com",
                         recipientProviders: [[$class: 'DevelopersRecipientProvider']]
                     )
                 }
             }
         }
- 
-        // If this build didn't fail, but there were failing tests, send an email to the list.
         unstable {
             script {
                 if(env.BRANCH_NAME == "dhana") {
                     emailext(
                         subject: "[BUILD-UNSTABLE]: Job '${env.JOB_NAME} [${env.BRANCH_NAME}] [${env.BUILD_NUMBER}]'",
                         body: """
-BUILD-UNSTABLE: Job '${env.JOB_NAME} [${env.BRANCH_NAME}] [${env.BUILD_NUMBER}]':
+			BUILD-UNSTABLE: Job '${env.JOB_NAME} [${env.BRANCH_NAME}] [${env.BUILD_NUMBER}]':
  
-Check console output at "<a href="${env.BUILD_URL}">${env.JOB_NAME} [${env.BRANCH_NAME}] [${env.BUILD_NUMBER}]</a>"
-""",
+			Check console output at "<a href="${env.BUILD_URL}">${env.JOB_NAME} [${env.BRANCH_NAME}] [${env.BUILD_NUMBER}]</a>"
+			""",
                         to: "dhanadev728@gmail.com",
                         recipientProviders: [[$class: 'DevelopersRecipientProvider']]
                     )
@@ -85,34 +76,33 @@ Check console output at "<a href="${env.BUILD_URL}">${env.JOB_NAME} [${env.BRANC
             }
         }
  
-        // Send an email, if the last build was not successful and this one is.
         success {
             script {
                 if ((env.BRANCH_NAME == "dhana") && (currentBuild.previousBuild != null) && (currentBuild.previousBuild.result != 'SUCCESS')) {
                     emailext (
                         subject: "[BUILD-STABLE]: Job '${env.JOB_NAME} [${env.BRANCH_NAME}] [${env.BUILD_NUMBER}]'",
                         body: """
-BUILD-STABLE: Job '${env.JOB_NAME} [${env.BRANCH_NAME}] [${env.BUILD_NUMBER}]':
+			BUILD-STABLE: Job '${env.JOB_NAME} [${env.BRANCH_NAME}] [${env.BUILD_NUMBER}]':
  
-Is back to normal.
-""",
+			Is back to normal.
+			""",
                         to: "dhanadev728@gmail.com",
                         recipientProviders: [[$class: 'DevelopersRecipientProvider']]
                     )
                 }
             }
         }
- 
-        always {
+         always {
             script {
                 if(env.BRANCH_NAME == "dhana") {
                     emailext(
-                        subject: "[COMMIT-TO-MASTER]: A commit to the master branch was made'",
+                        subject: "[COMMIT-TO-DHANA]: A commit to the branch(Dhana) was made'",
                         body: """
-COMMIT-TO-MASTER: A commit to the master branch was made:
- 
-Check console output at "<a href="${env.BUILD_URL}">${env.JOB_NAME} [${env.BRANCH_NAME}] [${env.BUILD_NUMBER}]</a>"
-""",
+			Hi Team,
+			
+			A commit is successfully done. Please check console output at the below link.
+			Console output link :: "<a href="${env.BUILD_URL}">${env.JOB_NAME} [${env.BRANCH_NAME}] [${env.BUILD_NUMBER}]</a>"
+			""",
                         to: "dhanadev728@gmail.com",
                         recipientProviders: [[$class: 'DevelopersRecipientProvider']]
                     )
