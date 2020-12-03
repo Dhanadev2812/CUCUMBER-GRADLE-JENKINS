@@ -49,7 +49,7 @@ pipeline {
 		echo "Test succeeded"
             script {
                     mail(
-			attachmentsPattern:"D:/Software/jenkins/Myworkspace/Branches/${BRANCH_NAME}/Report/JenkinsReport/HTML/index.html",
+			attachmentsPattern:"**/D:/Software/jenkins/Myworkspace/Branches/${BRANCH_NAME}/Report/JenkinsReport/HTML/index.html",
 			bcc: '',
                      	body: "Run ${JOB_NAME}-#${BUILD_NUMBER} succeeded. To get more details, visit the build results page: ${BUILD_URL}.",
                      	//cc: '',
