@@ -42,17 +42,11 @@ pipeline {
           			echo 'Deploy'
           		}
 		}
-		stage('TestResultpublish')
-        	{ 
-            step([$class: 'MSTestPublisher', testResultsFile: 'TestResults/*.trx'])
-            zip archive: true, dir: '\\apps\\TestApplication\\bin\\Release', glob: '', zipFile: tagName + '.zip'
-    
-        }
 	}
 	post {
 		success {  
              		echo 'This will run only if success' 	
-			emailext attachmentsPattern: 'TestResults\\*.trx',
+			emailext "${FILE,path="${D:/Software/jenkins/Myworkspace/Branches/${BRANCH_NAME}}/test.html"}",
 			body: "<b>Build Status Report</b> <br>Job name : Job ${JOB_NAME} <br>Build No : build ${BUILD_NUMBER} <br>Branch Name :${BRANCH_NAME} <br>Build Result : ${currentBuild.currentResult} <br> Console output : ${BUILD_URL}",
         		mimeType: 'text/html',
         		subject: "[Jenkins] :: BUILD SUCCESS :: ${currentBuild.fullDisplayName}",
