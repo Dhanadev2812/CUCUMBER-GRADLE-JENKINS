@@ -51,6 +51,7 @@ pipeline {
 	post {
 		success {  
              		echo 'This will run only if success' 
+			archiveArtifacts artifacts: 'generatedFile.txt', onlyIfSuccessful: true
 			emailext 
 			attachLog: true,
 			attachmentsPattern: 'generatedFile.txt',
