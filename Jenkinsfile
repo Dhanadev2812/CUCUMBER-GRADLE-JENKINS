@@ -46,7 +46,7 @@ pipeline {
 	post {
 		success {  
              		echo 'This will run only if successful' 
-			def BodyTemplate = "<body>
+			def BodyTemplate = ("<body>
   						<h3>Using "build" environment variables:</h3>
  						 <p>
    						 <a href="<%= build.absoluteUrl %>"><%= build.fullDisplayName %></a>
@@ -55,8 +55,8 @@ pipeline {
   						<div>
     						<% println build.properties.collect{it}.join('<br />') %>
   						</div>
-						</body>"
-			emailext body: "Run ${JOB_NAME}-#${BUILD_NUMBER} succeeded. ${BodyTemplate}To get more details, visit the build results page: ${BUILD_URL}.",
+						</body>")
+			emailext body: "Run ${JOB_NAME}-#${BUILD_NUMBER} succeeded. ${BodyTemplate} \n" + "To get more details, visit the build results page: ${BUILD_URL}.",
         		mimeType: 'text/html',
         		subject: "SUCCESS :: [Jenkins] ${currentBuild.fullDisplayName}",
 			from:'sandhiya.2894@gmail.com',
