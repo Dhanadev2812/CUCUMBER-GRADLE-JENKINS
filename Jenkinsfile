@@ -42,16 +42,16 @@ pipeline {
           			echo 'Deploy'
           		}
 		}
-		stage('Download') {
-            steps {
-                bat "${FILE,path="D:/Software/jenkins/Myworkspace/Branches/${BRANCH_NAME}/Report/JenkinsReport/HTML/index.html"} > generatedFile.zip"
-            		}
-        	}
+		//stage('Download') {
+            //steps {
+                //bat "${FILE,path="D:/Software/jenkins/Myworkspace/Branches/${BRANCH_NAME}/Report/JenkinsReport/HTML/index.html"} > generatedFile.zip"
+            		//}
+        	//}
 	}
 	post {
 		success {  
              		echo 'This will run only if success' 
-			archiveArtifacts artifacts: 'generatedFile.zip', onlyIfSuccessful: true
+			archiveArtifacts artifacts: ${FILE,path="D:/Software/jenkins/Myworkspace/Branches/${BRANCH_NAME}/Report/JenkinsReport/HTML/index.html"}, onlyIfSuccessful: true
 			emailext attachmentsPattern: 'generatedFile.txt',
 			body: "<b>Build Status Report</b> <br>Job name : Job ${JOB_NAME} <br>Build No : build ${BUILD_NUMBER} <br>Branch Name :${BRANCH_NAME} <br>Build Result : ${currentBuild.currentResult} <br> Console output : ${BUILD_URL}",
         		mimeType: 'text/html',
