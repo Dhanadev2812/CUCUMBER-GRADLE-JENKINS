@@ -42,11 +42,16 @@ pipeline {
           			echo 'Deploy'
           		}
 		}
+		stage('Download') {
+            	steps {
+                	bat 'echo "${D:/Software/jenkins/Myworkspace/Branches/${BRANCH_NAME}}" > generatedFile.html'
+            }
+        }
 	}
 	post {
 		success {  
              		echo 'This will run only if success' 	
-			emailext attachmentsPattern:'Report/JenkinsReport/htmlFullReport/**report.html',
+			emailext attachmentsPattern:'generatedFile.html', onlyIfSuccessful: true,
 			body: "<b>Build Status Report</b> <br>Job name : Job ${JOB_NAME} <br>Build No : build ${BUILD_NUMBER} <br>Branch Name :${BRANCH_NAME} <br>Build Result : ${currentBuild.currentResult} <br> Console output : ${BUILD_URL}",
         		mimeType: 'text/html',
         		subject: "[Jenkins] :: BUILD SUCCESS :: ${currentBuild.fullDisplayName}",
