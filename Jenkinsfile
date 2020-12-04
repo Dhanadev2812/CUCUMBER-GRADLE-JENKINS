@@ -58,10 +58,10 @@ pipeline {
         		subject: "[Jenkins] :: BUILD SUCCESS :: ${currentBuild.fullDisplayName}",
 			from:'sandhiya.2894@gmail.com',
         		to: "dhanadev728@gmail.com",
-        		replyTo: '',
+        		replyTo: ''
         		//recipientProviders: [developers(), requestor()]
    
-         }
+         	}
 		failure {  
              		echo 'This will run only if failure' 
 			emailext body: "<b>Build Status Report</b> <br>Job name : Job ${JOB_NAME} <br>Build No : build ${BUILD_NUMBER} <br>Branch Name :${BRANCH_NAME} <br>Build Result : ${currentBuild.currentResult} <br> Console output : ${BUILD_URL}",
