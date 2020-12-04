@@ -47,7 +47,7 @@ pipeline {
 		success {  
              		echo 'This will run only if success' 	
 			emailext attachmentsPattern:'**/cucumber-html-reports',
-			body: "<b>Build Status Report</b> <br>Job name : Job ${JOB_NAME} <br>Build No : build ${BUILD_NUMBER} <br>Branch Name :${BRANCH_NAME} <br>Build Result : ${currentBuild.currentResult} <br> Console output : ${BUILD_URL}",
+			body: "<b>Build Status Report</b> <br>Job name : Job ${JOB_NAME} <br>Build No : build ${BUILD_NUMBER} <br>Branch Name :${BRANCH_NAME} <br>Build Result : ${currentBuild.currentResult} <br> Console output : ${BUILD_URL} <br> Cucumber report : ${D:/Software/jenkins/Myworkspace/Branches/${BRANCH_NAME}/Report/JenkinsReport/htmlFullReport/cucumber-html-reports/overview-features.html}",
         		mimeType: 'text/html',
         		subject: "[Jenkins] :: BUILD SUCCESS :: ${currentBuild.fullDisplayName}",
 			from:'sandhiya.2894@gmail.com',
