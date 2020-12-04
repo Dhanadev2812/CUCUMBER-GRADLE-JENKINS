@@ -45,24 +45,25 @@ pipeline {
 	}
 	post {
 		success {  
-             		echo 'This will run only if successful' 
-			def BodyTemplate = ("<body>
-  						<h3>Using "build" environment variables:</h3>
- 						 <p>
-   						 <a href="<%= build.absoluteUrl %>"><%= build.fullDisplayName %></a>
-  						</p>
-  						<h3>List of all available "build" environment variables:</h3>
-  						<div>
-    						<% println build.properties.collect{it}.join('<br />') %>
-  						</div>
-						</body>")
-			emailext body: "Run ${JOB_NAME}-#${BUILD_NUMBER} succeeded. ${BodyTemplate} \n" + "To get more details, visit the build results page: ${BUILD_URL}.",
-        		mimeType: 'text/html',
-        		subject: "SUCCESS :: [Jenkins] ${currentBuild.fullDisplayName}",
-			from:'sandhiya.2894@gmail.com',
-        		to: "dhanadev728@gmail.com",
-        		replyTo: '',
-        		recipientProviders: [[$class: 'CulpritsRecipientProvider']]
+             		node {
+        stage('Writing html file')
+        {
+        sh 'echo "<html>" >> myfile.html'
+        sh 'echo "<header><title> This is the title</title></header>" >> myfile.html'
+        sh 'echo "<body> how do you do? </body>" >> myfile.html'
+        sh 'echo "</html>" >> myfile.html'
+        sh 'ls -al myfile.html'
+        sh 'head -1 myfile.html'
+        }
+        stage('Email')
+        {
+        env.ForEmailPlugin = env.WORKSPACE
+        emailext mimeType: 'text/html',
+        body: '${FILE, path="myfile.html"}',
+        subject: currentBuild.currentResult + " : " + env.JOB_NAME,
+        to: 'dhanadev728@gmail.com'
+        }   
+    }
          }
 		failure {  
              		echo 'This will run only if failed' 
