@@ -54,7 +54,7 @@ pipeline {
         		to: "dhanadev728@gmail.com",
         		replyTo: '',
         		recipientProviders: [[$class: 'CulpritsRecipientProvider']]
-    }
+   
          }
 		failure {  
              		echo 'This will run only if failed' 
