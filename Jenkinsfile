@@ -46,8 +46,7 @@ pipeline {
 	post {
 		success {  
              		echo 'This will run only if success' 
-			emailext body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}",
-                	recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']],
+			emailext body: "${currentBuild.currentResult}: Job ${JOB_NAME} build ${BUILD_NUMBER}\n More info at: ${BUILD_URL}",
         		mimeType: 'text/html',
         		subject: "SUCCESS :: [Jenkins] ${currentBuild.fullDisplayName}",
 			from:'sandhiya.2894@gmail.com',
