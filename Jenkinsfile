@@ -46,7 +46,7 @@ pipeline {
 	post {
 		success {  
              		echo 'This will run only if success' 
-			emailext body: "<b>Build Status Report</b>,<br>Job name : Job ${JOB_NAME},<br>Build No : build ${BUILD_NUMBER},<br>Branch Name :${BRANCH_NAME}, <br>Build Result : ${currentBuild.currentResult},<br> Console output : ${BUILD_URL}",
+			emailext body: "<b>Build Status Report</b> <br>Job name : Job ${JOB_NAME} <br>Build No : build ${BUILD_NUMBER} <br>Branch Name :${BRANCH_NAME} <br>Build Result : ${currentBuild.currentResult} <br> Console output : ${BUILD_URL}",
         		mimeType: 'text/html',
         		subject: "[Jenkins] :: BUILD SUCCESS :: ${currentBuild.fullDisplayName}",
 			from:'sandhiya.2894@gmail.com',
@@ -56,10 +56,10 @@ pipeline {
    
          }
 		failure {  
-             		echo 'This will run only if failed' 
-			emailext body: "Run ${JOB_NAME}-#${BUILD_NUMBER} failed . To get more details, visit the build results page: ${BUILD_URL}.",
+             		echo 'This will run only if failure' 
+			emailext body: "<b>Build Status Report</b> <br>Job name : Job ${JOB_NAME} <br>Build No : build ${BUILD_NUMBER} <br>Branch Name :${BRANCH_NAME} <br>Build Result : ${currentBuild.currentResult} <br> Console output : ${BUILD_URL}",
         		mimeType: 'text/html',
-        		subject: "FAILED :: [Jenkins] ${currentBuild.fullDisplayName}",
+        		subject: "[Jenkins] :: BUILD FAILURE :: ${currentBuild.fullDisplayName}",
 			from:'sandhiya.2894@gmail.com',
         		to: "dhanadev728@gmail.com",
         		replyTo: '',
@@ -67,9 +67,9 @@ pipeline {
          }
 		unstable {  
              		echo 'This will run only if unstable' 
-			emailext body: "Run ${JOB_NAME}-#${BUILD_NUMBER} unstable. To get more details, visit the build results page: ${BUILD_URL}.",
+			emailext body: "<b>Build Status Report</b> <br>Job name : Job ${JOB_NAME} <br>Build No : build ${BUILD_NUMBER} <br>Branch Name :${BRANCH_NAME} <br>Build Result : ${currentBuild.currentResult} <br> Console output : ${BUILD_URL}",
         		mimeType: 'text/html',
-        		subject: "UNSTABLE :: [Jenkins] ${currentBuild.fullDisplayName}",
+        		subject: "[Jenkins] :: BUILD UNSTABLE :: ${currentBuild.fullDisplayName}",
 			from:'sandhiya.2894@gmail.com',
         		to: "dhanadev728@gmail.com",
         		replyTo: '',
@@ -77,9 +77,9 @@ pipeline {
          }
                aborted {  
              		echo 'This will run only if aborted' 
-			emailext body: "Run ${JOB_NAME}-#${BUILD_NUMBER} aborted. To get more details, visit the build results page: ${BUILD_URL}.",
+			emailext body: "<b>Build Status Report</b> <br>Job name : Job ${JOB_NAME} <br>Build No : build ${BUILD_NUMBER} <br>Branch Name :${BRANCH_NAME} <br>Build Result : ${currentBuild.currentResult} <br> Console output : ${BUILD_URL}",
         		mimeType: 'text/html',
-        		subject: "ABORTED :: [Jenkins] ${currentBuild.fullDisplayName}",
+        		subject: "[Jenkins] :: BUILD ABORTED :: ${currentBuild.fullDisplayName}",
 			from:'sandhiya.2894@gmail.com',
         		to: "dhanadev728@gmail.com",
         		replyTo: '',
