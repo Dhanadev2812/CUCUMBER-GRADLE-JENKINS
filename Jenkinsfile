@@ -44,7 +44,7 @@ pipeline {
 		}
 		stage('Download') {
             steps {
-                bat 'echo "artifact file" > generatedFile.txt'
+                bat 'echo "artifact filesss" > generatedFile.txt'
             		}
         	}
 	}
