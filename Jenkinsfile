@@ -42,16 +42,17 @@ pipeline {
           			echo 'Deploy'
           		}
 		}
-		//stage('Download') {
-            //steps {
-                //bat "${FILE,path="D:/Software/jenkins/Myworkspace/Branches/${BRANCH_NAME}/Report/JenkinsReport/HTML/index.html"} > generatedFile.zip"
-            		//}
-        	//}
+		stage('TestResultpublish')
+        	{ 
+            step([$class: 'MSTestPublisher', testResultsFile: 'TestResults/*.trx'])
+            zip archive: true, dir: '\\apps\\TestApplication\\bin\\Release', glob: '', zipFile: tagName + '.zip'
+    
+        }
 	}
 	post {
 		success {  
              		echo 'This will run only if success' 	
-			emailext attachmentsPattern: "D:/Software/jenkins/Myworkspace/Branches/${BRANCH_NAME}/Report/JenkinsReport/htmlFullReport/cucumber-html-reports/overview-features.html",
+			emailext attachmentsPattern: 'TestResults\\*.trx',
 			body: "<b>Build Status Report</b> <br>Job name : Job ${JOB_NAME} <br>Build No : build ${BUILD_NUMBER} <br>Branch Name :${BRANCH_NAME} <br>Build Result : ${currentBuild.currentResult} <br> Console output : ${BUILD_URL}",
         		mimeType: 'text/html',
         		subject: "[Jenkins] :: BUILD SUCCESS :: ${currentBuild.fullDisplayName}",
