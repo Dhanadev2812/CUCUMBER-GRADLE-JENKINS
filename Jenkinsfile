@@ -45,24 +45,14 @@ pipeline {
 	}
 	post {
 		success {  
-             		node {
-        stage('Writing html file')
-        {
-        sh 'echo "<html>" >> myfile.html'
-        sh 'echo "<header><title> This is the title</title></header>" >> myfile.html'
-        sh 'echo "<body> how do you do? </body>" >> myfile.html'
-        sh 'echo "</html>" >> myfile.html'
-        sh 'ls -al myfile.html'
-        sh 'head -1 myfile.html'
-        }
-        stage('Email')
-        {
-        env.ForEmailPlugin = env.WORKSPACE
-        emailext mimeType: 'text/html',
-        body: '${FILE, path="myfile.html"}',
-        subject: currentBuild.currentResult + " : " + env.JOB_NAME,
-        to: 'dhanadev728@gmail.com'
-        }   
+             		echo 'This will run only if success' 
+			emailext body: "Run ${JOB_NAME}-#${BUILD_NUMBER} succeeded. /n + recipientProviders: [[$class: 'DevelopersRecipientProvider'] /n + To get more details, visit the build results page: ${BUILD_URL}.",
+        		mimeType: 'text/html',
+        		subject: "SUCCESS :: [Jenkins] ${currentBuild.fullDisplayName}",
+			from:'sandhiya.2894@gmail.com',
+        		to: "dhanadev728@gmail.com",
+        		replyTo: '',
+        		recipientProviders: [[$class: 'CulpritsRecipientProvider']]
     }
          }
 		failure {  
