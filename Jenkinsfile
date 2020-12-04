@@ -44,7 +44,7 @@ pipeline {
 		}
 		stage('Download') {
             steps {
-                bat "D:/Software/jenkins/Myworkspace/Branches/${BRANCH_NAME} > generatedFile.zip"
+                bat "echo "artifact file" > generatedFile.zip"
             		}
         	}
 	}
