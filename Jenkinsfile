@@ -40,6 +40,28 @@ pipeline {
 		stage("Deploy") {
         		steps {
           			echo 'Deploy'
+				publishers {
+        		cleanWs { // Clean after build
+            			cleanWhenAborted(true)
+            			cleanWhenFailure(true)
+            			cleanWhenNotBuilt(false)
+            			cleanWhenSuccess(true)
+            			cleanWhenUnstable(true)
+            			deleteDirs(true)
+            			notFailBuild(true)
+            			disableDeferredWipeout(true)
+            			patterns {
+                			pattern {
+                   			 type('EXCLUDE')
+                    			pattern('.propsfile')
+                		}
+                		pattern {
+                    			type('INCLUDE')
+                    			pattern('.gitignore')
+                }
+            }
+        }
+    }
           		}
 		}
 	}
@@ -85,18 +107,10 @@ pipeline {
         		to: "dhanadev728@gmail.com",
         		replyTo: ''
         		//recipientProviders: [[$class: 'CulpritsRecipientProvider']]
-         }
-		always {
-             		cleanWs {
-				cleanWhenAborted(true)
-				cleanWhenFailure(true)
-				cleanWhenNotBuilt(false)
-				cleanWhenUnstable(true)
-			}
-			}
+         	}
+		
         }
 		
-		
-	}
+}
 
 
