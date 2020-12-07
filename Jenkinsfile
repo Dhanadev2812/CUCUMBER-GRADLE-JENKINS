@@ -52,7 +52,7 @@ pipeline {
         		subject: "[Jenkins] :: BUILD SUCCESS :: ${currentBuild.fullDisplayName}",
 			from:'sandhiya.2894@gmail.com',
         		to: "dhanadev728@gmail.com",
-        		replyTo: ''
+        		//replyTo: ''
         		//recipientProviders: [developers(), requestor()]
    
          	}
@@ -63,7 +63,7 @@ pipeline {
         		subject: "[Jenkins] :: BUILD FAILURE :: ${currentBuild.fullDisplayName}",
 			from:'sandhiya.2894@gmail.com',
         		to: "dhanadev728@gmail.com",
-        		replyTo: '',
+        		//replyTo: '',
         		recipientProviders: [[$class: 'CulpritsRecipientProvider']]
          }
 		unstable {  
@@ -73,7 +73,7 @@ pipeline {
         		subject: "[Jenkins] :: BUILD UNSTABLE :: ${currentBuild.fullDisplayName}",
 			from:'sandhiya.2894@gmail.com',
         		to: "dhanadev728@gmail.com",
-        		replyTo: '',
+        		//replyTo: '',
         		recipientProviders: [[$class: 'CulpritsRecipientProvider']]
          }
                aborted {  
@@ -83,7 +83,7 @@ pipeline {
         		subject: "[Jenkins] :: BUILD ABORTED :: ${currentBuild.fullDisplayName}",
 			from:'sandhiya.2894@gmail.com',
         		to: "dhanadev728@gmail.com",
-        		replyTo: '',
+        		//replyTo: '',
         		recipientProviders: [[$class: 'CulpritsRecipientProvider']]
          }
 	}
