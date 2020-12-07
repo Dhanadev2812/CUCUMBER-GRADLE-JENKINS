@@ -10,7 +10,7 @@ pipeline {
         skipStagesAfterUnstable()
     }
 	environment {
-           // RECIPIENT_EMAIL = 'dhanadev728@gmail.com;sandhiya.2894@gmail.com'
+            RECIPIENT_EMAIL = 'dhanadev728@gmail.com;sandhiya.2894@gmail.com'
 	    SENDER_EMAILS = 'sandhiya.2894@gmail.com'
         }
 	stages {
@@ -56,7 +56,7 @@ pipeline {
         		mimeType: 'text/html',
         		subject: "[Jenkins] :: BUILD SUCCESS :: ${currentBuild.fullDisplayName}",
 			from:"${SENDER_EMAILS}",
-        		//to: "${RECIPIENT_EMAIL}",
+        		to: "${RECIPIENT_EMAIL}",
         		replyTo: ''
         		//recipientProviders: [developers(), requestor()]
    
@@ -66,8 +66,8 @@ pipeline {
 			emailext body: "<b>Build Status Report</b> <br>Job name : Job ${JOB_NAME} <br>Build No : build ${BUILD_NUMBER} <br>Branch Name :${BRANCH_NAME} <br>Build Result : ${currentBuild.currentResult} <br> Console output : ${BUILD_URL}",
         		mimeType: 'text/html',
         		subject: "[Jenkins] :: BUILD FAILURE :: ${currentBuild.fullDisplayName}",
-			from:'sandhiya.2894@gmail.com',
-        		to: "dhanadev728@gmail.com",
+			from:"${SENDER_EMAILS}",
+        		to: "${RECIPIENT_EMAIL}",
         		replyTo: ''
         		//recipientProviders: [[$class: 'CulpritsRecipientProvider']]
          }
@@ -76,8 +76,8 @@ pipeline {
 			emailext body: "<b>Build Status Report</b> <br>Job name : Job ${JOB_NAME} <br>Build No : build ${BUILD_NUMBER} <br>Branch Name :${BRANCH_NAME} <br>Build Result : ${currentBuild.currentResult} <br> Console output : ${BUILD_URL}",
         		mimeType: 'text/html',
         		subject: "[Jenkins] :: BUILD UNSTABLE :: ${currentBuild.fullDisplayName}",
-			from:'sandhiya.2894@gmail.com',
-        		to: "dhanadev728@gmail.com",
+			from:"${SENDER_EMAILS}",
+        		to: "${RECIPIENT_EMAIL}",
         		replyTo: ''
         		//recipientProviders: [[$class: 'CulpritsRecipientProvider']]
          }
@@ -86,8 +86,8 @@ pipeline {
 			emailext body: "<b>Build Status Report</b> <br>Job name : Job ${JOB_NAME} <br>Build No : build ${BUILD_NUMBER} <br>Branch Name :${BRANCH_NAME} <br>Build Result : ${currentBuild.currentResult} <br> Console output : ${BUILD_URL}",
         		mimeType: 'text/html',
         		subject: "[Jenkins] :: BUILD ABORTED :: ${currentBuild.fullDisplayName}",
-			from:'sandhiya.2894@gmail.com',
-        		to: "dhanadev728@gmail.com",
+			from:"${SENDER_EMAILS}",
+        		to: "${RECIPIENT_EMAIL}",
         		replyTo: ''
         		//recipientProviders: [[$class: 'CulpritsRecipientProvider']]
          	}
