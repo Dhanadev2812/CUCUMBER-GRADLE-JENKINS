@@ -10,7 +10,7 @@ pipeline {
         skipStagesAfterUnstable()
     }
 	environment {
-            RECIPIENT_EMAIL = 'dhanadev728@gmail.com;sandhiya.2894@gmail.com'
+           // RECIPIENT_EMAIL = 'dhanadev728@gmail.com;sandhiya.2894@gmail.com'
 	    SENDER_EMAILS = 'sandhiya.2894@gmail.com'
         }
 	stages {
@@ -56,7 +56,7 @@ pipeline {
         		mimeType: 'text/html',
         		subject: "[Jenkins] :: BUILD SUCCESS :: ${currentBuild.fullDisplayName}",
 			from:"${SENDER_EMAILS}",
-        		to: "${RECIPIENT_EMAIL}",
+        		//to: "${RECIPIENT_EMAIL}",
         		replyTo: ''
         		//recipientProviders: [developers(), requestor()]
    
