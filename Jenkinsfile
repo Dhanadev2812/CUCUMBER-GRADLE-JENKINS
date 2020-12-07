@@ -50,20 +50,9 @@ pipeline {
             			deleteDirs(true)
             			notFailBuild(true)
             			disableDeferredWipeout(true)
-            			patterns {
-                			pattern {
-                   			 type('EXCLUDE')
-                    			pattern('.propsfile')
-                		}
-                		pattern {
-                    			type('INCLUDE')
-                    			pattern('.gitignore')
-                }
-            }
-        }
-    }
-          		}
-		}
+        			}
+  				  }	
+          			}
 	}
 	post {
 		success {  
