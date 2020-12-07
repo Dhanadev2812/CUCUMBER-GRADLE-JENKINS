@@ -41,16 +41,7 @@ pipeline {
         		steps {
           			echo 'Deploy'
 				
-        		cleanWs { // Clean after build
-            			cleanWhenAborted(true)
-            			cleanWhenFailure(true)
-            			cleanWhenNotBuilt(false)
-            			cleanWhenSuccess(true)
-            			cleanWhenUnstable(true)
-            			deleteDirs(true)
-            			notFailBuild(true)
-            			disableDeferredWipeout(true)
-        			}
+        		
   				  }	
 		}
 	}
@@ -97,6 +88,11 @@ pipeline {
         		replyTo: ''
         		//recipientProviders: [[$class: 'CulpritsRecipientProvider']]
          	}
+		always {
+			
+			 deleteDir()
+		}
+		
 		
         }
 		
