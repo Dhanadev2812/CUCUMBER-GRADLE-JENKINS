@@ -40,7 +40,7 @@ pipeline {
 		stage("Deploy") {
         		steps {
           			echo 'Deploy'
-				publishers {
+				
         		cleanWs { // Clean after build
             			cleanWhenAborted(true)
             			cleanWhenFailure(true)
@@ -52,7 +52,6 @@ pipeline {
             			disableDeferredWipeout(true)
         			}
   				  }	
-          			}
 		}
 	}
 	post {
