@@ -16,18 +16,13 @@ pipeline {
           		}
 		}
 		stage("Unit & Integration Tests") {
-			when {
-                		branch 'dhana'
-            		}
         		steps {
           			echo 'Started Stage one : Unit & Integration Tests ..'
           			bat 'gradle cucumber -Dcucumber.options="--tags @login_valid and --tags @Clinicadmin'
           		}
 		}
         	stage("Publishing Cucumber report") {
-			when {
-                		branch 'dhana'
-            		}
+	
           		steps {
 		 		echo 'Publishing Cucumber report..'          	
 				cucumber fileIncludePattern:'**/cucumber.json', 
