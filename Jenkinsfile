@@ -87,12 +87,7 @@ pipeline {
         		to: "dhanadev728@gmail.com",
         		replyTo: ''
         		//recipientProviders: [[$class: 'CulpritsRecipientProvider']]
-         	}
-		always {	
-			
-     				cleanWs()
-		}
-		
+         	}		
         }
 		
 }
