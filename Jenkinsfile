@@ -40,7 +40,6 @@ pipeline {
 		stage("Deploy") {
         		steps {
           			echo 'Deploy'
-				echo "${BUILD_LOG, maxLines=50, escapeHtml=false}"
         		
   				  }	
 		}
