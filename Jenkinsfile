@@ -51,7 +51,7 @@ pipeline {
         		mimeType: 'text/html',
         		subject: "[Jenkins] :: BUILD SUCCESS :: ${currentBuild.fullDisplayName}",
 			from:'sandhiya.2894@gmail.com',
-        		to: "dhanadev728@gmail.com",
+        		to: "dhanadev728@gmail.com"
         		//replyTo: ''
         		//recipientProviders: [developers(), requestor()]
    
@@ -62,7 +62,7 @@ pipeline {
         		mimeType: 'text/html',
         		subject: "[Jenkins] :: BUILD FAILURE :: ${currentBuild.fullDisplayName}",
 			from:'sandhiya.2894@gmail.com',
-        		to: "dhanadev728@gmail.com",
+        		to: "dhanadev728@gmail.com"
         		//replyTo: '',
         		recipientProviders: [[$class: 'CulpritsRecipientProvider']]
          }
@@ -72,7 +72,7 @@ pipeline {
         		mimeType: 'text/html',
         		subject: "[Jenkins] :: BUILD UNSTABLE :: ${currentBuild.fullDisplayName}",
 			from:'sandhiya.2894@gmail.com',
-        		to: "dhanadev728@gmail.com",
+        		to: "dhanadev728@gmail.com"
         		//replyTo: '',
         		recipientProviders: [[$class: 'CulpritsRecipientProvider']]
          }
@@ -82,7 +82,7 @@ pipeline {
         		mimeType: 'text/html',
         		subject: "[Jenkins] :: BUILD ABORTED :: ${currentBuild.fullDisplayName}",
 			from:'sandhiya.2894@gmail.com',
-        		to: "dhanadev728@gmail.com",
+        		to: "dhanadev728@gmail.com"
         		//replyTo: '',
         		recipientProviders: [[$class: 'CulpritsRecipientProvider']]
          }
