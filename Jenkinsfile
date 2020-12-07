@@ -4,14 +4,14 @@ pipeline {
             label ""
             customWorkspace "D:/Software/jenkins/Myworkspace/Branches/${BRANCH_NAME}"
         }
-	  environment {
-            EMAIL_INFORM = 'dhanadev728@gmail.com;sandhiya.2894@gmail.com'
-        }
     }
 	options {
         // When we have test-fails e.g. we don't need to run the remaining steps
         skipStagesAfterUnstable()
     }
+	environment {
+            EMAIL_INFORM = 'dhanadev728@gmail.com;sandhiya.2894@gmail.com'
+        }
 	stages {
 		stage("Build") {
         		steps {
