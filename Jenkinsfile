@@ -87,7 +87,13 @@ pipeline {
         		//recipientProviders: [[$class: 'CulpritsRecipientProvider']]
          }
 		always {
-            cleanWs()
+             		cleanWs {
+				cleanWhenAborted(true)
+				cleanWhenFailure(true)
+				cleanWhenNotBuilt(false)
+				cleanWhenUnstable(true)
+			}
+			}
         }
 		
 		
