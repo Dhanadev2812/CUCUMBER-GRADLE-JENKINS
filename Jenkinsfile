@@ -88,11 +88,9 @@ pipeline {
         		replyTo: ''
         		//recipientProviders: [[$class: 'CulpritsRecipientProvider']]
          	}
-		always {
+		always {	
 			
-			cleanup {
      				cleanWs()
-    			}
 		}
 		
         }
