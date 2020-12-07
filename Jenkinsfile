@@ -3,12 +3,12 @@ pipeline {
         label {
             label ""
             customWorkspace "D:/Software/jenkins/Myworkspace/Branches/${BRANCH_NAME}"
-        }
-    }
+        	}
+    	}
 	options {
         // When we have test-fails e.g. we don't need to run the remaining steps
         skipStagesAfterUnstable()
-    }
+    	}
 	environment {
             RECIPIENT_EMAIL = 'dhanadev728@gmail.com;sandhiya.2894@gmail.com'
 	    SENDER_EMAILS = 'sandhiya.2894@gmail.com'
@@ -37,7 +37,7 @@ pipeline {
 				cucumber fileIncludePattern:'**/cucumber.json', 
 				jsonReportDirectory:'Report/JenkinsReport/JSON',
 				sortingMethod: 'ALPHABETICAL',
-				reportTitle: 'cucumber',
+				reportTitle: 'ClinaNG Report',
 				buildStatus: 'UNSTABLE'			
              		}
            	}
@@ -63,27 +63,27 @@ pipeline {
          	}
 		failure {  
              		echo 'This will run only if failure' 
-			emailext body: "<b>Build Status Report</b> <br>Job name : Job ${JOB_NAME} <br>Build No : build ${BUILD_NUMBER} <br>Branch Name :${BRANCH_NAME} <br>Build Result : ${currentBuild.currentResult} <br> Console output : ${BUILD_URL}",
+			emailext body: "<b>Build Status Report</b> <br>Job name : Job ${JOB_NAME} <br>Build No : build ${BUILD_NUMBER} <br>Branch Name :${BRANCH_NAME} <br>Build Result : ${currentBuild.currentResult} <br> Check console output at ${BUILD_URL} to view the results.",
         		mimeType: 'text/html',
         		subject: "[Jenkins] :: BUILD FAILURE :: ${currentBuild.fullDisplayName}",
 			from:"${SENDER_EMAILS}",
         		to: "${RECIPIENT_EMAIL}",
         		replyTo: ''
         		//recipientProviders: [[$class: 'CulpritsRecipientProvider']]
-         }
+         	}
 		unstable {  
              		echo 'This will run only if unstable' 
-			emailext body: "<b>Build Status Report</b> <br>Job name : Job ${JOB_NAME} <br>Build No : build ${BUILD_NUMBER} <br>Branch Name :${BRANCH_NAME} <br>Build Result : ${currentBuild.currentResult} <br> Console output : ${BUILD_URL}",
+			emailext body: "<b>Build Status Report</b> <br>Job name : Job ${JOB_NAME} <br>Build No : build ${BUILD_NUMBER} <br>Branch Name :${BRANCH_NAME} <br>Build Result : ${currentBuild.currentResult} <br> Check console output at ${BUILD_URL} to view the results.",
         		mimeType: 'text/html',
         		subject: "[Jenkins] :: BUILD UNSTABLE :: ${currentBuild.fullDisplayName}",
 			from:"${SENDER_EMAILS}",
         		to: "${RECIPIENT_EMAIL}",
         		replyTo: ''
         		//recipientProviders: [[$class: 'CulpritsRecipientProvider']]
-         }
+         	}
                aborted {  
              		echo 'This will run only if aborted' 
-			emailext body: "<b>Build Status Report</b> <br>Job name : Job ${JOB_NAME} <br>Build No : build ${BUILD_NUMBER} <br>Branch Name :${BRANCH_NAME} <br>Build Result : ${currentBuild.currentResult} <br> Console output : ${BUILD_URL}",
+			emailext body: "<b>Build Status Report</b> <br>Job name : Job ${JOB_NAME} <br>Build No : build ${BUILD_NUMBER} <br>Branch Name :${BRANCH_NAME} <br>Build Result : ${currentBuild.currentResult} <br> Check console output at ${BUILD_URL} to view the results.",
         		mimeType: 'text/html',
         		subject: "[Jenkins] :: BUILD ABORTED :: ${currentBuild.fullDisplayName}",
 			from:"${SENDER_EMAILS}",
