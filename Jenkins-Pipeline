@@ -2,7 +2,7 @@ pipeline {
   agent {
         label {
             label ""
-            customWorkspace "D:/Software/jenkins/Myworkspace/Branches/${BRANCH_NAME}"
+            customWorkspace "D:/Software/jenkins/Myworkspace/Branches/${env.BRANCH_NAME}"
         	}
     	}
 	options {
@@ -48,7 +48,7 @@ pipeline {
 		success {  
              		echo 'This will run only if success' 	
 			emailext attachmentsPattern:'**/overview-features.html',
-			body: "<b>Build Status Report</b> <br>Job name : Job ${JOB_NAME} <br>Build No : build ${BUILD_NUMBER} <br>Branch Name :${BRANCH_NAME} <br>Build Result : ${currentBuild.currentResult} <br> Check console output at ${BUILD_URL} to view the results.",
+			body: "<b>Build Status Report</b> <br>Job name : Job ${JOB_NAME} <br>Build No : build ${BUILD_NUMBER} <br>Branch Name :${env.BRANCH_NAME} <br>Build Result : ${currentBuild.currentResult} <br> Check console output at ${BUILD_URL} to view the results.",
         		mimeType: 'text/html',
         		subject: "[Jenkins] :: BUILD SUCCESS :: ${currentBuild.fullDisplayName}",
 			from:"sandhiya.2894@gmail.com",
