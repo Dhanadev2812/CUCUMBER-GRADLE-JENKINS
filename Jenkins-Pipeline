@@ -9,10 +9,6 @@ pipeline {
         // When we have test-fails e.g. we don't need to run the remaining steps
         skipStagesAfterUnstable()
     	}
-	environment {
-            $env:RECIPIENT_EMAIL = 'dhanadev728@gmail.com;sandhiya.2894@gmail.com'
-	    $env:SENDER_EMAILS = 'sandhiya.2894@gmail.com'
-        }
 	stages {
 		stage("Build") {
         		steps {
@@ -55,8 +51,8 @@ pipeline {
 			body: "<b>Build Status Report</b> <br>Job name : Job ${JOB_NAME} <br>Build No : build ${BUILD_NUMBER} <br>Branch Name :${BRANCH_NAME} <br>Build Result : ${currentBuild.currentResult} <br> Check console output at ${BUILD_URL} to view the results.",
         		mimeType: 'text/html',
         		subject: "[Jenkins] :: BUILD SUCCESS :: ${currentBuild.fullDisplayName}",
-			from:"${SENDER_EMAILS}",
-        		to: "${RECIPIENT_EMAIL}",
+			from:"sandhiya.2894@gmail.com",
+        		to: "dhanadev728@gmail.com",
         		replyTo: ''
         		//recipientProviders: [developers(), requestor()]
    
@@ -66,8 +62,8 @@ pipeline {
 			emailext body: "<b>Build Status Report</b> <br>Job name : Job ${JOB_NAME} <br>Build No : build ${BUILD_NUMBER} <br>Branch Name :${env.BRANCH_NAME} <br>Build Result : ${currentBuild.currentResult} <br> Check console output at ${BUILD_URL} to view the results.",
         		mimeType: 'text/html',
         		subject: "[Jenkins] :: BUILD FAILURE :: ${currentBuild.fullDisplayName}",
-			from:"${SENDER_EMAILS}",
-        		to: "${RECIPIENT_EMAIL}",
+			from:"sandhiya.2894@gmail.com",
+        		to: "dhanadev728@gmail.com",
         		replyTo: ''
         		//recipientProviders: [[$class: 'CulpritsRecipientProvider']]
          	}
