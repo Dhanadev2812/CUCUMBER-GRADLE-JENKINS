@@ -4,6 +4,9 @@ pipeline {
             label ""
             customWorkspace "D:/Software/jenkins/Myworkspace/Branches/${BRANCH_NAME}"
         }
+	  environment {
+            EMAIL_INFORM = 'dhanadev728@gmail.com;sandhiya.2894@gmail.com'
+        }
     }
 	options {
         // When we have test-fails e.g. we don't need to run the remaining steps
@@ -48,11 +51,11 @@ pipeline {
 		success {  
              		echo 'This will run only if success' 	
 			emailext attachmentsPattern:'**/overview-features.html',
-			body: "<b>Build Status Report</b> <br>Job name : Job ${JOB_NAME} <br>Build No : build ${BUILD_NUMBER} <br>Branch Name :${BRANCH_NAME} <br>Build Result : ${currentBuild.currentResult} <br> Console output : ${BUILD_URL}",
+			body: "<b>Build Status Report</b> <br>Job name : Job ${JOB_NAME} <br>Build No : build ${BUILD_NUMBER} <br>Branch Name :${BRANCH_NAME} <br>Build Result : ${currentBuild.currentResult} <br> Check console output at ${BUILD_URL} to view the results.",
         		mimeType: 'text/html',
         		subject: "[Jenkins] :: BUILD SUCCESS :: ${currentBuild.fullDisplayName}",
 			from:'sandhiya.2894@gmail.com',
-        		to: "dhanadev728@gmail.com",
+        		to: "${EMAIL_INFORM}",
         		replyTo: ''
         		//recipientProviders: [developers(), requestor()]
    
