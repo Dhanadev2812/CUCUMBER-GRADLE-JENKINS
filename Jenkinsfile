@@ -90,9 +90,10 @@ pipeline {
          	}
 		always {
 			
-			 deleteDir()
+			cleanup {
+     				cleanWs()
+    			}
 		}
-		
 		
         }
 		
