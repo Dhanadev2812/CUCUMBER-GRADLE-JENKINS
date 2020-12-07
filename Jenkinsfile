@@ -40,7 +40,7 @@ pipeline {
 		stage("Deploy") {
         		steps {
           			echo 'Deploy'
-				
+				echo "${BUILD_LOG, maxLines=50, escapeHtml=false}"
         		
   				  }	
 		}
@@ -49,7 +49,7 @@ pipeline {
 		success {  
              		echo 'This will run only if success' 	
 			emailext attachmentsPattern:'**/overview-features.html',
-			body: "<b>Build Status Report</b> <br>Job name : Job ${JOB_NAME} <br>Build No : build ${BUILD_NUMBER} <br>Branch Name :${BRANCH_NAME} <br>Build Result : ${currentBuild.currentResult} <br> Console output : ${BUILD_URL} <p>Console output (last 250 lines):<hr><pre>${BUILD_LOG}</pre></p>",
+			body: "<b>Build Status Report</b> <br>Job name : Job ${JOB_NAME} <br>Build No : build ${BUILD_NUMBER} <br>Branch Name :${BRANCH_NAME} <br>Build Result : ${currentBuild.currentResult} <br> Console output : ${BUILD_URL}",
         		mimeType: 'text/html',
         		subject: "[Jenkins] :: BUILD SUCCESS :: ${currentBuild.fullDisplayName}",
 			from:'sandhiya.2894@gmail.com',
