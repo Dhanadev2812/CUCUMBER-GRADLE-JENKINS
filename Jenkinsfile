@@ -15,12 +15,13 @@ pipeline {
         }
 	
 	stages {
-		 stage('Clean up') {
+		 stage('Clean up & SCM Checkout') {
             		steps {
                 		script {
 					def exists = fileExists "D:/Software/jenkins/Myworkspace/Branches/${BRANCH_NAME}"
 					if (exists) {
     						echo 'File Exist'
+						cleanWs()
 					} 
 					else {
     						echo 'Empty DIR'
