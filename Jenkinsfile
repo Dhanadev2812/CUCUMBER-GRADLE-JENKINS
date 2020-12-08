@@ -14,20 +14,18 @@ pipeline {
 	    SENDER_EMAILS = 'sandhiya.2894@gmail.com'
         }
 	File directory = new File("D:/Software/jenkins/Myworkspace/Branches/${BRANCH_NAME}");
-			File[] contents = directory.listFiles();
-			// the directory file is not really a directory..
-			if (contents == null) {
-				echo 'if condition'
-			}
-// Folder is empty
-			else if (contents.length == 0) {
-				echo 'else if'
-			}
-		// Folder contains files
-		else {
-			echo 'else'
-			}
-	
+	File[] contents = directory.listFiles();
+			
+	if (contents == null) {
+		echo 'if condition'
+		}
+	else if (contents.length == 0) {
+		echo 'else if'
+		}
+	else {
+		echo 'else'
+		}
+	stages {
 		stage("Build") {
 			
         		steps {
