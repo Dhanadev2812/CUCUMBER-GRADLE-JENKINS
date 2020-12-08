@@ -13,13 +13,14 @@ pipeline {
             RECIPIENT_EMAIL = 'dhanadev728@gmail.com;sandhiya.2894@gmail.com'
 	    SENDER_EMAILS = 'sandhiya.2894@gmail.com'
         }
-	File directory = new File("D:/Software/jenkins/Myworkspace/Branches/${BRANCH_NAME}");
-	File[] contents = directory.listFiles();
-			
+	
 	stages {
 		 stage('Clean up') {
             		steps {
                 		script {
+					File directory = new File("D:/Software/jenkins/Myworkspace/Branches/${BRANCH_NAME}");
+					File[] contents = directory.listFiles();
+			
                     		if (contents == null) {
                        		 	echo 'I only execute on the master branch'
                     		} 
