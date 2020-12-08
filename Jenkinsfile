@@ -18,18 +18,13 @@ pipeline {
 		 stage('Clean up') {
             		steps {
                 		script {
-					File directory = new File("D:/Software/jenkins/Myworkspace/Branches/${BRANCH_NAME}");
-					File[] contents = directory.listFiles();
-			
-                    		if (contents == null) {
-                       		 	echo 'I only execute on the master branch'
-                    		} 
-					else if (contents.length == 0) {
-					echo 'else if'
+					def exists = fileExists "D:/Software/jenkins/Myworkspace/Branches/${BRANCH_NAME}"
+
+					if (exists) {
+    						echo 'Yes'
+					} else {
+    						echo 'No'
 				}
-					else {
-                        		echo 'I execute elsewhere'
-                    		}
                 	}
             	}
         }
