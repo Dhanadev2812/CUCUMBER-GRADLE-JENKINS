@@ -15,10 +15,13 @@ pipeline {
         }
 	stages {
 		stage("Build") {
-			if (fileExists("D:/Software/jenkins/Myworkspace/Branches/${BRANCH_NAME}")) {
-   				 echo 'Yes'
-				} 
-			       else {
+			def exists = fileExists 'Report'
+
+			if (exists) {
+    				echo 'Yes'
+			} else {
+    			echo 'No'
+			}
         		steps {
 			       
     				echo 'No'
