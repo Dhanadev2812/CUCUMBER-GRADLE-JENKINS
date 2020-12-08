@@ -6,6 +6,7 @@ pipeline {
         	}
     	}
 	options {
+		skipDefaultCheckout()
         	skipStagesAfterUnstable()
     	}
 	environment {
@@ -24,6 +25,7 @@ pipeline {
 					else {
     						echo 'Empty DIR'
 					}
+					 checkout scm 
                 		}
             		}
         	}
