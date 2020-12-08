@@ -24,8 +24,6 @@ pipeline {
 			}
         		steps {
 			       
-    				echo 'No'
-				}
           			echo 'Build'
           		}
 		}
