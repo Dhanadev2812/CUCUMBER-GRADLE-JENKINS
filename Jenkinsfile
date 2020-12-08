@@ -16,13 +16,20 @@ pipeline {
 	stages {
 		stage("Clean up") {
 		      steps {
-			      def exists = fileExists 'Report'
-
-			if (exists) {
-    				echo 'Yes'
-			} else {
-    			echo 'No'
-			} 
+			      File directory = new File("/path/to/folder");
+			File[] contents = directory.listFiles();
+			// the directory file is not really a directory..
+			if (contents == null) {
+				echo 'if condition'
+			}
+// Folder is empty
+			else if (contents.length == 0) {
+				echo 'else if'
+			}
+		// Folder contains files
+		else {
+			echo 'else'
+			}
 		      }
 		      	      }
 		stage("Build") {
