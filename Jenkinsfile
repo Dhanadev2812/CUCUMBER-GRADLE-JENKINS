@@ -78,7 +78,7 @@ pipeline {
         		//replyTo: ''
         		//recipientProviders: [developers(), requestor()]
 			
-			emailext body: '${SCRIPT,template="report.template"}', 
+			emailext '''${SCRIPT, template="report.template"}''', 
 				replyTo: '$DEFAULT_REPLYTO', 
 				subject: '$PROJECT_NAME: Run: ${TEST_COUNTS,var="total"}, 
 			Failed: ${TEST_COUNTS,var="fail"}', 
