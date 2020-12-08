@@ -6,8 +6,7 @@ pipeline {
         	}
     	}
 	options {
-        // When we have test-fails e.g. we don't need to run the remaining steps
-        skipStagesAfterUnstable()
+        	skipStagesAfterUnstable()
     	}
 	environment {
             RECIPIENT_EMAIL = 'dhanadev728@gmail.com;sandhiya.2894@gmail.com'
@@ -19,15 +18,15 @@ pipeline {
             		steps {
                 		script {
 					def exists = fileExists "D:/Software/jenkins/Myworkspace/Branches/${BRANCH_NAME}"
-
 					if (exists) {
-    						echo 'Yes'
-					} else {
-    						echo 'No'
-				}
-                	}
-            	}
-        }
+    						echo 'File Exist'
+					} 
+					else {
+    						echo 'Empty DIR'
+					}
+                		}
+            		}
+        	}
 		stage("Build") {
 			
         		steps {
