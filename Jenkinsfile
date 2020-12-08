@@ -16,16 +16,22 @@ pipeline {
 	File directory = new File("D:/Software/jenkins/Myworkspace/Branches/${BRANCH_NAME}");
 	File[] contents = directory.listFiles();
 			
-	if (contents == null) {
-		echo 'if condition'
-		}
-	else if (contents.length == 0) {
-		echo 'else if'
-		}
-	else {
-		echo 'else'
-		}
 	stages {
+		 stage('Clean up') {
+            		steps {
+                		script {
+                    		if (contents == null) {
+                       		 	echo 'I only execute on the master branch'
+                    		} 
+					else if (contents.length == 0) {
+					echo 'else if'
+				}
+					else {
+                        		echo 'I execute elsewhere'
+                    		}
+                	}
+            	}
+        }
 		stage("Build") {
 			
         		steps {
