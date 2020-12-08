@@ -16,6 +16,12 @@ pipeline {
 	stages {
 		stage("Build") {
         		steps {
+			       if (fileExists("D:/Software/jenkins/Myworkspace/Branches/${BRANCH_NAME}")) {
+   				 echo 'Yes'
+				} 
+			       else {
+    				echo 'No'
+				}
           			echo 'Build'
           		}
 		}
