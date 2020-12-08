@@ -14,16 +14,21 @@ pipeline {
 	    SENDER_EMAILS = 'sandhiya.2894@gmail.com'
         }
 	stages {
-		stage("Build") {
-			
-        		steps {
-			       def exists = fileExists 'Report'
+		stage("Clean up") {
+		      steps {
+			      def exists = fileExists 'Report'
 
 			if (exists) {
     				echo 'Yes'
 			} else {
     			echo 'No'
-			}
+			} 
+		      }
+		      	      }
+		stage("Build") {
+			
+        		steps {
+			      
           			echo 'Build'
           		}
 		}
