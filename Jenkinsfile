@@ -82,7 +82,7 @@ pipeline {
 				replyTo: '$DEFAULT_REPLYTO', 
 				to: "${RECIPIENT_EMAIL}",
 				subject: '$PROJECT_NAME: Run: ${TEST_COUNTS,var="total"}'
-			//recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']]
+				recipientProviders: [[$class: 'RequesterRecipientProvider']]
 
    
          	}
