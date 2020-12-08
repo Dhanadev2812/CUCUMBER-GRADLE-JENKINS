@@ -69,8 +69,8 @@ pipeline {
 	post {
 		success {  
              		echo 'This will run only if success' 	
-			emailext  ${SCRIPT, template="ClinaNG-Email Template.template"},attachmentsPattern:'**/overview-features.html',
-			body: "<b>Build Status Report</b> <br>Job name : Job ${JOB_NAME} <br>Build No : build ${BUILD_NUMBER} <br>Branch Name :${BRANCH_NAME} <br>Build Result : ${currentBuild.currentResult} <br> Check console output at ${BUILD_URL} to view the results.",
+			emailext  attachmentsPattern:'**/overview-features.html',
+			body:'''${SCRIPT, template="ClinaNG-Email Template.template"}''',
         		mimeType: 'text/html',
         		subject: "[Jenkins] :: BUILD SUCCESS :: ${currentBuild.fullDisplayName}",
 			from:"${SENDER_EMAILS}",
