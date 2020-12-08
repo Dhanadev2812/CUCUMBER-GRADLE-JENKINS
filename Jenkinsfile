@@ -13,10 +13,7 @@ pipeline {
             RECIPIENT_EMAIL = 'dhanadev728@gmail.com;sandhiya.2894@gmail.com'
 	    SENDER_EMAILS = 'sandhiya.2894@gmail.com'
         }
-	stages {
-		stage("Clean up") {
-		      steps {
-			      File directory = new File("/path/to/folder");
+	File directory = new File("D:/Software/jenkins/Myworkspace/Branches/${BRANCH_NAME}");
 			File[] contents = directory.listFiles();
 			// the directory file is not really a directory..
 			if (contents == null) {
@@ -30,8 +27,7 @@ pipeline {
 		else {
 			echo 'else'
 			}
-		      }
-		      	      }
+	
 		stage("Build") {
 			
         		steps {
