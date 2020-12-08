@@ -69,14 +69,21 @@ pipeline {
 	post {
 		success {  
              		echo 'This will run only if success' 	
-			emailext  attachmentsPattern:'**/overview-features.html',
-			body:'''${SCRIPT, template="ClinaNG-Email Template.template"}''',
-        		mimeType: 'text/html',
-        		subject: "[Jenkins] :: BUILD SUCCESS :: ${currentBuild.fullDisplayName}",
-			from:"${SENDER_EMAILS}",
-        		to: "${RECIPIENT_EMAIL}",
-        		replyTo: ''
+			//emailext  attachmentsPattern:'**/overview-features.html',
+			//body:body: "<b>Build Status Report</b> <br>Job name : Job ${JOB_NAME} <br>Build No : build ${BUILD_NUMBER} <br>Branch Name :${env.BRANCH_NAME} <br>Build Result : ${currentBuild.currentResult} <br> Check console output at ${BUILD_URL} to view the results.",
+        		//mimeType: 'text/html',
+        		//subject: "[Jenkins] :: BUILD SUCCESS :: ${currentBuild.fullDisplayName}",
+			//from:"${SENDER_EMAILS}",
+        		//to: "${RECIPIENT_EMAIL}",
+        		//replyTo: ''
         		//recipientProviders: [developers(), requestor()]
+			
+			emailext body: '${SCRIPT,template="report.template"}', 
+				replyTo: '$DEFAULT_REPLYTO', 
+				subject: '$PROJECT_NAME: Run: ${TEST_COUNTS,var="total"}, 
+			Failed: ${TEST_COUNTS,var="fail"}', 
+			recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']]
+
    
          	}
 		failure {  
