@@ -26,7 +26,7 @@ pipeline {
 					else {
     						echo 'Empty DIR'
 					}
-					 //checkout scm 
+					checkout scm 
                 		}
             		}
         	}
