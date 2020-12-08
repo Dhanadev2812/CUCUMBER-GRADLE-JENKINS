@@ -15,15 +15,15 @@ pipeline {
         }
 	stages {
 		stage("Build") {
-			def exists = fileExists 'Report'
+			
+        		steps {
+			       def exists = fileExists 'Report'
 
 			if (exists) {
     				echo 'Yes'
 			} else {
     			echo 'No'
 			}
-        		steps {
-			       
           			echo 'Build'
           		}
 		}
