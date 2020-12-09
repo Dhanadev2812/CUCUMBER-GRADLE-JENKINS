@@ -77,7 +77,10 @@ pipeline {
         		//to: "${RECIPIENT_EMAIL}",
         		//replyTo: ''
         		//recipientProviders: [developers(), requestor()]
-			
+			def publisher = LastChanges.getLastChangesPublisher null, "SIDE", "LINE", true, true, "", "", "", "", ""
+                        publisher.publishLastChanges()
+                    	def diff = publisher.getDiff()
+                    	writeFile file: 'build.diff', text: diff
 			emailext attachLog: true,compressLog: true,body: '$DEFAULT_CONTENT', attachmentsPattern: '**/*.diff',
 				replyTo: '$DEFAULT_REPLYTO', 
 				to: "${RECIPIENT_EMAIL}",
