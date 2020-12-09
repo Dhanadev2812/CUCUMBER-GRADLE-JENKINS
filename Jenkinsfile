@@ -24,7 +24,7 @@ pipeline {
 						cleanWs()
 					} 
 					else {
-    						echo 'Empty DIR'
+    						echo 'Empty dir'
 					}
 					checkout scm 
                 		}
