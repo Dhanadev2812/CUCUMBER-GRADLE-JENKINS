@@ -78,7 +78,7 @@ pipeline {
         		//replyTo: ''
         		//recipientProviders: [developers(), requestor()]
 			
-			emailext attachLog: true,compressLog: true,body: '$DEFAULT_CONTENT', 
+			emailext attachLog: true,compressLog: true,body: '$DEFAULT_CONTENT', attachmentsPattern: '**/*.diff',
 				replyTo: '$DEFAULT_REPLYTO', 
 				to: "${RECIPIENT_EMAIL}",
 				subject: '$PROJECT_NAME: Run: ${TEST_COUNTS,var="total"}',
