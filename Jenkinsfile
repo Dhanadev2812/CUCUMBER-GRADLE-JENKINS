@@ -78,8 +78,7 @@ pipeline {
         		//replyTo: ''
         		//recipientProviders: [developers(), requestor()]
 			
-			emailext attachLog: true,
-				compressLog: true,
+			emailext attachLog: true,compressLog: true,
 				attachmentsPattern:'**/overview-features.html','**/cucumber-html-reports',
 				body: '$DEFAULT_CONTENT',
 				replyTo: '$DEFAULT_REPLYTO', 
