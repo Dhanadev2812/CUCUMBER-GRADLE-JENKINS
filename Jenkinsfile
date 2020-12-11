@@ -117,6 +117,9 @@ pipeline {
 		//always {
 			//cleanWs()	
 		//}
+		always {
+            		junit 'build/reports/**/*.xml'
+        }
         }
 		
 }
