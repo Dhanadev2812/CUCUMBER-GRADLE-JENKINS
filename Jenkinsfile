@@ -81,7 +81,7 @@ pipeline {
 			emailext attachLog:true,compressLog:true,attachmentsPattern:'**/overview-features.html',body: '$DEFAULT_CONTENT',
 				replyTo: '$DEFAULT_REPLYTO', 
 				to: "${RECIPIENT_EMAIL}",
-				subject: '$PROJECT_NAME: Run: ${TEST_COUNTS,var="total"}',
+				subject: '$PROJECT_NAME: Run: ${TEST_COUNTS,var="total"}',${FILE,path="Report/JenkinsReport/htmlFullReport/cucumber-html-reports/overview-features.html"},
 				recipientProviders: [[$class: 'RequesterRecipientProvider']]
          	}
 		failure {  
@@ -117,9 +117,6 @@ pipeline {
 		//always {
 			//cleanWs()	
 		//}
-		always {
-            		junit 'D:/Software/jenkins/Myworkspace/Branches/${BRANCH_NAME}/Report/JenkinsReport/htmlFullReport/cucumber-html-reports/**/*.html'
-        }
         }
 		
 }
