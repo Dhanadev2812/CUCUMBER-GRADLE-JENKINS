@@ -84,7 +84,7 @@ pipeline {
 				replyTo: '$DEFAULT_REPLYTO', 
 				to: "${RECIPIENT_EMAIL}",
 				subject: '$PROJECT_NAME: Run: ${TEST_COUNTS,var="total"}',
-				'${FILE,path="Report/JenkinsReport/htmlFullReport/cucumber-html-reports/overview-features.html"}',
+				//'${FILE,path="Report/JenkinsReport/htmlFullReport/cucumber-html-reports/overview-features.html"}',
 				recipientProviders: [[$class: 'RequesterRecipientProvider']]
          	}
 		failure {  
