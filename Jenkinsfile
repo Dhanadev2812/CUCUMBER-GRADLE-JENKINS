@@ -118,7 +118,7 @@ pipeline {
 			//cleanWs()	
 		//}
 		always {
-            		junit 'build/reports/**/*.xml'
+            		junit 'D:/Software/jenkins/Myworkspace/Branches/${BRANCH_NAME}/Report/JenkinsReport/htmlFullReport/cucumber-html-reports/**/*.html'
         }
         }
 		
