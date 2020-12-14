@@ -80,8 +80,8 @@ pipeline {
 			
 			emailext  attachLog:true,compressLog:true,
 				attachmentsPattern:'**/overview-features.html',
-				body : readFile("Report/JenkinsReport/htmlFullReport/cucumber-html-reports/overview-features.html"),mimeType: 'text/html',
-				//body:'$DEFAULT_CONTENT',
+				//body : readFile("Report/JenkinsReport/htmlFullReport/cucumber-html-reports/overview-features.html"),mimeType: 'text/html',
+				body:'$DEFAULT_CONTENT',
 				replyTo: '$DEFAULT_REPLYTO', 
 				to: "${RECIPIENT_EMAIL}",
 				subject: '$PROJECT_NAME: Run: ${TEST_COUNTS,var="total"}',
