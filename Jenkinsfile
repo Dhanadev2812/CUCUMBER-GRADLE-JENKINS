@@ -80,7 +80,7 @@ pipeline {
 			
 			emailext  attachLog:true,compressLog:true,
 				attachmentsPattern:'**/overview-features.html',
-				body : '${FILE,path="Template/emailTemp_cucumber"}',
+				body : '${FILE,path="Template/emailTempClinaNG.groovy"}',
 				mimeType: 'text/html',
 				//body:'$DEFAULT_CONTENT',
 				replyTo: '$DEFAULT_REPLYTO', 
