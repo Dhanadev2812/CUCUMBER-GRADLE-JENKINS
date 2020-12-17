@@ -39,20 +39,20 @@ th, td {
     </tr>
     <tr>
       <td>Project</td>
-      <td><A "${env.JOB_NAME}">${env.JOB_NAME}</A></td>
+      <td><A "${JOB_NAME}">${JOB_NAME}</A></td>
     </tr>
       <tr>
          <td>Build ID</td>
-         <td><A "${env.BUILD_ID}">${env.BUILD_ID}</A></td>
+         <td><A "${BUILD_ID}">${BUILD_ID}</A></td>
       </tr>
       <tr>
          <td>Build Status</td>
-         <td><A "${env.currentBuild.currentResult}">${env.currentBuild.currentResult}</A></td>
-         <td><A "${env.currentBuild.result}">${env.currentBuild.result}</A></td>
+         <td><A "${currentBuild.currentResult}">${currentBuild.currentResult}</A></td>
+         <td><A "${currentBuild.result}">${currentBuild.result}</A></td>
       </tr>
       <tr>
          <td>Build Date</td>
-         <td><A "${BUILD_TIMESTAMP}">${env.BUILD_TIMESTAMP}</A></td>
+         <td><A "${BUILD_TIMESTAMP}">${BUILD_TIMESTAMP}</A></td>
       </tr>
 </table>
 </body>
