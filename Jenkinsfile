@@ -80,7 +80,8 @@ pipeline {
 			
 			emailext  attachLog:true,compressLog:true,
 				attachmentsPattern:'**/overview-features.html',
-				body : '${FILE,path="Template/ClinaNGtemp.html"}',
+				//body : '${FILE,path="Template/ClinaNGtemp.html"}',
+					body :'${SCRIPT, template="Template/ClinaNGtemp.html.template"}',
 				mimeType: 'text/html',
 				//body:'$DEFAULT_CONTENT',
 				replyTo: '$DEFAULT_REPLYTO', 
