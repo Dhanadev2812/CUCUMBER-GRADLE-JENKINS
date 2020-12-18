@@ -116,7 +116,7 @@ pipeline {
 				 body:'$DEFAULT_CONTENT',
 				 replyTo: '$DEFAULT_REPLYTO', 
 				 to: "${RECIPIENT_EMAIL}",
-				 subject: '$PROJECT_NAME' : Run: ${BUILD_STATUS},
+				 subject: "$PROJECT_NAME :: {JOB_NAME} ${BUILD_NUMBER}",
 				 recipientProviders: [[$class: 'RequesterRecipientProvider']]	       
          	}
 		//always {
