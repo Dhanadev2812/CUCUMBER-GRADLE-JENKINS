@@ -85,9 +85,9 @@ pipeline {
 				 body:'$DEFAULT_CONTENT',
 				 replyTo: '$DEFAULT_REPLYTO', 
 				 to: "${RECIPIENT_EMAIL}",
-				 subject: '$PROJECT_NAME: Run:"${BUILD_STATUS}",
+				 subject: '$PROJECT_NAME: Run: "${BUILD_STATUS}"
 				//body:'${FILE,path="Report/JenkinsReport/htmlFullReport/cucumber-html-reports/overview-features.html"}',
-				 recipientProviders: [[$class: 'RequesterRecipientProvider']]
+				 //recipientProviders: [[$class: 'RequesterRecipientProvider']]
          	}
 		failure {  
              		echo 'This will run only if failure' 
