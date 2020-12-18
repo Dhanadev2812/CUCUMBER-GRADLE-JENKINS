@@ -53,7 +53,7 @@ pipeline {
           		steps {
 		 		echo 'Publishing Cucumber report..'          	
 				cucumber fileIncludePattern:'**/cucumber.json', 
-				jsonReportDirectory:'Report/JenkinsReport/JSON',
+				jsonReportDirectory:'Reports/JenkinsReport/JSON',
 				sortingMethod: 'ALPHABETICAL',
 				reportTitle: 'ClinaNG Report',
 				buildStatus: 'UNSTABLE'			
