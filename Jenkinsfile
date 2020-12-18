@@ -114,7 +114,7 @@ pipeline {
 				attachLog:true,compressLog:true,
 				to: "${RECIPIENT_EMAIL}",
 				recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']],
-				subject: 'Test'
+				subject: "[Jenkins] :: ${BUILD_STATUS} :: ${currentBuild.fullDisplayName}"
          	}
 		//always {
 			//cleanWs()	
