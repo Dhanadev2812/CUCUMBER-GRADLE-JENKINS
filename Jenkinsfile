@@ -123,7 +123,7 @@ pipeline {
 				 body:'$DEFAULT_CONTENT',
 				 replyTo: '$DEFAULT_REPLYTO', 
 				 to: "${RECIPIENT_EMAIL}",
-				 subject: '$PROJECT_NAME: Run: '${BUILD_STATUS}'
+				 subject: '$PROJECT_NAME: Run: "${BUILD_STATUS}"
 				 //recipientProviders: [[$class: 'RequesterRecipientProvider']]	       
          	}
 		//always {
