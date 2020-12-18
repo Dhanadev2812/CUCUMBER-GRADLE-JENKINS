@@ -103,10 +103,8 @@ pipeline {
 				 body:'$DEFAULT_CONTENT',
 				 replyTo: '$DEFAULT_REPLYTO', 
 				 to: "${RECIPIENT_EMAIL}",
-				 subject: '$PROJECT_NAME: Run: ${TEST_COUNTS,var="total"}',
-				 //recipientProviders: [[$class: 'RequesterRecipientProvider']]
-			
-			
+				 subject: '$PROJECT_NAME: Run: ${TEST_COUNTS,var="total"}'
+				 //recipientProviders: [[$class: 'RequesterRecipientProvider']]		
          	}
 		unstable {  
              		echo 'This will run only if unstable' 
@@ -131,7 +129,7 @@ pipeline {
 				 body:'$DEFAULT_CONTENT',
 				 replyTo: '$DEFAULT_REPLYTO', 
 				 to: "${RECIPIENT_EMAIL}",
-				 subject: '$PROJECT_NAME: Run: ${TEST_COUNTS,var="total"}',
+				 subject: '$PROJECT_NAME: Run: ${TEST_COUNTS,var="total"}'
 				 //recipientProviders: [[$class: 'RequesterRecipientProvider']]
 		       
          	}
