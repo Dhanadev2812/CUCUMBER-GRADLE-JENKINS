@@ -110,12 +110,7 @@ pipeline {
 				 recipientProviders: [[$class: 'RequesterRecipientProvider']]
          	}
                aborted { 
-		        	emailext body:'$DEFAULT_CONTENT',
-         			 mimeType: 'text/html',
-        			subject: "[Jenkins] ${jobName}",
-        			to: "${RECIPIENT_EMAIL}",
-        			replyTo: "${mailRecipients}",
-        			recipientProviders: [[$class: 'CulpritsRecipientProvider']]
+		        emailext body: 'A Test EMail', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'
          	}
 		//always {
 			//cleanWs()	
