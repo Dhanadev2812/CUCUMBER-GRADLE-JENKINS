@@ -77,39 +77,32 @@ pipeline {
         		//to: "${RECIPIENT_EMAIL}",
         		//replyTo: ''
         		//recipientProviders: [developers(), requestor()]
-			
-			emailext attachLog:true,compressLog:true,
-				 attachmentsPattern:'**/overview-features.html',
-				//body:'${FILE,path="${env.WORKSPACE}/Template/ClinaNGtemp.html"}',
-				 mimeType: 'text/html',
-				 body:'$DEFAULT_CONTENT',
-				 replyTo: '$DEFAULT_REPLYTO', 
-				 to: "${RECIPIENT_EMAIL}",
-				 subject: "$PROJECT_NAME : Run: ${BUILD_STATUS}",
-				//body:'${FILE,path="Report/JenkinsReport/htmlFullReport/cucumber-html-reports/overview-features.html"}',
-				recipientProviders: [[$class: 'RequesterRecipientProvider']]
+			emailext body: '$DEFAULT_CONTENT',
+				attachLog:true,compressLog:true,
+				attachmentsPattern:'**/overview-features.html',
+				to: "${RECIPIENT_EMAIL}",
+				replyTo: '$DEFAULT_REPLYTO', 
+				recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']],
+				subject: '[Jenkins] :: ${BUILD_STATUS} :: ${PROJECT_NAME}'
          	}
 		failure {  
              		echo 'This will run only if failure' 
-			emailext attachLog:true,compressLog:true,
-				 mimeType: 'text/html',
-				 body:'$DEFAULT_CONTENT',
-				 replyTo: '$DEFAULT_REPLYTO', 
-				 to: "${RECIPIENT_EMAIL}",
-				 subject: "$PROJECT_NAME : Run: ${BUILD_STATUS}",
-				 recipientProviders: [[$class: 'RequesterRecipientProvider']]		
+			emailext body: '$DEFAULT_CONTENT',
+				attachLog:true,compressLog:true,
+				to: "${RECIPIENT_EMAIL}",
+				recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']],
+				subject: '[Jenkins] :: ${BUILD_STATUS} :: ${PROJECT_NAME}'	
          	}
 		unstable {  
              		echo 'This will run only if unstable' 
-			emailext attachLog:true,compressLog:true,
-				 mimeType: 'text/html',
-				 body:'$DEFAULT_CONTENT',
-				 replyTo: '$DEFAULT_REPLYTO', 
-				 to: "${RECIPIENT_EMAIL}",
-				 subject: "$PROJECT_NAME : Run: ${BUILD_STATUS}",
-				 recipientProviders: [[$class: 'RequesterRecipientProvider']]
-         	}
+			emailext body: '$DEFAULT_CONTENT',
+				attachLog:true,compressLog:true,
+				to: "${RECIPIENT_EMAIL}",
+				recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']],
+				subject: '[Jenkins] :: ${BUILD_STATUS} :: ${PROJECT_NAME}'
+         	  }
                aborted { 
+		       echo 'This will run only if aborted'
 		        emailext body: '$DEFAULT_CONTENT',
 				attachLog:true,compressLog:true,
 				to: "${RECIPIENT_EMAIL}",
