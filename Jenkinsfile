@@ -110,9 +110,10 @@ pipeline {
 				 recipientProviders: [[$class: 'RequesterRecipientProvider']]
          	}
                aborted { 
-		        emailext body: '$DEFAULT_CONTENT', 
+		        emailext body: '$DEFAULT_CONTENT',
+				attachLog:true,compressLog:true,
 				to: "${RECIPIENT_EMAIL}",
-				recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], 
+				recipientProviders: [$class: 'RequesterRecipientProvider']], 
 				subject: 'Test'
          	}
 		//always {
