@@ -111,14 +111,14 @@ pipeline {
          	}
                aborted {  
              	       echo 'This will run only if aborted' 
-		       emailext attachLog:true,compressLog:true,
-				 mimeType: 'text/html',
-				 body:'$DEFAULT_CONTENT',
-				 replyTo: '$DEFAULT_REPLYTO', 
-				 to: "${RECIPIENT_EMAIL}",
-				 subject: "$PROJECT_NAME :: {JOB_NAME} ${BUILD_NUMBER}"
+		       //emailext attachLog:true,compressLog:true,
+				// mimeType: 'text/html',
+				// body:'$DEFAULT_CONTENT',
+				 //replyTo: '$DEFAULT_REPLYTO', 
+				// to: "${RECIPIENT_EMAIL}",
+				 //subject: "$PROJECT_NAME :: {JOB_NAME} ${BUILD_NUMBER}"
 				 //recipientProviders: [[$class: 'RequesterRecipientProvider']]	  
-		        emailext body:'$DEFAULT_CONTENT',
+		        	emailext body:'$DEFAULT_CONTENT',
          			 mimeType: 'text/html',
         			subject: "[Jenkins] ${jobName}",
         			to: "${RECIPIENT_EMAIL}",
