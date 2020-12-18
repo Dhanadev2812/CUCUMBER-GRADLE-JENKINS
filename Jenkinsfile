@@ -117,7 +117,13 @@ pipeline {
 				 replyTo: '$DEFAULT_REPLYTO', 
 				 to: "${RECIPIENT_EMAIL}",
 				 subject: "$PROJECT_NAME :: {JOB_NAME} ${BUILD_NUMBER}"
-				 //recipientProviders: [[$class: 'RequesterRecipientProvider']]	       
+				 //recipientProviders: [[$class: 'RequesterRecipientProvider']]	  
+		        emailext body:'$DEFAULT_CONTENT',
+         			 mimeType: 'text/html',
+        			subject: "[Jenkins] ${jobName}",
+        			to: "${RECIPIENT_EMAIL}",
+        			replyTo: "${mailRecipients}",
+        			recipientProviders: [[$class: 'CulpritsRecipientProvider']]
          	}
 		//always {
 			//cleanWs()	
