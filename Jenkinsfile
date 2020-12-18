@@ -110,7 +110,10 @@ pipeline {
 				 recipientProviders: [[$class: 'RequesterRecipientProvider']]
          	}
                aborted { 
-		        emailext body: 'A Test EMail', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'
+		        emailext body: '$DEFAULT_CONTENT', 
+				to: "${RECIPIENT_EMAIL}",
+				recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], 
+				subject: 'Test'
          	}
 		//always {
 			//cleanWs()	
