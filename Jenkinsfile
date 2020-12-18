@@ -113,7 +113,7 @@ pipeline {
 		        emailext body: '$DEFAULT_CONTENT',
 				attachLog:true,compressLog:true,
 				to: "${RECIPIENT_EMAIL}",
-				recipientProviders: [$class: 'RequesterRecipientProvider']], 
+				recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']],
 				subject: 'Test'
          	}
 		//always {
