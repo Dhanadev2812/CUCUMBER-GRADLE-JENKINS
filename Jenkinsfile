@@ -78,26 +78,35 @@ pipeline {
         		//replyTo: ''
         		//recipientProviders: [developers(), requestor()]
 			
-			emailext  attachLog:true,compressLog:true,
-				attachmentsPattern:'**/overview-features.html',
+			emailext attachLog:true,compressLog:true,
+				 attachmentsPattern:'**/overview-features.html',
 				//body:'${FILE,path="${env.WORKSPACE}/Template/ClinaNGtemp.html"}',
-				mimeType: 'text/html',
-				body:'$DEFAULT_CONTENT',
-				replyTo: '$DEFAULT_REPLYTO', 
-				to: "${RECIPIENT_EMAIL}",
-				subject: '$PROJECT_NAME: Run: ${TEST_COUNTS,var="total"}',
+				 mimeType: 'text/html',
+				 body:'$DEFAULT_CONTENT',
+				 replyTo: '$DEFAULT_REPLYTO', 
+				 to: "${RECIPIENT_EMAIL}",
+				 subject: '$PROJECT_NAME: Run: ${TEST_COUNTS,var="total"}',
 				//body:'${FILE,path="Report/JenkinsReport/htmlFullReport/cucumber-html-reports/overview-features.html"}',
-				recipientProviders: [[$class: 'RequesterRecipientProvider']]
+				 recipientProviders: [[$class: 'RequesterRecipientProvider']]
          	}
 		failure {  
-             		echo 'This will run only if failure' 
-			emailext body: "<b>Build Status Report</b> <br>Job name : Job ${JOB_NAME} <br>Build No : build ${BUILD_NUMBER} <br>Branch Name :${env.BRANCH_NAME} <br>Build Result : ${currentBuild.currentResult} <br> Check console output at ${BUILD_URL} to view the results.",
-        		mimeType: 'text/html',
-        		subject: "[Jenkins] :: BUILD FAILURE :: ${currentBuild.fullDisplayName}",
-			from:"${SENDER_EMAILS}",
-        		to: "${RECIPIENT_EMAIL}",
-        		replyTo: ''
+             		//echo 'This will run only if failure' 
+			//emailext body: "<b>Build Status Report</b> <br>Job name : Job ${JOB_NAME} <br>Build No : build ${BUILD_NUMBER} <br>Branch Name :${env.BRANCH_NAME} <br>Build Result : ${currentBuild.currentResult} <br> Check console output at ${BUILD_URL} to view the results.",
+        		//mimeType: 'text/html',
+        		//subject: "[Jenkins] :: BUILD FAILURE :: ${currentBuild.fullDisplayName}",
+			//from:"${SENDER_EMAILS}",
+        		//to: "${RECIPIENT_EMAIL}",
+        		//replyTo: ''
         		//recipientProviders: [[$class: 'CulpritsRecipientProvider']]
+			emailext attachLog:true,compressLog:true,
+				 mimeType: 'text/html',
+				 body:'$DEFAULT_CONTENT',
+				 replyTo: '$DEFAULT_REPLYTO', 
+				 to: "${RECIPIENT_EMAIL}",
+				 subject: '$PROJECT_NAME: Run: ${TEST_COUNTS,var="total"}',
+				 //recipientProviders: [[$class: 'RequesterRecipientProvider']]
+			
+			
          	}
 		unstable {  
              		echo 'This will run only if unstable' 
@@ -111,13 +120,20 @@ pipeline {
          	}
                aborted {  
              		echo 'This will run only if aborted' 
-			emailext body: "<b>Build Status Report</b> <br>Job name : Job ${JOB_NAME} <br>Build No : build ${BUILD_NUMBER} <br>Branch Name :${BRANCH_NAME} <br>Build Result : ${currentBuild.currentResult} <br> Check console output at ${BUILD_URL} to view the results.",
-        		mimeType: 'text/html',
-        		subject: "[Jenkins] :: BUILD ABORTED :: ${currentBuild.fullDisplayName}",
-			from:"${SENDER_EMAILS}",
-        		to: "${RECIPIENT_EMAIL}",
-        		replyTo: ''
-        		//recipientProviders: [[$class: 'CulpritsRecipientProvider']]
+			//emailext body: "<b>Build Status Report</b> <br>Job name : Job ${JOB_NAME} <br>Build No : build ${BUILD_NUMBER} <br>Branch Name :${BRANCH_NAME} <br>Build Result : ${currentBuild.currentResult} <br> Check console output at ${BUILD_URL} to view the results.",
+        		//mimeType: 'text/html',
+        		//subject: "[Jenkins] :: BUILD ABORTED :: ${currentBuild.fullDisplayName}",
+			//from:"${SENDER_EMAILS}",
+        		//to: "${RECIPIENT_EMAIL}",
+        		//replyTo: ''
+		       emailext attachLog:true,compressLog:true,
+				 mimeType: 'text/html',
+				 body:'$DEFAULT_CONTENT',
+				 replyTo: '$DEFAULT_REPLYTO', 
+				 to: "${RECIPIENT_EMAIL}",
+				 subject: '$PROJECT_NAME: Run: ${TEST_COUNTS,var="total"}',
+				 //recipientProviders: [[$class: 'RequesterRecipientProvider']]
+		       
          	}
 		//always {
 			//cleanWs()	
