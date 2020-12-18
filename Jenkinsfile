@@ -68,7 +68,7 @@ pipeline {
 	}
 	post {
 		success {  
-             		echo 'This will run only if success' 	
+             		echo 'This will run only if success'
 			//emailext  attachmentsPattern:'**/overview-features.html',
 			//body:body: "<b>Build Status Report</b> <br>Job name : Job ${JOB_NAME} <br>Build No : build ${BUILD_NUMBER} <br>Branch Name :${env.BRANCH_NAME} <br>Build Result : ${currentBuild.currentResult} <br> Check console output at ${BUILD_URL} to view the results.",
         		//mimeType: 'text/html',
@@ -85,9 +85,9 @@ pipeline {
 				 body:'$DEFAULT_CONTENT',
 				 replyTo: '$DEFAULT_REPLYTO', 
 				 to: "${RECIPIENT_EMAIL}",
-				 subject: '$PROJECT_NAME: Run: "${BUILD_STATUS}"
+				 subject: '$PROJECT_NAME: Run: "${BUILD_STATUS}",
 				//body:'${FILE,path="Report/JenkinsReport/htmlFullReport/cucumber-html-reports/overview-features.html"}',
-				 //recipientProviders: [[$class: 'RequesterRecipientProvider']]
+				recipientProviders: [[$class: 'RequesterRecipientProvider']]
          	}
 		failure {  
              		echo 'This will run only if failure' 
@@ -96,8 +96,8 @@ pipeline {
 				 body:'$DEFAULT_CONTENT',
 				 replyTo: '$DEFAULT_REPLYTO', 
 				 to: "${RECIPIENT_EMAIL}",
-				 subject: '$PROJECT_NAME: Run: "${BUILD_STATUS}"
-				 //recipientProviders: [[$class: 'RequesterRecipientProvider']]		
+				 subject: '$PROJECT_NAME: Run: "${BUILD_STATUS}",
+				 recipientProviders: [[$class: 'RequesterRecipientProvider']]		
          	}
 		unstable {  
              		echo 'This will run only if unstable' 
@@ -106,8 +106,8 @@ pipeline {
 				 body:'$DEFAULT_CONTENT',
 				 replyTo: '$DEFAULT_REPLYTO', 
 				 to: "${RECIPIENT_EMAIL}",
-				 subject: '$PROJECT_NAME: Run: "${BUILD_STATUS}"
-				 //recipientProviders: [[$class: 'RequesterRecipientProvider']]
+				 subject: '$PROJECT_NAME: Run: "${BUILD_STATUS}",
+				 recipientProviders: [[$class: 'RequesterRecipientProvider']]
          	}
                aborted {  
              	       echo 'This will run only if aborted' 
@@ -116,8 +116,8 @@ pipeline {
 				 body:'$DEFAULT_CONTENT',
 				 replyTo: '$DEFAULT_REPLYTO', 
 				 to: "${RECIPIENT_EMAIL}",
-				 subject: '$PROJECT_NAME: Run: "${BUILD_STATUS}"
-				 //recipientProviders: [[$class: 'RequesterRecipientProvider']]	       
+				 subject: '$PROJECT_NAME: Run: "${BUILD_STATUS}",
+				 recipientProviders: [[$class: 'RequesterRecipientProvider']]	       
          	}
 		//always {
 			//cleanWs()	
