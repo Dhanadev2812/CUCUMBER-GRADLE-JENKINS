@@ -117,21 +117,14 @@ pipeline {
         		//recipientProviders: [[$class: 'CulpritsRecipientProvider']]
          	}
                aborted {  
-             		echo 'This will run only if aborted' 
-			//emailext body: "<b>Build Status Report</b> <br>Job name : Job ${JOB_NAME} <br>Build No : build ${BUILD_NUMBER} <br>Branch Name :${BRANCH_NAME} <br>Build Result : ${currentBuild.currentResult} <br> Check console output at ${BUILD_URL} to view the results.",
-        		//mimeType: 'text/html',
-        		//subject: "[Jenkins] :: BUILD ABORTED :: ${currentBuild.fullDisplayName}",
-			//from:"${SENDER_EMAILS}",
-        		//to: "${RECIPIENT_EMAIL}",
-        		//replyTo: ''
+             	       echo 'This will run only if aborted' 
 		       emailext attachLog:true,compressLog:true,
 				 mimeType: 'text/html',
 				 body:'$DEFAULT_CONTENT',
 				 replyTo: '$DEFAULT_REPLYTO', 
 				 to: "${RECIPIENT_EMAIL}",
-				 subject: '$PROJECT_NAME: Run: ${TEST_COUNTS,var="total"}'
-				 //recipientProviders: [[$class: 'RequesterRecipientProvider']]
-		       
+				 subject: '$PROJECT_NAME: Run: '${BUILD_STATUS}',
+				 //recipientProviders: [[$class: 'RequesterRecipientProvider']]	       
          	}
 		//always {
 			//cleanWs()	
