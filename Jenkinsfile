@@ -109,15 +109,7 @@ pipeline {
 				 subject: "$PROJECT_NAME : Run: ${BUILD_STATUS}",
 				 recipientProviders: [[$class: 'RequesterRecipientProvider']]
          	}
-               aborted {  
-             	       echo 'This will run only if aborted' 
-		       //emailext attachLog:true,compressLog:true,
-				// mimeType: 'text/html',
-				// body:'$DEFAULT_CONTENT',
-				 //replyTo: '$DEFAULT_REPLYTO', 
-				// to: "${RECIPIENT_EMAIL}",
-				 //subject: "$PROJECT_NAME :: {JOB_NAME} ${BUILD_NUMBER}"
-				 //recipientProviders: [[$class: 'RequesterRecipientProvider']]	  
+               aborted { 
 		        	emailext body:'$DEFAULT_CONTENT',
          			 mimeType: 'text/html',
         			subject: "[Jenkins] ${jobName}",
