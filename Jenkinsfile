@@ -85,36 +85,29 @@ pipeline {
 				 body:'$DEFAULT_CONTENT',
 				 replyTo: '$DEFAULT_REPLYTO', 
 				 to: "${RECIPIENT_EMAIL}",
-				 subject: '$PROJECT_NAME: Run: ${TEST_COUNTS,var="total"}',
+				 subject: '$PROJECT_NAME: Run:"${BUILD_STATUS}",
 				//body:'${FILE,path="Report/JenkinsReport/htmlFullReport/cucumber-html-reports/overview-features.html"}',
 				 recipientProviders: [[$class: 'RequesterRecipientProvider']]
          	}
 		failure {  
-             		//echo 'This will run only if failure' 
-			//emailext body: "<b>Build Status Report</b> <br>Job name : Job ${JOB_NAME} <br>Build No : build ${BUILD_NUMBER} <br>Branch Name :${env.BRANCH_NAME} <br>Build Result : ${currentBuild.currentResult} <br> Check console output at ${BUILD_URL} to view the results.",
-        		//mimeType: 'text/html',
-        		//subject: "[Jenkins] :: BUILD FAILURE :: ${currentBuild.fullDisplayName}",
-			//from:"${SENDER_EMAILS}",
-        		//to: "${RECIPIENT_EMAIL}",
-        		//replyTo: ''
-        		//recipientProviders: [[$class: 'CulpritsRecipientProvider']]
+             		echo 'This will run only if failure' 
 			emailext attachLog:true,compressLog:true,
 				 mimeType: 'text/html',
 				 body:'$DEFAULT_CONTENT',
 				 replyTo: '$DEFAULT_REPLYTO', 
 				 to: "${RECIPIENT_EMAIL}",
-				 subject: '$PROJECT_NAME: Run: ${TEST_COUNTS,var="total"}'
+				 subject: '$PROJECT_NAME: Run: "${BUILD_STATUS}"
 				 //recipientProviders: [[$class: 'RequesterRecipientProvider']]		
          	}
 		unstable {  
              		echo 'This will run only if unstable' 
-			emailext body: "<b>Build Status Report : Failed to generate cucumber report </b> <br>Job name : Job ${JOB_NAME} <br>Build No : build ${BUILD_NUMBER} <br>Branch Name :${BRANCH_NAME} <br>Build Result : ${currentBuild.currentResult} <br> Check console output at ${BUILD_URL} to view the results.",
-        		mimeType: 'text/html',
-        		subject: "[Jenkins] :: BUILD UNSTABLE :: ${currentBuild.fullDisplayName}",
-			from:"${SENDER_EMAILS}",
-        		to: "${RECIPIENT_EMAIL}",
-        		replyTo: ''
-        		//recipientProviders: [[$class: 'CulpritsRecipientProvider']]
+			emailext attachLog:true,compressLog:true,
+				 mimeType: 'text/html',
+				 body:'$DEFAULT_CONTENT',
+				 replyTo: '$DEFAULT_REPLYTO', 
+				 to: "${RECIPIENT_EMAIL}",
+				 subject: '$PROJECT_NAME: Run: "${BUILD_STATUS}"
+				 //recipientProviders: [[$class: 'RequesterRecipientProvider']]
          	}
                aborted {  
              	       echo 'This will run only if aborted' 
