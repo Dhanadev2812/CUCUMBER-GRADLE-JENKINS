@@ -74,6 +74,13 @@ pipeline {
          	}
                aborted {  
              		echo 'This will run only if aborted' 
+			AUTHOR_NAME = bat (
+      			script: "git show -s --format='%%an' HEAD",
+      			returnStdout: true
+  			).split('\r\n')[2].trim()
+
+			echo "The last commit was written by ${AUTHOR_NAME}."
+			echo "PS - Jenkins sucks giant monkey balls."
 			emailext body: "<b>Build Status Report</b> <br>Job name : Job ${JOB_NAME} <br>Build No : build ${BUILD_NUMBER} <br>Build Result : ${currentBuild.currentResult} <br> Check console output at ${BUILD_URL} to view the results.",
         		mimeType: 'text/html',
         		subject: "[Jenkins] :: BUILD ABORTED :: ${currentBuild.fullDisplayName}",
