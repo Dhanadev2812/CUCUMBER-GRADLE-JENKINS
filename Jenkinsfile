@@ -51,12 +51,13 @@ pipeline {
                 		branch 'dhana'
             		}
           		steps {
-		 		echo 'Publishing Cucumber report..'          	
+		 		echo 'Generating Cucumber report..'          	
 				cucumber fileIncludePattern:'**/cucumber.json', 
-				jsonReportDirectory:'Reports/JenkinsReport/JSON',
+				jsonReportDirectory:'Report/JenkinsReport/JSON',
 				sortingMethod: 'ALPHABETICAL',
-				reportTitle: 'ClinaNG Report',
+				reportTitle: 'cucumber',
 				buildStatus: 'UNSTABLE'			
+		
              		}
            	}
 		stage("Deploy") {
